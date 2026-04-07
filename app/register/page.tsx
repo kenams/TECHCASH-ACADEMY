@@ -21,41 +21,59 @@ export default function RegisterPage() {
       setError("");
       setMessage("");
 
-      const { data, error: signUpError } = await supabase.auth.signUp({
+      const registerResponse = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+
+      if (!registerResponse.ok) {
+        const registerData = (await registerResponse.json()) as { error?: string };
+        setError(registerData.error || "Impossible de creer le compte.");
+        setLoading(false);
+        return;
+      }
+
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password
       });
 
-      if (signUpError) {
-        setError(signUpError.message);
+      if (signInError) {
+        setError(signInError.message);
+        setLoading(false);
+        return;
+      }
+
+      const syncResponse = await fetch("/api/auth/sync-profile", {
+        method: "POST",
+        headers: data.session?.access_token
+          ? {
+              Authorization: `Bearer ${data.session.access_token}`
+            }
+          : undefined
+      });
+
+      if (!syncResponse.ok) {
+        const syncData = (await syncResponse.json()) as { error?: string };
+        setError(syncData.error || "Compte cree mais profil introuvable.");
         setLoading(false);
         return;
       }
 
       if (data.session) {
-        const syncResponse = await fetch("/api/auth/sync-profile", {
-          method: "POST",
-          headers: data.session.access_token
-            ? {
-                Authorization: `Bearer ${data.session.access_token}`
-              }
-            : undefined
-        });
-
-        if (!syncResponse.ok) {
-          const syncData = (await syncResponse.json()) as { error?: string };
-          setError(syncData.error || "Compte cree mais profil introuvable.");
-          setLoading(false);
-          return;
-        }
-
         setMessage("Compte cree. Tu peux maintenant passer au paiement.");
         setLoading(false);
         router.push("/checkout");
         return;
       }
 
-      setMessage("Compte cree. Confirme ton email si Supabase l'exige, puis connecte-toi.");
+      setMessage("Compte cree. Connecte-toi pour continuer.");
       setLoading(false);
       router.push("/login");
     } catch (registerError) {
