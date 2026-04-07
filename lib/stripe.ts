@@ -8,7 +8,7 @@ export function getStripeClient() {
     const serverEnv = getServerEnv();
 
     stripeClient = new Stripe(serverEnv.stripeSecretKey, {
-      apiVersion: "2025-02-24.acacia"
+      apiVersion: "2025-08-27.basil"
     });
   }
 
