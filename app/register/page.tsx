@@ -67,9 +67,9 @@ export default function RegisterPage() {
       }
 
       if (data.session) {
-        setMessage("Compte cree. Tu peux maintenant passer au paiement.");
+        setMessage("Compte cree. Tu peux maintenant choisir une formation.");
         setLoading(false);
-        router.push("/checkout");
+        router.push("/formations");
         return;
       }
 

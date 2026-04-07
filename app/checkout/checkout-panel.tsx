@@ -5,13 +5,17 @@ import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 
 type CheckoutPanelProps = {
   email: string;
+  productSlug: string;
   productName: string;
+  productSubtitle: string;
   formattedPrice: string;
 };
 
 export function CheckoutPanel({
   email,
+  productSlug,
   productName,
+  productSubtitle,
   formattedPrice
 }: CheckoutPanelProps) {
   const supabase = getSupabaseBrowserClient();
@@ -34,7 +38,10 @@ export function CheckoutPanel({
           ...(session?.access_token
             ? { Authorization: `Bearer ${session.access_token}` }
             : {})
-        }
+        },
+        body: JSON.stringify({
+          product: productSlug
+        })
       });
 
       const data = (await response.json()) as { url?: string; error?: string };
@@ -59,17 +66,20 @@ export function CheckoutPanel({
         <p className="eyebrow">Paiement securise</p>
         <h1>Active ton acces complet</h1>
         <p>
-          Tu es connecte avec <strong>{email}</strong>. Le paiement unique debloque le dashboard,
-          l'ebook PDF et les 6 modules video.
+          Tu es connecte avec <strong>{email}</strong>. Cet achat debloque la formation choisie
+          dans ton espace membre.
         </p>
 
         {error ? <div className="message error">{error}</div> : null}
 
         <div className="panel">
           <h3>{productName}</h3>
-          <p>Pack complet ebook + videos + bonus.</p>
+          <p>{productSubtitle}</p>
           <div className="price">{formattedPrice}</div>
-          <p className="helper">Tu seras redirige vers Stripe pour finaliser le paiement en securite.</p>
+          <p className="helper">
+            Tu seras redirige vers Stripe pour finaliser le paiement en securite. L'acces sera
+            ensuite active pour ce produit dans ton dashboard.
+          </p>
           <div className="cta-row">
             <button
               className="button"
@@ -81,7 +91,7 @@ export function CheckoutPanel({
               {loading ? "Redirection..." : "Payer avec Stripe"}
             </button>
             <a href="/" className="button-secondary">
-              Retour a l'offre
+              Retour accueil
             </a>
           </div>
         </div>

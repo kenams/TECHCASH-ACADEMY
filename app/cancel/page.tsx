@@ -8,8 +8,8 @@ export default function CancelPage() {
         <h1>Tu peux reprendre quand tu veux</h1>
         <p>La commande n'a pas ete finalisee. Ton compte reste disponible pour retenter l'achat.</p>
         <div className="cta-row">
-          <Link href="/checkout" className="button">
-            Revenir au paiement
+          <Link href="/formations" className="button">
+            Revenir aux formations
           </Link>
           <Link href="/" className="button-secondary">
             Retour accueil

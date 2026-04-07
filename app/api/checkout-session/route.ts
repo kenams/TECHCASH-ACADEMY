@@ -3,12 +3,29 @@ import { logError, logInfo, logWarn } from "@/lib/logger";
 import { getPublicEnv } from "@/lib/env";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
-import { getLatestPurchase } from "@/lib/purchases";
-import { siteConfig } from "@/lib/site";
+import { getProductById, getProductBySlug } from "@/lib/products";
 import { getStripeClient } from "@/lib/stripe";
 import { getUserProfile } from "@/lib/users";
+import { getProductPurchase } from "@/lib/purchases";
 
 export const runtime = "nodejs";
+
+type CheckoutPayload = {
+  product?: string;
+  productId?: string;
+};
+
+async function resolveRequestedProduct(payload: CheckoutPayload) {
+  if (payload.productId) {
+    return getProductById(payload.productId);
+  }
+
+  if (payload.product) {
+    return getProductBySlug(payload.product);
+  }
+
+  return null;
+}
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +36,8 @@ export async function POST(request: Request) {
     const accessToken = authHeader?.startsWith("Bearer ")
       ? authHeader.replace("Bearer ", "")
       : null;
+    const payload = (await request.json().catch(() => ({}))) as CheckoutPayload;
+
     const {
       data: { user }
     } = accessToken
@@ -30,45 +49,65 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Session utilisateur invalide." }, { status: 401 });
     }
 
+    const product = await resolveRequestedProduct(payload);
+
+    if (!product || !product.is_active) {
+      return NextResponse.json({ error: "Produit introuvable ou inactif." }, { status: 404 });
+    }
+
     const [profile, existingPurchase] = await Promise.all([
       getUserProfile(user.id, supabase),
-      getLatestPurchase(user.id, supabase)
+      getProductPurchase(user.id, product.id)
     ]);
 
-    if (profile?.is_premium || existingPurchase) {
-      return NextResponse.json({ error: "Un acces premium existe deja pour ce compte." }, { status: 409 });
+    if (existingPurchase || profile?.is_premium) {
+      return NextResponse.json(
+        { error: "Cette formation est deja accessible pour ce compte." },
+        { status: 409 }
+      );
     }
 
     const origin = getPublicEnv().siteUrl.replace(/\/+$/, "");
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      success_url: `${origin}/success`,
-      cancel_url: `${origin}/cancel`,
+      success_url: `${origin}/success?product=${product.slug}`,
+      cancel_url: `${origin}/cancel?product=${product.slug}`,
       metadata: {
         user_id: user.id,
-        product_name: siteConfig.productName
+        product_id: product.id,
+        product_slug: product.slug,
+        product_name: product.title
       },
       line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: siteConfig.productName,
-              description:
-                "Ebook + formation video + bonus pour devenir technicien informatique freelance."
-            },
-            unit_amount: siteConfig.productPrice
-          }
-        }
+        product.stripe_price_id
+          ? {
+              quantity: 1,
+              price: product.stripe_price_id
+            }
+          : {
+              quantity: 1,
+              price_data: {
+                currency: product.currency,
+                product_data: {
+                  name: product.title,
+                  description: product.short_description
+                },
+                unit_amount: product.price_cents
+              }
+            }
       ],
       customer: profile?.stripe_customer_id || undefined,
       customer_email: profile?.stripe_customer_id ? undefined : user.email,
       allow_promotion_codes: true
     });
 
-    logInfo("Session Stripe creee.", { userId: user.id, stripeSessionId: session.id });
+    logInfo("Session Stripe creee.", {
+      userId: user.id,
+      stripeSessionId: session.id,
+      productId: product.id,
+      productSlug: product.slug
+    });
     return NextResponse.json({ url: session.url });
   } catch (error) {
     logError("Erreur lors de la creation de la session Stripe.", { error });

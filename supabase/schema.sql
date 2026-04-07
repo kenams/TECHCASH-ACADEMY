@@ -1,83 +1,14 @@
 create extension if not exists "pgcrypto";
 
-create table if not exists public.users (
-  id uuid primary key references auth.users (id) on delete cascade,
-  email text not null unique
-);
-
-alter table public.users
-  add column if not exists is_premium boolean not null default false,
-  add column if not exists stripe_customer_id text,
-  add column if not exists created_at timestamptz not null default timezone('utc', now()),
-  add column if not exists updated_at timestamptz not null default timezone('utc', now());
-
 do $$
 begin
   if not exists (
-    select 1
-    from pg_constraint
-    where conname = 'users_stripe_customer_id_key'
+    select 1 from pg_type where typname = 'product_content_type'
   ) then
-    alter table public.users add constraint users_stripe_customer_id_key unique (stripe_customer_id);
+    create type public.product_content_type as enum ('pdf', 'video', 'text', 'resource', 'coming_soon');
   end if;
 end
 $$;
-
-create table if not exists public.purchases (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references public.users (id) on delete cascade,
-  product_name text not null,
-  amount integer not null,
-  created_at timestamptz not null default timezone('utc', now())
-);
-
-alter table public.purchases
-  add column if not exists currency text not null default 'eur',
-  add column if not exists status text not null default 'paid',
-  add column if not exists stripe_checkout_session_id text,
-  add column if not exists stripe_payment_intent_id text;
-
-do $$
-begin
-  if not exists (
-    select 1
-    from pg_constraint
-    where conname = 'purchases_status_check'
-  ) then
-    alter table public.purchases
-      add constraint purchases_status_check check (status in ('paid', 'pending', 'failed', 'refunded'));
-  end if;
-end
-$$;
-
-do $$
-begin
-  if not exists (
-    select 1
-    from pg_constraint
-    where conname = 'purchases_stripe_checkout_session_id_key'
-  ) then
-    alter table public.purchases
-      add constraint purchases_stripe_checkout_session_id_key unique (stripe_checkout_session_id);
-  end if;
-end
-$$;
-
-create index if not exists purchases_user_status_created_at_idx
-  on public.purchases (user_id, status, created_at desc);
-
-create table if not exists public.modules (
-  id uuid primary key default gen_random_uuid(),
-  title text not null,
-  description text not null,
-  video_url text not null,
-  position integer not null unique,
-  is_published boolean not null default true,
-  created_at timestamptz not null default timezone('utc', now())
-);
-
-create index if not exists modules_published_position_idx
-  on public.modules (is_published, position);
 
 create or replace function public.handle_updated_at()
 returns trigger
@@ -89,66 +20,109 @@ begin
 end;
 $$;
 
+create table if not exists public.users (
+  id uuid primary key references auth.users (id) on delete cascade,
+  email text not null unique,
+  is_premium boolean not null default false,
+  stripe_customer_id text unique,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
+);
+
 drop trigger if exists set_users_updated_at on public.users;
 create trigger set_users_updated_at
 before update on public.users
 for each row
 execute function public.handle_updated_at();
 
-insert into public.modules (title, description, video_url, position, is_published)
-values
-  (
-    'Introduction + mindset',
-    'Comprendre le plan des 30 jours, adopter le bon positionnement et eviter les blocages du debutant.',
-    'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    1,
-    true
-  ),
-  (
-    'Bases du metier IT',
-    'Les services que tu peux vendre vite, les problemes clients frequents et les competences a maitriser en priorite.',
-    'https://www.youtube.com/watch?v=ysz5S6PUM-U',
-    2,
-    true
-  ),
-  (
-    'Trouver ses premiers clients',
-    'Methode terrain pour decrocher ses premiers prospects sans audience ni gros budget marketing.',
-    'https://www.youtube.com/watch?v=jNQXAC9IVRw',
-    3,
-    true
-  ),
-  (
-    'Outils indispensables',
-    'Les outils simples pour diagnostiquer, intervenir, s''organiser et paraitre professionnel des le depart.',
-    'https://www.youtube.com/watch?v=aqz-KE-bpKQ',
-    4,
-    true
-  ),
-  (
-    'Strategie freelance',
-    'Construire une offre claire, fixer ses prix et structurer son activite pour tenir dans le temps.',
-    'https://www.youtube.com/watch?v=ScMzIvxBSi4',
-    5,
-    true
-  ),
-  (
-    'Generer 1000 EUR/mois',
-    'Plan d''action concret pour atteindre rapidement un premier palier de revenus recurrents.',
-    'https://www.youtube.com/watch?v=ZXsQAXx_ao0',
-    6,
-    true
-  )
-on conflict (position) do update
-set
-  title = excluded.title,
-  description = excluded.description,
-  video_url = excluded.video_url,
-  is_published = excluded.is_published;
+create table if not exists public.products (
+  id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
+  title text not null,
+  subtitle text not null,
+  short_description text not null,
+  long_description text not null,
+  price_cents integer not null check (price_cents >= 0),
+  currency text not null default 'eur',
+  stripe_price_id text,
+  thumbnail_url text,
+  is_active boolean not null default true,
+  is_featured boolean not null default false,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
+);
+
+drop trigger if exists set_products_updated_at on public.products;
+create trigger set_products_updated_at
+before update on public.products
+for each row
+execute function public.handle_updated_at();
+
+create table if not exists public.product_modules (
+  id uuid primary key default gen_random_uuid(),
+  product_id uuid not null references public.products (id) on delete cascade,
+  slug text not null,
+  title text not null,
+  description text not null,
+  content_type public.product_content_type not null default 'text',
+  content_url text,
+  content_body text,
+  is_published boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now()),
+  unique (product_id, slug)
+);
+
+drop trigger if exists set_product_modules_updated_at on public.product_modules;
+create trigger set_product_modules_updated_at
+before update on public.product_modules
+for each row
+execute function public.handle_updated_at();
+
+create table if not exists public.purchases (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users (id) on delete cascade,
+  product_id uuid references public.products (id) on delete set null,
+  product_name text not null,
+  amount integer not null,
+  amount_total integer,
+  currency text not null default 'eur',
+  status text not null default 'paid',
+  stripe_session_id text,
+  stripe_checkout_session_id text,
+  stripe_payment_intent_id text,
+  created_at timestamptz not null default timezone('utc', now())
+);
+
+alter table public.purchases
+  drop constraint if exists purchases_status_check;
+
+alter table public.purchases
+  add constraint purchases_status_check
+  check (status in ('paid', 'pending', 'failed', 'refunded'));
+
+create index if not exists purchases_user_status_created_at_idx
+  on public.purchases (user_id, status, created_at desc);
+
+create unique index if not exists purchases_stripe_session_id_idx
+  on public.purchases (stripe_session_id)
+  where stripe_session_id is not null;
+
+create unique index if not exists purchases_paid_product_per_user_idx
+  on public.purchases (user_id, product_id)
+  where status = 'paid' and product_id is not null;
+
+create index if not exists products_active_featured_idx
+  on public.products (is_active, is_featured, created_at desc);
+
+create index if not exists product_modules_product_published_idx
+  on public.product_modules (product_id, is_published, sort_order);
 
 alter table public.users enable row level security;
+alter table public.products enable row level security;
+alter table public.product_modules enable row level security;
 alter table public.purchases enable row level security;
-alter table public.modules enable row level security;
 
 drop policy if exists "Users can insert their own profile" on public.users;
 create policy "Users can insert their own profile"
@@ -179,10 +153,32 @@ for select
 to authenticated
 using (auth.uid() = user_id);
 
-drop policy if exists "Anyone can read published modules" on public.modules;
-drop policy if exists "Authenticated users can read published modules" on public.modules;
-create policy "Anyone can read published modules"
-on public.modules
+drop policy if exists "Anyone can read active products" on public.products;
+create policy "Anyone can read active products"
+on public.products
 for select
 to anon, authenticated
-using (is_published = true);
+using (is_active = true);
+
+drop policy if exists "Members can read published modules for owned products" on public.product_modules;
+create policy "Members can read published modules for owned products"
+on public.product_modules
+for select
+to authenticated
+using (
+  is_published = true
+  and (
+    exists (
+      select 1
+      from public.users
+      where users.id = auth.uid() and users.is_premium = true
+    )
+    or exists (
+      select 1
+      from public.purchases
+      where purchases.user_id = auth.uid()
+        and purchases.product_id = product_modules.product_id
+        and purchases.status = 'paid'
+    )
+  )
+);

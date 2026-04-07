@@ -8,15 +8,17 @@ export default function SuccessPage() {
         <h1>Ton acces est en cours d'activation</h1>
         <p>
           Stripe a confirme le paiement. Si l'ecriture en base prend quelques secondes, recharge
-          simplement ton dashboard.
+          simplement ton dashboard ou ouvre l'onglet mes formations.
         </p>
-        <p className="helper">Si l'acces n'apparait pas tout de suite, attends 5 a 10 secondes puis reessaie.</p>
+        <p className="helper">
+          Si l'acces n'apparait pas tout de suite, attends 5 a 10 secondes puis reessaie.
+        </p>
         <div className="cta-row">
           <Link href="/dashboard" className="button">
             Acceder au dashboard
           </Link>
-          <Link href="/" className="button-secondary">
-            Retour accueil
+          <Link href="/dashboard/mes-formations" className="button-secondary">
+            Voir mes formations
           </Link>
         </div>
       </section>

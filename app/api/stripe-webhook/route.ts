@@ -4,15 +4,29 @@ import { getServerEnv } from "@/lib/env";
 import { logError, logInfo, logWarn } from "@/lib/logger";
 import { getStripeClient } from "@/lib/stripe";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
+import { getFeaturedProduct, getProductById, getProductBySlug } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
+async function resolveWebhookProduct(session: Stripe.Checkout.Session) {
+  const productId = session.metadata?.product_id;
+  const productSlug = session.metadata?.product_slug;
+
+  if (productId) {
+    return getProductById(productId);
+  }
+
+  if (productSlug) {
+    return getProductBySlug(productSlug);
+  }
+
+  return getFeaturedProduct();
+}
+
 async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
   const supabaseAdmin = getSupabaseAdminClient();
   const userId = session.metadata?.user_id;
-  const productName = session.metadata?.product_name || "Produit digital";
-  const amount = session.amount_total || 0;
   const email = session.customer_email;
   const stripeCustomerId =
     typeof session.customer === "string" ? session.customer : session.customer?.id || null;
@@ -36,10 +50,16 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     return NextResponse.json({ error: "Metadonnees utilisateur manquantes." }, { status: 400 });
   }
 
+  const product = await resolveWebhookProduct(session);
+
+  if (!product) {
+    logWarn("Webhook Stripe recu sans produit resolu.", { stripeSessionId: session.id });
+    return NextResponse.json({ error: "Produit introuvable." }, { status: 400 });
+  }
+
   const { error: profileError } = await supabaseAdmin.from("users").upsert({
     id: userId,
     email,
-    is_premium: true,
     stripe_customer_id: stripeCustomerId
   });
 
@@ -47,24 +67,55 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     throw profileError;
   }
 
-  const { data: existingPurchase } = await supabaseAdmin
+  const { data: existingBySession, error: existingBySessionError } = await supabaseAdmin
     .from("purchases")
-    .select("id")
-    .eq("stripe_checkout_session_id", session.id)
+    .select("id, status")
+    .eq("stripe_session_id", session.id)
     .limit(1)
     .maybeSingle();
 
-  if (existingPurchase) {
+  if (existingBySessionError) {
+    throw existingBySessionError;
+  }
+
+  if (existingBySession) {
     logInfo("Webhook Stripe ignore car deja traite.", { stripeSessionId: session.id });
     return NextResponse.json({ received: true });
   }
 
+  const { data: existingPaidProduct, error: existingPaidProductError } = await supabaseAdmin
+    .from("purchases")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("product_id", product.id)
+    .eq("status", "paid")
+    .limit(1)
+    .maybeSingle();
+
+  if (existingPaidProductError) {
+    throw existingPaidProductError;
+  }
+
+  if (existingPaidProduct) {
+    logInfo("Webhook Stripe ignore car produit deja possede.", {
+      stripeSessionId: session.id,
+      userId,
+      productId: product.id
+    });
+    return NextResponse.json({ received: true });
+  }
+
+  const amountTotal = session.amount_total ?? session.amount_subtotal ?? product.price_cents;
+
   const { error } = await supabaseAdmin.from("purchases").insert({
     user_id: userId,
-    product_name: productName,
-    amount,
-    currency: session.currency || "eur",
+    product_id: product.id,
+    product_name: product.title,
+    amount: amountTotal,
+    amount_total: amountTotal,
+    currency: session.currency || product.currency,
     status: "paid",
+    stripe_session_id: session.id,
     stripe_checkout_session_id: session.id,
     stripe_payment_intent_id: stripePaymentIntentId
   });
@@ -75,6 +126,8 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
 
   logInfo("Paiement Stripe synchronise avec Supabase.", {
     userId,
+    productId: product.id,
+    productSlug: product.slug,
     stripeSessionId: session.id
   });
 

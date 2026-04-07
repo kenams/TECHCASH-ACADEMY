@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TechCash Academy",
-  description: "Deviens technicien informatique freelance en 30 jours, meme sans diplome."
+  title: {
+    default: "TechCash Academy",
+    template: "%s | TechCash Academy"
+  },
+  description:
+    "Catalogue de formations digitales pour vendre des services utiles, signer des clients et structurer une activite rentable."
 };
 
 export default function RootLayout({
