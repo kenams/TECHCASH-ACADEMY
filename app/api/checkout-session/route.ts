@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { logError, logInfo, logWarn } from "@/lib/logger";
 import { getPublicEnv } from "@/lib/env";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
 import { getLatestPurchase } from "@/lib/purchases";
 import { siteConfig } from "@/lib/site";
 import { getStripeClient } from "@/lib/stripe";
@@ -9,13 +10,20 @@ import { getUserProfile } from "@/lib/users";
 
 export const runtime = "nodejs";
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
     const stripe = getStripeClient();
     const supabase = await getSupabaseServerClient();
+    const supabaseAdmin = getSupabaseAdminClient();
+    const authHeader = request.headers.get("authorization");
+    const accessToken = authHeader?.startsWith("Bearer ")
+      ? authHeader.replace("Bearer ", "")
+      : null;
     const {
       data: { user }
-    } = await supabase.auth.getUser();
+    } = accessToken
+      ? await supabaseAdmin.auth.getUser(accessToken)
+      : await supabase.auth.getUser();
 
     if (!user?.id || !user.email) {
       logWarn("Tentative de creation de checkout sans session valide.");

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 
 type CheckoutPanelProps = {
   email: string;
@@ -13,6 +14,7 @@ export function CheckoutPanel({
   productName,
   formattedPrice
 }: CheckoutPanelProps) {
+  const supabase = getSupabaseBrowserClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -21,10 +23,17 @@ export function CheckoutPanel({
       setLoading(true);
       setError("");
 
+      const {
+        data: { session }
+      } = await supabase.auth.getSession();
+
       const response = await fetch("/api/checkout-session", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          ...(session?.access_token
+            ? { Authorization: `Bearer ${session.access_token}` }
+            : {})
         }
       });
 
