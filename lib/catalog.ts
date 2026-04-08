@@ -5,6 +5,13 @@ function isoDate() {
 }
 
 const now = isoDate();
+const sampleVideos = {
+  freelanceIt: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  landingPages: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+  sitesWeb: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+  outilsPme: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+  mobileApps: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+} as const;
 
 export const localProducts: ProductRecord[] = [
   {
@@ -168,11 +175,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "freelance-it-30-jours",
+    "video-introduction",
+    "Video explicative : lancer une offre freelance IT",
+    "Une capsule d'introduction qui resitue le positionnement, les clients cibles et la logique commerciale de la formation.",
+    "video",
+    4,
+    { content_url: sampleVideos.freelanceIt }
+  ),
+  module(
+    "freelance-it-30-jours",
     "cas-clients-a-venir",
     "Cas clients et objections terrain",
     "Des exemples concrets de conversations, de cadrage et de vente seront ajoutes progressivement.",
     "coming_soon",
-    4
+    5
   ),
 
   module(
@@ -207,11 +223,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "landing-pages-rentables",
+    "video-introduction",
+    "Video explicative : vendre une landing page rentable",
+    "Une capsule qui pose la promesse commerciale, la structure attendue et le cadre de livraison d'une landing page client.",
+    "video",
+    4,
+    { content_url: sampleVideos.landingPages }
+  ),
+  module(
+    "landing-pages-rentables",
     "cas-a-b-testing",
     "Cas de tests et d'optimisation",
     "Une serie d'exemples d'avant / apres et d'idees d'optimisation sera ajoutee.",
     "coming_soon",
-    4
+    5
   ),
 
   module(
@@ -246,11 +271,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "sites-web-clients",
+    "video-introduction",
+    "Video explicative : cadrer et vendre un site client",
+    "Une capsule pour comprendre le type de projet, le niveau de sobriete attendu et la logique de livraison de la formation.",
+    "video",
+    4,
+    { content_url: sampleVideos.sitesWeb }
+  ),
+  module(
+    "sites-web-clients",
     "pack-maintenance",
     "Pack maintenance et evolution",
     "Le module sur les offres de maintenance sera complete avec scripts et devis.",
     "coming_soon",
-    4
+    5
   ),
 
   module(
@@ -285,11 +319,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "outils-pme-glpi",
+    "video-introduction",
+    "Video explicative : transformer un irritant PME en outil",
+    "Une capsule pour voir comment partir d'un besoin support ou GLPI et le traduire en mission concrete et facturable.",
+    "video",
+    4,
+    { content_url: sampleVideos.outilsPme }
+  ),
+  module(
+    "outils-pme-glpi",
     "etudes-de-cas-a-venir",
     "Etudes de cas et mini-demos",
     "Des mini-cas reels de demandes PME et support seront ajoutes.",
     "coming_soon",
-    4
+    5
   ),
 
   module(
@@ -324,11 +367,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "applications-mobiles-rentables",
+    "video-introduction",
+    "Video explicative : cadrer une application mobile rentable",
+    "Une capsule pour comprendre le type de MVP vise, la monetisation et le niveau de simplicite recherche.",
+    "video",
+    4,
+    { content_url: sampleVideos.mobileApps }
+  ),
+  module(
+    "applications-mobiles-rentables",
     "cas-d-usages-a-venir",
     "Cas d'usages et extensions futures",
     "Des cas supplementaires seront ajoutes pour aller vers un produit plus ambitieux.",
     "coming_soon",
-    4
+    5
   )
 ];
 

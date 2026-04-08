@@ -5,6 +5,30 @@ type ContentRendererProps = {
   module: ProductModuleRecord;
 };
 
+function isDirectVideoFile(url: string) {
+  return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
+}
+
+function getEmbedUrl(url: string) {
+  if (url.includes("youtube.com/watch")) {
+    const parsed = new URL(url);
+    const videoId = parsed.searchParams.get("v");
+    return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+  }
+
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+  }
+
+  if (url.includes("vimeo.com/")) {
+    const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
+    return videoId ? `https://player.vimeo.com/video/${videoId}` : null;
+  }
+
+  return null;
+}
+
 export function ContentRenderer({ module }: ContentRendererProps) {
   switch (module.content_type) {
     case "text":
@@ -57,6 +81,46 @@ export function ContentRenderer({ module }: ContentRendererProps) {
         </article>
       );
     case "video":
+      if (module.content_url && isDirectVideoFile(module.content_url)) {
+        return (
+          <article className="content-card">
+            <div className="content-card-head">
+              <h3>{module.title}</h3>
+              <AccessBadge label="Video" tone="success" />
+            </div>
+            <p className="content-card-description">{module.description}</p>
+            <video className="video-embed" controls preload="metadata">
+              <source src={module.content_url} />
+              Votre navigateur ne supporte pas la lecture video integree.
+            </video>
+          </article>
+        );
+      }
+
+      if (module.content_url) {
+        const embedUrl = getEmbedUrl(module.content_url);
+
+        if (embedUrl) {
+          return (
+            <article className="content-card">
+              <div className="content-card-head">
+                <h3>{module.title}</h3>
+                <AccessBadge label="Video" tone="success" />
+              </div>
+              <p className="content-card-description">{module.description}</p>
+              <div className="video-frame">
+                <iframe
+                  src={embedUrl}
+                  title={module.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </article>
+          );
+        }
+      }
+
       return (
         <article className="content-card">
           <div className="content-card-head">
