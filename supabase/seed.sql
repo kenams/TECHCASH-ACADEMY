@@ -76,6 +76,45 @@ values
     'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
     true,
     false
+  ),
+  (
+    'glpi-support-pme',
+    'Déployer GLPI et structurer un support interne pour PME',
+    'Installer un support propre, simple à vendre et utile dès la première semaine',
+    'Apprendre à cadrer, déployer et faire adopter GLPI dans une PME sans transformer le projet en usine à gaz.',
+    'Cette formation te montre comment transformer un besoin flou de support interne en dispositif clair : tickets, catégories, SLA simples, base de connaissances, automatisations utiles et reporting compréhensible par le dirigeant.',
+    6500,
+    'eur',
+    null,
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+    true,
+    false
+  ),
+  (
+    'maintenance-informatique-pme',
+    'Vendre et livrer une offre de maintenance informatique pour PME',
+    'Forfaits, routines, reporting et rétention sans improviser',
+    'Apprendre à vendre une maintenance claire à des TPE/PME et à la livrer de manière répétable.',
+    'Le programme structure une vraie offre de maintenance : promesse commerciale, périmètre, onboarding, visites préventives, reporting, relances et renouvellement. L''objectif est de créer un revenu récurrent propre et défendable.',
+    5800,
+    'eur',
+    null,
+    'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+    true,
+    false
+  ),
+  (
+    'apps-metier-supabase',
+    'Créer des applications métier simples avec Supabase',
+    'Des apps utiles, livrables vite et faciles à maintenir',
+    'Apprendre à cadrer et produire une application métier simple avec base de données, auth, rôles et livraison propre.',
+    'Cette formation s''adresse aux profils qui veulent livrer des apps métier crédibles sans partir sur une architecture trop lourde. Tu y trouves le cadrage, le schéma de données, l''authentification, les rôles, le back-office et la logique de mise en production.',
+    6800,
+    'eur',
+    null,
+    'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80',
+    true,
+    false
   )
 on conflict (slug) do update
 set
@@ -813,6 +852,400 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'retours-utilisateurs',
       'Boucle feedback et analytics mobile',
       'Module bientot disponible sur instrumentation et iterations produit.',
+      'coming_soon',
+      null,
+      null,
+      true,
+      5
+    ),
+    (
+      'glpi-support-pme',
+      'cadrer-support-interne',
+      'Cadrer le besoin support avant d''ouvrir GLPI',
+      'Identifier les vrais irritants, choisir le bon périmètre, éviter le projet trop large et vendre un premier cadrage simple.',
+      'text',
+      null,
+      $$## Cadrer un projet support sans partir trop large
+
+Avant de parler de GLPI, il faut clarifier **ce qu'on veut résoudre** : demandes IT, demandes internes, suivi matériel, validation managériale ou simple traçabilité.
+
+### Les 4 questions à poser au client
+
+- **Qui ouvre les demandes aujourd'hui ?** salariés, managers, support externe
+- **Quels sujets reviennent le plus souvent ?** poste, accès, mails, imprimantes, achats, arrivée/départ collaborateur
+- **Qui traite ?** une seule personne, un prestataire, plusieurs niveaux
+- **Quel niveau de suivi est attendu ?** simple historique ou vrai reporting mensuel
+
+> Un bon projet GLPI commence rarement par “on veut un outil de ticketing”. Il commence par “on perd du temps et personne ne sait qui fait quoi”.
+
+### Périmètre recommandé pour une PME de 5 à 50 personnes
+
+- portail de demande unique
+- 5 à 8 catégories maximum
+- 2 niveaux de priorité
+- 1 SLA simple
+- 1 tableau de bord dirigeant
+
+### Ce que tu vends vraiment
+
+Tu ne vends pas GLPI. Tu vends :
+- moins de messages WhatsApp ou appels perdus
+- une priorisation visible
+- un historique des demandes
+- une base pour professionnaliser le support$$,
+      true,
+      1
+    ),
+    (
+      'glpi-support-pme',
+      'deploiement-glpi-propre',
+      'Déployer GLPI proprement et le faire adopter',
+      'Installation, catégories, profils, notifications et bonnes pratiques pour que l''outil soit utilisé dès la mise en ligne.',
+      'text',
+      null,
+      $$## Déployer GLPI sans décourager les équipes
+
+Le premier enjeu n'est pas technique. C'est l'adoption.
+
+### Configuration minimale qui fonctionne
+
+- **Profils** : demandeur, technicien, manager
+- **Catégories** : matériel, comptes, réseau, applications, achats, onboarding
+- **Priorités** : normale et urgente suffisent au départ
+- **Notifications** : confirmation d'ouverture + résolution
+- **Templates** : titre, description, capture, impact métier
+
+### Ce qu'il ne faut pas faire au démarrage
+
+- ouvrir 30 catégories
+- créer des workflows de validation trop tôt
+- tout connecter à l'AD, l'inventaire et les plugins dès la semaine 1
+- promettre un “ITSM complet” à une PME de 12 postes
+
+### Plan de lancement en 7 jours
+
+- Jour 1 : cadrage et choix du périmètre
+- Jour 2 : installation et branding basique
+- Jour 3 : catégories, profils, droits
+- Jour 4 : formulaires et notifications
+- Jour 5 : test avec 3 utilisateurs pilotes
+- Jour 6 : corrections et base de connaissances
+- Jour 7 : mise en service + mini formation équipe$$,
+      true,
+      2
+    ),
+    (
+      'glpi-support-pme',
+      'sla-base-connaissance',
+      'SLA simples, base de connaissances et reporting dirigeant',
+      'Mettre en place des délais crédibles, une base de réponses utiles et un reporting qui parle au patron.',
+      'text',
+      null,
+      $$## Structurer le support après la mise en ligne
+
+Une fois GLPI installé, la vraie valeur vient du process.
+
+### SLA simples que tu peux assumer
+
+- **Urgent** : prise en charge sous 2h ouvrées
+- **Normal** : prise en charge sous 8h ouvrées
+- **Faible** : traitement sous 2 jours ouvrés
+
+### Base de connaissances utile
+
+Crée d'abord 6 à 10 articles maximum :
+- réinitialiser son mot de passe
+- ajouter une imprimante
+- accéder au Wi-Fi invité
+- configurer Outlook ou Microsoft 365
+- demander un nouveau matériel
+- procédure d'arrivée / départ collaborateur
+
+### Reporting mensuel lisible
+
+Le dirigeant veut 3 choses :
+- nombre de tickets ouverts / fermés
+- sujets les plus fréquents
+- temps moyen de résolution
+
+> Si ton reporting tient sur une page et montre une tendance claire, tu augmentes fortement les chances de renouvellement.$$,
+      true,
+      3
+    ),
+    (
+      'glpi-support-pme',
+      'checklist-lancement-glpi',
+      'Checklist de lancement et modèle de gouvernance',
+      'Une ressource réutilisable pour lancer GLPI, animer les rôles et cadrer les points de suivi avec le client.',
+      'resource',
+      null,
+      $$## Ce que contient la ressource
+
+- checklist de lancement GLPI en 30 points
+- modèle de réunion de cadrage support
+- structure de com interne pour annoncer l'outil
+- modèle de compte-rendu mensuel dirigeant
+
+Utilise cette ressource comme base de delivery pour standardiser ton offre GLPI.$$,
+      true,
+      4
+    ),
+    (
+      'glpi-support-pme',
+      'automatisations-glpi-a-venir',
+      'Automatisations, inventaire et extensions avancées',
+      'La suite du programme couvrira l''inventaire, les plugins utiles, les workflows plus poussés et les connexions annexes.',
+      'coming_soon',
+      null,
+      null,
+      true,
+      5
+    ),
+    (
+      'maintenance-informatique-pme',
+      'offre-maintenance-qui-se-vend',
+      'Construire une offre de maintenance qui se vend',
+      'Positionner ton forfait, éviter le support illimité mal cadré et rendre la promesse simple pour une PME.',
+      'text',
+      null,
+      $$## Construire une offre de maintenance lisible
+
+Une offre de maintenance doit rassurer sans devenir une promesse impossible à tenir.
+
+### Ce que ton forfait peut inclure au départ
+
+- support à distance sur horaires ouvrés
+- 1 visite préventive mensuelle ou trimestrielle
+- supervision légère ou checklist de contrôle
+- sauvegarde et sécurité de base
+- reporting synthétique
+
+### Ce qu'il faut exclure noir sur blanc
+
+- développement spécifique
+- interventions hors horaires sans majoration
+- remplacement matériel inclus
+- assistance illimitée sur tout et n'importe quoi
+
+### Formule simple qui se vend
+
+**“Je maintiens vos postes, vos accès et vos sauvegardes avec un point régulier, un support réactif et un historique clair des interventions.”**$$,
+      true,
+      1
+    ),
+    (
+      'maintenance-informatique-pme',
+      'onboarding-client-maintenance',
+      'Onboarding, checklists et première visite',
+      'Structurer l''entrée du client, sécuriser les accès et démarrer la maintenance sans dépendre de ta mémoire.',
+      'text',
+      null,
+      $$## Réussir l'onboarding d'un nouveau client maintenance
+
+Le premier mois décide souvent si le contrat sera reconduit.
+
+### À récupérer dès le départ
+
+- liste des postes et utilisateurs
+- accès routeur, NAS, Microsoft 365, antivirus, sauvegardes
+- historique des incidents connus
+- personnes à contacter selon les sujets
+
+### Première visite type
+
+- état des postes critiques
+- vérification sauvegarde
+- audit comptes admin et mots de passe partagés
+- antivirus / EDR en place
+- documentation minimale
+
+### Livrable attendu
+
+Un document court avec :
+- les priorités immédiates
+- les risques visibles
+- ce qui a été fait
+- la suite recommandée sur 30 jours$$,
+      true,
+      2
+    ),
+    (
+      'maintenance-informatique-pme',
+      'reporting-renouvellement',
+      'Reporting mensuel, relances et renouvellement',
+      'Montrer la valeur tous les mois, préparer les relances et transformer la maintenance en revenu récurrent durable.',
+      'text',
+      null,
+      $$## Garder le client grâce à un reporting utile
+
+Un client renouvelle quand il comprend ce que tu fais, même quand rien ne casse.
+
+### Ton reporting mensuel doit contenir
+
+- interventions réalisées
+- incidents évités ou sécurisés
+- points de vigilance du mois suivant
+- recommandations simples avec coût estimé
+
+### Les 3 relances qui marchent
+
+- relance devis d'amélioration après 5 jours
+- point trimestriel de prévention
+- proposition de montée de forfait quand la volumétrie augmente
+
+> La maintenance ne se défend pas par la technique. Elle se défend par la tranquillité qu'elle apporte au client.$$,
+      true,
+      3
+    ),
+    (
+      'maintenance-informatique-pme',
+      'pack-contrat-maintenance',
+      'Pack contrat, reporting et compte-rendu de visite',
+      'Des modèles réutilisables pour cadrer le forfait, documenter les interventions et préparer les renouvellements.',
+      'resource',
+      null,
+      $$## Contenu du pack maintenance
+
+- trame de contrat ou lettre de mission
+- modèle de reporting mensuel
+- checklist de visite préventive
+- modèle de compte-rendu d'intervention
+- structure de proposition d'évolution
+
+Le but est d'avoir une base de delivery réutilisable sur chaque client.$$,
+      true,
+      4
+    ),
+    (
+      'maintenance-informatique-pme',
+      'cas-clients-maintenance-a-venir',
+      'Cas clients, upsell et gestion des urgences',
+      'Ce module ajoutera plusieurs cas réels de maintenance, de rétention et de montée en gamme chez des PME.',
+      'coming_soon',
+      null,
+      null,
+      true,
+      5
+    ),
+    (
+      'apps-metier-supabase',
+      'cadrer-application-metier',
+      'Cadrer une application métier avant de coder',
+      'Choisir le bon périmètre, le bon utilisateur cible et le bon MVP pour éviter les projets trop gros ou trop flous.',
+      'text',
+      null,
+      $$## Cadrer une application métier qui reste livrable
+
+Une app métier rentable commence par un flux clair, pas par 25 écrans.
+
+### Les questions à poser
+
+- qui utilise l'outil chaque semaine ?
+- quelle action doit être plus rapide ou mieux tracée ?
+- quelle donnée est centrale ?
+- quel résultat visible le client attend-il en 30 jours ?
+
+### Les MVP qui se vendent bien
+
+- suivi de demandes ou interventions
+- app de collecte terrain
+- back-office simple avec rôles
+- portail client avec historique et documents
+
+> Si le client ne peut pas résumer l'app en une phrase, le cadrage n'est pas fini.$$,
+      true,
+      1
+    ),
+    (
+      'apps-metier-supabase',
+      'schema-donnees-supabase',
+      'Schéma de données, rôles et sécurité de base',
+      'Poser une base Supabase propre: tables, relations, auth, rôles et règles simples de sécurité.',
+      'text',
+      null,
+      $$## Poser une base Supabase propre
+
+Supabase te fait gagner du temps si la structure est simple et lisible.
+
+### Base recommandée pour une app métier
+
+- table `profiles`
+- table métier principale (`tickets`, `missions`, `reports`, `clients`...)
+- table `attachments` ou `notes` si nécessaire
+- statuts limités et normalisés
+- rôles simples: admin, opérateur, client
+
+### Règles utiles
+
+- l'utilisateur ne voit que ses données
+- l'admin voit tout
+- le client externe ne modifie que ce qui lui appartient
+- les pièces jointes sont isolées par dossier logique
+
+### Ce que tu évites
+
+- 15 tables dès le départ
+- rôles trop fins
+- logique métier critique uniquement côté front$$,
+      true,
+      2
+    ),
+    (
+      'apps-metier-supabase',
+      'ux-flux-et-delivery',
+      'Flux UX, back-office et livraison au client',
+      'Concevoir les écrans utiles, le back-office minimum et une livraison rassurante pour un client métier.',
+      'text',
+      null,
+      $$## Construire un flux produit simple
+
+Une app métier doit être comprise vite par quelqu'un qui n'est pas technique.
+
+### Les écrans qui suffisent souvent au départ
+
+- connexion
+- tableau de bord
+- liste filtrable
+- fiche détail
+- formulaire de création / mise à jour
+- espace documents ou historique
+
+### Livraison propre
+
+- environnement de prod séparé
+- accès admin remis au client
+- mini formation utilisateur
+- documentation de reprise
+- plan d'évolution par lot
+
+> Une bonne livraison ne dépend pas d'un long manuel. Elle dépend d'une interface claire et d'un passage de relais propre.$$,
+      true,
+      3
+    ),
+    (
+      'apps-metier-supabase',
+      'starter-kit-app-metier',
+      'Starter kit Supabase, rôles et déploiement',
+      'Une ressource pour démarrer plus vite avec structure de tables, rôles, vues clés et checklist de mise en ligne.',
+      'resource',
+      null,
+      $$## Ce que contient le starter kit
+
+- structure de tables de départ
+- checklist auth / rôles / permissions
+- modèle de back-office minimal
+- checklist de mise en production
+- logique de reprise et maintenance
+
+Utilise ce starter kit pour standardiser tes premières apps métier sans repartir de zéro.$$,
+      true,
+      4
+    ),
+    (
+      'apps-metier-supabase',
+      'facturation-evolution-a-venir',
+      'Facturation, maintenance et feuille de route produit',
+      'Le module final couvrira la tarification projet, la maintenance et la gestion des évolutions après livraison.',
       'coming_soon',
       null,
       null,

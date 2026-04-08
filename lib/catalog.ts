@@ -108,6 +108,63 @@ export const localProducts: ProductRecord[] = [
     is_featured: false,
     created_at: now,
     updated_at: now
+  },
+  {
+    id: "local-glpi-support-pme",
+    slug: "glpi-support-pme",
+    title: "Déployer GLPI et structurer un support interne pour PME",
+    subtitle: "Installer un support propre, simple à vendre et utile dès la première semaine",
+    short_description:
+      "Apprendre à cadrer, déployer et faire adopter GLPI dans une PME sans transformer le projet en usine à gaz.",
+    long_description:
+      "Cette formation te montre comment transformer un besoin flou de support interne en dispositif clair : tickets, catégories, SLA simples, base de connaissances, automatisations utiles et reporting compréhensible par le dirigeant.",
+    price_cents: 6500,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
+  {
+    id: "local-maintenance-informatique-pme",
+    slug: "maintenance-informatique-pme",
+    title: "Vendre et livrer une offre de maintenance informatique pour PME",
+    subtitle: "Forfaits, routines, reporting et rétention sans improviser",
+    short_description:
+      "Apprendre à vendre une maintenance claire à des TPE/PME et à la livrer de manière répétable.",
+    long_description:
+      "Le programme structure une vraie offre de maintenance : promesse commerciale, périmètre, onboarding, visites préventives, reporting, relances et renouvellement. L'objectif est de créer un revenu récurrent propre et défendable.",
+    price_cents: 5800,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
+  {
+    id: "local-apps-metier-supabase",
+    slug: "apps-metier-supabase",
+    title: "Créer des applications métier simples avec Supabase",
+    subtitle: "Des apps utiles, livrables vite et faciles à maintenir",
+    short_description:
+      "Apprendre à cadrer et produire une application métier simple avec base de données, auth, rôles et livraison propre.",
+    long_description:
+      "Cette formation s'adresse aux profils qui veulent livrer des apps métier crédibles sans partir sur une architecture trop lourde. Tu y trouves le cadrage, le schéma de données, l'authentification, les rôles, le back-office et la logique de mise en production.",
+    price_cents: 6800,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
   }
 ];
 
@@ -414,6 +471,177 @@ export const localProductModules: ProductModuleRecord[] = [
     "Des cas supplementaires seront ajoutes pour aller vers un produit plus ambitieux.",
     "coming_soon",
     5
+  ),
+
+  module(
+    "glpi-support-pme",
+    "cadrer-support-interne",
+    "Cadrer le besoin support avant d'ouvrir GLPI",
+    "Identifier les vrais irritants, choisir le bon périmètre, éviter le projet trop large et vendre un premier cadrage simple.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Cadrer un projet support sans partir trop large\n\nAvant de parler de GLPI, il faut clarifier **ce qu'on veut résoudre** : demandes IT, demandes internes, suivi matériel, validation managériale ou simple traçabilité.\n\n### Les 4 questions à poser au client\n\n- **Qui ouvre les demandes aujourd'hui ?** salariés, managers, support externe\n- **Quels sujets reviennent le plus souvent ?** poste, accès, mails, imprimantes, achats, arrivée/départ collaborateur\n- **Qui traite ?** une seule personne, un prestataire, plusieurs niveaux\n- **Quel niveau de suivi est attendu ?** simple historique ou vrai reporting mensuel\n\n> Un bon projet GLPI commence rarement par “on veut un outil de ticketing”. Il commence par “on perd du temps et personne ne sait qui fait quoi”.\n\n### Périmètre recommandé pour une PME de 5 à 50 personnes\n\n- portail de demande unique\n- 5 à 8 catégories maximum\n- 2 niveaux de priorité\n- 1 SLA simple\n- 1 tableau de bord dirigeant\n\n### Ce que tu vends vraiment\n\nTu ne vends pas GLPI. Tu vends :\n- moins de messages WhatsApp ou appels perdus\n- une priorisation visible\n- un historique des demandes\n- une base pour professionnaliser le support"
+    }
+  ),
+  module(
+    "glpi-support-pme",
+    "deploiement-glpi-propre",
+    "Déployer GLPI proprement et le faire adopter",
+    "Installation, catégories, profils, notifications et bonnes pratiques pour que l'outil soit utilisé dès la mise en ligne.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Déployer GLPI sans décourager les équipes\n\nLe premier enjeu n'est pas technique. C'est l'adoption.\n\n### Configuration minimale qui fonctionne\n\n- **Profils** : demandeur, technicien, manager\n- **Catégories** : matériel, comptes, réseau, applications, achats, onboarding\n- **Priorités** : normale et urgente suffisent au départ\n- **Notifications** : confirmation d'ouverture + résolution\n- **Templates** : titre, description, capture, impact métier\n\n### Ce qu'il ne faut pas faire au démarrage\n\n- ouvrir 30 catégories\n- créer des workflows de validation trop tôt\n- tout connecter à l'AD, l'inventaire et les plugins dès la semaine 1\n- promettre un “ITSM complet” à une PME de 12 postes\n\n### Plan de lancement en 7 jours\n\n- Jour 1 : cadrage et choix du périmètre\n- Jour 2 : installation et branding basique\n- Jour 3 : catégories, profils, droits\n- Jour 4 : formulaires et notifications\n- Jour 5 : test avec 3 utilisateurs pilotes\n- Jour 6 : corrections et base de connaissances\n- Jour 7 : mise en service + mini formation équipe"
+    }
+  ),
+  module(
+    "glpi-support-pme",
+    "sla-base-connaissance",
+    "SLA simples, base de connaissances et reporting dirigeant",
+    "Mettre en place des délais crédibles, une base de réponses utiles et un reporting qui parle au patron.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Structurer le support après la mise en ligne\n\nUne fois GLPI installé, la vraie valeur vient du process.\n\n### SLA simples que tu peux assumer\n\n- **Urgent** : prise en charge sous 2h ouvrées\n- **Normal** : prise en charge sous 8h ouvrées\n- **Faible** : traitement sous 2 jours ouvrés\n\n### Base de connaissances utile\n\nCrée d'abord 6 à 10 articles maximum :\n- réinitialiser son mot de passe\n- ajouter une imprimante\n- accéder au Wi-Fi invité\n- configurer Outlook ou Microsoft 365\n- demander un nouveau matériel\n- procédure d'arrivée / départ collaborateur\n\n### Reporting mensuel lisible\n\nLe dirigeant veut 3 choses :\n- nombre de tickets ouverts / fermés\n- sujets les plus fréquents\n- temps moyen de résolution\n\n> Si ton reporting tient sur une page et montre une tendance claire, tu augmentes fortement les chances de renouvellement."
+    }
+  ),
+  module(
+    "glpi-support-pme",
+    "checklist-lancement-glpi",
+    "Checklist de lancement et modèle de gouvernance",
+    "Une ressource réutilisable pour lancer GLPI, animer les rôles et cadrer les points de suivi avec le client.",
+    "resource",
+    4,
+    {
+      content_body:
+        "## Ce que contient la ressource\n\n- checklist de lancement GLPI en 30 points\n- modèle de réunion de cadrage support\n- structure de com interne pour annoncer l'outil\n- modèle de compte-rendu mensuel dirigeant\n\nUtilise cette ressource comme base de delivery pour standardiser ton offre GLPI."
+    }
+  ),
+  module(
+    "glpi-support-pme",
+    "automatisations-glpi-a-venir",
+    "Automatisations, inventaire et extensions avancées",
+    "La suite du programme couvrira l'inventaire, les plugins utiles, les workflows plus poussés et les connexions annexes.",
+    "coming_soon",
+    5
+  ),
+
+  module(
+    "maintenance-informatique-pme",
+    "offre-maintenance-qui-se-vend",
+    "Construire une offre de maintenance qui se vend",
+    "Positionner ton forfait, éviter le support illimité mal cadré et rendre la promesse simple pour une PME.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Construire une offre de maintenance lisible\n\nUne offre de maintenance doit rassurer sans devenir une promesse impossible à tenir.\n\n### Ce que ton forfait peut inclure au départ\n\n- support à distance sur horaires ouvrés\n- 1 visite préventive mensuelle ou trimestrielle\n- supervision légère ou checklist de contrôle\n- sauvegarde et sécurité de base\n- reporting synthétique\n\n### Ce qu'il faut exclure noir sur blanc\n\n- développement spécifique\n- interventions hors horaires sans majoration\n- remplacement matériel inclus\n- assistance illimitée sur tout et n'importe quoi\n\n### Formule simple qui se vend\n\n**“Je maintiens vos postes, vos accès et vos sauvegardes avec un point régulier, un support réactif et un historique clair des interventions.”**"
+    }
+  ),
+  module(
+    "maintenance-informatique-pme",
+    "onboarding-client-maintenance",
+    "Onboarding, checklists et première visite",
+    "Structurer l'entrée du client, sécuriser les accès et démarrer la maintenance sans dépendre de ta mémoire.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Réussir l'onboarding d'un nouveau client maintenance\n\nLe premier mois décide souvent si le contrat sera reconduit.\n\n### À récupérer dès le départ\n\n- liste des postes et utilisateurs\n- accès routeur, NAS, Microsoft 365, antivirus, sauvegardes\n- historique des incidents connus\n- personnes à contacter selon les sujets\n\n### Première visite type\n\n- état des postes critiques\n- vérification sauvegarde\n- audit comptes admin et mots de passe partagés\n- antivirus / EDR en place\n- documentation minimale\n\n### Livrable attendu\n\nUn document court avec :\n- les priorités immédiates\n- les risques visibles\n- ce qui a été fait\n- la suite recommandée sur 30 jours"
+    }
+  ),
+  module(
+    "maintenance-informatique-pme",
+    "reporting-renouvellement",
+    "Reporting mensuel, relances et renouvellement",
+    "Montrer la valeur tous les mois, préparer les relances et transformer la maintenance en revenu récurrent durable.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Garder le client grâce à un reporting utile\n\nUn client renouvelle quand il comprend ce que tu fais, même quand rien ne casse.\n\n### Ton reporting mensuel doit contenir\n\n- interventions réalisées\n- incidents évités ou sécurisés\n- points de vigilance du mois suivant\n- recommandations simples avec coût estimé\n\n### Les 3 relances qui marchent\n\n- relance devis d'amélioration après 5 jours\n- point trimestriel de prévention\n- proposition de montée de forfait quand la volumétrie augmente\n\n> La maintenance ne se défend pas par la technique. Elle se défend par la tranquillité qu'elle apporte au client."
+    }
+  ),
+  module(
+    "maintenance-informatique-pme",
+    "pack-contrat-maintenance",
+    "Pack contrat, reporting et compte-rendu de visite",
+    "Des modèles réutilisables pour cadrer le forfait, documenter les interventions et préparer les renouvellements.",
+    "resource",
+    4,
+    {
+      content_body:
+        "## Contenu du pack maintenance\n\n- trame de contrat ou lettre de mission\n- modèle de reporting mensuel\n- checklist de visite préventive\n- modèle de compte-rendu d'intervention\n- structure de proposition d'évolution\n\nLe but est d'avoir une base de delivery réutilisable sur chaque client."
+    }
+  ),
+  module(
+    "maintenance-informatique-pme",
+    "cas-clients-maintenance-a-venir",
+    "Cas clients, upsell et gestion des urgences",
+    "Ce module ajoutera plusieurs cas réels de maintenance, de rétention et de montée en gamme chez des PME.",
+    "coming_soon",
+    5
+  ),
+
+  module(
+    "apps-metier-supabase",
+    "cadrer-application-metier",
+    "Cadrer une application métier avant de coder",
+    "Choisir le bon périmètre, le bon utilisateur cible et le bon MVP pour éviter les projets trop gros ou trop flous.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Cadrer une application métier qui reste livrable\n\nUne app métier rentable commence par un flux clair, pas par 25 écrans.\n\n### Les questions à poser\n\n- qui utilise l'outil chaque semaine ?\n- quelle action doit être plus rapide ou mieux tracée ?\n- quelle donnée est centrale ?\n- quel résultat visible le client attend-il en 30 jours ?\n\n### Les MVP qui se vendent bien\n\n- suivi de demandes ou interventions\n- app de collecte terrain\n- back-office simple avec rôles\n- portail client avec historique et documents\n\n> Si le client ne peut pas résumer l'app en une phrase, le cadrage n'est pas fini."
+    }
+  ),
+  module(
+    "apps-metier-supabase",
+    "schema-donnees-supabase",
+    "Schéma de données, rôles et sécurité de base",
+    "Poser une base Supabase propre: tables, relations, auth, rôles et règles simples de sécurité.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Poser une base Supabase propre\n\nSupabase te fait gagner du temps si la structure est simple et lisible.\n\n### Base recommandée pour une app métier\n\n- table `profiles`\n- table métier principale (`tickets`, `missions`, `reports`, `clients`...)\n- table `attachments` ou `notes` si nécessaire\n- statuts limités et normalisés\n- rôles simples: admin, opérateur, client\n\n### Règles utiles\n\n- l'utilisateur ne voit que ses données\n- l'admin voit tout\n- le client externe ne modifie que ce qui lui appartient\n- les pièces jointes sont isolées par dossier logique\n\n### Ce que tu évites\n\n- 15 tables dès le départ\n- rôles trop fins\n- logique métier critique uniquement côté front"
+    }
+  ),
+  module(
+    "apps-metier-supabase",
+    "ux-flux-et-delivery",
+    "Flux UX, back-office et livraison au client",
+    "Concevoir les écrans utiles, le back-office minimum et une livraison rassurante pour un client métier.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Construire un flux produit simple\n\nUne app métier doit être comprise vite par quelqu'un qui n'est pas technique.\n\n### Les écrans qui suffisent souvent au départ\n\n- connexion\n- tableau de bord\n- liste filtrable\n- fiche détail\n- formulaire de création / mise à jour\n- espace documents ou historique\n\n### Livraison propre\n\n- environnement de prod séparé\n- accès admin remis au client\n- mini formation utilisateur\n- documentation de reprise\n- plan d'évolution par lot\n\n> Une bonne livraison ne dépend pas d'un long manuel. Elle dépend d'une interface claire et d'un passage de relais propre."
+    }
+  ),
+  module(
+    "apps-metier-supabase",
+    "starter-kit-app-metier",
+    "Starter kit Supabase, rôles et déploiement",
+    "Une ressource pour démarrer plus vite avec structure de tables, rôles, vues clés et checklist de mise en ligne.",
+    "resource",
+    4,
+    {
+      content_body:
+        "## Ce que contient le starter kit\n\n- structure de tables de départ\n- checklist auth / rôles / permissions\n- modèle de back-office minimal\n- checklist de mise en production\n- logique de reprise et maintenance\n\nUtilise ce starter kit pour standardiser tes premières apps métier sans repartir de zéro."
+    }
+  ),
+  module(
+    "apps-metier-supabase",
+    "facturation-evolution-a-venir",
+    "Facturation, maintenance et feuille de route produit",
+    "Le module final couvrira la tarification projet, la maintenance et la gestion des évolutions après livraison.",
+    "coming_soon",
+    5
   )
 ];
 
@@ -487,6 +715,48 @@ const productSupplements = {
     ],
     pitch:
       "Le programme pour cadrer une application mobile rentable sans partir sur un produit trop ambitieux des le jour 1."
+  },
+  "glpi-support-pme": {
+    bestFor: [
+      "profils support ou sysadmin qui veulent professionnaliser une offre GLPI",
+      "freelances IT qui vendent du support à des PME",
+      "personnes qui veulent transformer un besoin de tickets en mission claire"
+    ],
+    outcomes: [
+      "un cadrage GLPI vendable",
+      "un plan de déploiement simple et crédible",
+      "une logique de reporting et d'adoption côté client"
+    ],
+    pitch:
+      "La formation pour transformer GLPI en vraie offre de support interne, utile au client et simple à faire adopter."
+  },
+  "maintenance-informatique-pme": {
+    bestFor: [
+      "techniciens IT qui veulent créer un revenu récurrent",
+      "freelances support qui veulent sortir du dépannage ponctuel",
+      "profils terrain qui veulent mieux cadrer leurs forfaits"
+    ],
+    outcomes: [
+      "une offre de maintenance plus lisible",
+      "un onboarding client plus propre",
+      "des routines de reporting et de renouvellement"
+    ],
+    pitch:
+      "Le cadre pour vendre et livrer une maintenance PME rentable, sans promesse floue ni support mal borné."
+  },
+  "apps-metier-supabase": {
+    bestFor: [
+      "profils produit ou dev qui veulent livrer des apps métier simples",
+      "freelances qui travaillent avec Supabase et veulent standardiser leur delivery",
+      "créateurs qui veulent vendre autre chose qu'un site vitrine"
+    ],
+    outcomes: [
+      "un cadrage MVP plus propre",
+      "une base Supabase bien structurée",
+      "une logique de livraison et de maintenance plus vendable"
+    ],
+    pitch:
+      "Une formation orientée delivery pour produire des applications métier utiles avec Supabase, sans architecture trop lourde."
   }
 } as const;
 
