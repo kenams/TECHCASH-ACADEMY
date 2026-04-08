@@ -47,7 +47,7 @@ export function CheckoutPanel({
       const data = (await response.json()) as { url?: string; error?: string };
 
       if (!response.ok || !data.url) {
-        setError(data.error || "Impossible de creer la session Stripe.");
+        setError(data.error || "Impossible de créer la session Stripe.");
         setLoading(false);
         return;
       }
@@ -63,10 +63,10 @@ export function CheckoutPanel({
   return (
     <main className="checkout-wrap">
       <section className="checkout-card">
-        <p className="eyebrow">Paiement securise</p>
-        <h1>Active ton acces complet</h1>
+        <p className="eyebrow">Paiement sécurisé</p>
+        <h1>Active ton accès complet</h1>
         <p>
-          Tu es connecte avec <strong>{email}</strong>. Cet achat debloque la formation choisie
+          Tu es connecté avec <strong>{email}</strong>. Cet achat débloque la formation choisie
           dans ton espace membre.
         </p>
 
@@ -77,8 +77,8 @@ export function CheckoutPanel({
           <p>{productSubtitle}</p>
           <div className="price">{formattedPrice}</div>
           <p className="helper">
-            Tu seras redirige vers Stripe pour finaliser le paiement en securite. L'acces sera
-            ensuite active pour ce produit dans ton dashboard.
+            Tu seras redirigé vers Stripe pour finaliser le paiement en sécurité. L'accès sera
+            ensuite activé pour ce produit dans ton dashboard.
           </p>
           <div className="cta-row">
             <button
@@ -91,7 +91,7 @@ export function CheckoutPanel({
               {loading ? "Redirection..." : "Payer avec Stripe"}
             </button>
             <a href="/" className="button-secondary">
-              Retour accueil
+              Retour à l'accueil
             </a>
           </div>
         </div>

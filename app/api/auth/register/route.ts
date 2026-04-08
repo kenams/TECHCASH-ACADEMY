@@ -20,14 +20,14 @@ export async function POST(request: Request) {
 
     if (password.length < 6) {
       return NextResponse.json(
-        { error: "Le mot de passe doit contenir au moins 6 caracteres." },
+        { error: "Le mot de passe doit contenir au moins 6 caractères." },
         { status: 400 }
       );
     }
 
     if (isReservedAdminEmail(email)) {
       return NextResponse.json(
-        { error: "Cette adresse ne peut pas etre creee via l'inscription publique." },
+        { error: "Cette adresse ne peut pas être créée via l'inscription publique." },
         { status: 403 }
       );
     }
@@ -40,13 +40,13 @@ export async function POST(request: Request) {
     });
 
     if (createError) {
-      logWarn("Erreur lors de la creation du compte.", { email, createError });
+      logWarn("Erreur lors de la création du compte.", { email, createError });
       return NextResponse.json({ error: createError.message }, { status: 400 });
     }
 
     if (!createdUser.user?.id || !createdUser.user.email) {
       return NextResponse.json(
-        { error: "Le compte a ete cree mais l'utilisateur est introuvable." },
+        { error: "Le compte a été créé mais l'utilisateur est introuvable." },
         { status: 500 }
       );
     }
@@ -57,20 +57,20 @@ export async function POST(request: Request) {
     });
 
     if (profileError) {
-      logError("Compte cree mais profil impossible a synchroniser.", {
+      logError("Compte créé mais profil impossible à synchroniser.", {
         email,
         profileError
       });
       return NextResponse.json(
-        { error: "Compte cree mais profil impossible a synchroniser." },
+        { error: "Compte créé mais profil impossible à synchroniser." },
         { status: 500 }
       );
     }
 
-    logInfo("Compte cree via route serveur.", { userId: createdUser.user.id, email });
+    logInfo("Compte créé via route serveur.", { userId: createdUser.user.id, email });
     return NextResponse.json({ success: true });
   } catch (error) {
     logError("Erreur inattendue pendant l'inscription.", { error });
-    return NextResponse.json({ error: "Impossible de creer le compte." }, { status: 500 });
+    return NextResponse.json({ error: "Impossible de créer le compte." }, { status: 500 });
   }
 }

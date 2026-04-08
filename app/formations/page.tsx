@@ -63,11 +63,7 @@ export default async function FormationsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
         />
 
-        <Navbar
-          brand={siteConfig.brand}
-          links={[{ href: "/", label: "Accueil" }]}
-          isLoggedIn={Boolean(user)}
-        />
+        <Navbar brand={siteConfig.brand} links={[{ href: "/", label: "Accueil" }]} isLoggedIn={Boolean(user)} />
 
         <section className="section section-first">
           <div className="section-title">
@@ -101,12 +97,12 @@ export default async function FormationsPage() {
         <section className="section">
           {priorityProducts.length ? (
             <div className="section-title">
-              <div className="eyebrow">Priorites commerciales</div>
-              <h2>Les offres a pousser en premier</h2>
+              <div className="eyebrow">Priorités commerciales</div>
+              <h2>Les offres à pousser en premier</h2>
               <p>
                 Commence par <strong>Freelance IT 30 jours</strong>, puis pousse{" "}
                 <strong>Maintenance informatique PME</strong> et <strong>GLPI support PME</strong>{" "}
-                comme extensions plus specialisees.
+                comme extensions plus spécialisées.
               </p>
             </div>
           ) : null}

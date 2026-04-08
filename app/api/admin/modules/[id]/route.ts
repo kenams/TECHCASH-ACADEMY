@@ -20,7 +20,7 @@ async function guardAdmin() {
   }
 
   if (!isAdminUserId(user.id)) {
-    return NextResponse.json({ error: "Acces refuse." }, { status: 403 });
+    return NextResponse.json({ error: "Accès refusé." }, { status: 403 });
   }
 
   return null;

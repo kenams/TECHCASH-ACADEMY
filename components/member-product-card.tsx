@@ -21,10 +21,7 @@ export function MemberProductCard({
         <div>
           <div className="hero-badges">
             {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
-            <AccessBadge
-              label={isOwned ? "Débloquée" : "Disponible"}
-              tone={isOwned ? "success" : "default"}
-            />
+            <AccessBadge label={isOwned ? "Débloquée" : "Disponible"} tone={isOwned ? "success" : "default"} />
           </div>
           <h3>{product.title}</h3>
           <p className="product-subtitle">{product.subtitle}</p>

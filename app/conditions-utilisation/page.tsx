@@ -29,48 +29,48 @@ export default function ConditionsUtilisationPage() {
 
         <section className="section section-first">
           <div className="section-title">
-            <div className="eyebrow">Acces et usage</div>
+            <div className="eyebrow">Accès et usage</div>
             <h1>Conditions d'utilisation</h1>
             <p>
-              Ces conditions encadrent l'utilisation du site, l'acces aux contenus achetes et les
-              limites d'usage autorisees.
+              Ces conditions encadrent l'utilisation du site, l'accès aux contenus achetés et les
+              limites d'usage autorisées.
             </p>
           </div>
 
           <div className="stack">
             <article className="card legal-section">
-              <h2>Acces a la plateforme</h2>
+              <h2>Accès à la plateforme</h2>
               <p>
-                L'acces membre est reserve aux utilisateurs disposant d'un compte valide et, sauf
-                mention contraire, d'un achat confirme pour le produit concerne. Un acces premium
-                global peut etre attribue par l'editeur dans certains cas.
+                L'accès membre est réservé aux utilisateurs disposant d'un compte valide et, sauf
+                mention contraire, d'un achat confirmé pour le produit concerné. Un accès premium
+                global peut être attribué par l'éditeur dans certains cas.
               </p>
             </article>
 
             <article className="card legal-section">
-              <h2>Usage autorise</h2>
+              <h2>Usage autorisé</h2>
               <p>
-                Les contenus achetes sont destines a un usage personnel ou interne a l'activite du
+                Les contenus achetés sont destinés à un usage personnel ou interne à l'activité du
                 client. La revente, le partage massif de compte, la duplication des supports ou la
-                republication non autorisee sont interdits.
+                republication non autorisée sont interdits.
               </p>
             </article>
 
             <article className="card legal-section">
-              <h2>Disponibilite du contenu</h2>
+              <h2>Disponibilité du contenu</h2>
               <p>
-                Certains modules peuvent etre publies plus tard et apparaitre comme “bientot
-                disponible”. La plateforme est justement prevue pour gerer du contenu progressif :
-                texte, PDF, ressources, videos et modules en preparation.
+                Certains modules peuvent être publiés plus tard et apparaître comme "bientôt
+                disponible". La plateforme est justement prévue pour gérer du contenu progressif :
+                texte, PDF, ressources, vidéos et modules en préparation.
               </p>
             </article>
 
             <article className="card legal-section">
-              <h2>Support et acces</h2>
+              <h2>Support et accès</h2>
               <p>
-                En cas de probleme d'acces, de connexion ou de commande, le support est joignable a
-                l'adresse {siteConfig.supportEmail}. L'editeur se reserve le droit de suspendre un
-                acces en cas d'usage abusif manifeste.
+                En cas de problème d'accès, de connexion ou de commande, le support est joignable à
+                l'adresse {siteConfig.supportEmail}. L'éditeur se réserve le droit de suspendre un
+                accès en cas d'usage abusif manifeste.
               </p>
             </article>
           </div>

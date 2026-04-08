@@ -35,12 +35,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-landing-pages-rentables",
     slug: "landing-pages-rentables",
-    title: "Creer des landing pages qui vendent",
-    subtitle: "Une offre claire, simple a packager et facile a justifier",
+    title: "Cr?er des landing pages qui vendent",
+    subtitle: "Une offre claire, simple ? packager et facile ? justifier",
     short_description:
-      "Apprendre a concevoir, vendre et livrer des landing pages professionnelles pour des clients.",
+      "Apprendre ? concevoir, vendre et livrer des landing pages professionnelles pour des clients.",
     long_description:
-      "Cette formation montre comment construire une offre de landing pages qui convertit vraiment, comment la vendre sans jargon inutile et comment livrer des pages propres, rapides et orientees business pour des clients qui veulent des resultats concrets.",
+      "Cette formation montre comment construire une offre de landing pages qui convertit vraiment, comment la vendre sans jargon inutile et comment livrer des pages propres, rapides et orient?es business pour des clients qui veulent des r?sultats concrets.",
     price_cents: 4900,
     currency: "eur",
     stripe_price_id: "price_1TJrEOGSZgm5QCNLeTwUULYt",
@@ -53,12 +53,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-sites-web-clients",
     slug: "sites-web-clients",
-    title: "Creer des sites web professionnels pour ses clients",
-    subtitle: "Des sites simples a vendre, rapides a produire et propres a livrer",
+    title: "Cr?er des sites web professionnels pour ses clients",
+    subtitle: "Des sites simples ? vendre, rapides ? produire et propres ? livrer",
     short_description:
-      "Apprendre a creer des sites web modernes, simples a vendre et a livrer rapidement.",
+      "Apprendre ? cr?er des sites web modernes, simples ? vendre et ? livrer rapidement.",
     long_description:
-      "Le programme est centre sur des sites clients utiles et sobres : cadrage du besoin, structure, livraison, maintenance et communication client. L'objectif est de rendre la prestation lisible, rentable et repetable.",
+      "Le programme est centr? sur des sites clients utiles et sobres : cadrage du besoin, structure, livraison, maintenance et communication client. L'objectif est de rendre la prestation lisible, rentable et r?p?table.",
     price_cents: 5400,
     currency: "eur",
     stripe_price_id: "price_1TJrEPGSZgm5QCNLEAP6iWha",
@@ -71,12 +71,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-outils-pme-glpi",
     slug: "outils-pme-glpi",
-    title: "Creer des outils metier pour PME, support et GLPI",
-    subtitle: "Transformer un besoin interne en solution simple a vendre",
+    title: "Cr?er des outils m?tier pour PME, support et GLPI",
+    subtitle: "Transformer un besoin interne en solution simple ? vendre",
     short_description:
-      "Apprendre a creer des outils concrets pour PME, support informatique et besoins metier internes, comme un outil support GLPI.",
+      "Apprendre ? cr?er des outils concrets pour PME, support informatique et besoins m?tier internes, comme un outil support GLPI.",
     long_description:
-      "Cette formation se concentre sur des outils a forte valeur percue : support, tickets, formulaires, tableaux de bord internes, micro-outils pour PME. Le but est de savoir transformer un probleme metier en produit ou en mission facturable.",
+      "Cette formation se concentre sur des outils ? forte valeur per?ue : support, tickets, formulaires, tableaux de bord internes, micro-outils pour PME. Le but est de savoir transformer un probl?me m?tier en produit ou en mission facturable.",
     price_cents: 6900,
     currency: "eur",
     stripe_price_id: "price_1TJrEQGSZgm5QCNLSgVsDabX",
@@ -89,12 +89,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-applications-mobiles-rentables",
     slug: "applications-mobiles-rentables",
-    title: "Creer des applications mobiles simples et rentables",
-    subtitle: "Concevoir une app monetisable sans partir sur un produit trop lourd",
+    title: "Cr?er des applications mobiles simples et rentables",
+    subtitle: "Concevoir une app mon?tisable sans partir sur un produit trop lourd",
     short_description:
-      "Apprendre a concevoir et structurer une application mobile monetisable.",
+      "Apprendre ? concevoir et structurer une application mobile mon?tisable.",
     long_description:
-      "Tu y trouves une methode pour cadrer une application mobile simple, definir une proposition de valeur claire, organiser les ecrans, poser la logique produit et envisager une monetisation realiste sans complexity inutile.",
+      "Tu y trouves une m?thode pour cadrer une application mobile simple, d?finir une proposition de valeur claire, organiser les ?crans, poser la logique produit et envisager une mon?tisation r?aliste sans complexit? inutile.",
     price_cents: 6200,
     currency: "eur",
     stripe_price_id: "price_1TJrERGSZgm5QCNLa5B2Z3BH",
@@ -688,9 +688,9 @@ const productSupplements: Record<string, ProductSupplement> = {
   "freelance-it-30-jours": {
     salesPriority: 1,
     bestFor: [
-      "profils support ou tech qui veulent vendre en independant",
-      "debutants motives qui veulent une offre terrain simple",
-      "personnes qui veulent vite structurer une premiere proposition commerciale"
+      "profils support ou tech qui veulent vendre en ind?pendant",
+      "d?butants motiv?s qui veulent une offre terrain simple",
+      "personnes qui veulent vite structurer une premi?re proposition commerciale"
     ],
     outcomes: [
       "une offre claire de prestations IT",
@@ -698,18 +698,18 @@ const productSupplements: Record<string, ProductSupplement> = {
       "des ressources pour vendre et livrer sans improviser"
     ],
     pitch:
-      "La formation principale pour passer d'une competence IT floue a une activite freelance lisible et vendable."
+      "La formation principale pour passer d'une comp?tence IT floue ? une activit? freelance lisible et vendable."
   },
   "landing-pages-rentables": {
     bestFor: [
-      "freelances web qui veulent une offre facile a cadrer",
+      "freelances web qui veulent une offre facile ? cadrer",
       "profils marketing ou design qui veulent vendre du concret",
-      "independants qui veulent livrer vite avec une forte valeur percue"
+      "ind?pendants qui veulent livrer vite avec une forte valeur per?ue"
     ],
     outcomes: [
-      "une methode de structure de page qui convertit",
+      "une m?thode de structure de page qui convertit",
       "un process de livraison client plus propre",
-      "des templates reutilisables"
+      "des templates r?utilisables"
     ],
     pitch:
       "Une offre courte et rentable pour vendre des pages de conversion sans transformer chaque mission en projet interminable."
@@ -745,12 +745,12 @@ const productSupplements: Record<string, ProductSupplement> = {
   "applications-mobiles-rentables": {
     bestFor: [
       "profils produit ou freelance qui veulent lancer une app simple",
-      "independants qui veulent cadrer un MVP monetisable",
+      "ind?pendants qui veulent cadrer un MVP mon?tisable",
       "createurs qui veulent partir d'un besoin clair plutot que d'une usine a gaz"
     ],
     outcomes: [
       "une structure d'application claire",
-      "une logique de monetisation simple",
+      "une logique de mon?tisation simple",
       "des ressources pour cadrer et pre-vendre un MVP"
     ],
     pitch:

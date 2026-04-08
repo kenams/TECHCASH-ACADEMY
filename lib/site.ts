@@ -41,46 +41,46 @@ export const siteConfig = {
   legalEntity: "KAH-Digital",
   supportEmail: trimmed(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "kahdigital42@gmail.com",
   siteUrl: getSiteUrl(),
-  headline: "Des formations digitales concretes pour lancer une activite rentable",
+  headline: "Des formations digitales concrètes pour lancer une activité rentable",
   description:
-    "Plateforme de formations pour vendre des services digitaux utiles, signer ses premiers clients et structurer une activite durable.",
+    "Plateforme de formations pour vendre des services digitaux utiles, signer ses premiers clients et structurer une activité durable.",
   defaultEbookUrl: process.env.NEXT_PUBLIC_EBOOK_URL || "https://example.com/ebook.pdf",
   trustPoints: [
-    "Paiement Stripe securise et facture unique par formation",
-    "Acces membre par produit achete avec dashboard dedie",
-    "Contenus exploitables meme sans videos : texte, PDF, ressources et modules a venir"
+    "Paiement Stripe sécurisé et facture unique par formation",
+    "Accès membre par produit acheté avec dashboard dédié",
+    "Contenus exploitables même sans vidéos : texte, PDF, ressources et modules à venir"
   ],
   faq: [
     {
-      question: "A qui s'adressent ces formations ?",
+      question: "À qui s'adressent ces formations ?",
       answer:
-        "A des profils qui veulent vendre des competences digitales utiles sans passer par des promesses irrealistes. Le contenu est centre sur l'execution, la vente et la livraison."
+        "À des profils qui veulent vendre des compétences digitales utiles sans passer par des promesses irréalistes. Le contenu est centré sur l'exécution, la vente et la livraison."
     },
     {
-      question: "Faut-il deja etre developpeur ou technicien ?",
+      question: "Faut-il déjà être développeur ou technicien ?",
       answer:
-        "Non. Les parcours sont penses pour partir d'un niveau debutant motive, avec une montee en competence progressive et des livrables simples a vendre."
+        "Non. Les parcours sont pensés pour partir d'un niveau débutant motivé, avec une montée en compétence progressive et des livrables simples à vendre."
     },
     {
-      question: "Y a-t-il deja des videos ?",
+      question: "Y a-t-il déjà des vidéos ?",
       answer:
-        "La plateforme accepte videos, PDF, ressources et contenu texte. Certains modules sont accessibles immediatement, d'autres sont signales comme bientot disponibles."
+        "La plateforme accepte vidéos, PDF, ressources et contenu texte. Certains modules sont accessibles immédiatement, d'autres sont signalés comme bientôt disponibles."
     },
     {
-      question: "L'acces est-il global ou par formation ?",
+      question: "L'accès est-il global ou par formation ?",
       answer:
-        "Chaque achat debloque la formation correspondante. Un statut premium global peut aussi ouvrir l'ensemble de la plateforme si vous souhaitez gerer des acces specifiques plus tard."
+        "Chaque achat débloque la formation correspondante. Un statut premium global peut aussi ouvrir l'ensemble de la plateforme si vous souhaitez gérer des accès spécifiques plus tard."
     }
   ],
   audiences: [
     "freelances en lancement",
     "techniciens ou profils support qui veulent vendre autrement",
-    "createurs de services digitaux simples et rentables",
-    "personnes qui veulent une offre concrete, pas du blabla motivationnel"
+    "créateurs de services digitaux simples et rentables",
+    "personnes qui veulent une offre concrète, pas du blabla motivationnel"
   ],
   benefits: [
-    "Catalogue de formations centre sur des offres vendables rapidement",
-    "Espace membre propre avec contenus textes, PDF, ressources et modules a venir",
-    "Paiement Stripe securise, acces par produit achete et evolution simple dans le temps"
+    "Catalogue de formations centré sur des offres vendables rapidement",
+    "Espace membre propre avec contenus textes, PDF, ressources et modules à venir",
+    "Paiement Stripe sécurisé, accès par produit acheté et évolution simple dans le temps"
   ]
 } as const;

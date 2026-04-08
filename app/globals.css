@@ -178,8 +178,11 @@ select {
 .button-ghost {
   border: 0;
   border-radius: 999px;
-  padding: 0.95rem 1.4rem;
+  min-height: 52px;
+  padding: 1.05rem 1.65rem;
   font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -296,7 +299,7 @@ select {
 }
 
 .access-badge {
-  padding: 0.38rem 0.72rem;
+  padding: 0.48rem 0.9rem;
   border: 1px solid transparent;
 }
 
@@ -713,7 +716,7 @@ select {
 .meta-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.45rem 0.72rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 999px;
   border: 1px solid rgba(201, 169, 109, 0.12);
   background: rgba(255, 255, 255, 0.04);

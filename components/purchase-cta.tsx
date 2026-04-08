@@ -21,7 +21,7 @@ export function PurchaseCTA({
   if (isOwned) {
     return (
       <Link href={dashboardHref || `/dashboard/formations/${productSlug}`} className={className || "button"}>
-        Acceder a la formation
+        Accéder à la formation
       </Link>
     );
   }

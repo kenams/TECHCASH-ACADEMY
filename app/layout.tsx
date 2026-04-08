@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.siteUrl),
   description:
-    "Catalogue de formations digitales pour vendre des services utiles, signer des clients et structurer une activite rentable.",
+    "Catalogue de formations digitales pour vendre des services utiles, signer des clients et structurer une activité rentable.",
   applicationName: siteConfig.brand,
   keywords: [
     "formation digitale",

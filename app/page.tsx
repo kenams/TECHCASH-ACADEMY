@@ -199,12 +199,12 @@ export default async function LandingPage() {
         {priorityProducts.length ? (
           <section className="section">
             <div className="section-title">
-              <div className="eyebrow">Offres a pousser maintenant</div>
-              <h2>Les offres commerciales a mettre devant</h2>
+              <div className="eyebrow">Offres à pousser maintenant</div>
+              <h2>Les offres commerciales à mettre devant</h2>
               <p>
-                Priorite recommandee: <strong>Freelance IT 30 jours</strong> pour l'offre
-                principale, <strong>Maintenance informatique PME</strong> pour le revenu recurrent,
-                puis <strong>GLPI support PME</strong> pour une specialisation support claire.
+                Priorité recommandée : <strong>Freelance IT 30 jours</strong> pour l'offre
+                principale, <strong>Maintenance informatique PME</strong> pour le revenu récurrent,
+                puis <strong>GLPI support PME</strong> pour une spécialisation support claire.
               </p>
             </div>
             <div className="product-grid">
@@ -219,13 +219,13 @@ export default async function LandingPage() {
           </section>
         ) : null}
 
-        {/* Comment ça marche */}
         <section className="section">
           <div className="section-title">
             <div className="eyebrow">Le parcours</div>
             <h2>Comment ça marche</h2>
             <p>
-              De la découverte à la livraison client, tout est pensé pour aller vite et rester propre.
+              De la découverte à la livraison client, tout est pensé pour aller vite et rester
+              propre.
             </p>
           </div>
           <div className="steps-grid">
@@ -249,8 +249,8 @@ export default async function LandingPage() {
               <span className="step-number">3</span>
               <h3>Applique et vends</h3>
               <p>
-                Consulte le contenu structuré, télécharge les ressources et commence à proposer
-                ta nouvelle offre à de vrais clients rapidement.
+                Consulte le contenu structuré, télécharge les ressources et commence à proposer ta
+                nouvelle offre à de vrais clients rapidement.
               </p>
             </div>
           </div>
@@ -278,15 +278,18 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Pour qui</h2>
-            <p>Des formations faites pour des profils qui veulent vendre vite, livrer proprement et progresser sans perdre de temps.</p>
+            <p>
+              Des formations faites pour des profils qui veulent vendre vite, livrer proprement et
+              progresser sans perdre de temps.
+            </p>
           </div>
           <div className="grid-2">
             {siteConfig.audiences.map((audience) => (
               <article className="card" key={audience}>
                 <h3>{audience}</h3>
                 <p>
-                  Le contenu reste praticable, même si tu n'as pas encore construit une activité
-                  ou un gros portefeuille client.
+                  Le contenu reste praticable, même si tu n'as pas encore construit une activité ou
+                  un gros portefeuille client.
                 </p>
               </article>
             ))}
@@ -296,20 +299,32 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Pourquoi la plateforme est utile</h2>
-            <p>Tu peux publier, vendre et consommer du contenu même si toutes les vidéos ne sont pas encore tournées.</p>
+            <p>
+              Tu peux publier, vendre et consommer du contenu même si toutes les vidéos ne sont pas
+              encore tournées.
+            </p>
           </div>
           <div className="grid-3">
             <article className="card">
               <h3>Formats flexibles</h3>
-              <p>PDF, texte, ressources, liens vidéo externes et modules bientôt disponibles sont tous pris en charge.</p>
+              <p>
+                PDF, texte, ressources, liens vidéo externes et modules bientôt disponibles sont
+                tous pris en charge.
+              </p>
             </article>
             <article className="card">
               <h3>Accès par produit</h3>
-              <p>Chaque achat débloque une formation précise. Le dashboard sait exactement ce que le membre possède.</p>
+              <p>
+                Chaque achat débloque une formation précise. Le dashboard sait exactement ce que le
+                membre possède.
+              </p>
             </article>
             <article className="card">
               <h3>Base solide pour la suite</h3>
-              <p>Le tunnel de vente, Supabase, Stripe et le dashboard sont déjà prêts pour évoluer sans replatforming.</p>
+              <p>
+                Le tunnel de vente, Supabase, Stripe et le dashboard sont déjà prêts pour évoluer
+                sans replatforming.
+              </p>
             </article>
           </div>
         </section>
@@ -352,7 +367,10 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Questions fréquentes</h2>
-            <p>Le positionnement reste simple : apprendre à vendre des compétences digitales utiles, sans théâtre marketing.</p>
+            <p>
+              Le positionnement reste simple : apprendre à vendre des compétences digitales utiles,
+              sans théâtre marketing.
+            </p>
           </div>
           <div className="faq-list">
             {siteConfig.faq.map((entry) => (

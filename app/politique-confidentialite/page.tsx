@@ -4,8 +4,8 @@ import { PublicFooter } from "@/components/public-footer";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialite | TechCash Academy",
-  description: "Politique de confidentialite de TechCash Academy.",
+  title: "Politique de confidentialité | TechCash Academy",
+  description: "Politique de confidentialité de TechCash Academy.",
   alternates: {
     canonical: getAbsoluteUrl("/politique-confidentialite")
   }
@@ -29,29 +29,29 @@ export default function PolitiqueConfidentialitePage() {
 
         <section className="section section-first">
           <div className="section-title">
-            <div className="eyebrow">Donnees personnelles</div>
-            <h1>Politique de confidentialite</h1>
+            <div className="eyebrow">Données personnelles</div>
+            <h1>Politique de confidentialité</h1>
             <p>
-              Cette page resume les donnees traitees pour faire fonctionner l'inscription,
-              l'authentification, le paiement et l'acces membre.
+              Cette page résume les données traitées pour faire fonctionner l'inscription,
+              l'authentification, le paiement et l'accès membre.
             </p>
           </div>
 
           <div className="stack">
             <article className="card legal-section">
-              <h2>Donnees collectees</h2>
+              <h2>Données collectées</h2>
               <p>
-                Lors de la creation de compte et des achats, la plateforme traite au minimum
+                Lors de la création de compte et des achats, la plateforme traite au minimum
                 l'adresse e-mail, les identifiants techniques d'authentification, les informations
-                de paiement remontees par Stripe et l'historique d'acces aux formations achetees.
+                de paiement remontées par Stripe et l'historique d'accès aux formations achetées.
               </p>
             </article>
 
             <article className="card legal-section">
-              <h2>Finalites</h2>
+              <h2>Finalités</h2>
               <p>
-                Les donnees sont utilisees pour creer le compte membre, securiser la connexion,
-                valider les achats, debloquer les formations correspondantes et assurer le support
+                Les données sont utilisées pour créer le compte membre, sécuriser la connexion,
+                valider les achats, débloquer les formations correspondantes et assurer le support
                 client.
               </p>
             </article>
@@ -59,17 +59,17 @@ export default function PolitiqueConfidentialitePage() {
             <article className="card legal-section">
               <h2>Prestataires</h2>
               <p>
-                Stripe traite le paiement, Supabase l'authentification et la base de donnees,
-                Vercel l'hebergement du site. Chaque prestataire applique ses propres mesures de
-                securite et politiques de confidentialite.
+                Stripe traite le paiement, Supabase l'authentification et la base de données,
+                Vercel l'hébergement du site. Chaque prestataire applique ses propres mesures de
+                sécurité et politiques de confidentialité.
               </p>
             </article>
 
             <article className="card legal-section">
               <h2>Droits et contact</h2>
               <p>
-                Pour toute demande relative a l'acces, a la correction ou a la suppression de tes
-                donnees, contacte le support a l'adresse suivante : {siteConfig.supportEmail}.
+                Pour toute demande relative à l'accès, à la correction ou à la suppression de tes
+                données, contacte le support à l'adresse suivante : {siteConfig.supportEmail}.
               </p>
             </article>
           </div>
