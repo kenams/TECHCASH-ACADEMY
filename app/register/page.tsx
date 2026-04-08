@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
+import { siteConfig } from "@/lib/site";
 
 export default function RegisterPage() {
   const supabase = getSupabaseBrowserClient();
@@ -34,7 +35,7 @@ export default function RegisterPage() {
 
       if (!registerResponse.ok) {
         const registerData = (await registerResponse.json()) as { error?: string };
-        setError(registerData.error || "Impossible de creer le compte.");
+        setError(registerData.error || "Impossible de créer le compte.");
         setLoading(false);
         return;
       }
@@ -61,19 +62,19 @@ export default function RegisterPage() {
 
       if (!syncResponse.ok) {
         const syncData = (await syncResponse.json()) as { error?: string };
-        setError(syncData.error || "Compte cree mais profil introuvable.");
+        setError(syncData.error || "Compte créé mais profil introuvable.");
         setLoading(false);
         return;
       }
 
       if (data.session) {
-        setMessage("Compte cree. Tu peux maintenant choisir une formation.");
+        setMessage("Compte créé. Redirection vers le catalogue…");
         setLoading(false);
         router.push("/formations");
         return;
       }
 
-      setMessage("Compte cree. Connecte-toi pour continuer.");
+      setMessage("Compte créé. Connecte-toi pour continuer.");
       setLoading(false);
       router.push("/login");
     } catch (registerError) {
@@ -84,55 +85,114 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="auth-wrap">
-      <section className="auth-card">
-        <p className="eyebrow">Creation de compte</p>
-        <h1>Prepare ton acces instantane</h1>
-        <p>Cree ton compte pour debloquer le paiement et recevoir ton contenu juste apres.</p>
-
-        {error ? <div className="message error">{error}</div> : null}
-        {message ? <div className="message success">{message}</div> : null}
-
-        <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              disabled={loading}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            />
+    <main className="auth-wrap-split">
+      {/* Colonne gauche — brand */}
+      <div className="auth-side-brand">
+        <Link href="/" className="brand">
+          {siteConfig.brand}
+        </Link>
+        <div className="stack">
+          <h2 style={{ margin: 0, fontSize: "1.6rem", lineHeight: 1.2 }}>
+            Lance-toi avec une vraie base
+          </h2>
+          <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
+            Crée ton compte gratuit et accède immédiatement au catalogue de formations pour
+            monétiser tes compétences digitales.
+          </p>
+          <div className="confidence-list">
+            <div className="confidence-item">
+              <span className="confidence-dot" />
+              <div>
+                <strong>Création instantanée</strong>
+                <p>Ton espace membre est actif dès la validation.</p>
+              </div>
+            </div>
+            <div className="confidence-item">
+              <span className="confidence-dot" />
+              <div>
+                <strong>Paiement sécurisé via Stripe</strong>
+                <p>Achète uniquement les formations qui t'intéressent.</p>
+              </div>
+            </div>
+            <div className="confidence-item">
+              <span className="confidence-dot" />
+              <div>
+                <strong>Accès à vie par formation achetée</strong>
+                <p>Reviens consulter ton contenu quand tu veux.</p>
+              </div>
+            </div>
           </div>
-
-          <div className="field">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              id="password"
-              type="password"
-              minLength={6}
-              autoComplete="new-password"
-              disabled={loading}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
+          <div className="trust-row" style={{ marginTop: "0.5rem" }}>
+            <span className="trust-pill">Gratuit</span>
+            <span className="trust-pill">Sans engagement</span>
+            <span className="trust-pill">Accès immédiat</span>
           </div>
+        </div>
+      </div>
 
-          <button className="button" type="submit" disabled={loading} aria-busy={loading}>
-            {loading ? "Creation..." : "Creer mon compte"}
-          </button>
-        </form>
-
-        <p className="helper">
-          Deja inscrit ?{" "}
-          <Link className="muted-link" href="/login">
-            Se connecter
+      {/* Colonne droite — formulaire */}
+      <div className="auth-side-form">
+        <div className="auth-form-inner">
+          <Link href="/" className="brand" style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}>
+            ← {siteConfig.brand}
           </Link>
-        </p>
-      </section>
+
+          <div className="eyebrow" style={{ marginBottom: "1rem" }}>Création de compte</div>
+          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>
+            Crée ton accès membre
+          </h1>
+          <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
+            Gratuit. Ton compte te permettra d'acheter et d'accéder à tes formations directement.
+          </p>
+
+          {error ? <div className="message error">{error}</div> : null}
+          {message ? <div className="message success">{message}</div> : null}
+
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label htmlFor="email">Adresse email</label>
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                placeholder="toi@exemple.com"
+                disabled={loading}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+            </div>
+
+            <div className="field">
+              <label htmlFor="password">Mot de passe</label>
+              <input
+                id="password"
+                type="password"
+                minLength={6}
+                autoComplete="new-password"
+                placeholder="Minimum 6 caractères"
+                disabled={loading}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+            </div>
+
+            <button className="button button-full" type="submit" disabled={loading} aria-busy={loading}>
+              {loading ? "Création en cours…" : "Créer mon compte"}
+            </button>
+          </form>
+
+          <div className="divider">ou</div>
+
+          <p className="helper" style={{ textAlign: "center" }}>
+            Déjà inscrit ?{" "}
+            <Link className="muted-link" href="/login" style={{ color: "var(--accent)", fontWeight: 600 }}>
+              Se connecter
+            </Link>
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

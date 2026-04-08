@@ -4,15 +4,46 @@ export default function CancelPage() {
   return (
     <main className="status-wrap">
       <section className="status-card">
-        <p className="eyebrow">Paiement annule</p>
+        <div className="status-icon status-icon-cancel">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <p className="eyebrow">Paiement annulé</p>
         <h1>Tu peux reprendre quand tu veux</h1>
-        <p>La commande n'a pas ete finalisee. Ton compte reste disponible pour retenter l'achat.</p>
+        <p>
+          La commande n'a pas été finalisée. Aucun montant n'a été débité. Ton compte reste disponible
+          pour retenter l'achat à tout moment.
+        </p>
+
+        <div className="status-steps">
+          <div className="status-step">
+            <span className="status-step-dot" style={{ background: "rgba(148, 163, 184, 0.6)" }} />
+            <p>Aucun paiement n'a été prélevé</p>
+          </div>
+          <div className="status-step">
+            <span className="status-step-dot" style={{ background: "rgba(148, 163, 184, 0.6)" }} />
+            <p>Ton compte est conservé, tu peux te reconnecter à tout moment</p>
+          </div>
+          <div className="status-step">
+            <span className="status-step-dot" style={{ background: "rgba(148, 163, 184, 0.6)" }} />
+            <p>La formation reste disponible dans le catalogue</p>
+          </div>
+        </div>
+
         <div className="cta-row">
           <Link href="/formations" className="button">
-            Revenir aux formations
+            Retourner aux formations
           </Link>
           <Link href="/" className="button-secondary">
-            Retour accueil
+            Retour à l'accueil
           </Link>
         </div>
       </section>

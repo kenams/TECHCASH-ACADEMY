@@ -8,16 +8,16 @@ export function PublicFooter() {
         <div className="footer-column">
           <div className="brand">{siteConfig.brand}</div>
           <p className="footer-meta">
-            Plateforme de formations digitales pour structurer une activite vendable, livrable et
+            Plateforme de formations digitales pour structurer une activité vendable, livrable et
             durable.
           </p>
           <div className="footer-trust-row">
-            <span className="meta-chip">Paiement securise</span>
-            <span className="meta-chip">Acces membre</span>
-            <span className="meta-chip">Catalogue evolutif</span>
+            <span className="meta-chip">Paiement sécurisé</span>
+            <span className="meta-chip">Accès membre</span>
+            <span className="meta-chip">Catalogue évolutif</span>
           </div>
           <p className="footer-meta">
-            Editeur : {siteConfig.legalEntity}
+            Éditeur : {siteConfig.legalEntity}
             <br />
             Contact : {siteConfig.supportEmail}
           </p>
@@ -28,16 +28,16 @@ export function PublicFooter() {
           <div className="footer-links">
             <Link href="/">Accueil</Link>
             <Link href="/formations">Formations</Link>
-            <Link href="/register">Creer un compte</Link>
+            <Link href="/register">Créer un compte</Link>
             <Link href="/login">Connexion</Link>
           </div>
         </div>
 
         <div className="footer-column">
-          <h3>Cadre legal</h3>
+          <h3>Cadre légal</h3>
           <div className="footer-links">
-            <Link href="/mentions-legales">Mentions legales</Link>
-            <Link href="/politique-confidentialite">Politique de confidentialite</Link>
+            <Link href="/mentions-legales">Mentions légales</Link>
+            <Link href="/politique-confidentialite">Politique de confidentialité</Link>
             <Link href="/conditions-utilisation">Conditions d'utilisation</Link>
           </div>
         </div>
@@ -45,8 +45,8 @@ export function PublicFooter() {
 
       <div className="footer-bottom">
         <p className="footer-meta">
-          Paiement securise via Stripe. Authentification et base de donnees gerees avec Supabase.
-          Site deploye sur Vercel.
+          Paiement sécurisé via Stripe. Authentification et base de données gérées avec Supabase.
+          Site déployé sur Vercel.
         </p>
       </div>
     </footer>

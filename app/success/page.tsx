@@ -4,21 +4,49 @@ export default function SuccessPage() {
   return (
     <main className="status-wrap">
       <section className="status-card">
-        <p className="eyebrow">Paiement reussi</p>
-        <h1>Ton acces est en cours d'activation</h1>
+        <div className="status-icon status-icon-success">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 13l4 4L19 7"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <p className="eyebrow">Paiement confirmé</p>
+        <h1>Ton accès est activé !</h1>
         <p>
-          Stripe a confirme le paiement. Si l'ecriture en base prend quelques secondes, recharge
-          simplement ton dashboard ou ouvre l'onglet mes formations.
+          Stripe a confirmé ton paiement. Ta formation est maintenant disponible dans ton espace membre.
         </p>
+
+        <div className="status-steps">
+          <div className="status-step">
+            <span className="status-step-dot" />
+            <p>Ton accès est débloqué — retrouve la formation dans "Mes formations"</p>
+          </div>
+          <div className="status-step">
+            <span className="status-step-dot" />
+            <p>Les modules publiés sont accessibles immédiatement</p>
+          </div>
+          <div className="status-step">
+            <span className="status-step-dot" />
+            <p>Les modules à venir apparaîtront automatiquement dans ton espace</p>
+          </div>
+        </div>
+
         <p className="helper">
-          Si l'acces n'apparait pas tout de suite, attends 5 a 10 secondes puis reessaie.
+          Si l'accès n'apparaît pas tout de suite, attends 5 à 10 secondes puis recharge la page.
         </p>
+
         <div className="cta-row">
-          <Link href="/dashboard" className="button">
-            Acceder au dashboard
+          <Link href="/dashboard/mes-formations" className="button">
+            Accéder à mes formations
           </Link>
-          <Link href="/dashboard/mes-formations" className="button-secondary">
-            Voir mes formations
+          <Link href="/dashboard" className="button-secondary">
+            Mon tableau de bord
           </Link>
         </div>
       </section>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
@@ -89,17 +90,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
         />
-        <header className="topbar">
-          <div className="brand">{siteConfig.brand}</div>
-          <nav className="nav">
-            <Link href="/formations" className="button-ghost">
-              Retour catalogue
-            </Link>
-            <Link href={user ? "/dashboard" : "/login"} className="button">
-              {user ? "Mon espace" : "Connexion"}
-            </Link>
-          </nav>
-        </header>
+        <Navbar
+          brand={siteConfig.brand}
+          links={[{ href: "/formations", label: "Retour catalogue" }]}
+          isLoggedIn={Boolean(user)}
+        />
 
         <ProductHero
           product={product}

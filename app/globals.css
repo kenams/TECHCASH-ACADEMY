@@ -75,6 +75,29 @@ select {
   background: linear-gradient(180deg, rgba(5, 8, 22, 0.82), rgba(5, 8, 22, 0.3));
 }
 
+.nav-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--foreground);
+  cursor: pointer;
+  z-index: 30;
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 22, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 25;
+}
+
 .brand {
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -158,10 +181,19 @@ select {
   padding: 0.95rem 1.4rem;
   font-weight: 700;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   transition:
     transform 0.15s ease,
     background 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.button-full {
+  width: 100%;
 }
 
 .button:hover,
@@ -206,6 +238,10 @@ select {
 .member-product-card,
 .content-card {
   padding: 1.4rem;
+}
+
+.auth-card {
+  padding: 2rem;
 }
 
 .price-box,
@@ -1015,6 +1051,201 @@ select {
   padding-top: 0.5rem;
 }
 
+/* ---- Auth pages ---- */
+.auth-wrap-split {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+  align-items: stretch;
+}
+
+.auth-side-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(215, 184, 122, 0.16), transparent 50%),
+    linear-gradient(180deg, #060914 0%, #09111f 100%);
+  border-right: 1px solid var(--border);
+}
+
+.auth-side-brand .brand {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.auth-side-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background: var(--surface-strong);
+}
+
+.auth-form-inner {
+  width: min(420px, 100%);
+}
+
+/* ---- Steps / how it works ---- */
+.steps-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  counter-reset: steps;
+}
+
+.step-card {
+  padding: 1.75rem;
+  border-radius: 22px;
+  border: 1px solid rgba(201, 169, 109, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(10, 16, 31, 0.72);
+  box-shadow: var(--luxury-shadow);
+  display: grid;
+  gap: 0.9rem;
+  counter-increment: steps;
+  position: relative;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(215, 184, 122, 0.2), rgba(215, 184, 122, 0.08));
+  border: 1px solid rgba(215, 184, 122, 0.3);
+  color: #f2dfbb;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+}
+
+.step-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #f7f0e2;
+  line-height: 1.3;
+}
+
+.step-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+/* ---- Status pages (success/cancel) ---- */
+.status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.status-icon-success {
+  background: rgba(52, 211, 153, 0.14);
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  color: #6ee7b7;
+}
+
+.status-icon-cancel {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.status-steps {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.status-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 109, 0.08);
+}
+
+.status-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.7);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+.status-step p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ---- 404 page ---- */
+.not-found-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.not-found-code {
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  background: linear-gradient(135deg, rgba(215, 184, 122, 0.6), rgba(215, 184, 122, 0.15));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+/* ---- Card hover ---- */
+.product-card:hover {
+  border-color: rgba(215, 184, 122, 0.22);
+  transform: translateY(-2px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* ---- Form submit button ---- */
+.auth-card form .button,
+.auth-form-inner form .button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* ---- Divider ---- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
 @media (max-width: 980px) {
   .hero,
   .product-hero,
@@ -1065,5 +1296,66 @@ select {
   .admin-product-item,
   .admin-module-item {
     flex-direction: column;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-wrap-split {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-side-brand {
+    display: none;
+  }
+
+  .auth-side-form {
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .nav-hamburger {
+    display: inline-flex;
+  }
+
+  .topbar {
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
+  .nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(300px, 85vw);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 5rem 1.5rem 2rem;
+    background: rgba(5, 8, 22, 0.98);
+    backdrop-filter: blur(24px);
+    border-left: 1px solid var(--border);
+    z-index: 28;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav-overlay {
+    display: block;
+  }
+
+  .nav .button,
+  .nav .button-secondary,
+  .nav .button-ghost {
+    width: 100%;
+    text-align: center;
+    border-radius: 14px;
+    justify-content: center;
   }
 }

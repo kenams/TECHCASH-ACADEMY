@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts } from "@/lib/products";
@@ -11,14 +12,14 @@ import { getUserProfile } from "@/lib/users";
 export const metadata: Metadata = {
   title: "Catalogue des formations | TechCash Academy",
   description:
-    "Decouvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
+    "Découvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
   alternates: {
     canonical: getAbsoluteUrl("/formations")
   },
   openGraph: {
     title: "Catalogue des formations | TechCash Academy",
     description:
-      "Decouvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
+      "Découvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
     url: getAbsoluteUrl("/formations")
   }
 };
@@ -58,25 +59,20 @@ export default async function FormationsPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
         />
-        <header className="topbar">
-          <div className="brand">{siteConfig.brand}</div>
-          <nav className="nav">
-            <Link href="/" className="button-ghost">
-              Accueil
-            </Link>
-            <Link href={user ? "/dashboard" : "/login"} className="button">
-              {user ? "Mon espace" : "Connexion"}
-            </Link>
-          </nav>
-        </header>
+
+        <Navbar
+          brand={siteConfig.brand}
+          links={[{ href: "/", label: "Accueil" }]}
+          isLoggedIn={Boolean(user)}
+        />
 
         <section className="section section-first">
           <div className="section-title">
             <div className="eyebrow">Catalogue des formations</div>
-            <h1>Choisis la competence digitale la plus rentable pour ton contexte</h1>
+            <h1>Choisis la compétence digitale la plus rentable pour ton contexte</h1>
             <p>
-              Chaque formation correspond a une offre claire a vendre. Tu peux acheter une seule
-              formation ou construire ton catalogue de competences pas a pas.
+              Chaque formation correspond à une offre claire à vendre. Tu peux acheter une seule
+              formation ou construire ton catalogue de compétences pas à pas.
             </p>
           </div>
 
@@ -89,7 +85,7 @@ export default async function FormationsPage() {
               </div>
               <div className="cta-row">
                 <Link href={`/formations/${featured.slug}`} className="button-secondary">
-                  Voir le detail
+                  Voir le détail
                 </Link>
                 <Link href={`/checkout?product=${featured.slug}`} className="button">
                   Acheter
@@ -103,18 +99,18 @@ export default async function FormationsPage() {
           <div className="hero-stat-grid">
             <article className="hero-stat-card">
               <span className="helper">Positionnement</span>
-              <strong>Catalogue structure autour d'offres vendables</strong>
+              <strong>Catalogue structuré autour d'offres vendables</strong>
               <p>Chaque formation répond à un service digital précis et commercialisable.</p>
             </article>
             <article className="hero-stat-card">
               <span className="helper">Parcours</span>
               <strong>Achat clair, accès membre immédiat</strong>
-              <p>Le client comprend ce qu’il achète et retrouve vite le bon contenu.</p>
+              <p>Le client comprend ce qu'il achète et retrouve vite le bon contenu.</p>
             </article>
             <article className="hero-stat-card">
               <span className="helper">Crédibilité</span>
-              <strong>Une image sobre et plus haut de gamme</strong>
-              <p>Le catalogue inspire davantage confiance qu’une simple page de vente brute.</p>
+              <strong>Une image sobre et haut de gamme</strong>
+              <p>Le catalogue inspire davantage confiance qu'une simple page de vente brute.</p>
             </article>
           </div>
         </section>

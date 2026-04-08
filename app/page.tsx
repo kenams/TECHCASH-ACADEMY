@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
@@ -12,14 +13,14 @@ import { getUserProfile } from "@/lib/users";
 export const metadata: Metadata = {
   title: "TechCash Academy | Formations digitales rentables",
   description:
-    "Catalogue de formations pour lancer une activite digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
+    "Catalogue de formations pour lancer une activité digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
   alternates: {
     canonical: getAbsoluteUrl("/")
   },
   openGraph: {
     title: "TechCash Academy | Formations digitales rentables",
     description:
-      "Catalogue de formations pour lancer une activite digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
+      "Catalogue de formations pour lancer une activité digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
     url: getAbsoluteUrl("/")
   }
 };
@@ -42,6 +43,7 @@ export default async function LandingPage() {
     (products[0] ? await getProductBySlug(products[0].slug) : null);
   const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -86,44 +88,30 @@ export default async function LandingPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productListSchema) }}
         />
-        <header className="topbar">
-          <div className="brand">{siteConfig.brand}</div>
-          <nav className="nav">
-            <Link href="/formations" className="button-ghost">
-              Formations
-            </Link>
-            {user ? (
-              <Link href="/dashboard" className="button">
-                Mon espace
-              </Link>
-            ) : (
-              <>
-                <Link href="/login" className="button-ghost">
-                  Connexion
-                </Link>
-                <Link href={`/checkout?product=${siteConfig.primaryProductSlug}`} className="button">
-                  Commencer
-                </Link>
-              </>
-            )}
-          </nav>
-        </header>
+
+        <Navbar
+          brand={siteConfig.brand}
+          links={[{ href: "/formations", label: "Formations" }]}
+          isLoggedIn={Boolean(user)}
+          primaryProductSlug={siteConfig.primaryProductSlug}
+          showStartCTA={!user}
+        />
 
         <section className="hero hero-catalog">
           <div className="stack">
-            <div className="eyebrow">Formations digitales sobres, concretes et vendables</div>
+            <div className="eyebrow">Formations digitales concrètes et vendables</div>
             <h1>{siteConfig.headline}</h1>
             <p className="lead">
-              Apprends a vendre des prestations digitales utiles, structurer une activite propre et
+              Apprends à vendre des prestations digitales utiles, structurer une activité propre et
               livrer avec des process simples. Pas de discours miracle, seulement des offres que tu
-              peux proposer a de vrais clients.
+              peux proposer à de vrais clients.
             </p>
             <div className="cta-row">
               <Link href="/formations" className="button">
                 Voir le catalogue
               </Link>
               <Link href={user ? "/dashboard" : "/register"} className="button-secondary">
-                {user ? "Acceder a mon espace" : "Creer un compte"}
+                {user ? "Accéder à mon espace" : "Créer un compte"}
               </Link>
             </div>
             <div className="hero-stat-grid">
@@ -133,14 +121,14 @@ export default async function LandingPage() {
                 <p>Des offres ciblées, structurées pour des besoins clients concrets.</p>
               </article>
               <article className="hero-stat-card">
-                <span className="helper">Acces et paiement</span>
+                <span className="helper">Accès et paiement</span>
                 <strong>Stripe + espace membre</strong>
                 <p>Un tunnel propre, rassurant et pensé pour une vente sérieuse.</p>
               </article>
               <article className="hero-stat-card">
                 <span className="helper">Formats inclus</span>
                 <strong>PDF, texte, vidéos, ressources</strong>
-                <p>Le contenu peut être publié progressivement sans casser l’expérience.</p>
+                <p>Le contenu peut être publié progressivement sans casser l'expérience.</p>
               </article>
             </div>
             <ul className="bullet-list">
@@ -188,7 +176,7 @@ export default async function LandingPage() {
                 </div>
                 <div className="cta-row">
                   <Link href={`/formations/${featured.slug}`} className="button-secondary">
-                    Voir le detail
+                    Voir le détail
                   </Link>
                   <Link href={`/checkout?product=${featured.slug}`} className="button">
                     Acheter
@@ -205,12 +193,49 @@ export default async function LandingPage() {
           <ProductHero product={featured} isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)} />
         ) : null}
 
+        {/* Comment ça marche */}
+        <section className="section">
+          <div className="section-title">
+            <div className="eyebrow">Le parcours</div>
+            <h2>Comment ça marche</h2>
+            <p>
+              De la découverte à la livraison client, tout est pensé pour aller vite et rester propre.
+            </p>
+          </div>
+          <div className="steps-grid">
+            <div className="step-card">
+              <span className="step-number">1</span>
+              <h3>Choisis ta formation</h3>
+              <p>
+                Parcours le catalogue et sélectionne la compétence digitale la plus adaptée à ton
+                contexte. Chaque offre correspond à un service réel que tu peux vendre.
+              </p>
+            </div>
+            <div className="step-card">
+              <span className="step-number">2</span>
+              <h3>Achète et accède immédiatement</h3>
+              <p>
+                Paiement sécurisé via Stripe. Ton accès est activé instantanément dans l'espace
+                membre dédié, sans attente ni friction.
+              </p>
+            </div>
+            <div className="step-card">
+              <span className="step-number">3</span>
+              <h3>Applique et vends</h3>
+              <p>
+                Consulte le contenu structuré, télécharge les ressources et commence à proposer
+                ta nouvelle offre à de vrais clients rapidement.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="section">
           <div className="section-title">
             <h2>Catalogue des formations</h2>
             <p>
-              Un catalogue structure autour d'offres simples a vendre : support IT, landing pages,
-              sites clients, outils metier et applications mobiles monetisables.
+              Un catalogue structuré autour d'offres simples à vendre : support IT, landing pages,
+              sites clients, outils métier et applications mobiles monétisables.
             </p>
           </div>
           <div className="product-grid">
@@ -234,7 +259,7 @@ export default async function LandingPage() {
               <article className="card" key={audience}>
                 <h3>{audience}</h3>
                 <p>
-                  Le contenu reste praticable, meme si tu n'as pas encore construit une activite
+                  Le contenu reste praticable, même si tu n'as pas encore construit une activité
                   ou un gros portefeuille client.
                 </p>
               </article>
@@ -245,27 +270,27 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Pourquoi la plateforme est utile</h2>
-            <p>Tu peux publier, vendre et consommer du contenu meme si toutes les videos ne sont pas encore tournees.</p>
+            <p>Tu peux publier, vendre et consommer du contenu même si toutes les vidéos ne sont pas encore tournées.</p>
           </div>
           <div className="grid-3">
             <article className="card">
               <h3>Formats flexibles</h3>
-              <p>PDF, texte, ressources, liens video externes et modules bientot disponibles sont tous pris en charge.</p>
+              <p>PDF, texte, ressources, liens vidéo externes et modules bientôt disponibles sont tous pris en charge.</p>
             </article>
             <article className="card">
-              <h3>Acces par produit</h3>
-              <p>Chaque achat debloque une formation precise. Le dashboard sait exactement ce que le membre possede.</p>
+              <h3>Accès par produit</h3>
+              <p>Chaque achat débloque une formation précise. Le dashboard sait exactement ce que le membre possède.</p>
             </article>
             <article className="card">
               <h3>Base solide pour la suite</h3>
-              <p>Le tunnel de vente, Supabase, Stripe et le dashboard sont deja prets pour evoluer sans replatforming.</p>
+              <p>Le tunnel de vente, Supabase, Stripe et le dashboard sont déjà prêts pour évoluer sans replatforming.</p>
             </article>
           </div>
         </section>
 
         <section className="section">
           <div className="section-title">
-            <h2>Une presentation premium, sans discours agressif</h2>
+            <h2>Une présentation premium, sans discours agressif</h2>
             <p>
               TechCash Academy est pensée pour inspirer confiance : offre lisible, tunnel propre,
               contenu structuré et expérience membre cohérente dès le premier achat.
@@ -277,20 +302,20 @@ export default async function LandingPage() {
               <h3>Des pages faites pour rassurer avant de vendre</h3>
               <p>
                 Le catalogue met en avant les bénéfices concrets, la structure de chaque formation
-                et la logique d’accès produit par produit.
+                et la logique d'accès produit par produit.
               </p>
             </article>
             <article className="card trust-panel-card">
-              <span className="eyebrow">Execution</span>
-              <h3>Une plateforme exploitable même si tout n’est pas encore filmé</h3>
+              <span className="eyebrow">Exécution</span>
+              <h3>Une plateforme exploitable même si tout n'est pas encore filmé</h3>
               <p>
                 Tu peux vendre et publier avec des textes, PDF, ressources téléchargeables et des
-                modules “bientôt disponibles”.
+                modules "bientôt disponibles".
               </p>
             </article>
             <article className="card trust-panel-card">
               <span className="eyebrow">Image</span>
-              <h3>Une présence plus sérieuse qu’une simple page de vente</h3>
+              <h3>Une présence plus sérieuse qu'une simple page de vente</h3>
               <p>
                 Le design reste sobre, net et premium pour porter une activité crédible et durable.
               </p>
@@ -300,8 +325,8 @@ export default async function LandingPage() {
 
         <section className="section">
           <div className="section-title">
-            <h2>Questions frequentes</h2>
-            <p>Le positionnement reste simple : apprendre a vendre des competences digitales utiles, sans theatre marketing.</p>
+            <h2>Questions fréquentes</h2>
+            <p>Le positionnement reste simple : apprendre à vendre des compétences digitales utiles, sans théâtre marketing.</p>
           </div>
           <div className="faq-list">
             {siteConfig.faq.map((entry) => (
@@ -316,10 +341,10 @@ export default async function LandingPage() {
         <section className="section">
           <div className="panel">
             <div className="section-title">
-              <h2>Prendre une formation, puis evoluer</h2>
+              <h2>Prendre une formation, puis évoluer</h2>
               <p>
-                Commence par l'offre principale ou choisis directement le sujet qui colle a ton
-                activite. Le catalogue est concu pour permettre plusieurs achats successifs.
+                Commence par l'offre principale ou choisis directement le sujet qui colle à ton
+                activité. Le catalogue est conçu pour permettre plusieurs achats successifs.
               </p>
             </div>
             <div className="cta-row">
@@ -327,7 +352,7 @@ export default async function LandingPage() {
                 Explorer les formations
               </Link>
               <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button-secondary">
-                {user ? "Voir mes formations" : "Creer mon acces"}
+                {user ? "Voir mes formations" : "Créer mon accès"}
               </Link>
             </div>
           </div>
