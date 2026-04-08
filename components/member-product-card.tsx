@@ -16,13 +16,24 @@ export function MemberProductCard({
 }: MemberProductCardProps) {
   return (
     <article className="member-product-card">
+      <div
+        className={`member-product-media ${product.thumbnail_url ? "" : "product-thumb-empty"}`}
+        style={
+          product.thumbnail_url
+            ? {
+                backgroundImage: `linear-gradient(180deg, rgba(4,8,20,0.08), rgba(4,8,20,0.8)), url(${product.thumbnail_url})`
+              }
+            : undefined
+        }
+      >
+        <div className="hero-badges">
+          {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
+          <AccessBadge label={isOwned ? "Débloquée" : "Disponible"} tone={isOwned ? "success" : "default"} />
+        </div>
+      </div>
       <div className={`member-product-accent ${isOwned ? "member-product-accent-owned" : ""}`} />
       <div className="member-product-head">
         <div>
-          <div className="hero-badges">
-            {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
-            <AccessBadge label={isOwned ? "Débloquée" : "Disponible"} tone={isOwned ? "success" : "default"} />
-          </div>
           <h3>{product.title}</h3>
           <p className="product-subtitle">{product.subtitle}</p>
         </div>
