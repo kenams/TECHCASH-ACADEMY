@@ -126,6 +126,23 @@ export default async function LandingPage() {
                 {user ? "Acceder a mon espace" : "Creer un compte"}
               </Link>
             </div>
+            <div className="hero-stat-grid">
+              <article className="hero-stat-card">
+                <span className="helper">Catalogue actuel</span>
+                <strong>{products.length} formations</strong>
+                <p>Des offres ciblées, structurées pour des besoins clients concrets.</p>
+              </article>
+              <article className="hero-stat-card">
+                <span className="helper">Acces et paiement</span>
+                <strong>Stripe + espace membre</strong>
+                <p>Un tunnel propre, rassurant et pensé pour une vente sérieuse.</p>
+              </article>
+              <article className="hero-stat-card">
+                <span className="helper">Formats inclus</span>
+                <strong>PDF, texte, vidéos, ressources</strong>
+                <p>Le contenu peut être publié progressivement sans casser l’expérience.</p>
+              </article>
+            </div>
             <ul className="bullet-list">
               {siteConfig.benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
@@ -146,6 +163,29 @@ export default async function LandingPage() {
               <div className="stack">
                 <h2>{featured.title}</h2>
                 <p>{featured.short_description}</p>
+                <div className="luxury-note">
+                  <strong>Cadre rassurant</strong>
+                  <span>
+                    Paiement sécurisé, accès membre propre, catalogue lisible et progression par
+                    produit acheté.
+                  </span>
+                </div>
+                <div className="confidence-list">
+                  <div className="confidence-item">
+                    <span className="confidence-dot" />
+                    <div>
+                      <strong>Positionnement clair</strong>
+                      <p>Des offres pensées pour être comprises et revendues à de vrais clients.</p>
+                    </div>
+                  </div>
+                  <div className="confidence-item">
+                    <span className="confidence-dot" />
+                    <div>
+                      <strong>Expérience propre</strong>
+                      <p>Pages détaillées, checkout stable et espace membre prêt pour la suite.</p>
+                    </div>
+                  </div>
+                </div>
                 <div className="cta-row">
                   <Link href={`/formations/${featured.slug}`} className="button-secondary">
                     Voir le detail
@@ -219,6 +259,41 @@ export default async function LandingPage() {
             <article className="card">
               <h3>Base solide pour la suite</h3>
               <p>Le tunnel de vente, Supabase, Stripe et le dashboard sont deja prets pour evoluer sans replatforming.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-title">
+            <h2>Une presentation premium, sans discours agressif</h2>
+            <p>
+              TechCash Academy est pensée pour inspirer confiance : offre lisible, tunnel propre,
+              contenu structuré et expérience membre cohérente dès le premier achat.
+            </p>
+          </div>
+          <div className="trust-panel-grid">
+            <article className="card trust-panel-card">
+              <span className="eyebrow">Conversion</span>
+              <h3>Des pages faites pour rassurer avant de vendre</h3>
+              <p>
+                Le catalogue met en avant les bénéfices concrets, la structure de chaque formation
+                et la logique d’accès produit par produit.
+              </p>
+            </article>
+            <article className="card trust-panel-card">
+              <span className="eyebrow">Execution</span>
+              <h3>Une plateforme exploitable même si tout n’est pas encore filmé</h3>
+              <p>
+                Tu peux vendre et publier avec des textes, PDF, ressources téléchargeables et des
+                modules “bientôt disponibles”.
+              </p>
+            </article>
+            <article className="card trust-panel-card">
+              <span className="eyebrow">Image</span>
+              <h3>Une présence plus sérieuse qu’une simple page de vente</h3>
+              <p>
+                Le design reste sobre, net et premium pour porter une activité crédible et durable.
+              </p>
             </article>
           </div>
         </section>

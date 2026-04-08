@@ -20,6 +20,20 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
         <h1>{product.title}</h1>
         <p className="product-hero-subtitle">{product.subtitle}</p>
         <p className="product-hero-description">{product.long_description}</p>
+        <div className="hero-assurance-grid">
+          <div className="assurance-item">
+            <span className="helper">Paiement</span>
+            <strong>Checkout Stripe securise</strong>
+          </div>
+          <div className="assurance-item">
+            <span className="helper">Acces</span>
+            <strong>Espace membre dedie</strong>
+          </div>
+          <div className="assurance-item">
+            <span className="helper">Formats</span>
+            <strong>Texte, PDF, ressources, video</strong>
+          </div>
+        </div>
         <div className="cta-row">
           <PurchaseCTA
             productSlug={product.slug}
@@ -51,6 +65,13 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
           <div className="price-block">
             <span className="helper">Tarif</span>
             <strong>{formatPrice(product.price_cents, product.currency)}</strong>
+          </div>
+          <div className="luxury-note">
+            <strong>Positionnement premium et rassurant</strong>
+            <span>
+              Un cadre propre pour vendre une compétence utile, sans promesses excessives ni
+              tunnel brouillon.
+            </span>
           </div>
           <ul className="list product-hero-points">
             <li>Acces immediat a tous les modules publies</li>

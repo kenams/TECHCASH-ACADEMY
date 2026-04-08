@@ -32,6 +32,10 @@ export function MemberProductCard({
         <div className="price-chip">{formatPrice(product.price_cents, product.currency)}</div>
       </div>
       <p className="product-summary">{product.short_description}</p>
+      <div className="product-card-meta">
+        <span className="meta-chip">{isOwned ? "Acces actif" : "Disponible a l'achat"}</span>
+        <span className="meta-chip">Espace membre dedie</span>
+      </div>
       {purchaseDate ? (
         <p className="helper">Achetee le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p>
       ) : null}

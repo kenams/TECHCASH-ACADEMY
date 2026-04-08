@@ -36,6 +36,11 @@ export function ProductCard({ product, isOwned = false }: ProductCardProps) {
 
         <p className="product-summary">{product.short_description}</p>
 
+        <div className="product-card-meta">
+          <span className="meta-chip">Acces membre immediat</span>
+          <span className="meta-chip">Contenu publiable progressivement</span>
+        </div>
+
         <div className="cta-row">
           <Link href={`/formations/${product.slug}`} className="button-secondary">
             Voir le detail

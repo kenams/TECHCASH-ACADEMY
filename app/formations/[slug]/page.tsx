@@ -128,6 +128,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </section>
 
         <section className="section">
+          <div className="hero-assurance-grid hero-assurance-grid-wide">
+            <article className="assurance-item assurance-item-card">
+              <span className="helper">Clarté</span>
+              <strong>Le programme est lisible avant achat</strong>
+              <p>Les modules disponibles et ceux à venir sont visibles dès la page détail.</p>
+            </article>
+            <article className="assurance-item assurance-item-card">
+              <span className="helper">Confiance</span>
+              <strong>Vous achetez un accès structuré, pas une promesse floue</strong>
+              <p>Le contenu est organisé pour être consulté, utilisé et réexploité rapidement.</p>
+            </article>
+            <article className="assurance-item assurance-item-card">
+              <span className="helper">Continuité</span>
+              <strong>Le dashboard retrouve exactement ce que vous possédez</strong>
+              <p>Chaque achat alimente l’espace membre sans ambiguïté.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="section">
           <div className="section-title">
             <h2>Ce que tu trouveras dans la formation</h2>
             <p>

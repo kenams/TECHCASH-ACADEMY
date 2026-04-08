@@ -81,7 +81,7 @@ export default async function FormationsPage() {
           </div>
 
           {featured ? (
-            <div className="featured-strip">
+            <div className="featured-strip featured-strip-luxury">
               <div>
                 <p className="helper">Offre principale</p>
                 <h2>{featured.title}</h2>
@@ -97,6 +97,26 @@ export default async function FormationsPage() {
               </div>
             </div>
           ) : null}
+        </section>
+
+        <section className="section">
+          <div className="hero-stat-grid">
+            <article className="hero-stat-card">
+              <span className="helper">Positionnement</span>
+              <strong>Catalogue structure autour d'offres vendables</strong>
+              <p>Chaque formation répond à un service digital précis et commercialisable.</p>
+            </article>
+            <article className="hero-stat-card">
+              <span className="helper">Parcours</span>
+              <strong>Achat clair, accès membre immédiat</strong>
+              <p>Le client comprend ce qu’il achète et retrouve vite le bon contenu.</p>
+            </article>
+            <article className="hero-stat-card">
+              <span className="helper">Crédibilité</span>
+              <strong>Une image sobre et plus haut de gamme</strong>
+              <p>Le catalogue inspire davantage confiance qu’une simple page de vente brute.</p>
+            </article>
+          </div>
         </section>
 
         <section className="section">

@@ -11,6 +11,11 @@ export function PublicFooter() {
             Plateforme de formations digitales pour structurer une activite vendable, livrable et
             durable.
           </p>
+          <div className="footer-trust-row">
+            <span className="meta-chip">Paiement securise</span>
+            <span className="meta-chip">Acces membre</span>
+            <span className="meta-chip">Catalogue evolutif</span>
+          </div>
           <p className="footer-meta">
             Editeur : {siteConfig.legalEntity}
             <br />
