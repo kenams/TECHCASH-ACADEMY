@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MemberProductCard } from "@/components/member-product-card";
+import { getProductSupplement } from "@/lib/catalog";
 import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
@@ -37,6 +38,9 @@ export default async function DashboardPage() {
         has_access: true
       }))
     : ownedProducts;
+  const totalOwnedValue = accessibleProducts.reduce((sum, product) => sum + product.price_cents, 0);
+  const spotlightProduct = accessibleProducts[0] || null;
+  const spotlightSupplement = spotlightProduct ? getProductSupplement(spotlightProduct.slug) : null;
   const discoverProducts = activeProducts.filter((product) => !ownedSlugs.has(product.slug));
 
   return (
@@ -62,6 +66,20 @@ export default async function DashboardPage() {
         </div>
       </section>
 
+      <section className="section dashboard-nav-section">
+        <div className="dashboard-nav-grid">
+          <Link href="/dashboard" className="dashboard-nav-link dashboard-nav-link-active">
+            Vue d'ensemble
+          </Link>
+          <Link href="/dashboard/mes-formations" className="dashboard-nav-link">
+            Mes formations
+          </Link>
+          <Link href="/formations" className="dashboard-nav-link">
+            Catalogue complet
+          </Link>
+        </div>
+      </section>
+
       <section className="section">
         <div className="member-stats-grid">
           <article className="card">
@@ -83,8 +101,53 @@ export default async function DashboardPage() {
             <h2>{hasGlobalAccess ? "Global" : "Par produit"}</h2>
             <p>La logique d'acces s'appuie sur tes achats ou sur un override premium global.</p>
           </article>
+          <article className="card">
+            <p className="helper">Valeur catalogue debloquee</p>
+            <h2>
+              {new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR"
+              }).format(totalOwnedValue / 100)}
+            </h2>
+            <p>Montant total des formations actuellement accessibles sur ton compte.</p>
+          </article>
         </div>
       </section>
+
+      {spotlightProduct ? (
+        <section className="section">
+          <div className="dashboard-spotlight">
+            <div className="dashboard-spotlight-copy">
+              <div className="eyebrow">Continuer maintenant</div>
+              <h2>{spotlightProduct.title}</h2>
+              <p>{spotlightSupplement?.pitch || spotlightProduct.short_description}</p>
+              {spotlightSupplement?.outcomes?.length ? (
+                <ul className="bullet-list">
+                  {spotlightSupplement.outcomes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              <div className="cta-row">
+                <Link href={`/dashboard/formations/${spotlightProduct.slug}`} className="button">
+                  Ouvrir la formation
+                </Link>
+                <Link href="/dashboard/mes-formations" className="button-secondary">
+                  Voir toutes mes formations
+                </Link>
+              </div>
+            </div>
+            <aside className="card dashboard-spotlight-card">
+              <p className="helper">A faire maintenant</p>
+              <ul className="list">
+                <li>Ouvrir les modules deja publies</li>
+                <li>Telecharger les ressources et PDF</li>
+                <li>Revenir plus tard pour les modules a venir</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+      ) : null}
 
       <section className="section">
         <div className="section-title">

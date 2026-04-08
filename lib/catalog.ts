@@ -332,6 +332,79 @@ export const localProductModules: ProductModuleRecord[] = [
   )
 ];
 
+const productSupplements = {
+  "freelance-it-30-jours": {
+    bestFor: [
+      "profils support ou tech qui veulent vendre en independant",
+      "debutants motives qui veulent une offre terrain simple",
+      "personnes qui veulent vite structurer une premiere proposition commerciale"
+    ],
+    outcomes: [
+      "une offre claire de prestations IT",
+      "un plan de prospection concret",
+      "des ressources pour vendre et livrer sans improviser"
+    ],
+    pitch:
+      "La formation principale pour passer d'une competence IT floue a une activite freelance lisible et vendable."
+  },
+  "landing-pages-rentables": {
+    bestFor: [
+      "freelances web qui veulent une offre facile a cadrer",
+      "profils marketing ou design qui veulent vendre du concret",
+      "independants qui veulent livrer vite avec une forte valeur percue"
+    ],
+    outcomes: [
+      "une methode de structure de page qui convertit",
+      "un process de livraison client plus propre",
+      "des templates reutilisables"
+    ],
+    pitch:
+      "Une offre courte et rentable pour vendre des pages de conversion sans transformer chaque mission en projet interminable."
+  },
+  "sites-web-clients": {
+    bestFor: [
+      "freelances qui veulent standardiser leurs sites clients",
+      "profils no-code ou code qui veulent un process de delivery plus propre",
+      "vendeurs de sites vitrines et sites PME"
+    ],
+    outcomes: [
+      "un cadrage plus rapide des demandes",
+      "une offre de site plus lisible",
+      "une livraison plus stable et plus rentable"
+    ],
+    pitch:
+      "Le cadre pour transformer la prestation site web en offre simple, propre et facile a livrer."
+  },
+  "outils-pme-glpi": {
+    bestFor: [
+      "profils support / systeme qui veulent vendre plus que du support",
+      "freelances qui veulent adresser des besoins internes PME",
+      "personnes qui veulent structurer des mini-outils metier"
+    ],
+    outcomes: [
+      "une logique de cadrage metier",
+      "une offre autour du support et des outils internes",
+      "des ressources pour transformer un irritant en mission facturable"
+    ],
+    pitch:
+      "Une formation plus technique pour vendre des outils simples mais utiles a des PME qui ont de vrais irritants operationnels."
+  },
+  "applications-mobiles-rentables": {
+    bestFor: [
+      "profils produit ou freelance qui veulent lancer une app simple",
+      "independants qui veulent cadrer un MVP monetisable",
+      "createurs qui veulent partir d'un besoin clair plutot que d'une usine a gaz"
+    ],
+    outcomes: [
+      "une structure d'application claire",
+      "une logique de monetisation simple",
+      "des ressources pour cadrer et pre-vendre un MVP"
+    ],
+    pitch:
+      "Le programme pour cadrer une application mobile rentable sans partir sur un produit trop ambitieux des le jour 1."
+  }
+} as const;
+
 export function getLocalActiveProducts() {
   return localProducts
     .filter((product) => product.is_active)
@@ -374,4 +447,20 @@ export function findLocalProductByPurchaseName(productName: string) {
     localProducts.find((product) => product.slug === productName) ||
     null
   );
+}
+
+export function getProductSupplement(slug: string) {
+  return productSupplements[slug as keyof typeof productSupplements] || null;
+}
+
+export function getRelatedLocalProducts(slug: string, limit = 2) {
+  const featured = getLocalFeaturedProduct();
+  const ordered = getLocalActiveProducts().filter((product) => product.slug !== slug);
+
+  if (featured && featured.slug !== slug) {
+    const withoutFeatured = ordered.filter((product) => product.slug !== featured.slug);
+    return [featured, ...withoutFeatured].slice(0, limit);
+  }
+
+  return ordered.slice(0, limit);
 }

@@ -16,6 +16,7 @@ export function MemberProductCard({
 }: MemberProductCardProps) {
   return (
     <article className="member-product-card">
+      <div className={`member-product-accent ${isOwned ? "member-product-accent-owned" : ""}`} />
       <div className="member-product-head">
         <div>
           <div className="hero-badges">

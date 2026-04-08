@@ -44,7 +44,9 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
               backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url(${product.thumbnail_url})`
             }}
           />
-        ) : null}
+        ) : (
+          <div className="product-hero-media product-thumb-empty" />
+        )}
         <div className="product-hero-meta">
           <div className="price-block">
             <span className="helper">Tarif</span>
