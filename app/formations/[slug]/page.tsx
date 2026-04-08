@@ -105,19 +105,19 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <section className="section">
           <div className="product-stats-grid">
             <article className="card">
-              <p className="helper">Modules publies</p>
+              <p className="helper">Modules publiés</p>
               <h3>{publishedModules}</h3>
-              <p>Du contenu deja disponible des l'achat pour avancer tout de suite.</p>
+              <p>Du contenu déjà disponible dès l'achat pour avancer tout de suite.</p>
             </article>
             <article className="card">
-              <p className="helper">Modules a venir</p>
+              <p className="helper">Modules à venir</p>
               <h3>{comingSoonModules}</h3>
-              <p>La feuille de route est visible des le depart pour donner une vision claire.</p>
+              <p>La feuille de route est visible dès le départ pour donner une vision claire.</p>
             </article>
             <article className="card">
-              <p className="helper">Acces membre</p>
-              <h3>{isOwned ? "Actif" : "A debloquer"}</h3>
-              <p>Chaque achat ouvre la page privee de cette formation dans le dashboard.</p>
+              <p className="helper">Accès membre</p>
+              <h3>{isOwned ? "Actif" : "À débloquer"}</h3>
+              <p>Chaque achat ouvre la page privée de cette formation dans le dashboard.</p>
             </article>
           </div>
         </section>
@@ -131,12 +131,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </article>
             <article className="assurance-item assurance-item-card">
               <span className="helper">Confiance</span>
-              <strong>Vous achetez un accès structuré, pas une promesse floue</strong>
+              <strong>Tu achètes un accès structuré, pas une promesse floue</strong>
               <p>Le contenu est organisé pour être consulté, utilisé et réexploité rapidement.</p>
             </article>
             <article className="assurance-item assurance-item-card">
               <span className="helper">Continuité</span>
-              <strong>Le dashboard retrouve exactement ce que vous possédez</strong>
+              <strong>Le dashboard retrouve exactement ce que tu possèdes</strong>
               <p>Chaque achat alimente l’espace membre sans ambiguïté.</p>
             </article>
           </div>
@@ -146,8 +146,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <div className="section-title">
             <h2>Ce que tu trouveras dans la formation</h2>
             <p>
-              Les modules deja publies sont accessibles immediatement apres achat. Les blocs
-              signales comme bientot disponibles apparaissent deja dans la feuille de route.
+              Les modules déjà publiés sont accessibles immédiatement après achat. Les blocs
+              signalés comme bientôt disponibles apparaissent déjà dans la feuille de route.
             </p>
           </div>
           <ProductModulesList modules={product.modules} />
@@ -156,7 +156,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <section className="section">
           <div className="grid-2">
             <article className="card">
-              <h3>Ce que cette formation aide a vendre</h3>
+              <h3>Ce que cette formation aide à vendre</h3>
               <p>{product.short_description}</p>
               {supplement?.outcomes?.length ? (
                 <ul className="bullet-list compact-list">
@@ -167,10 +167,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               ) : null}
             </article>
             <article className="card">
-              <h3>Logique d'acces</h3>
+              <h3>Logique d'accès</h3>
               <p>
-                L'achat debloque uniquement cette formation, sauf si tu disposes plus tard d'un
-                acces premium global. Le dashboard affichera clairement ce que tu possedes.
+                L'achat débloque uniquement cette formation, sauf si tu disposes plus tard d'un
+                accès premium global. Le dashboard affichera clairement ce que tu possèdes.
               </p>
             </article>
           </div>
@@ -190,10 +190,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <article className="card">
                 <h3>Formats inclus</h3>
                 <ul className="bullet-list compact-list">
-                  <li>contenu texte structurant pour poser la logique</li>
-                  <li>PDF pour cadrer ou executer rapidement</li>
-                  <li>ressources telechargeables reutilisables</li>
-                  <li>modules bientot disponibles deja visibles dans la roadmap</li>
+                  <li>Contenu texte structurant pour poser la logique</li>
+                  <li>PDF pour cadrer ou exécuter rapidement</li>
+                  <li>Ressources téléchargeables réutilisables</li>
+                  <li>Modules bientôt disponibles, déjà visibles dans la roadmap</li>
                 </ul>
               </article>
             </div>
@@ -204,7 +204,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <section className="section">
             <div className="section-title">
               <h2>Autres formations utiles</h2>
-              <p>Si cette offre te parle, ces autres formations peuvent etendre ton catalogue de services.</p>
+              <p>Si cette offre te parle, ces autres formations peuvent étendre ton catalogue de services.</p>
             </div>
             <div className="product-grid">
               {relatedProducts.map((relatedProduct) => (

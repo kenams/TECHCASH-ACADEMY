@@ -87,14 +87,14 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
 
           <section className="section">
             <article className="card empty-state-card">
-              <h3>Acces reserve aux membres</h3>
+              <h3>Accès réservé aux membres</h3>
               <p>
-                Ton compte existe bien, mais cette formation n'a pas encore ete achetee. Tu peux
-                consulter le detail public, puis passer au checkout si le sujet t'interesse.
+                Ton compte existe bien, mais cette formation n'a pas encore été achetée. Tu peux
+                consulter le détail public, puis passer au checkout si le sujet t'intéresse.
               </p>
               <div className="cta-row">
                 <Link href={`/checkout?product=${product.slug}`} className="button">
-                  Debloquer cette formation
+                  Débloquer cette formation
                 </Link>
                 <Link href={`/formations/${product.slug}`} className="button-secondary">
                   Voir la version publique
@@ -106,7 +106,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
           <section className="section">
             <div className="section-title">
               <h2>Modules inclus</h2>
-              <p>Voici la structure que tu debloqueras apres achat.</p>
+              <p>Voici la structure que tu débloqueras après achat.</p>
             </div>
             <ProductModulesList modules={product.modules} />
           </section>
@@ -119,7 +119,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
     <main className="dashboard-frame">
       <section className="dashboard-hero">
         <div className="max-w-3xl">
-          <div className="eyebrow">Formation debloquee</div>
+          <div className="eyebrow">Formation débloquée</div>
           <h1>{product.title}</h1>
           <p className="lead">{product.long_description}</p>
         </div>
@@ -150,24 +150,24 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
       <section className="section">
         <div className="member-stats-grid">
           <article className="card">
-            <p className="helper">Modules publies</p>
+            <p className="helper">Modules publiés</p>
             <h2>{publishedModules}</h2>
-            <p>Des ressources deja accessibles dans l'espace membre.</p>
+            <p>Des ressources déjà accessibles dans l'espace membre.</p>
           </article>
           <article className="card">
             <p className="helper">Ressources directes</p>
             <h2>{directResources}</h2>
-            <p>PDF et ressources telechargeables disponibles immediatement.</p>
+            <p>PDF et ressources téléchargeables disponibles immédiatement.</p>
           </article>
           <article className="card">
-            <p className="helper">Bientot disponible</p>
+            <p className="helper">Bientôt disponible</p>
             <h2>{comingSoonModules}</h2>
-            <p>La roadmap est visible, meme quand tout n'est pas encore publie.</p>
+            <p>La roadmap est visible, même quand tout n'est pas encore publié.</p>
           </article>
           <article className="card">
             <p className="helper">Positionnement</p>
-            <h2>{product.is_featured ? "Principal" : "Specialise"}</h2>
-            <p>Cette formation s'integre dans un catalogue plus large d'offres monetisables.</p>
+            <h2>{product.is_featured ? "Principal" : "Spécialisé"}</h2>
+            <p>Cette formation s'intègre dans un catalogue plus large d'offres monétisables.</p>
           </article>
         </div>
       </section>
@@ -185,7 +185,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
               </ul>
             </div>
             <aside className="card dashboard-spotlight-card">
-              <p className="helper">Pour qui ce module est ideal</p>
+              <p className="helper">Pour qui ce module est idéal</p>
               <ul className="list">
                 {supplement.bestFor.map((item) => (
                   <li key={item}>{item}</li>
@@ -200,8 +200,8 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
         <div className="section-title">
           <h2>Modules et contenus</h2>
           <p>
-            Le contenu peut melanger texte, PDF, ressources et modules a venir, sans attendre que
-            toute la production video soit terminee.
+            Le contenu peut mélanger texte, PDF, ressources et modules à venir, sans attendre que
+            toute la production vidéo soit terminée.
           </p>
         </div>
         <div className="content-stack">
@@ -215,7 +215,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
         <section className="section">
           <div className="section-title">
             <h2>Aller plus loin</h2>
-            <p>Ces formations completent bien ce que tu es deja en train de debloquer.</p>
+            <p>Ces formations complètent bien ce que tu es déjà en train de débloquer.</p>
           </div>
           <div className="product-grid">
             {recommendedProducts.map((candidate) => (

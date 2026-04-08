@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Mes formations | TechCash Academy",
-  description: "Toutes les formations debloquees sur ton compte membre."
+  description: "Toutes les formations débloquées sur ton compte membre."
 };
 
 export default async function MemberProductsPage() {
@@ -43,7 +43,7 @@ export default async function MemberProductsPage() {
       <section className="dashboard-hero">
         <div className="max-w-3xl">
           <div className="eyebrow">Mes formations</div>
-          <h1>Tout ce que tu as debloque</h1>
+          <h1>Tout ce que tu as débloqué</h1>
           <p className="lead">
             Cette vue rassemble uniquement les produits accessibles avec ton compte.
           </p>
@@ -93,7 +93,7 @@ export default async function MemberProductsPage() {
       ) : (
         <section className="section">
           <article className="card empty-state-card">
-            <h3>Aucune formation debloquee</h3>
+            <h3>Aucune formation débloquée</h3>
             <p>Ton espace membre est vide pour l'instant. Choisis une formation pour commencer.</p>
             <div className="cta-row">
               <Link href="/formations" className="button">

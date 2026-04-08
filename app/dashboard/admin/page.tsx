@@ -20,8 +20,8 @@ export default async function AdminDashboardPage() {
           <div className="eyebrow">Administration</div>
           <h1>Piloter le catalogue de formations</h1>
           <p className="lead">
-            Cree une formation, modifie son positionnement, ajoute des modules texte, PDF,
-            ressources, videos ou blocs bientot disponibles.
+            Crée une formation, modifie son positionnement, ajoute des modules texte, PDF,
+            ressources, vidéos ou blocs bientôt disponibles.
           </p>
         </div>
         <div className="cta-row">

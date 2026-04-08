@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard membre | TechCash Academy",
-  description: "Retrouve tes formations achetees, tes acces actifs et le catalogue disponible."
+  description: "Retrouve tes formations achetées, tes accès actifs et le catalogue disponible."
 };
 
 export default async function DashboardPage() {
@@ -52,8 +52,8 @@ export default async function DashboardPage() {
           <div className="eyebrow">Espace membre</div>
           <h1>Ton catalogue personnel de formations</h1>
           <p className="lead">
-            Connecte avec {profile?.email || user.email}. Tu retrouves ici ce que tu as achete,
-            ce qui reste a debloquer et les ressources disponibles immediatement.
+            Connecté avec {profile?.email || user.email}. Tu retrouves ici ce que tu as acheté,
+            ce qui reste à débloquer et les ressources disponibles immédiatement.
           </p>
         </div>
         <div className="cta-row">
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
           </Link>
           <form action="/auth/sign-out" method="post">
             <button className="button-ghost" type="submit">
-              Deconnexion
+              Déconnexion
             </button>
           </form>
         </div>
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
             <p>
               {hasGlobalAccess
                 ? "Statut premium global actif."
-                : "Debloquees via tes achats confirmes Stripe."}
+                : "Débloquées via tes achats confirmés Stripe."}
             </p>
           </article>
           <article className="card">
@@ -106,10 +106,10 @@ export default async function DashboardPage() {
           <article className="card">
             <p className="helper">Statut compte</p>
             <h2>{hasGlobalAccess ? "Global" : "Par produit"}</h2>
-            <p>La logique d'acces s'appuie sur tes achats ou sur un override premium global.</p>
+            <p>La logique d'accès s'appuie sur tes achats ou sur un override premium global.</p>
           </article>
           <article className="card">
-            <p className="helper">Valeur catalogue debloquee</p>
+            <p className="helper">Valeur catalogue débloquée</p>
             <h2>
               {new Intl.NumberFormat("fr-FR", {
                 style: "currency",
@@ -145,11 +145,11 @@ export default async function DashboardPage() {
               </div>
             </div>
             <aside className="card dashboard-spotlight-card">
-              <p className="helper">A faire maintenant</p>
+              <p className="helper">À faire maintenant</p>
               <ul className="list">
-                <li>Ouvrir les modules deja publies</li>
-                <li>Telecharger les ressources et PDF</li>
-                <li>Revenir plus tard pour les modules a venir</li>
+                <li>Ouvrir les modules déjà publiés</li>
+                <li>Télécharger les ressources et PDF</li>
+                <li>Revenir plus tard pour les modules à venir</li>
               </ul>
             </aside>
           </div>
@@ -160,8 +160,8 @@ export default async function DashboardPage() {
         <div className="section-title">
           <h2>Mes formations</h2>
           <p>
-            Accede rapidement aux contenus que tu possedes deja. Chaque fiche membre ouvre la page
-            privee de la formation correspondante.
+            Accède rapidement aux contenus que tu possèdes déjà. Chaque fiche membre ouvre la page
+            privée de la formation correspondante.
           </p>
         </div>
         {accessibleProducts.length ? (
@@ -179,8 +179,8 @@ export default async function DashboardPage() {
           <article className="card empty-state-card">
             <h3>Aucun achat pour le moment</h3>
             <p>
-              Ton compte est pret. Choisis une premiere formation pour debloquer l'espace membre et
-              demarrer proprement.
+              Ton compte est prêt. Choisis une première formation pour débloquer l'espace membre et
+              démarrer proprement.
             </p>
             <div className="cta-row">
               <Link href={`/checkout?product=${siteConfig.primaryProductSlug}`} className="button">
@@ -197,10 +197,10 @@ export default async function DashboardPage() {
       {discoverProducts.length ? (
         <section className="section">
           <div className="section-title">
-            <h2>Formations recommandees</h2>
+            <h2>Formations recommandées</h2>
             <p>
-              Des produits complementaires pour etendre ton offre : acquisition, delivery web,
-              outils metier et applications mobiles.
+              Des produits complémentaires pour étendre ton offre : acquisition, delivery web,
+              outils métier et applications mobiles.
             </p>
           </div>
           <div className="product-grid">

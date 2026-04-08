@@ -237,7 +237,7 @@ select {
 .dashboard-card,
 .member-product-card,
 .content-card {
-  padding: 1.4rem;
+  padding: 1.6rem;
 }
 
 .auth-card {
@@ -359,7 +359,7 @@ select {
 }
 
 .section {
-  padding: 2rem 0;
+  padding: 2.75rem 0;
 }
 
 .section-first {
@@ -394,7 +394,7 @@ select {
 
 .section-title {
   max-width: 760px;
-  margin-bottom: 1.4rem;
+  margin-bottom: 2rem;
 }
 
 .hero-stat-grid,
@@ -505,7 +505,7 @@ select {
 .dashboard-frame {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 2rem 0 4rem;
+  padding: 2.5rem 0 5rem;
 }
 
 .field {
@@ -596,7 +596,8 @@ select {
 }
 
 .footer-links {
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.6rem;
   align-items: flex-start;
 }
 

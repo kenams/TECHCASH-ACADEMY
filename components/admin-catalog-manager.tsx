@@ -171,7 +171,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
     await refreshCatalog();
     setProductForm(defaultProductForm);
     setEditingProductId(null);
-    setMessage(editingProductId ? "Formation mise a jour." : "Formation creee.");
+    setMessage(editingProductId ? "Formation mise à jour." : "Formation créée.");
   }
 
   async function removeProduct(productId: string) {
@@ -190,7 +190,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
       setSelectedProductId(nextId);
       setModuleForm(defaultModuleForm(nextId));
     }
-    setMessage("Formation supprimee.");
+    setMessage("Formation supprimée.");
   }
 
   async function submitModule() {
@@ -213,7 +213,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
     await refreshCatalog();
     setEditingModuleId(null);
     setModuleForm(defaultModuleForm(selectedProductId));
-    setMessage(editingModuleId ? "Module mis a jour." : "Module cree.");
+    setMessage(editingModuleId ? "Module mis à jour." : "Module créé.");
   }
 
   async function removeModule(moduleId: string) {
@@ -229,16 +229,16 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
       setEditingModuleId(null);
       setModuleForm(defaultModuleForm(selectedProductId));
     }
-    setMessage("Module supprime.");
+    setMessage("Module supprimé.");
   }
 
   return (
     <div className="stack">
       {!snapshot.schemaReady ? (
         <article className="message error">
-          Le schema `products` / `product_modules` n'est pas encore applique sur Supabase. Le
-          catalogue affiché ici vient du fallback code. Les actions d'edition ne seront pas
-          persistées tant que la migration SQL n'est pas executee.
+          Le schéma `products` / `product_modules` n'est pas encore appliqué sur Supabase. Le
+          catalogue affiché ici vient du fallback code. Les actions d'édition ne seront pas
+          persistées tant que la migration SQL n'est pas exécutée.
         </article>
       ) : null}
 
@@ -342,7 +342,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
 
           <div className="cta-row">
             <button className="button" type="button" disabled={isPending} onClick={() => runAction(submitProduct)}>
-              {editingProductId ? "Enregistrer la formation" : "Creer la formation"}
+              {editingProductId ? "Enregistrer la formation" : "Créer la formation"}
             </button>
             <button
               className="button-secondary"
@@ -353,7 +353,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
                 setProductForm(defaultProductForm);
               }}
             >
-              Reinitialiser
+              Réinitialiser
             </button>
           </div>
         </article>
@@ -375,7 +375,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
                       {module.sort_order}. {module.title}
                     </strong>
                     <span>
-                      {module.slug} · {module.content_type} · {module.is_published ? "publie" : "brouillon"}
+                      {module.slug} · {module.content_type} · {module.is_published ? "publié" : "brouillon"}
                     </span>
                   </div>
                   <div className="cta-row">
@@ -403,7 +403,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
           <article className="card">
             <div className="section-title">
               <h2>{editingModuleId ? "Modifier le module" : "Nouveau module"}</h2>
-              <p>Texte, PDF, ressource, video ou module a venir.</p>
+              <p>Texte, PDF, ressource, vidéo ou module à venir.</p>
             </div>
 
             <div className="admin-form-grid">
@@ -425,8 +425,8 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
                   <option value="text">Texte</option>
                   <option value="pdf">PDF</option>
                   <option value="resource">Ressource</option>
-                  <option value="video">Video</option>
-                  <option value="coming_soon">Coming soon</option>
+                  <option value="video">Vidéo</option>
+                  <option value="coming_soon">Bientôt disponible</option>
                 </select>
               </label>
               <label className="field">
@@ -450,13 +450,13 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
                   checked={moduleForm.is_published}
                   onChange={(event) => setModuleForm((prev) => ({ ...prev, is_published: event.target.checked }))}
                 />
-                Module publie
+                Module publié
               </label>
             </div>
 
             <div className="cta-row">
               <button className="button" type="button" disabled={isPending || !selectedProduct} onClick={() => runAction(submitModule)}>
-                {editingModuleId ? "Enregistrer le module" : "Creer le module"}
+                {editingModuleId ? "Enregistrer le module" : "Créer le module"}
               </button>
               <button
                 className="button-secondary"
@@ -467,7 +467,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
                   setModuleForm(defaultModuleForm(selectedProductId));
                 }}
               >
-                Reinitialiser
+                Réinitialiser
               </button>
             </div>
           </article>
