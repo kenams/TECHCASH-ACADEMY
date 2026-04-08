@@ -1,18 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 import { siteConfig } from "@/lib/site";
 
+function resolveRedirectTarget(nextParam: string | null, productParam: string | null) {
+  if (nextParam?.startsWith("/")) {
+    return nextParam;
+  }
+
+  if (productParam) {
+    return `/checkout?product=${encodeURIComponent(productParam)}`;
+  }
+
+  return "/dashboard";
+}
+
 export default function LoginPage() {
   const supabase = getSupabaseBrowserClient();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const nextParam = searchParams.get("next")?.trim() || null;
+  const productParam = searchParams.get("product")?.trim() || null;
+  const redirectTarget = resolveRedirectTarget(nextParam, productParam);
+  const registerHref = nextParam
+    ? `/register?next=${encodeURIComponent(nextParam)}`
+    : productParam
+      ? `/register?product=${encodeURIComponent(productParam)}`
+      : "/register";
 
   useEffect(() => {
     async function checkSession() {
@@ -21,12 +43,12 @@ export default function LoginPage() {
       } = await supabase.auth.getSession();
 
       if (session) {
-        router.replace("/dashboard");
+        router.replace(redirectTarget);
       }
     }
 
     void checkSession();
-  }, [router, supabase]);
+  }, [redirectTarget, router, supabase]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     try {
@@ -61,7 +83,7 @@ export default function LoginPage() {
         return;
       }
 
-      router.push("/dashboard");
+      router.push(redirectTarget);
     } catch (loginError) {
       console.error(loginError);
       setError("Une erreur est survenue pendant la connexion.");
@@ -71,17 +93,16 @@ export default function LoginPage() {
 
   return (
     <main className="auth-wrap-split">
-      {/* Colonne gauche — brand */}
       <div className="auth-side-brand">
         <Link href="/" className="brand">
           {siteConfig.brand}
         </Link>
         <div className="stack">
           <h2 style={{ margin: 0, fontSize: "1.6rem", lineHeight: 1.2 }}>
-            Reprends là où tu t'es arrêté
+            Reprends là où tu t&apos;es arrêté
           </h2>
           <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
-            Ton espace membre t'attend avec toutes les formations que tu as débloquées.
+            Ton espace membre t&apos;attend avec toutes les formations que tu as débloquées.
           </p>
           <div className="confidence-list">
             <div className="confidence-item">
@@ -106,17 +127,20 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Colonne droite — formulaire */}
       <div className="auth-side-form">
         <div className="auth-form-inner">
-          <Link href="/" className="brand" style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}>
+          <Link
+            href="/"
+            className="brand"
+            style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}
+          >
             ← {siteConfig.brand}
           </Link>
 
-          <div className="eyebrow" style={{ marginBottom: "1rem" }}>Connexion membre</div>
-          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>
-            Accède à ton espace
-          </h1>
+          <div className="eyebrow" style={{ marginBottom: "1rem" }}>
+            Connexion membre
+          </div>
+          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>Accède à ton espace</h1>
           <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
             Connecte-toi pour retrouver tes formations, tes ressources et ton accès après achat.
           </p>
@@ -161,7 +185,11 @@ export default function LoginPage() {
 
           <p className="helper" style={{ textAlign: "center" }}>
             Pas encore de compte ?{" "}
-            <Link className="muted-link" href="/register" style={{ color: "var(--accent)", fontWeight: 600 }}>
+            <Link
+              className="muted-link"
+              href={registerHref}
+              style={{ color: "var(--accent)", fontWeight: 600 }}
+            >
               Créer un compte gratuit
             </Link>
           </p>

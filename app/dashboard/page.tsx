@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { MemberProductCard } from "@/components/member-product-card";
 import { isAdminEmail } from "@/lib/admin";
 import { getProductSupplement } from "@/lib/catalog";
@@ -7,14 +8,26 @@ import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard membre | TechCash Academy",
   description: "Retrouve tes formations achetées, tes accès actifs et le catalogue disponible."
 };
 
-export default async function DashboardPage() {
+type DashboardPageProps = {
+  searchParams: Promise<{
+    product?: string;
+  }>;
+};
+
+export default async function DashboardPage({ searchParams }: DashboardPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const requestedProduct = resolvedSearchParams.product?.trim();
+
+  if (requestedProduct) {
+    redirect(`/checkout?product=${encodeURIComponent(requestedProduct)}`);
+  }
+
   const supabase = await getSupabaseServerClient();
   const {
     data: { user }
@@ -71,7 +84,7 @@ export default async function DashboardPage() {
       <section className="section dashboard-nav-section">
         <div className="dashboard-nav-grid">
           <Link href="/dashboard" className="dashboard-nav-link dashboard-nav-link-active">
-            Vue d'ensemble
+            Vue d&apos;ensemble
           </Link>
           <Link href="/dashboard/mes-formations" className="dashboard-nav-link">
             Mes formations
@@ -106,7 +119,7 @@ export default async function DashboardPage() {
           <article className="card">
             <p className="helper">Statut compte</p>
             <h2>{hasGlobalAccess ? "Global" : "Par produit"}</h2>
-            <p>La logique d'accès s'appuie sur tes achats ou sur un override premium global.</p>
+            <p>La logique d&apos;accès s&apos;appuie sur tes achats ou sur un override premium global.</p>
           </article>
           <article className="card">
             <p className="helper">Valeur catalogue débloquée</p>
@@ -179,12 +192,12 @@ export default async function DashboardPage() {
           <article className="card empty-state-card">
             <h3>Aucun achat pour le moment</h3>
             <p>
-              Ton compte est prêt. Choisis une première formation pour débloquer l'espace membre et
-              démarrer proprement.
+              Ton compte est prêt. Choisis une première formation pour débloquer l&apos;espace membre
+              et démarrer proprement.
             </p>
             <div className="cta-row">
               <Link href={`/checkout?product=${siteConfig.primaryProductSlug}`} className="button">
-                Commencer par l'offre principale
+                Commencer par l&apos;offre principale
               </Link>
               <Link href="/formations" className="button-secondary">
                 Voir tout le catalogue

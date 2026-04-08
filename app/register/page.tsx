@@ -1,19 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 import { siteConfig } from "@/lib/site";
 
+function resolveRedirectTarget(nextParam: string | null, productParam: string | null) {
+  if (nextParam?.startsWith("/")) {
+    return nextParam;
+  }
+
+  if (productParam) {
+    return `/checkout?product=${encodeURIComponent(productParam)}`;
+  }
+
+  return "/formations";
+}
+
 export default function RegisterPage() {
   const supabase = getSupabaseBrowserClient();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const nextParam = searchParams.get("next")?.trim() || null;
+  const productParam = searchParams.get("product")?.trim() || null;
+  const redirectTarget = resolveRedirectTarget(nextParam, productParam);
+  const loginHref = nextParam
+    ? `/login?next=${encodeURIComponent(nextParam)}`
+    : productParam
+      ? `/login?product=${encodeURIComponent(productParam)}`
+      : "/login";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     try {
@@ -68,15 +90,15 @@ export default function RegisterPage() {
       }
 
       if (data.session) {
-        setMessage("Compte créé. Redirection vers le catalogue…");
+        setMessage("Compte créé. Redirection en cours…");
         setLoading(false);
-        router.push("/formations");
+        router.push(redirectTarget);
         return;
       }
 
       setMessage("Compte créé. Connecte-toi pour continuer.");
       setLoading(false);
-      router.push("/login");
+      router.push(loginHref);
     } catch (registerError) {
       console.error(registerError);
       setError("Une erreur est survenue pendant l'inscription.");
@@ -86,7 +108,6 @@ export default function RegisterPage() {
 
   return (
     <main className="auth-wrap-split">
-      {/* Colonne gauche — brand */}
       <div className="auth-side-brand">
         <Link href="/" className="brand">
           {siteConfig.brand}
@@ -111,7 +132,7 @@ export default function RegisterPage() {
               <span className="confidence-dot" />
               <div>
                 <strong>Paiement sécurisé via Stripe</strong>
-                <p>Achète uniquement les formations qui t'intéressent.</p>
+                <p>Achète uniquement les formations qui t&apos;intéressent.</p>
               </div>
             </div>
             <div className="confidence-item">
@@ -130,19 +151,23 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* Colonne droite — formulaire */}
       <div className="auth-side-form">
         <div className="auth-form-inner">
-          <Link href="/" className="brand" style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}>
+          <Link
+            href="/"
+            className="brand"
+            style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}
+          >
             ← {siteConfig.brand}
           </Link>
 
-          <div className="eyebrow" style={{ marginBottom: "1rem" }}>Création de compte</div>
-          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>
-            Crée ton accès membre
-          </h1>
+          <div className="eyebrow" style={{ marginBottom: "1rem" }}>
+            Création de compte
+          </div>
+          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>Crée ton accès membre</h1>
           <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-            Gratuit. Ton compte te permettra d'acheter et d'accéder à tes formations directement.
+            Gratuit. Ton compte te permettra d&apos;acheter et d&apos;accéder à tes formations
+            directement.
           </p>
 
           {error ? <div className="message error">{error}</div> : null}
@@ -187,7 +212,11 @@ export default function RegisterPage() {
 
           <p className="helper" style={{ textAlign: "center" }}>
             Déjà inscrit ?{" "}
-            <Link className="muted-link" href="/login" style={{ color: "var(--accent)", fontWeight: 600 }}>
+            <Link
+              className="muted-link"
+              href={loginHref}
+              style={{ color: "var(--accent)", fontWeight: 600 }}
+            >
               Se connecter
             </Link>
           </p>

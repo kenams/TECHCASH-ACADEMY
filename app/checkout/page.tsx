@@ -27,7 +27,7 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect(`/login?next=${encodeURIComponent(`/checkout?product=${product.slug}`)}`);
   }
 
   const [profile, purchase] = await Promise.all([
