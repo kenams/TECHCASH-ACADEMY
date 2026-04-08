@@ -25,13 +25,14 @@ export function Navbar({
   showStartCTA = false
 }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const startHref = `/register?next=${encodeURIComponent(`/checkout?product=${primaryProductSlug}`)}`;
 
   const userLinks: NavLink[] = isLoggedIn
     ? [{ href: "/dashboard", label: "Mon espace", variant: "primary" }]
     : showStartCTA
     ? [
         { href: "/login", label: "Connexion", variant: "ghost" },
-        { href: `/checkout?product=${primaryProductSlug}`, label: "Commencer", variant: "primary" }
+        { href: startHref, label: "Commencer", variant: "primary" }
       ]
     : [
         { href: "/login", label: "Connexion", variant: "primary" }
