@@ -1,4 +1,13 @@
 import { cache } from "react";
+import {
+  findLocalProductByPurchaseName,
+  getLocalActiveProducts,
+  getLocalFeaturedProduct,
+  getLocalModulesByProductId,
+  getLocalProductById,
+  getLocalProductBySlug,
+  getLocalProductWithModulesBySlug
+} from "@/lib/catalog";
 import { logError } from "@/lib/logger";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
 import type {
@@ -30,7 +39,18 @@ export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {
 
   if (error) {
     logError("Impossible de recuperer les produits actifs.", { error });
-    return [];
+    return getLocalActiveProducts().map((product) => ({
+      id: product.id,
+      slug: product.slug,
+      title: product.title,
+      subtitle: product.subtitle,
+      short_description: product.short_description,
+      price_cents: product.price_cents,
+      currency: product.currency,
+      thumbnail_url: product.thumbnail_url,
+      is_featured: product.is_featured,
+      is_active: product.is_active
+    }));
   }
 
   return (data || []) as ProductCardData[];
@@ -38,7 +58,7 @@ export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {
 
 export const getFeaturedProduct = cache(async (): Promise<ProductCardData | null> => {
   const products = await getActiveProducts();
-  return products.find((product) => product.is_featured) || products[0] || null;
+  return products.find((product) => product.is_featured) || products[0] || getLocalFeaturedProduct();
 });
 
 export const getProductBySlug = cache(async (slug: string): Promise<ProductRecord | null> => {
@@ -54,10 +74,10 @@ export const getProductBySlug = cache(async (slug: string): Promise<ProductRecor
 
   if (error) {
     logError("Impossible de recuperer le produit.", { slug, error });
-    return null;
+    return getLocalProductBySlug(slug);
   }
 
-  return (data as ProductRecord | null) || null;
+  return (data as ProductRecord | null) || getLocalProductBySlug(slug);
 });
 
 export const getProductById = cache(async (productId: string): Promise<ProductRecord | null> => {
@@ -73,10 +93,10 @@ export const getProductById = cache(async (productId: string): Promise<ProductRe
 
   if (error) {
     logError("Impossible de recuperer le produit par id.", { productId, error });
-    return null;
+    return getLocalProductById(productId);
   }
 
-  return (data as ProductRecord | null) || null;
+  return (data as ProductRecord | null) || getLocalProductById(productId);
 });
 
 export const getProductModules = cache(
@@ -98,10 +118,16 @@ export const getProductModules = cache(
 
     if (error) {
       logError("Impossible de recuperer les modules du produit.", { productId, error });
-      return [];
+      return getLocalModulesByProductId(productId).filter((module) =>
+        onlyPublished ? module.is_published : true
+      );
     }
 
-    return (data || []) as ProductModuleRecord[];
+    return ((data || []) as ProductModuleRecord[]).length
+      ? ((data || []) as ProductModuleRecord[])
+      : getLocalModulesByProductId(productId).filter((module) =>
+          onlyPublished ? module.is_published : true
+        );
   }
 );
 
@@ -109,7 +135,7 @@ export const getProductWithModulesBySlug = cache(async (slug: string): Promise<P
   const product = await getProductBySlug(slug);
 
   if (!product) {
-    return null;
+    return getLocalProductWithModulesBySlug(slug);
   }
 
   const modules = await getProductModules(product.id, true);
@@ -132,7 +158,14 @@ export async function getUserPaidPurchases(userId: string): Promise<PurchaseReco
 
   if (error) {
     logError("Impossible de recuperer les achats utilisateur.", { userId, error });
-    return [];
+    const fallbackPurchases = await import("@/lib/purchases").then((module) =>
+      module.getLegacyPaidPurchases(userId)
+    );
+
+    return fallbackPurchases.map((purchase) => ({
+      ...purchase,
+      product: findLocalProductByPurchaseName(purchase.product_name)
+    }));
   }
 
   return (data || []).map((purchase) => {

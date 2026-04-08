@@ -75,7 +75,23 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     .maybeSingle();
 
   if (existingBySessionError) {
-    throw existingBySessionError;
+    const { data: legacyBySession, error: legacyBySessionError } = await supabaseAdmin
+      .from("purchases")
+      .select("id, status")
+      .eq("stripe_checkout_session_id", session.id)
+      .limit(1)
+      .maybeSingle();
+
+    if (legacyBySessionError) {
+      throw legacyBySessionError;
+    }
+
+    if (legacyBySession) {
+      logInfo("Webhook Stripe ignore car deja traite via colonne legacy.", {
+        stripeSessionId: session.id
+      });
+      return NextResponse.json({ received: true });
+    }
   }
 
   if (existingBySession) {
@@ -83,7 +99,8 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     return NextResponse.json({ received: true });
   }
 
-  const { data: existingPaidProduct, error: existingPaidProductError } = await supabaseAdmin
+  let existingPaidProduct = null as { id: string } | null;
+  const { data: existingPaidByProductId, error: existingPaidProductError } = await supabaseAdmin
     .from("purchases")
     .select("id")
     .eq("user_id", userId)
@@ -92,8 +109,23 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     .limit(1)
     .maybeSingle();
 
-  if (existingPaidProductError) {
-    throw existingPaidProductError;
+  if (!existingPaidProductError) {
+    existingPaidProduct = existingPaidByProductId;
+  } else {
+    const { data: existingPaidByName, error: existingPaidByNameError } = await supabaseAdmin
+      .from("purchases")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("product_name", product.title)
+      .eq("status", "paid")
+      .limit(1)
+      .maybeSingle();
+
+    if (existingPaidByNameError) {
+      throw existingPaidByNameError;
+    }
+
+    existingPaidProduct = existingPaidByName;
   }
 
   if (existingPaidProduct) {
@@ -121,7 +153,19 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
   });
 
   if (error) {
-    throw error;
+    const { error: legacyInsertError } = await supabaseAdmin.from("purchases").insert({
+      user_id: userId,
+      product_name: product.title,
+      amount: amountTotal,
+      currency: session.currency || product.currency,
+      status: "paid",
+      stripe_checkout_session_id: session.id,
+      stripe_payment_intent_id: stripePaymentIntentId
+    });
+
+    if (legacyInsertError) {
+      throw legacyInsertError;
+    }
   }
 
   logInfo("Paiement Stripe synchronise avec Supabase.", {
