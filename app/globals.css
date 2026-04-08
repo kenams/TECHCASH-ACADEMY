@@ -1037,6 +1037,12 @@ select {
   gap: 0.75rem;
 }
 
+.admin-summary-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .legal-page {
   padding-bottom: 2rem;
 }
@@ -1063,6 +1069,46 @@ select {
 .admin-list {
   display: grid;
   gap: 1rem;
+}
+
+.admin-kpi-card,
+.admin-selected-overview {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-kpi-card h2,
+.admin-kpi-card h3 {
+  margin: 0;
+}
+
+.admin-kpi-card h2 {
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  letter-spacing: -0.05em;
+}
+
+.admin-kpi-card h3 {
+  font-size: 1.2rem;
+  color: #f7f0e2;
+}
+
+.admin-kpi-card p,
+.admin-empty-hint p,
+.admin-form-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admin-kpi-card-compact {
+  padding: 1.15rem;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 169, 109, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-selected-overview {
+  padding: 1.4rem;
 }
 
 .admin-product-item,
@@ -1124,6 +1170,23 @@ select {
 
 .admin-inline-actions {
   padding-top: 0.5rem;
+}
+
+.admin-empty-hint {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.1rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(148, 163, 184, 0.24);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.admin-empty-hint h3 {
+  margin: 0;
+}
+
+.admin-form-note {
+  margin-bottom: 1rem;
 }
 
 /* ---- Auth pages ---- */
@@ -1360,6 +1423,7 @@ select {
   }
 
   .admin-grid,
+  .admin-summary-grid,
   .admin-form-grid {
     grid-template-columns: 1fr;
   }

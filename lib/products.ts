@@ -1,11 +1,9 @@
 import {
   findLocalProductByPurchaseName,
   getLocalActiveProducts,
-  getLocalFeaturedProduct,
   getLocalModulesByProductId,
   getLocalProductById,
-  getLocalProductBySlug,
-  getLocalProductWithModulesBySlug
+  getLocalProductBySlug
 } from "@/lib/catalog";
 import { logError } from "@/lib/logger";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
@@ -57,7 +55,7 @@ export async function getActiveProducts(): Promise<ProductCardData[]> {
 
 export async function getFeaturedProduct(): Promise<ProductCardData | null> {
   const products = await getActiveProducts();
-  return products.find((product) => product.is_featured) || products[0] || getLocalFeaturedProduct();
+  return products.find((product) => product.is_featured) || products[0] || null;
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductRecord | null> {
@@ -76,7 +74,7 @@ export async function getProductBySlug(slug: string): Promise<ProductRecord | nu
     return getLocalProductBySlug(slug);
   }
 
-  return (data as ProductRecord | null) || getLocalProductBySlug(slug);
+  return (data as ProductRecord | null) || null;
 }
 
 export async function getProductById(productId: string): Promise<ProductRecord | null> {
@@ -95,7 +93,7 @@ export async function getProductById(productId: string): Promise<ProductRecord |
     return getLocalProductById(productId);
   }
 
-  return (data as ProductRecord | null) || getLocalProductById(productId);
+  return (data as ProductRecord | null) || null;
 }
 
 export async function getProductModules(
@@ -124,18 +122,14 @@ export async function getProductModules(
     );
   }
 
-  return ((data || []) as ProductModuleRecord[]).length
-    ? ((data || []) as ProductModuleRecord[])
-    : getLocalModulesByProductId(productId).filter((module) =>
-        onlyPublished ? module.is_published : true
-      );
+  return (data || []) as ProductModuleRecord[];
 }
 
 export async function getProductWithModulesBySlug(slug: string): Promise<ProductWithModules | null> {
   const product = await getProductBySlug(slug);
 
   if (!product) {
-    return getLocalProductWithModulesBySlug(slug);
+    return null;
   }
 
   const modules = await getProductModules(product.id, true);

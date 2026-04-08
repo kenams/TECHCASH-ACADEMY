@@ -75,7 +75,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
             <div className="brand">{siteConfig.brand}</div>
             <nav className="nav">
               <Link href="/dashboard" className="button-ghost">
-                Retour dashboard
+                Retour au dashboard
               </Link>
               <Link href={`/checkout?product=${product.slug}`} className="button">
                 Acheter la formation
@@ -128,7 +128,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
             Mes formations
           </Link>
           <Link href="/dashboard" className="button-ghost">
-            Dashboard
+            Retour au dashboard
           </Link>
         </div>
       </section>

@@ -110,6 +110,32 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
     () => snapshot.products.find((product) => product.id === selectedProductId) || null,
     [snapshot.products, selectedProductId]
   );
+  const catalogStats = useMemo(() => {
+    const modules = snapshot.products.flatMap((product) => product.modules);
+    return {
+      totalProducts: snapshot.products.length,
+      activeProducts: snapshot.products.filter((product) => product.is_active).length,
+      featuredProducts: snapshot.products.filter((product) => product.is_featured).length,
+      totalModules: modules.length,
+      publishedModules: modules.filter((module) => module.is_published).length,
+      draftModules: modules.filter((module) => !module.is_published).length,
+      comingSoonModules: modules.filter((module) => module.content_type === "coming_soon").length
+    };
+  }, [snapshot.products]);
+  const selectedProductStats = useMemo(() => {
+    if (!selectedProduct) {
+      return null;
+    }
+
+    return {
+      moduleCount: selectedProduct.modules.length,
+      publishedCount: selectedProduct.modules.filter((module) => module.is_published).length,
+      draftCount: selectedProduct.modules.filter((module) => !module.is_published).length,
+      directResources: selectedProduct.modules.filter(
+        (module) => module.content_type === "pdf" || module.content_type === "resource"
+      ).length
+    };
+  }, [selectedProduct]);
 
   async function refreshCatalog() {
     const response = await fetch("/api/admin/products", { cache: "no-store" });
@@ -245,6 +271,32 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
       {message ? <article className="message success">{message}</article> : null}
       {error ? <article className="message error">{error}</article> : null}
 
+      <section className="admin-summary-grid">
+        <article className="card admin-kpi-card">
+          <p className="helper">Source catalogue</p>
+          <h2>{snapshot.source === "database" ? "Base Supabase" : "Fallback code"}</h2>
+          <p>
+            {snapshot.source === "database"
+              ? "Le catalogue affiché ici reflète la base de production."
+              : "Mode secours actif tant que les tables products et product_modules ne sont pas prêtes."}
+          </p>
+        </article>
+        <article className="card admin-kpi-card">
+          <p className="helper">Formations actives</p>
+          <h2>
+            {catalogStats.activeProducts} / {catalogStats.totalProducts}
+          </h2>
+          <p>{catalogStats.featuredProducts} offre principale mise en avant actuellement.</p>
+        </article>
+        <article className="card admin-kpi-card">
+          <p className="helper">Modules publiés</p>
+          <h2>
+            {catalogStats.publishedModules} / {catalogStats.totalModules}
+          </h2>
+          <p>{catalogStats.draftModules} brouillons et {catalogStats.comingSoonModules} modules à venir dans la roadmap.</p>
+        </article>
+      </section>
+
       <section className="admin-grid">
         <article className="card admin-list">
           <div className="section-title">
@@ -360,35 +412,73 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
       </section>
 
       {selectedProduct ? (
-        <section className="admin-grid">
+        <section className="stack">
+          <article className="card admin-selected-overview">
+            <div className="section-title">
+              <h2>{selectedProduct.title}</h2>
+              <p>{selectedProduct.short_description}</p>
+            </div>
+            <div className="admin-summary-grid">
+              <article className="admin-kpi-card admin-kpi-card-compact">
+                <p className="helper">Positionnement</p>
+                <h3>{selectedProduct.is_featured ? "Offre principale" : "Offre spécialisée"}</h3>
+                <p>{selectedProduct.is_active ? "Visible sur le site public et commercialisable." : "Masquée côté public tant qu’elle reste inactive."}</p>
+              </article>
+              <article className="admin-kpi-card admin-kpi-card-compact">
+                <p className="helper">Modules</p>
+                <h3>{selectedProductStats?.moduleCount || 0}</h3>
+                <p>
+                  {selectedProductStats?.publishedCount || 0} publiés, {selectedProductStats?.draftCount || 0} brouillons.
+                </p>
+              </article>
+              <article className="admin-kpi-card admin-kpi-card-compact">
+                <p className="helper">Ressources directes</p>
+                <h3>{selectedProductStats?.directResources || 0}</h3>
+                <p>
+                  {selectedProduct.stripe_price_id
+                    ? "Stripe configuré et prêt pour le checkout."
+                    : "Aucun price id Stripe renseigné pour cette formation."}
+                </p>
+              </article>
+            </div>
+          </article>
+
+          <section className="admin-grid">
           <article className="card admin-list">
             <div className="section-title">
               <h2>Modules de la formation</h2>
               <p>{selectedProduct.title}</p>
             </div>
 
-            <div className="stack compact-list">
-              {selectedProduct.modules.map((module) => (
-                <div className="admin-module-item" key={module.id}>
-                  <div className="admin-module-copy">
-                    <strong>
-                      {module.sort_order}. {module.title}
-                    </strong>
-                    <span>
-                      {module.slug} · {module.content_type} · {module.is_published ? "publié" : "brouillon"}
-                    </span>
+            {selectedProduct.modules.length ? (
+              <div className="stack compact-list">
+                {selectedProduct.modules.map((module) => (
+                  <div className="admin-module-item" key={module.id}>
+                    <div className="admin-module-copy">
+                      <strong>
+                        {module.sort_order}. {module.title}
+                      </strong>
+                      <span>
+                        {module.slug} · {module.content_type} · {module.is_published ? "publié" : "brouillon"}
+                      </span>
+                    </div>
+                    <div className="cta-row">
+                      <button className="button-secondary" type="button" onClick={() => beginModuleEdit(module)}>
+                        Modifier
+                      </button>
+                      <button className="button-ghost" type="button" onClick={() => runAction(() => removeModule(module.id))}>
+                        Supprimer
+                      </button>
+                    </div>
                   </div>
-                  <div className="cta-row">
-                    <button className="button-secondary" type="button" onClick={() => beginModuleEdit(module)}>
-                      Modifier
-                    </button>
-                    <button className="button-ghost" type="button" onClick={() => runAction(() => removeModule(module.id))}>
-                      Supprimer
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <article className="admin-empty-hint">
+                <h3>Aucun module pour cette formation</h3>
+                <p>Crée un premier module texte, PDF, ressource, vidéo ou bloc bientôt disponible.</p>
+              </article>
+            )}
 
             <div className="cta-row admin-inline-actions">
               <button className="button-secondary" type="button" onClick={() => beginProductEdit(selectedProduct)}>
@@ -405,6 +495,11 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
               <h2>{editingModuleId ? "Modifier le module" : "Nouveau module"}</h2>
               <p>Texte, PDF, ressource, vidéo ou module à venir.</p>
             </div>
+            <p className="helper admin-form-note">
+              <code>content_body</code> accepte le markdown simple: <code>##</code>, <code>###</code>,{" "}
+              <code>**gras**</code>, <code>code</code>, listes <code>-</code>, callouts <code>&gt;</code> et
+              séparateurs <code>---</code>.
+            </p>
 
             <div className="admin-form-grid">
               <label className="field">
@@ -471,6 +566,7 @@ export function AdminCatalogManager({ initialSnapshot }: { initialSnapshot: Cata
               </button>
             </div>
           </article>
+          </section>
         </section>
       ) : null}
     </div>

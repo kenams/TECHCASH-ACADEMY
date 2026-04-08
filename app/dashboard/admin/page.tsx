@@ -26,7 +26,7 @@ export default async function AdminDashboardPage() {
         </div>
         <div className="cta-row">
           <Link href="/dashboard" className="button-secondary">
-            Retour dashboard
+            Retour au dashboard
           </Link>
           <Link href="/formations" className="button">
             Voir le site public
@@ -41,6 +41,9 @@ export default async function AdminDashboardPage() {
           </Link>
           <Link href="/dashboard/mes-formations" className="dashboard-nav-link">
             Mes formations
+          </Link>
+          <Link href="/formations" className="dashboard-nav-link">
+            Catalogue complet
           </Link>
           <Link href="/dashboard/admin" className="dashboard-nav-link dashboard-nav-link-active">
             Admin contenu

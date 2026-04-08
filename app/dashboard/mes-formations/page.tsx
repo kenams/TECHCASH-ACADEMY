@@ -37,6 +37,8 @@ export default async function MemberProductsPage() {
         has_access: true
       }))
     : ownedProducts;
+  const unlockedValue = products.reduce((sum, product) => sum + product.price_cents, 0);
+  const remainingProducts = Math.max(activeProducts.length - products.length, 0);
 
   return (
     <main className="dashboard-frame">
@@ -50,7 +52,7 @@ export default async function MemberProductsPage() {
         </div>
         <div className="cta-row">
           <Link href="/dashboard" className="button-secondary">
-            Retour dashboard
+            Retour au dashboard
           </Link>
           <Link href="/formations" className="button">
             Voir le catalogue
@@ -77,8 +79,42 @@ export default async function MemberProductsPage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="member-stats-grid">
+          <article className="card">
+            <p className="helper">Formations débloquées</p>
+            <h2>{products.length}</h2>
+            <p>Uniquement les produits accessibles avec ton compte actuel.</p>
+          </article>
+          <article className="card">
+            <p className="helper">Catalogue à explorer</p>
+            <h2>{remainingProducts}</h2>
+            <p>Des offres supplémentaires restent disponibles à l’achat.</p>
+          </article>
+          <article className="card">
+            <p className="helper">Statut d’accès</p>
+            <h2>{hasGlobalAccess ? "Global" : "Par produit"}</h2>
+            <p>{hasGlobalAccess ? "Toutes les formations actives sont ouvertes." : "Chaque achat débloque son espace membre dédié."}</p>
+          </article>
+          <article className="card">
+            <p className="helper">Valeur débloquée</p>
+            <h2>
+              {new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR"
+              }).format(unlockedValue / 100)}
+            </h2>
+            <p>Montant catalogue actuellement accessible sur ton compte.</p>
+          </article>
+        </div>
+      </section>
+
       {products.length ? (
         <section className="section">
+          <div className="section-title">
+            <h2>Accès rapides</h2>
+            <p>Ouvre directement une formation, reprends un module ou repars sur le catalogue complet.</p>
+          </div>
           <div className="product-grid">
             {products.map((product) => (
               <MemberProductCard

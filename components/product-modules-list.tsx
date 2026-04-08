@@ -25,13 +25,13 @@ function getModuleLabel(contentType: ProductModuleRecord["content_type"]) {
     case "pdf":
       return "PDF";
     case "video":
-      return "Video";
+      return "Vidéo";
     case "text":
       return "Texte";
     case "resource":
       return "Ressource";
     case "coming_soon":
-      return "Bientot disponible";
+      return "Bientôt disponible";
     default:
       return "Module";
   }
@@ -43,11 +43,11 @@ export function ProductModulesList({
 }: ProductModulesListProps) {
   if (!modules.length) {
     return (
-      <article className="card empty-state-card">
-        <h3>Aucun module public pour le moment</h3>
-        <p>Le contenu sera publie progressivement dans l'espace membre.</p>
-      </article>
-    );
+        <article className="card empty-state-card">
+          <h3>Aucun module public pour le moment</h3>
+          <p>Le contenu sera publié progressivement dans l'espace membre.</p>
+        </article>
+      );
   }
 
   return (
@@ -70,13 +70,13 @@ export function ProductModulesList({
           <div className="product-module-footer">
             {module.content_type === "coming_soon" ? (
               <span className="helper">
-                Le module est deja structure et sera alimente prochainement.
+                Le module est déjà structuré et sera alimenté prochainement.
               </span>
             ) : (
               <span className="helper">
                 {module.content_url
                   ? "Contenu accessible dans l'espace membre."
-                  : "Contenu integre directement dans la plateforme."}
+                  : "Contenu intégré directement dans la plateforme."}
               </span>
             )}
           </div>

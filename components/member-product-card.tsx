@@ -22,7 +22,7 @@ export function MemberProductCard({
           <div className="hero-badges">
             {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
             <AccessBadge
-              label={isOwned ? "Debloquee" : "Disponible"}
+              label={isOwned ? "Débloquée" : "Disponible"}
               tone={isOwned ? "success" : "default"}
             />
           </div>
@@ -33,11 +33,11 @@ export function MemberProductCard({
       </div>
       <p className="product-summary">{product.short_description}</p>
       <div className="product-card-meta">
-        <span className="meta-chip">{isOwned ? "Acces actif" : "Disponible a l'achat"}</span>
-        <span className="meta-chip">Espace membre dedie</span>
+        <span className="meta-chip">{isOwned ? "Accès actif" : "Disponible à l'achat"}</span>
+        <span className="meta-chip">Espace membre dédié</span>
       </div>
       {purchaseDate ? (
-        <p className="helper">Achetee le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p>
+        <p className="helper">Achetée le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p>
       ) : null}
       <div className="cta-row">
         <PurchaseCTA
