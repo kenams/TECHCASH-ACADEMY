@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { MemberProductCard } from "@/components/member-product-card";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminUserId } from "@/lib/admin";
 import { getProductSupplement } from "@/lib/catalog";
 import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
@@ -45,7 +45,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
   const ownedSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
-  const canManageCatalog = isAdminEmail(user.email);
+  const canManageCatalog = isAdminUserId(user.id);
   const accessibleProducts = hasGlobalAccess
     ? activeProducts.map((product) => ({
         ...product,

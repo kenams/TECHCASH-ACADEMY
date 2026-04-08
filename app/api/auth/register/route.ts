@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+import { isReservedAdminEmail } from "@/lib/admin";
+import { getPublicEnv } from "@/lib/env";
 import { logError, logInfo, logWarn } from "@/lib/logger";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
 
@@ -24,11 +27,24 @@ export async function POST(request: Request) {
       );
     }
 
+    if (isReservedAdminEmail(email)) {
+      return NextResponse.json(
+        { error: "Cette adresse ne peut pas etre creee via l'inscription publique." },
+        { status: 403 }
+      );
+    }
+
+    const publicEnv = getPublicEnv();
     const supabaseAdmin = getSupabaseAdminClient();
-    const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+    const supabaseAuth = createClient(publicEnv.supabaseUrl, publicEnv.supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
+    });
+    const { data: createdUser, error: createError } = await supabaseAuth.auth.signUp({
       email,
-      password,
-      email_confirm: true
+      password
     });
 
     if (createError) {

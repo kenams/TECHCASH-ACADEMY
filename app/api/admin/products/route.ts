@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createProduct, getCatalogSnapshot } from "@/lib/catalog-admin";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminUserId } from "@/lib/admin";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
 export async function GET() {
@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ error: "Authentification requise." }, { status: 401 });
   }
 
-  if (!isAdminEmail(user.email)) {
+  if (!isAdminUserId(user.id)) {
     return NextResponse.json({ error: "Acces refuse." }, { status: 403 });
   }
 
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Authentification requise." }, { status: 401 });
   }
 
-  if (!isAdminEmail(user.email)) {
+  if (!isAdminUserId(user.id)) {
     return NextResponse.json({ error: "Acces refuse." }, { status: 403 });
   }
 

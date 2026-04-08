@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { deleteProduct, updateProduct } from "@/lib/catalog-admin";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminUserId } from "@/lib/admin";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
 type RouteContext = {
@@ -19,7 +19,7 @@ async function guardAdmin() {
     return NextResponse.json({ error: "Authentification requise." }, { status: 401 });
   }
 
-  if (!isAdminEmail(user.email)) {
+  if (!isAdminUserId(user.id)) {
     return NextResponse.json({ error: "Acces refuse." }, { status: 403 });
   }
 

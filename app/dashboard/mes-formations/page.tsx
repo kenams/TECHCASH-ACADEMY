@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MemberProductCard } from "@/components/member-product-card";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminUserId } from "@/lib/admin";
 import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
@@ -29,7 +29,7 @@ export default async function MemberProductsPage() {
   ]);
 
   const hasGlobalAccess = Boolean(profile?.is_premium);
-  const canManageCatalog = isAdminEmail(user.email);
+  const canManageCatalog = isAdminUserId(user.id);
   const products = hasGlobalAccess
     ? activeProducts.map((product) => ({
         ...product,

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createModule } from "@/lib/catalog-admin";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminUserId } from "@/lib/admin";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import type { ProductContentType } from "@/lib/types";
 
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Authentification requise." }, { status: 401 });
   }
 
-  if (!isAdminEmail(user.email)) {
+  if (!isAdminUserId(user.id)) {
     return NextResponse.json({ error: "Acces refuse." }, { status: 403 });
   }
 

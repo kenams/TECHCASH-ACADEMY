@@ -17,12 +17,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-freelance-it-30-jours",
     slug: "freelance-it-30-jours",
-    title: "Devenir technicien informatique freelance sans diplome en 30 jours",
-    subtitle: "L'offre principale pour lancer une activite IT rentable sans theatre",
+    title: "Devenir technicien informatique freelance sans diplôme en 30 jours",
+    subtitle: "L'offre principale pour lancer une activité IT rentable sans théâtre",
     short_description:
-      "Apprendre a lancer une activite freelance IT rentable sans diplome, avec methode, positionnement, acquisition client et livrables simples.",
+      "Apprendre à lancer une activité freelance IT rentable sans diplôme, avec méthode, positionnement, acquisition client et livrables simples.",
     long_description:
-      "Cette formation principale t'aide a structurer une activite freelance IT vendable rapidement. Tu y trouves le positionnement, les prestations les plus faciles a vendre, la maniere de parler a un client PME et des ressources concretes pour passer de l'idee a une offre qui tient la route.",
+      "Cette formation principale t'aide à structurer une activité freelance IT vendable rapidement. Tu y trouves le positionnement, les prestations les plus faciles à vendre, la manière de parler à un client PME et des ressources concrètes pour passer de l'idée à une offre qui tient la route.",
     price_cents: 5900,
     currency: "eur",
     stripe_price_id: "price_1TJrENGSZgm5QCNLNNJSXbQS",
@@ -146,49 +146,82 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "freelance-it-30-jours",
     "positionnement-offre",
-    "Trouver un positionnement vendable",
-    "Clarifier les prestations IT qui se vendent facilement et le langage a utiliser face a un prospect PME.",
+    "Positionnement et offre commerciale",
+    "Construire une offre IT lisible et vendable dès le premier contact client. Les 3 formats qui se signent le plus vite et comment rédiger ta phrase de positionnement.",
     "text",
     1,
     {
       content_body:
-        "Commence par une offre lisible : audit poste de travail, support a distance, installation et maintenance.\n\nLe but n'est pas d'impressionner avec un catalogue immense mais de rassurer avec un service simple, propre et directement compréhensible.\n\nDans ce module, tu poses ton terrain de jeu commercial, tes livrables et ta promesse de resultat."
+        "## Construire une offre IT vendable en 2026\n\nLe problème de la plupart des techniciens freelance est simple : ils proposent \"tout\". Réseau, dev, téléphonie, cybersécurité, support... Le client ne retient rien et ne rappelle pas.\n\n**La règle d'or** : une offre qui tient en une phrase se signe. Une offre qui demande une explication se perd.\n\n### Les 3 offres qui se signent le plus vite\n\n- **Dépannage urgent** : intervention dans les 4h, facturation à la demi-journée, clientèle : TPE et indépendants\n- **Audit poste de travail** : 90 minutes sur site, livrable écrit, prix fixe entre 180 € et 290 €\n- **Maintenance préventive mensuelle** : forfait 150–350 €/mois par site, 3–5 visites annuelles + support à distance\n\n> Ces 3 formats couvrent 80 % des demandes réelles que tu recevras de PME et TPE en 2026.\n\n### Rédiger ta phrase de positionnement\n\nVoici le modèle à remplir :\n\n**\"Je [service principal] pour [type de client] à [zone géographique], [promesse différenciante].\"**\n\nExemples concrets :\n- \"Je dépanne et optimise les postes de travail des artisans et commerces de ma ville, avec une intervention garantie sous 4h.\"\n- \"J'installe et maintiens les infrastructures réseau des cabinets médicaux en région, avec un contrat de maintenance simple et lisible.\"\n\n---\n\n### Ce que tu dois décider avant de prospecter\n\nAvant de contacter le moindre client, fixe ces 4 points :\n\n- **Secteur principal** : généraliste ou spécialisé (médical, bâtiment, restauration...)\n- **Zone géographique** : 30 km maximum pour démarrer, on élargit ensuite\n- **Format de facturation** : TJM ou forfait ? Les deux marchent, mais le forfait rassure plus les PME\n- **Canal de contact** : email à froid, LinkedIn, bouche-à-oreille, annuaire local\n\n### Chiffres de référence 2026\n\n- TJM technicien IT généraliste (province) : **280–420 €/jour**\n- TJM technicien IT spécialisé (médical, juridique) : **380–560 €/jour**\n- Forfait maintenance mensuelle PME 10 postes : **200–450 €/mois**\n- Ticket de dépannage urgent (demi-journée) : **150–280 €**\n\n> Ne bradez pas dès le départ. Un prix trop bas signale un problème de confiance, pas un avantage commercial."
+    }
+  ),
+  module(
+    "freelance-it-30-jours",
+    "video-introduction",
+    "Le marché IT freelance en France en 2026",
+    "Chiffres clés, secteurs porteurs, directive NIS2, migration Windows 10/11 — comprendre pourquoi la demande n'a jamais été aussi forte pour les techniciens indépendants.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Le marché IT freelance en France en 2026\n\n### Un marché en croissance structurelle\n\nLa demande de support IT externalisé n'a jamais été aussi forte dans les TPE et PME. Trois facteurs structurels expliquent cette tendance :\n\n- **La numérisation forcée post-Covid** : des dizaines de milliers de commerces et artisans ont adopté des outils digitaux sans les maîtriser\n- **Le coût d'un salarié IT interne** : entre 42 000 € et 65 000 € chargés par an, inaccessible pour une structure de moins de 20 personnes\n- **La cybersécurité devenue obligatoire** : la directive NIS2 (entrée en vigueur en 2024) contraint les entreprises à sécuriser leur infrastructure, même petite\n\n> En 2026, 7 PME sur 10 en France n'ont aucun référent IT interne. C'est ton marché.\n\n### Les secteurs les plus accessibles\n\n- **Artisans et commerçants** (plombiers, électriciens, boulangers, coiffeurs) : 2–4 postes, besoin de maintenance simple et rapide\n- **Professions libérales** (médecins, notaires, comptables) : besoin fort de conformité RGPD et de sauvegarde sécurisée\n- **Restauration et hôtellerie** : caisse enregistreuse, réseau Wi-Fi, TPE, écrans de commande\n- **Petites agences** (communication, immobilier) : 5–15 postes, outils cloud, accès à distance\n\n### Ce que les clients veulent vraiment\n\nPas le technicien le plus compétent. Celui qui :\n\n- **Répond vite** : le premier à répondre signe souvent le devis\n- **Explique simplement** : pas de jargon, un problème = une solution = un prix\n- **Revient** : la fidélisation d'un client IT coûte 5x moins cher que d'en acquérir un nouveau\n- **Facture clairement** : un devis en 2 lignes vaut mieux qu'un document de 6 pages\n\n---\n\n### Les demandes les plus fréquentes en 2026\n\n- **Windows 11** : migration depuis Windows 10 (fin de support en octobre 2025, vague de demandes massive en cours)\n- **Microsoft 365** : installation, migration boîtes mail, partage de fichiers SharePoint\n- **NAS Synology / QNAP** : sauvegarde locale + cloud pour remplacer les disques USB\n- **Pare-feu pfSense / OPNsense** : sécurisation des réseaux PME\n- **Antivirus EDR** : remplacement des antivirus classiques (Bitdefender GravityZone, SentinelOne)\n\n> La migration Windows 10 → Windows 11 représente à elle seule des millions de postes à traiter en France en 2025–2026. C'est une opportunité massive pour démarrer maintenant.\n\n### Freelance vs DSI externalisée : où tu te positionnes\n\nUne DSI externalisée classique facture 600–1 200 €/mois pour une PME. Elle répond en 48h et dépêche un technicien junior.\n\nToi, tu factures moins, tu réponds en 2h, et tu es sur place le jour même. Pour une PME de 10 personnes, tu gagnes à tous les niveaux. **C'est cet écart de réactivité que tu dois vendre.**"
     }
   ),
   module(
     "freelance-it-30-jours",
     "plan-30-jours-pdf",
-    "Plan d'action 30 jours",
-    "Le plan de demarrage en PDF avec les actions a realiser semaine par semaine.",
-    "pdf",
-    2,
-    { content_url: "https://example.com/techcash/freelance-it-30-jours-plan.pdf" }
+    "Plan d'action 30 jours — semaine par semaine",
+    "Le programme complet pour passer de zéro à tes premiers clients en 30 jours : structure légale, identité commerciale, prospection, premières missions et fidélisation.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Plan d'action 30 jours : de zéro à tes premiers clients IT\n\nCe plan est conçu pour être exécuté en parallèle d'une autre activité. Il ne demande pas 8h/jour — il demande de la régularité sur 4 semaines.\n\n---\n\n### Semaine 1 — Poser les bases légales et commerciales\n\n**Jour 1–2 : Structure juridique**\n- Créer sa micro-entreprise sur `autoentrepreneur.urssaf.fr` (10 minutes, gratuit)\n- Code APE recommandé : **6209Z** (autres activités informatiques)\n- Franchise de TVA si CA < 37 500 €/an — sinon opter pour la TVA dès le départ\n\n**Jour 3–4 : Identité commerciale**\n- Choisir un nom commercial simple (ex : \"TechSupport Prénom\" ou \"Ville IT Services\")\n- Créer une adresse email professionnelle (Zoho Mail, 2 €/mois)\n- Ouvrir un compte bancaire professionnel (Shine, Qonto ou Revolut Business)\n\n**Jour 5–7 : Tarifs et outils de facturation**\n- Fixer son TJM et ses tarifs forfaitaires (voir module Tarification)\n- Créer un compte sur **Indy** ou **Facture.net** pour les devis et factures conformes\n- Préparer un devis modèle en PDF\n\n> À la fin de la semaine 1, tu as une structure légale, une identité et un outil de facturation. Tu peux signer un client.\n\n---\n\n### Semaine 2 — Premiers contacts et prospection\n\n**Jour 8–9 : Ton réseau proche**\n- Lister 20 personnes dans ton entourage qui ont ou connaissent des TPE\n- Envoyer un message simple : \"Je lance une activité de support IT pour les petites entreprises. Tu connais quelqu'un qui aurait besoin d'aide ?\"\n\n**Jour 10–11 : Prospection locale physique**\n- Identifier 30 commerces et artisans dans un rayon de 5 km\n- Passer les voir avec une carte de visite et une phrase d'accroche (voir module Scripts)\n- Objectif : 5 rendez-vous pris, pas 5 ventes signées\n\n**Jour 12–14 : Présence en ligne minimale**\n- Profil LinkedIn complet avec ton positionnement en titre\n- Fiche Google Business (gratuit, 15 minutes) pour apparaître dans les recherches locales\n- Optionnel : une page Malt pour les demandes entrantes\n\n---\n\n### Semaine 3 — Premiers devis et premières missions\n\n**Jour 15–17 : Qualifier les prospects**\n- Appeler les contacts pris en semaine 2\n- Poser 3 questions : Quel est le problème ? Combien de postes ? Quel est le budget approximatif ?\n- Envoyer un devis dans les 24h après chaque entretien\n\n**Jour 18–20 : Exécuter ta première mission**\n- Arriver à l'heure, en tenue propre\n- Documenter ce que tu fais (photos avant/après, liste des actions)\n- Livrer un compte-rendu écrit d'une page, même pour une intervention simple\n\n**Jour 21 : Demander un témoignage**\n- \"Est-ce que tu serais d'accord pour laisser un avis Google ?\"\n- 80 % des clients satisfaits acceptent si tu le demandes dans la foulée\n\n---\n\n### Semaine 4 — Ancrer les habitudes et préparer la suite\n\n**Jour 22–24 : Systèmes et process**\n- Créer un tableau de suivi client simple (Notion ou Google Sheets)\n- Règle de relance : tout devis non signé après 5 jours = un appel\n- Configurer des rappels de maintenance préventive pour tes premiers clients\n\n**Jour 25–27 : Développer le bouche-à-oreille**\n- Rejoindre 2–3 groupes Facebook locaux de commerçants / entrepreneurs\n- Proposer un bilan rapide gratuit (15 min) à un client satisfait pour encourager la recommandation\n\n**Jour 28–30 : Bilan et ajustements**\n- Compter tes devis envoyés, signés, perdus\n- Identifier ce qui a le mieux fonctionné pour prospecter\n- Fixer tes objectifs du mois 2 : CA cible, nombre de clients récurrents\n\n---\n\n> **Objectif réaliste mois 1** : 2 à 4 clients, 800 € à 2 000 € de CA. Ce n'est pas un revenu de remplacement — c'est une base solide pour le mois 2."
+    }
   ),
   module(
     "freelance-it-30-jours",
     "scripts-prospection",
     "Scripts de prospection et qualification",
-    "Scripts de messages, scripts d'appel et canevas de qualification pour obtenir les premiers rendez-vous.",
-    "resource",
-    3,
-    { content_url: "https://example.com/techcash/freelance-it-30-jours-scripts.zip" }
+    "Textes testés sur le terrain pour prendre contact, qualifier au téléphone et gérer les 5 objections les plus fréquentes. Adaptables à ta région et ton style.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Scripts de prospection et qualification\n\nCes scripts ont été testés sur le terrain. Adapte-les à ta région et ton style — l'important est la structure, pas les mots exacts.\n\n---\n\n### Script de prise de contact physique (commerce / artisan)\n\n**Contexte** : tu entres dans un commerce local pour te présenter.\n\n> \"Bonjour, je me permets de passer rapidement — je suis technicien informatique indépendant, je travaille avec des commerces et artisans de la région pour dépanner les postes, les caisses et les réseaux. Je laisse ma carte. Si un jour vous avez un souci informatique, appelez-moi directement, j'interviens en général dans la journée.\"\n\n**Ce qui fonctionne dans ce script** :\n- Court (20 secondes maximum)\n- Pas de question intrusive\n- La carte de visite laisse une trace physique\n- \"dans la journée\" = réactivité, c'est le vrai différenciateur\n\n---\n\n### Script email à froid (PME, professions libérales)\n\n**Objet** : Support informatique pour [Nom de l'entreprise]\n\n> Bonjour [Prénom],\n>\n> Je suis technicien IT freelance basé à [Ville]. Je travaille avec des [type d'entreprise] pour assurer le support informatique de proximité : dépannage rapide, maintenance préventive, sécurisation des postes et des sauvegardes.\n>\n> Seriez-vous disponible 15 minutes cette semaine pour échanger ? Je peux me déplacer ou faire un appel selon votre préférence.\n>\n> [Ton prénom] — [Numéro de téléphone]\n\n**Taux de réponse constaté** : 8 à 15 % selon le secteur. Les professions libérales répondent mieux que les artisans à l'email.\n\n---\n\n### Script de qualification au téléphone\n\nQuand un prospect rappelle ou accepte un appel, pose ces 4 questions dans cet ordre :\n\n**1. \"Qu'est-ce qui se passe en ce moment côté informatique ?\"**\n— Laisse-le parler. Note les mots qu'il utilise.\n\n**2. \"Vous avez combien de postes en tout ?\"**\n— En dessous de 5 : dépannage ponctuel. Au-dessus : penser forfait maintenance.\n\n**3. \"Est-ce que vous avez déjà travaillé avec un technicien informatique ?\"**\n— Si oui : \"Qu'est-ce qui s'est bien passé ? Moins bien ?\" — tu sauras exactement ce qu'il veut.\n— Si non : rassurer et éduquer sur le format d'intervention.\n\n**4. \"Quel est votre timing ?\"**\n— \"C'est urgent\" → propose une intervention demain. Prix majoré OK.\n— \"Pas pressé\" → propose un rendez-vous de diagnostic.\n\n> Ne parle pas de prix pendant la qualification. Le prix vient après avoir compris le besoin — jamais avant.\n\n---\n\n### Gérer les 5 objections les plus fréquentes\n\n**\"C'est trop cher.\"**\n— \"Par rapport à quoi exactement ? Si vous comparez à quelqu'un qui facture moins, la question c'est : est-ce qu'il intervient le jour même quand votre système tombe ?\"\n\n**\"On a déjà quelqu'un.\"**\n— \"Très bien. Est-ce qu'il est disponible rapidement en cas d'urgence ? Je peux être un backup si besoin.\"\n\n**\"Je vais y réfléchir.\"**\n— \"Bien sûr. Juste pour mieux revenir vers vous : c'est plutôt une question de timing ou de budget ?\"\n\n**\"On se débrouille tout seuls.\"**\n— \"Je comprends. La plupart de mes clients me disaient la même chose avant leur première panne. Je vous laisse ma carte pour ce jour-là.\"\n\n**\"Envoyez-moi un email.\"**\n— Envoie dans les 2h. Relance 5 jours après si pas de réponse."
+    }
   ),
   module(
     "freelance-it-30-jours",
-    "video-introduction",
-    "Video explicative : lancer une offre freelance IT",
-    "Une capsule d'introduction qui resitue le positionnement, les clients cibles et la logique commerciale de la formation.",
-    "video",
-    4,
-    { content_url: sampleVideos.freelanceIt }
+    "tarification-devis",
+    "Tarification, devis et facturation",
+    "Grille tarifaire complète 2026, structure d'un devis professionnel, outils de facturation recommandés et techniques pour défendre ton prix sans brader.",
+    "text",
+    5,
+    {
+      content_body:
+        "## Tarification, devis et facturation\n\n### Fixer ses tarifs : la bonne logique\n\nNe fixe pas tes tarifs en fonction de ce que tu \"mérites\" — fixe-les en fonction de ce que le client perd s'il n'a pas de solution.\n\nUne PME qui perd sa connexion internet un jeudi matin perd en moyenne 800 € à 2 000 € de productivité par heure. Ton intervention à 280 € est une évidence.\n\n---\n\n### Grille tarifaire de référence 2026\n\n**Dépannage à distance**\n- Durée : 30–60 minutes\n- Tarif : 65–95 € l'heure, minimum de facturation 1h\n\n**Dépannage sur site (demi-journée)**\n- Durée : 3–4 heures\n- Tarif : 180–280 € selon zone et complexité\n- Frais de déplacement si > 15 km : 0,45 €/km\n\n**Audit informatique**\n- Durée : 90 minutes sur site + livrable écrit\n- Tarif : 220–350 €\n- Ce qui le justifie : rapport de 2–3 pages avec priorités et recommandations chiffrées\n\n**Installation poste de travail**\n- Installation OS + logiciels métier + configuration : 120–180 €/poste\n- Migration Windows 10 → Windows 11 : 95–150 €/poste\n\n**Forfait maintenance mensuelle**\n- 1 à 5 postes : 90–180 €/mois\n- 6 à 15 postes : 200–420 €/mois\n- Inclut : 1 visite préventive/trimestre + support à distance illimité + rapport mensuel\n\n> **Règle d'or** : un forfait maintenance doit couvrir au minimum 1,5 jours de travail par mois. En dessous, tu travailles à perte.\n\n---\n\n### Structure d'un devis professionnel\n\nUn bon devis tient sur une page. Voici la structure :\n\n- **En-tête** : ton nom/société, SIRET, adresse, email, téléphone\n- **Coordonnées client** : nom, adresse\n- **Numéro et date du devis**\n- **Objet** : une ligne claire (\"Intervention dépannage réseau — 1 demi-journée\")\n- **Détail des prestations** : ligne par ligne, quantité × prix unitaire\n- **Total HT** + mention TVA (ou \"TVA non applicable — article 293B du CGI\" si franchise)\n- **Conditions de paiement** : 30 % à la commande recommandé pour les missions > 300 €\n- **Validité** : 30 jours\n\n**Outils recommandés** :\n- **Indy** : idéal auto-entrepreneur, comptabilité intégrée, 9,99 €/mois\n- **Facture.net** : gratuit, simple, conforme\n- **Pennylane** : si tu veux déléguer la comptabilité plus tard\n\n---\n\n### Défendre ton prix sans brader\n\n**Ne pas brader les premières missions.** Un premier client payé 50 % moins cher que ton tarif normal n'attendra pas ton tarif normal — il demandera la même remise la prochaine fois.\n\nSi un client hésite :\n- Proposer un paiement en 2 fois sans frais\n- Réduire le périmètre (pas le prix) : \"Je peux faire uniquement les 3 postes prioritaires cette semaine.\"\n- Offrir une garantie de résultat : \"Si le problème revient sous 30 jours, j'interviens sans frais supplémentaires.\""
+    }
+  ),
+  module(
+    "freelance-it-30-jours",
+    "outils-technicien-2026",
+    "Les outils indispensables du technicien IT en 2026",
+    "Stack complète testée : accès à distance, gestion des tickets, cybersécurité EDR, sauvegarde NAS/cloud, facturation et image professionnelle. Ce que tu dois avoir avant ta première mission.",
+    "text",
+    6,
+    {
+      content_body:
+        "## Les outils indispensables du technicien IT freelance en 2026\n\nUn bon technicien IT freelance travaille avec des outils professionnels. Voici la stack complète recommandée, testée sur le terrain.\n\n---\n\n### Accès à distance\n\n**AnyDesk** (recommandé)\n- Gratuit en usage personnel, 14,90 €/mois en professionnel\n- Plus rapide que TeamViewer sur connexions lentes\n- Sessions non surveillées avec mot de passe permanent\n\n**Remote Desktop (RDP) natif Windows**\n- Gratuit, intégré à Windows Pro\n- À configurer avec un VPN — ne jamais ouvrir le port 3389 directement sur internet\n- Idéal pour les clients sur Microsoft 365 avec Azure AD\n\n> Ne jamais ouvrir le port RDP (3389) directement sur internet. Toujours passer par un VPN ou un tunnel SSH.\n\n---\n\n### Gestion des tickets et suivi client\n\n**Freshdesk** (gratuit jusqu'à 10 agents)\n- Centralise toutes les demandes par email\n- Envoie des rapports d'intervention automatiques\n- Interface propre et intuitive pour les clients\n\n**Notion** (pour démarrer)\n- Tableau de suivi client simple\n- Templates pour les rapports d'intervention\n- Gratuit jusqu'à usage personnel\n\n---\n\n### Cybersécurité et diagnostic\n\n**Bitdefender GravityZone** (EDR PME)\n- Console cloud centralisée pour gérer plusieurs clients\n- Licence revendeur disponible : 8–12 €/poste/an\n- Indispensable pour remplacer les antivirus classiques\n\n**CrystalDiskInfo**\n- Diagnostic santé des disques durs et SSD\n- Gratuit et portable (pas d'installation requise)\n- À lancer systématiquement lors de tout audit poste\n\n**HWiNFO64**\n- Relevé complet matériel : CPU, RAM, températures, SMART\n- Gratuit et portable\n- Indispensable pour les rapports d'audit\n\n---\n\n### Sauvegarde et récupération\n\n**Synology DiskStation** (NAS sur site)\n- Gamme DS223 ou DS423+ recommandée pour les PME 5–20 postes\n- Combine sauvegarde locale + Synology C2 Cloud\n- Prix matériel : 300–600 €, disques en supplément\n\n**Veeam Agent for Windows** (gratuit)\n- Sauvegarde complète ou incrémentale du système\n- Restore bare-metal en cas de panne totale\n- Compatible avec les NAS Synology\n\n**Backblaze B2**\n- Stockage cloud à 6 $/To/mois (10x moins cher que AWS S3)\n- S'intègre à Veeam et à la plupart des solutions de backup\n\n---\n\n### Facturation et paiement\n\n**Indy** (anciennement Georges)\n- Comptabilité automatisée pour auto-entrepreneurs\n- Catégorisation automatique des dépenses\n- 9,99 €/mois\n\n**SumUp** (paiement sur site)\n- Lecteur de carte physique à 39 €\n- 1,69 % par transaction, sans abonnement\n- Idéal pour les interventions chez les artisans\n\n---\n\n### Image professionnelle\n\n**Zoho Mail** (2,70 €/mois)\n- Adresse email toi@tondomaine.fr\n- Indispensable pour paraître professionnel dès le premier email\n\n**Google Business Profile** (gratuit)\n- Fiche entreprise sur Google Maps\n- Permet aux clients de te trouver et de laisser des avis\n- Référencement local : essentiel en 2026\n\n**Canva** (gratuit)\n- Créer une carte de visite en 15 minutes\n- Impression via Vistaprint : 250 cartes pour 15 €\n\n> **À retenir** : investis dans les outils avant d'investir dans la communication. Un technicien bien outillé résout 2x plus vite, fidélise mieux, et inspire plus confiance au premier rendez-vous."
+    }
   ),
   module(
     "freelance-it-30-jours",
     "cas-clients-a-venir",
-    "Cas clients et objections terrain",
-    "Des exemples concrets de conversations, de cadrage et de vente seront ajoutes progressivement.",
+    "Cas clients terrain et gestion des objections avancées",
+    "Études de cas réels, scénarios de mission complexe, gestion des clients difficiles et stratégies pour fidéliser sur le long terme. Module en cours de production.",
     "coming_soon",
-    5
+    7
   ),
 
   module(
