@@ -211,6 +211,7 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           <source src={module.content_url} />
           Votre navigateur ne supporte pas la lecture vidéo intégrée.
         </video>
+        {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       </article>
     );
   }
@@ -245,6 +246,7 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
         <AccessBadge label="Vidéo" tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
+      {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       <div className="video-placeholder">
         <p>La vidéo est disponible via le lien ci-dessous.</p>
         <a className="button" href={module.content_url} target="_blank" rel="noreferrer">

@@ -655,8 +655,34 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Wireframe client PDF',
       'Un support telechargeable pour cadrer une prestation sans partir dans des maquettes lourdes.',
       'pdf',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Wireframe de cadrage client
+
+Le wireframe ne sert pas a impressionner. Il sert a **fixer la structure** avant d'ouvrir Figma ou ton builder.
+
+### Ce que ton wireframe doit montrer
+
+- le titre principal
+- la preuve ou reurance immediate
+- l'offre et ses benefices
+- le CTA principal
+- les blocs secondaires utiles
+
+### Ce qu'il ne faut pas faire
+
+- multiplier les variantes trop tot
+- passer du temps sur le design final
+- remplir la page avec du lorem ipsum inutile
+
+### Validation client
+
+Le client doit pouvoir valider :
+- la promesse
+- l'ordre des blocs
+- les informations obligatoires
+- la prochaine action attendue
+
+> Si le wireframe est valide, la production devient beaucoup plus rapide et les retours sont mieux cadres.$$,
       true,
       2
     ),
@@ -666,8 +692,28 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Checklist de livraison',
       'Une ressource prete a l''emploi pour securiser la livraison et les retours client.',
       'resource',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Checklist de livraison d'une landing page
+
+Avant d'envoyer une page au client, verifie :
+
+- hero clair et comprehensible
+- CTA visible en haut
+- preuves bien placees
+- formulaire teste
+- affichage mobile propre
+- meta title et meta description renseignes
+
+### A remettre avec la livraison
+
+- lien live
+- recapitulatif des blocs livres
+- points a tester sur 7 jours
+- recommandations d'optimisation
+
+### Regle simple
+
+Une page livree doit etre comprenable par le client, actionnable par le prospect, et modifiable sans tout casser.$$,
       true,
       3
     ),
@@ -678,7 +724,21 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Une capsule pour poser la promesse, la structure attendue et la logique de livraison.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-      null,
+      $$## Comment utiliser la video
+
+La video doit t'aider a voir :
+
+- comment la promesse est formulee
+- ou la preuve doit arriver
+- comment le CTA est repete
+- quels blocs sont accessoires
+
+### Juste apres le visionnage
+
+- reprends une page deja faite
+- coupe 20 % du texte inutile
+- renforce un seul CTA
+- ajoute une preuve concrete proche du hero$$,
       true,
       4
     ),
@@ -710,8 +770,32 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Brief client pret a envoyer',
       'Un document standard pour eviter les oublis des la prise de besoin.',
       'pdf',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Brief client pret a envoyer
+
+Le brief doit clarifier 6 choses :
+
+- l'objectif principal du site
+- les pages indispensables
+- la cible prioritaire
+- le ton souhaite
+- les contenus deja disponibles
+- la date de livraison attendue
+
+### Assets a demander
+
+- logo
+- photos
+- textes existants
+- mentions legales
+- acces domaine / hebergement si existants
+
+### Limites a poser
+
+- nombre de pages
+- nombre d'allers-retours
+- contenu fourni par qui
+- maintenance incluse ou non$$,
       true,
       2
     ),
@@ -721,8 +805,31 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Stack et template de demarrage',
       'Une ressource de demarrage pour standardiser les projets web vendus.',
       'resource',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Stack et template de demarrage
+
+Pour standardiser un site client, prepare toujours :
+
+- une base de layout
+- une structure de sections reutilisable
+- une checklist SEO minimale
+- une checklist responsive
+- une structure de livraison
+
+### Process de recette
+
+- verifier navigation
+- verifier formulaires
+- verifier affichage mobile
+- verifier performances de base
+- verifier contenus legaux
+
+### Maintenance a proposer
+
+- mises a jour
+- petits ajustements
+- sauvegarde / reprise
+- ajout de contenus simples$$,
       true,
       3
     ),
@@ -733,7 +840,21 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Une capsule pour comprendre le type de projet, la sobriete attendue et la logique de livraison.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-      null,
+      $$## Ce que la video doit appuyer
+
+La video renforce les points du texte :
+
+- le bon niveau de simplicite
+- les pages vraiment utiles
+- la limite entre site initial et options
+- la logique de livraison propre
+
+### Exercice
+
+Reprends un ancien projet et note :
+- ce qui aurait pu etre retire
+- ce qui devait rester en option
+- ce qui aurait du etre valide plus tot$$,
       true,
       4
     ),
@@ -765,8 +886,28 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Guide support et GLPI',
       'Un PDF pour cadrer une offre autour du support, du ticketing et des processus simples.',
       'pdf',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Guide de cadrage support et GLPI
+
+Avant de deployer un outil, clarifie :
+
+- qui ouvre les demandes
+- quels incidents reviennent
+- qui traite
+- quels delais sont realistes
+- quel reporting le dirigeant attend
+
+### Perimetre de depart recommande
+
+- categories limitees
+- priorites simples
+- 1 tableau de bord
+- 1 base de connaissances
+- 1 responsable par sujet
+
+### Ce que tu vends
+
+Tu vends de la clarte, de la tracabilite et moins de temps perdu. Pas seulement un logiciel.$$,
       true,
       2
     ),
@@ -776,8 +917,22 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Pack d''audit interne',
       'Ressources telechargeables pour preparer un mini-audit support chez un client.',
       'resource',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Pack d'audit support interne
+
+Ce pack doit couvrir :
+
+- categories de tickets de depart
+- checklist d'audit support
+- modele de compte-rendu
+- structure de base de connaissances
+- reporting mensuel type
+
+### Objectif
+
+Transformer un besoin flou en mission claire, puis en process repetable.
+
+> Un bon audit support montre ou l'entreprise perd du temps et ce qui peut etre resolu vite.$$,
       true,
       3
     ),
@@ -788,7 +943,22 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Une capsule pour voir comment partir d''un besoin support ou GLPI et le traduire en mission facturable.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-      null,
+      $$## Ce que la video doit renforcer
+
+Observe :
+
+- comment on reformule le probleme client
+- quel flux minimal suffit
+- comment la valeur est expliquee
+- pourquoi la simplicite vend mieux qu'un gros projet
+
+### A faire ensuite
+
+reprends 3 demandes client et reformule-les en :
+- probleme
+- utilisateur
+- action
+- resultat$$,
       true,
       4
     ),
@@ -820,8 +990,28 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Roadmap produit PDF',
       'Une feuille de route simple pour passer de l''idee au prototype monnayable.',
       'pdf',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Roadmap produit pour MVP mobile
+
+La roadmap initiale doit tenir sur peu d'etapes :
+
+- probleme cible
+- flux principal
+- premier ecran critique
+- mode de monetisation
+- test utilisateur
+- mise en ligne minimale
+
+### Ce que tu repousses
+
+- options rares
+- analytics avancees
+- personnalisation trop fine
+- fonctions secondaires
+
+### Regle produit
+
+Si la roadmap depasse deja 2 ou 3 lots avant lancement, tu es probablement sorti du MVP.$$,
       true,
       2
     ),
@@ -831,8 +1021,30 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Pack modele economique',
       'Une ressource pour comparer abonnement, one-shot, upsell et offres hybrides.',
       'resource',
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       null,
+      $$## Comparer les modeles economiques
+
+Les 4 modeles les plus simples a evaluer :
+
+- abonnement
+- achat one-shot
+- freemium
+- licence B2B
+
+### Questions a se poser
+
+- quand la valeur est-elle percue ?
+- a quelle frequence l'utilisateur revient-il ?
+- qui paie vraiment ?
+- quel prix peut etre annonce des la pre-vente ?
+
+### Test minimal
+
+- une page de presentation
+- une promesse claire
+- un prix annonce
+- quelques entretiens cibles
+- une mesure d'interet reelle$$,
       true,
       3
     ),
@@ -843,7 +1055,22 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'Une capsule pour comprendre le type de MVP vise, la monetisation et le niveau de simplicite recherche.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-      null,
+      $$## Ce que la video doit t'aider a arbitrer
+
+La video appuie 4 decisions :
+
+- quelles fonctions garder
+- lesquelles repousser
+- comment la monetisation influence le produit
+- quel niveau de finition suffit pour lancer
+
+### Exercice rapide
+
+ecris ton application en une phrase :
+- pour qui
+- pour quoi
+- contre quel resultat
+- avec quel mode de paiement$$,
       true,
       4
     ),

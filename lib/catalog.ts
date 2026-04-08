@@ -300,7 +300,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Checklist PDF pour livrer une page propre, relire le copywriting et cadrer les allers-retours.",
     "pdf",
     2,
-    { content_url: "https://example.com/techcash/landing-pages-livraison.pdf" }
+    {
+      content_body:
+        "## Checklist de livraison d'une landing page client\n\nUne landing page n'est pas livree quand elle est jolie. Elle est livree quand elle est **prête à convertir** et facile à reprendre si le client veut une iteration.\n\n### Verification avant envoi\n\n- **Titre hero** : la promesse est comprise en moins de 5 secondes\n- **CTA principal** : visible sans scroller sur desktop et mobile\n- **Preuves** : avis, references, chiffres ou captures presentes\n- **Offre** : ce qui est inclus est explicite\n- **Contact / formulaire** : teste avec un vrai envoi\n\n### Verification technique\n\n- vitesse correcte sur mobile\n- aucun bloc casse sur petit ecran\n- favicon, meta title et description renseignes\n- pixels / analytics poses si prevus\n- formulaires relies a la bonne destination\n\n### Ce que tu remets au client\n\n- lien live\n- recapitulatif de ce qui a ete livre\n- liste des acces si necessaire\n- 3 recommandations d'optimisation pour la suite\n\n> Une bonne livraison anticipe deja les 3 questions du client: comment modifier, comment mesurer, et quoi tester ensuite."
+    }
   ),
   module(
     "landing-pages-rentables",
@@ -309,7 +312,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Bibliotheque de sections hero, preuves, FAQ et CTA pour gagner du temps.",
     "resource",
     3,
-    { content_url: "https://example.com/techcash/landing-pages-templates.zip" }
+    {
+      content_body:
+        "## Bibliotheque de blocs reutilisables\n\nLe but n'est pas de copier-coller les memes pages. Le but est de partir d'une base solide pour produire plus vite.\n\n### Bloc hero\n\nStructure minimale:\n- probleme principal\n- promesse courte\n- preuve immediate\n- CTA unique\n\n### Bloc preuve\n\nUtilise au moins 2 formats:\n- temoignage client\n- chiffre ou resultat\n- logos ou references\n- avant / apres\n\n### Bloc FAQ\n\nLes 5 questions les plus utiles sont souvent:\n- pour qui est cette offre ?\n- en combien de temps c'est livre ?\n- qu'est-ce qui est inclus ?\n- combien d'allers-retours ?\n- comment on demarre ?\n\n### Bloc CTA final\n\nLe dernier CTA doit reformuler l'action, pas juste afficher `Contactez-nous`.\n\n> Un bon template economise du temps de production, mais surtout du temps de decision chez le client."
+    }
   ),
   module(
     "landing-pages-rentables",
@@ -318,7 +324,11 @@ export const localProductModules: ProductModuleRecord[] = [
     "Une capsule qui pose la promesse commerciale, la structure attendue et le cadre de livraison d'une landing page client.",
     "video",
     4,
-    { content_url: sampleVideos.landingPages }
+    {
+      content_url: sampleVideos.landingPages,
+      content_body:
+        "## Comment utiliser cette video\n\nLa video sert a illustrer le raisonnement du module, pas a le remplacer.\n\n### Ce que tu dois verifier pendant le visionnage\n\n- comment la promesse est formulee\n- ou la preuve arrive dans la page\n- comment le CTA est repete sans lourdeur\n- quels blocs peuvent etre supprimes sans perdre la conversion\n\n### A faire juste apres\n\n- reprendre une landing page deja livree\n- supprimer 20 % du texte inutile\n- renforcer un seul CTA principal\n- ajouter une preuve concrete en haut de page"
+    }
   ),
   module(
     "landing-pages-rentables",
@@ -348,7 +358,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Un PDF de brief pour cadrer les demandes avant de produire.",
     "pdf",
     2,
-    { content_url: "https://example.com/techcash/sites-web-clients-brief.pdf" }
+    {
+      content_body:
+        "## Brief client a faire remplir avant toute production\n\nLe brief n'est pas un document decoratif. Il sert a eviter les demandes floues du type \"on veut un site moderne\".\n\n### Les questions obligatoires\n\n- objectif principal du site\n- pages indispensables\n- action attendue sur chaque page\n- cibles prioritaires\n- references aimees / detestees\n- contraintes de delai et de budget\n\n### Les assets a demander\n\n- logo en bonne qualite\n- textes existants si disponibles\n- photos ou banque d'images autorisee\n- informations legales\n- acces domaine / hebergement si deja existants\n\n### Les limites a poser\n\n- nombre de pages incluses\n- nombre d'allers-retours\n- contenu fourni par qui\n- maintenance incluse ou non\n\n> Si le brief est vide ou flou, le projet le sera aussi. Le brief est deja une partie du delivery."
+    }
   ),
   module(
     "sites-web-clients",
@@ -357,7 +370,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Ressources pour hebergement, validation, recette et maintenance post-livraison.",
     "resource",
     3,
-    { content_url: "https://example.com/techcash/sites-web-clients-delivery.zip" }
+    {
+      content_body:
+        "## Boite a outils de delivery web\n\nPour livrer proprement un site client, tu as besoin d'un process plus que d'un outil miracle.\n\n### Stack minimale recommandee\n\n- environnement de preproduction\n- checklist SEO technique minimale\n- formulaire teste en reel\n- sauvegarde ou export avant mise en ligne\n- acces client documentes\n\n### Checklist recette\n\n- verifier menu et liens\n- verifier responsive mobile\n- verifier titres H1 / H2 et metas\n- verifier les formulaires\n- verifier les redirections et pages legales\n\n### Maintenance de base a proposer\n\n- mises a jour mensuelles\n- correction de petits bugs\n- sauvegarde / restauration\n- ajout de contenus simples\n\n> Le client ne juge pas seulement le site. Il juge aussi la proprete de la passation."
+    }
   ),
   module(
     "sites-web-clients",
@@ -366,7 +382,11 @@ export const localProductModules: ProductModuleRecord[] = [
     "Une capsule pour comprendre le type de projet, le niveau de sobriete attendu et la logique de livraison de la formation.",
     "video",
     4,
-    { content_url: sampleVideos.sitesWeb }
+    {
+      content_url: sampleVideos.sitesWeb,
+      content_body:
+        "## Ce que la video doit t'aider a voir\n\nLa video montre surtout le niveau de simplicite a viser.\n\n### Pendant le visionnage\n\nobserve:\n- la hierarchie des pages\n- ce qui releve du site et ce qui releve d'une future evolution\n- la logique de navigation\n- le niveau de finition suffisant pour livrer sans surproduire\n\n### Exercice recommande\n\nreprends un projet client passe et demande-toi:\n- quelles pages etaient inutiles ?\n- quel bloc pouvait etre mutualise ?\n- qu'est-ce qui aurait pu passer en option ?"
+    }
   ),
   module(
     "sites-web-clients",
@@ -396,7 +416,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Un PDF de cadrage pour auditer les besoins support et support GLPI.",
     "pdf",
     2,
-    { content_url: "https://example.com/techcash/outils-pme-glpi-cadrage.pdf" }
+    {
+      content_body:
+        "## Schema de cadrage pour un outil support ou metier\n\nUn mini-outil rentable commence par un schema tres simple: probleme, utilisateur, action, resultat.\n\n### Les 5 blocs du cadrage\n\n- **Probleme** : quelle perte de temps ou quel risque existe aujourd'hui ?\n- **Utilisateur** : qui ouvre, traite ou valide ?\n- **Donnees** : que faut-il enregistrer au minimum ?\n- **Workflow** : quelles sont les 3 a 5 etapes reelles ?\n- **Resultat** : qu'est-ce que le dirigeant verra de mieux en 30 jours ?\n\n### Questions de qualification\n\n- combien de personnes sont impliquees ?\n- quel outil remplace-t-on ?\n- qu'est-ce qui bloque aujourd'hui ?\n- quelle action doit devenir plus rapide ?\n\n### Livrable de cadrage\n\ntermine toujours par:\n- perimetre inclus\n- perimetre exclu\n- etape 1 en production\n- evolutions possibles plus tard"
+    }
   ),
   module(
     "outils-pme-glpi",
@@ -405,7 +428,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Documents, canevas et exemples pour structurer un outil metier ou support.",
     "resource",
     3,
-    { content_url: "https://example.com/techcash/outils-pme-glpi-ressources.zip" }
+    {
+      content_body:
+        "## Ressources de support et GLPI a reutiliser\n\nCe module regroupe les briques qui permettent de standardiser ton offre.\n\n### A reutiliser dans chaque mission\n\n- categories de tickets de depart\n- priorites simples\n- trame de base de connaissances\n- modele de compte-rendu de support\n- structure de reporting mensuel\n\n### Ce qui doit rester simple\n\n- peu de categories\n- peu de niveaux de priorite\n- un responsable clair par sujet\n- un tableau de bord compréhensible en 1 minute\n\n### Ce que tu vends au client\n\n- plus de traçabilite\n- moins de demandes perdues\n- une base pour grandir ensuite\n\n> Plus le systeme reste simple au depart, plus il a de chances d'etre vraiment utilise."
+    }
   ),
   module(
     "outils-pme-glpi",
@@ -414,7 +440,11 @@ export const localProductModules: ProductModuleRecord[] = [
     "Une capsule pour voir comment partir d'un besoin support ou GLPI et le traduire en mission concrete et facturable.",
     "video",
     4,
-    { content_url: sampleVideos.outilsPme }
+    {
+      content_url: sampleVideos.outilsPme,
+      content_body:
+        "## Comment utiliser cette video dans la formation\n\nLa video te sert a visualiser la traduction d'un besoin flou en offre concrete.\n\n### Ce qu'il faut retenir\n\n- un irritant visible vaut mieux qu'un besoin technique abstrait\n- le premier livrable doit etre simple et adopte rapidement\n- la valeur se voit dans le temps gagne, pas dans la complexite technique\n\n### A appliquer ensuite\n\nreprends 3 demandes client deja vues et reformule-les en:\n- probleme\n- utilisateur\n- flux minimal\n- promesse vendable"
+    }
   ),
   module(
     "outils-pme-glpi",
@@ -444,7 +474,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Pack PDF avec architecture de navigation et ecrans de base.",
     "pdf",
     2,
-    { content_url: "https://example.com/techcash/applications-mobiles-wireframes.pdf" }
+    {
+      content_body:
+        "## Construire des wireframes utiles pour un MVP mobile\n\nUn wireframe doit clarifier le flux, pas faire croire que le design est termine.\n\n### Les ecrans qui suffisent souvent au demarrage\n\n- onboarding ou connexion\n- home / dashboard\n- liste principale\n- fiche detail\n- creation ou action principale\n- profil ou parametres\n\n### Questions a trancher avant design detaille\n\n- quel est l'ecran que l'utilisateur verra le plus ?\n- quelle action doit etre faisable en moins de 30 secondes ?\n- quelle information est prioritaire sur mobile ?\n- que peut-on repousser a la v2 ?\n\n### Regle simple\n\nsi un ecran n'apporte pas une action, une decision ou une preuve, il est probablement inutile dans le MVP."
+    }
   ),
   module(
     "applications-mobiles-rentables",
@@ -453,7 +486,10 @@ export const localProductModules: ProductModuleRecord[] = [
     "Ressources pour monetiser, pre-vendre et tester une application mobile.",
     "resource",
     3,
-    { content_url: "https://example.com/techcash/applications-mobiles-mvp.zip" }
+    {
+      content_body:
+        "## Monetiser un MVP mobile sans se raconter d'histoire\n\nLa monetisation doit etre pensee des le cadrage.\n\n### Les 4 modeles les plus simples\n\n- abonnement mensuel\n- paiement one-shot\n- freemium avec upgrade\n- licence B2B simple\n\n### Test de pre-vente minimal\n\n- page simple de presentation\n- promesse claire\n- formulaire de demande ou pre-inscription\n- 3 entretiens avec utilisateurs cibles\n- un prix annonce, meme approximatif\n\n### Ce qu'il faut mesurer\n\n- qui comprend l'offre en moins de 10 secondes\n- qui serait pret a payer\n- quelle fonctionnalite declenche le plus de valeur\n- quelle objection revient le plus souvent"
+    }
   ),
   module(
     "applications-mobiles-rentables",
@@ -462,7 +498,11 @@ export const localProductModules: ProductModuleRecord[] = [
     "Une capsule pour comprendre le type de MVP vise, la monetisation et le niveau de simplicite recherche.",
     "video",
     4,
-    { content_url: sampleVideos.mobileApps }
+    {
+      content_url: sampleVideos.mobileApps,
+      content_body:
+        "## Le role de la video dans ce module\n\nLa video sert a renforcer les arbitrages de produit.\n\n### A regarder en priorite\n\n- quelles fonctionnalites sont vraiment centrales\n- ou passe la limite entre MVP et surproduction\n- comment la monetisation influence le flux produit\n- quel niveau de finition suffit pour lancer\n\n### Exercice rapide\n\necris ton application en une phrase:\n- pour qui\n- pour quoi\n- contre quel resultat\n- avec quel mode de paiement"
+    }
   ),
   module(
     "applications-mobiles-rentables",
