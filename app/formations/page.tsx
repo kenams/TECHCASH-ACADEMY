@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
+import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts } from "@/lib/products";
-import { siteConfig } from "@/lib/site";
+import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
 
 export const metadata: Metadata = {
   title: "Catalogue des formations | TechCash Academy",
   description:
-    "Decouvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles."
+    "Decouvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
+  alternates: {
+    canonical: getAbsoluteUrl("/formations")
+  },
+  openGraph: {
+    title: "Catalogue des formations | TechCash Academy",
+    description:
+      "Decouvre les formations TechCash Academy : freelance IT, landing pages, sites clients, outils PME et applications mobiles.",
+    url: getAbsoluteUrl("/formations")
+  }
 };
 
 export default async function FormationsPage() {
@@ -26,10 +37,27 @@ export default async function FormationsPage() {
   ]);
   const ownedSlugs = new Set(owned.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const catalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Catalogue des formations TechCash Academy",
+    url: getAbsoluteUrl("/formations"),
+    hasPart: products.map((product) => ({
+      "@type": "Course",
+      name: product.title,
+      description: product.short_description,
+      url: getAbsoluteUrl(`/formations/${product.slug}`)
+    }))
+  };
 
   return (
     <main>
       <div className="shell">
+        <Script
+          id="formations-collection-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
+        />
         <header className="topbar">
           <div className="brand">{siteConfig.brand}</div>
           <nav className="nav">
@@ -82,6 +110,8 @@ export default async function FormationsPage() {
             ))}
           </div>
         </section>
+
+        <PublicFooter />
       </div>
     </main>
   );

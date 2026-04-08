@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
+import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
 import { ProductModulesList } from "@/components/product-modules-list";
 import { getProductSupplement, getRelatedLocalProducts } from "@/lib/catalog";
 import { getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
-import { siteConfig } from "@/lib/site";
+import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
 
@@ -28,7 +30,15 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: `${product.title} | TechCash Academy`,
-    description: product.short_description
+    description: product.short_description,
+    alternates: {
+      canonical: getAbsoluteUrl(`/formations/${product.slug}`)
+    },
+    openGraph: {
+      title: `${product.title} | TechCash Academy`,
+      description: product.short_description,
+      url: getAbsoluteUrl(`/formations/${product.slug}`)
+    }
   };
 }
 
@@ -52,10 +62,33 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const relatedProducts = getRelatedLocalProducts(product.slug, 2);
   const publishedModules = product.modules.filter((module) => module.is_published).length;
   const comingSoonModules = product.modules.filter((module) => module.content_type === "coming_soon").length;
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: product.title,
+    description: product.long_description,
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.legalEntity,
+      url: siteConfig.siteUrl
+    },
+    offers: {
+      "@type": "Offer",
+      price: (product.price_cents / 100).toFixed(2),
+      priceCurrency: product.currency.toUpperCase(),
+      availability: "https://schema.org/InStock",
+      url: getAbsoluteUrl(`/formations/${product.slug}`)
+    }
+  };
 
   return (
     <main>
       <div className="shell">
+        <Script
+          id={`course-schema-${product.slug}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+        />
         <header className="topbar">
           <div className="brand">{siteConfig.brand}</div>
           <nav className="nav">
@@ -169,6 +202,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </section>
         ) : null}
+
+        <PublicFooter />
       </div>
     </main>
   );

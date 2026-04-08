@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
+import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts, getProductBySlug } from "@/lib/products";
-import { siteConfig } from "@/lib/site";
+import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
 
 export const metadata: Metadata = {
   title: "TechCash Academy | Formations digitales rentables",
   description:
-    "Catalogue de formations pour lancer une activite digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles."
+    "Catalogue de formations pour lancer une activite digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
+  alternates: {
+    canonical: getAbsoluteUrl("/")
+  },
+  openGraph: {
+    title: "TechCash Academy | Formations digitales rentables",
+    description:
+      "Catalogue de formations pour lancer une activite digitale rentable : freelance IT, landing pages, sites web clients, outils PME et applications mobiles.",
+    url: getAbsoluteUrl("/")
+  }
 };
 
 export default async function LandingPage() {
@@ -31,10 +42,50 @@ export default async function LandingPage() {
     (products[0] ? await getProductBySlug(products[0].slug) : null);
   const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.brand,
+    url: siteConfig.siteUrl,
+    description: siteConfig.description
+  };
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.legalEntity,
+    url: siteConfig.siteUrl,
+    email: siteConfig.supportEmail
+  };
+  const productListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Catalogue des formations TechCash Academy",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: getAbsoluteUrl(`/formations/${product.slug}`),
+      name: product.title
+    }))
+  };
 
   return (
     <main>
       <div className="shell">
+        <Script
+          id="homepage-website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <Script
+          id="homepage-organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <Script
+          id="homepage-product-list-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productListSchema) }}
+        />
         <header className="topbar">
           <div className="brand">{siteConfig.brand}</div>
           <nav className="nav">
@@ -80,6 +131,13 @@ export default async function LandingPage() {
                 <li key={benefit}>{benefit}</li>
               ))}
             </ul>
+            <div className="trust-row">
+              {siteConfig.trustPoints.map((point) => (
+                <span key={point} className="trust-pill">
+                  {point}
+                </span>
+              ))}
+            </div>
           </div>
 
           <aside className="panel hero-side-panel">
@@ -200,7 +258,7 @@ export default async function LandingPage() {
           </div>
         </section>
 
-        <footer className="footer">Plateforme propulsee par Next.js, Supabase, Stripe et Vercel.</footer>
+        <PublicFooter />
       </div>
     </main>
   );
