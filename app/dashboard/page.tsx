@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MemberProductCard } from "@/components/member-product-card";
+import { isAdminEmail } from "@/lib/admin";
 import { getProductSupplement } from "@/lib/catalog";
 import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
@@ -31,6 +32,7 @@ export default async function DashboardPage() {
 
   const ownedSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const canManageCatalog = isAdminEmail(user.email);
   const accessibleProducts = hasGlobalAccess
     ? activeProducts.map((product) => ({
         ...product,
@@ -77,6 +79,11 @@ export default async function DashboardPage() {
           <Link href="/formations" className="dashboard-nav-link">
             Catalogue complet
           </Link>
+          {canManageCatalog ? (
+            <Link href="/dashboard/admin" className="dashboard-nav-link">
+              Admin contenu
+            </Link>
+          ) : null}
         </div>
       </section>
 

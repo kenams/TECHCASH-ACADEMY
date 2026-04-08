@@ -1,4 +1,3 @@
-import { cache } from "react";
 import {
   findLocalProductByPurchaseName,
   getLocalActiveProducts,
@@ -26,7 +25,7 @@ export function formatPrice(cents: number, currency: string) {
   }).format(cents / 100);
 }
 
-export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {
+export async function getActiveProducts(): Promise<ProductCardData[]> {
   const supabaseAdmin = getSupabaseAdminClient();
   const { data, error } = await supabaseAdmin
     .from("products")
@@ -54,14 +53,14 @@ export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {
   }
 
   return (data || []) as ProductCardData[];
-});
+}
 
-export const getFeaturedProduct = cache(async (): Promise<ProductCardData | null> => {
+export async function getFeaturedProduct(): Promise<ProductCardData | null> {
   const products = await getActiveProducts();
   return products.find((product) => product.is_featured) || products[0] || getLocalFeaturedProduct();
-});
+}
 
-export const getProductBySlug = cache(async (slug: string): Promise<ProductRecord | null> => {
+export async function getProductBySlug(slug: string): Promise<ProductRecord | null> {
   const supabaseAdmin = getSupabaseAdminClient();
   const { data, error } = await supabaseAdmin
     .from("products")
@@ -78,9 +77,9 @@ export const getProductBySlug = cache(async (slug: string): Promise<ProductRecor
   }
 
   return (data as ProductRecord | null) || getLocalProductBySlug(slug);
-});
+}
 
-export const getProductById = cache(async (productId: string): Promise<ProductRecord | null> => {
+export async function getProductById(productId: string): Promise<ProductRecord | null> {
   const supabaseAdmin = getSupabaseAdminClient();
   const { data, error } = await supabaseAdmin
     .from("products")
@@ -97,41 +96,42 @@ export const getProductById = cache(async (productId: string): Promise<ProductRe
   }
 
   return (data as ProductRecord | null) || getLocalProductById(productId);
-});
+}
 
-export const getProductModules = cache(
-  async (productId: string, onlyPublished = false): Promise<ProductModuleRecord[]> => {
-    const supabaseAdmin = getSupabaseAdminClient();
-    let query = supabaseAdmin
-      .from("product_modules")
-      .select(
-        "id, product_id, slug, title, description, content_type, content_url, content_body, is_published, sort_order, created_at, updated_at"
-      )
-      .eq("product_id", productId)
-      .order("sort_order", { ascending: true });
+export async function getProductModules(
+  productId: string,
+  onlyPublished = false
+): Promise<ProductModuleRecord[]> {
+  const supabaseAdmin = getSupabaseAdminClient();
+  let query = supabaseAdmin
+    .from("product_modules")
+    .select(
+      "id, product_id, slug, title, description, content_type, content_url, content_body, is_published, sort_order, created_at, updated_at"
+    )
+    .eq("product_id", productId)
+    .order("sort_order", { ascending: true });
 
-    if (onlyPublished) {
-      query = query.eq("is_published", true);
-    }
+  if (onlyPublished) {
+    query = query.eq("is_published", true);
+  }
 
-    const { data, error } = await query;
+  const { data, error } = await query;
 
-    if (error) {
-      logError("Impossible de recuperer les modules du produit.", { productId, error });
-      return getLocalModulesByProductId(productId).filter((module) =>
+  if (error) {
+    logError("Impossible de recuperer les modules du produit.", { productId, error });
+    return getLocalModulesByProductId(productId).filter((module) =>
+      onlyPublished ? module.is_published : true
+    );
+  }
+
+  return ((data || []) as ProductModuleRecord[]).length
+    ? ((data || []) as ProductModuleRecord[])
+    : getLocalModulesByProductId(productId).filter((module) =>
         onlyPublished ? module.is_published : true
       );
-    }
+}
 
-    return ((data || []) as ProductModuleRecord[]).length
-      ? ((data || []) as ProductModuleRecord[])
-      : getLocalModulesByProductId(productId).filter((module) =>
-          onlyPublished ? module.is_published : true
-        );
-  }
-);
-
-export const getProductWithModulesBySlug = cache(async (slug: string): Promise<ProductWithModules | null> => {
+export async function getProductWithModulesBySlug(slug: string): Promise<ProductWithModules | null> {
   const product = await getProductBySlug(slug);
 
   if (!product) {
@@ -143,7 +143,7 @@ export const getProductWithModulesBySlug = cache(async (slug: string): Promise<P
     ...product,
     modules
   };
-});
+}
 
 export async function getUserPaidPurchases(userId: string): Promise<PurchaseRecord[]> {
   const supabaseAdmin = getSupabaseAdminClient();

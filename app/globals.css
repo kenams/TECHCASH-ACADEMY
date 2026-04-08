@@ -43,7 +43,8 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
@@ -371,7 +372,8 @@ textarea {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select {
   width: 100%;
   padding: 0.95rem 1rem;
   border-radius: 14px;
@@ -382,7 +384,8 @@ textarea {
 }
 
 .field input:focus,
-.field textarea:focus {
+.field textarea:focus,
+.field select:focus {
   border-color: rgba(56, 189, 248, 0.6);
 }
 
@@ -757,6 +760,78 @@ textarea {
   margin: 0;
 }
 
+.admin-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+}
+
+.admin-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-product-item,
+.admin-module-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+}
+
+.admin-product-item {
+  cursor: pointer;
+  text-align: left;
+}
+
+.admin-product-item-active {
+  border-color: rgba(56, 189, 248, 0.3);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.admin-product-copy,
+.admin-module-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.admin-product-copy span,
+.admin-module-copy span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.admin-form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-span-2 {
+  grid-column: span 2;
+}
+
+.admin-checks {
+  gap: 1rem;
+}
+
+.admin-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #dbeafe;
+}
+
+.admin-inline-actions {
+  padding-top: 0.5rem;
+}
+
 @media (max-width: 980px) {
   .hero,
   .product-hero,
@@ -786,5 +861,19 @@ textarea {
   .footer-grid {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .admin-grid,
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field-span-2 {
+    grid-column: span 1;
+  }
+
+  .admin-product-item,
+  .admin-module-item {
+    flex-direction: column;
   }
 }

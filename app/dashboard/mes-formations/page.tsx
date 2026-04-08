@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MemberProductCard } from "@/components/member-product-card";
+import { isAdminEmail } from "@/lib/admin";
 import { getActiveProducts, getOwnedProducts } from "@/lib/products";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
@@ -28,6 +29,7 @@ export default async function MemberProductsPage() {
   ]);
 
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const canManageCatalog = isAdminEmail(user.email);
   const products = hasGlobalAccess
     ? activeProducts.map((product) => ({
         ...product,
@@ -53,6 +55,25 @@ export default async function MemberProductsPage() {
           <Link href="/formations" className="button">
             Voir le catalogue
           </Link>
+        </div>
+      </section>
+
+      <section className="section dashboard-nav-section">
+        <div className="dashboard-nav-grid">
+          <Link href="/dashboard" className="dashboard-nav-link">
+            Vue d'ensemble
+          </Link>
+          <Link href="/dashboard/mes-formations" className="dashboard-nav-link dashboard-nav-link-active">
+            Mes formations
+          </Link>
+          <Link href="/formations" className="dashboard-nav-link">
+            Catalogue complet
+          </Link>
+          {canManageCatalog ? (
+            <Link href="/dashboard/admin" className="dashboard-nav-link">
+              Admin contenu
+            </Link>
+          ) : null}
         </div>
       </section>
 
