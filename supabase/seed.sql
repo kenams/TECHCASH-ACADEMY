@@ -20,7 +20,7 @@ values
     'Une formation orientée terrain pour apprendre à vendre des interventions IT utiles, formuler une offre claire, trouver des prospects et livrer proprement. Le parcours mélange stratégie, scripts, PDF opérationnels et modules progressivement publiés.',
     5900,
     'eur',
-    null,
+    'price_1TJrENGSZgm5QCNLNNJSXbQS',
     'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
     true,
     true
@@ -33,7 +33,7 @@ values
     'Ce programme te montre comment cadrer le besoin, structurer une page de conversion, vendre une prestation simple et éviter les livraisons interminables. Idéal pour proposer une offre web rapide à forte valeur perçue.',
     4900,
     'eur',
-    null,
+    'price_1TJrEOGSZgm5QCNLeTwUULYt',
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
     true,
     false
@@ -44,9 +44,9 @@ values
     'Le cadre pour vendre des sites sobres, utiles et livrables rapidement.',
     'Apprendre à créer des sites web modernes, simples à vendre et à livrer rapidement.',
     'Tu y trouveras la logique commerciale, les process de cadrage, la structure de projet et les ressources nécessaires pour transformer une prestation site web en offre standardisée et rentable.',
-    6900,
+    5400,
     'eur',
-    null,
+    'price_1TJrEPGSZgm5QCNLEAP6iWha',
     'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
     true,
     false
@@ -57,9 +57,9 @@ values
     'Une offre plus technique pour produire des outils utiles et monnayables.',
     'Apprendre à créer des outils concrets pour PME, support informatique et besoins métier internes, comme un outil support GLPI.',
     'Cette formation aide à repérer les besoins métier répétitifs, cadrer un mini-outil interne, vendre sa valeur à une PME et articuler support, automatisation et maintenance simple autour de GLPI et d''usages métier proches.',
-    7900,
+    6900,
     'eur',
-    null,
+    'price_1TJrEQGSZgm5QCNLSgVsDabX',
     'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
     true,
     false
@@ -70,9 +70,9 @@ values
     'Concevoir une app utile, simple et monétisable sans partir dans une usine à gaz.',
     'Apprendre à concevoir et structurer une application mobile monétisable.',
     'Un programme pensé pour cadrer une idée, définir un MVP mobile crédible, choisir un modèle économique simple et poser une base produit propre, sans se perdre dans une complexité inutile dès le départ.',
-    8900,
+    6200,
     'eur',
-    null,
+    'price_1TJrERGSZgm5QCNLa5B2Z3BH',
     'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
     true,
     false

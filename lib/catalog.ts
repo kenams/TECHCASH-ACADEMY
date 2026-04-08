@@ -18,7 +18,7 @@ export const localProducts: ProductRecord[] = [
       "Cette formation principale t'aide a structurer une activite freelance IT vendable rapidement. Tu y trouves le positionnement, les prestations les plus faciles a vendre, la maniere de parler a un client PME et des ressources concretes pour passer de l'idee a une offre qui tient la route.",
     price_cents: 5900,
     currency: "eur",
-    stripe_price_id: null,
+    stripe_price_id: "price_1TJrENGSZgm5QCNLNNJSXbQS",
     thumbnail_url:
       "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80",
     is_active: true,
@@ -37,7 +37,7 @@ export const localProducts: ProductRecord[] = [
       "Cette formation montre comment construire une offre de landing pages qui convertit vraiment, comment la vendre sans jargon inutile et comment livrer des pages propres, rapides et orientees business pour des clients qui veulent des resultats concrets.",
     price_cents: 4900,
     currency: "eur",
-    stripe_price_id: null,
+    stripe_price_id: "price_1TJrEOGSZgm5QCNLeTwUULYt",
     thumbnail_url:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     is_active: true,
@@ -56,7 +56,7 @@ export const localProducts: ProductRecord[] = [
       "Le programme est centre sur des sites clients utiles et sobres : cadrage du besoin, structure, livraison, maintenance et communication client. L'objectif est de rendre la prestation lisible, rentable et repetable.",
     price_cents: 5400,
     currency: "eur",
-    stripe_price_id: null,
+    stripe_price_id: "price_1TJrEPGSZgm5QCNLEAP6iWha",
     thumbnail_url:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
     is_active: true,
@@ -75,7 +75,7 @@ export const localProducts: ProductRecord[] = [
       "Cette formation se concentre sur des outils a forte valeur percue : support, tickets, formulaires, tableaux de bord internes, micro-outils pour PME. Le but est de savoir transformer un probleme metier en produit ou en mission facturable.",
     price_cents: 6900,
     currency: "eur",
-    stripe_price_id: null,
+    stripe_price_id: "price_1TJrEQGSZgm5QCNLSgVsDabX",
     thumbnail_url:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
     is_active: true,
@@ -94,7 +94,7 @@ export const localProducts: ProductRecord[] = [
       "Tu y trouves une methode pour cadrer une application mobile simple, definir une proposition de valeur claire, organiser les ecrans, poser la logique produit et envisager une monetisation realiste sans complexity inutile.",
     price_cents: 6200,
     currency: "eur",
-    stripe_price_id: null,
+    stripe_price_id: "price_1TJrERGSZgm5QCNLa5B2Z3BH",
     thumbnail_url:
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
     is_active: true,
