@@ -24,10 +24,35 @@ async function resolveWebhookProduct(session: Stripe.Checkout.Session) {
   return getFeaturedProduct();
 }
 
+async function resolveWebhookEmail(
+  userId: string,
+  session: Stripe.Checkout.Session,
+  supabaseAdmin: ReturnType<typeof getSupabaseAdminClient>
+) {
+  const directEmail =
+    session.customer_email || session.customer_details?.email || session.metadata?.customer_email || null;
+
+  if (directEmail) {
+    return directEmail;
+  }
+
+  const { data: profile, error: profileError } = await supabaseAdmin
+    .from("users")
+    .select("email")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (!profileError && profile?.email) {
+    return profile.email;
+  }
+
+  const authUserResult = await supabaseAdmin.auth.admin.getUserById(userId);
+  return authUserResult.data.user?.email || null;
+}
+
 async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
   const supabaseAdmin = getSupabaseAdminClient();
   const userId = session.metadata?.user_id;
-  const email = session.customer_email;
   const stripeCustomerId =
     typeof session.customer === "string" ? session.customer : session.customer?.id || null;
   const stripePaymentIntentId =
@@ -43,11 +68,21 @@ async function syncPaidCheckoutSession(session: Stripe.Checkout.Session) {
     return NextResponse.json({ received: true });
   }
 
-  if (!userId || !email) {
+  if (!userId) {
     logWarn("Webhook Stripe recu sans utilisateur exploitable.", {
       stripeSessionId: session.id
     });
     return NextResponse.json({ error: "Metadonnees utilisateur manquantes." }, { status: 400 });
+  }
+
+  const email = await resolveWebhookEmail(userId, session, supabaseAdmin);
+
+  if (!email) {
+    logWarn("Webhook Stripe recu sans email exploitable.", {
+      stripeSessionId: session.id,
+      userId
+    });
+    return NextResponse.json({ error: "Email utilisateur introuvable." }, { status: 400 });
   }
 
   const product = await resolveWebhookProduct(session);
