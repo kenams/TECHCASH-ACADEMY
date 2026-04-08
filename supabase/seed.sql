@@ -21,7 +21,7 @@ values
     5900,
     'eur',
     'price_1TJrENGSZgm5QCNLNNJSXbQS',
-    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/freelance-it-30-jours-cover.svg',
     true,
     true
   ),
@@ -34,7 +34,7 @@ values
     4900,
     'eur',
     'price_1TJrEOGSZgm5QCNLeTwUULYt',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/landing-pages-rentables-cover.svg',
     true,
     false
   ),
@@ -47,7 +47,7 @@ values
     5400,
     'eur',
     'price_1TJrEPGSZgm5QCNLEAP6iWha',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/sites-web-clients-cover.svg',
     true,
     false
   ),
@@ -60,7 +60,7 @@ values
     6900,
     'eur',
     'price_1TJrEQGSZgm5QCNLSgVsDabX',
-    'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/outils-pme-glpi-cover.svg',
     true,
     false
   ),
@@ -73,7 +73,7 @@ values
     6200,
     'eur',
     'price_1TJrERGSZgm5QCNLa5B2Z3BH',
-    'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/applications-mobiles-rentables-cover.svg',
     true,
     false
   ),
@@ -86,7 +86,7 @@ values
     6500,
     'eur',
     null,
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/glpi-support-pme-cover.svg',
     true,
     false
   ),
@@ -99,7 +99,7 @@ values
     5800,
     'eur',
     null,
-    'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/maintenance-informatique-pme-cover.svg',
     true,
     false
   ),
@@ -112,7 +112,7 @@ values
     6800,
     'eur',
     null,
-    'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80',
+    '/visuals/formations/apps-metier-supabase-cover.svg',
     true,
     false
   )

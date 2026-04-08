@@ -1,0 +1,34 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09111F"/>
+      <stop offset="1" stop-color="#10283B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="260" y1="140" x2="1180" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EBCB8B"/>
+      <stop offset="1" stop-color="#BB9457"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <circle cx="1320" cy="190" r="210" fill="#12304A"/>
+  <circle cx="1260" cy="160" r="120" fill="#193C5A"/>
+  <rect x="120" y="124" width="530" height="652" rx="34" fill="#0E1A2D" stroke="#29435B"/>
+  <rect x="120" y="124" width="530" height="126" rx="34" fill="#13263A"/>
+  <rect x="162" y="168" width="164" height="18" rx="9" fill="#EBCB8B" fill-opacity=".24"/>
+  <rect x="162" y="204" width="228" height="18" rx="9" fill="#EBCB8B" fill-opacity=".12"/>
+  <rect x="162" y="304" width="214" height="186" rx="24" fill="#13263A"/>
+  <path d="M226 442L286 382L338 432L430 336L540 442" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="162" y="534" width="446" height="84" rx="22" fill="#13263A"/>
+  <rect x="162" y="646" width="446" height="84" rx="22" fill="#13263A"/>
+  <text x="720" y="248" fill="#F6F0E4" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">FREELANCE IT</text>
+  <text x="720" y="360" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="88" font-weight="700">30 JOURS</text>
+  <text x="720" y="438" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">OFFRE, PROSPECTION, TARIFS, TERRAIN</text>
+  <rect x="720" y="520" width="206" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".34"/>
+  <text x="765" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">OFFRE PRINCIPALE</text>
+  <rect x="952" y="520" width="222" height="56" rx="28" fill="#16324A" stroke="#325878"/>
+  <text x="1005" y="556" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="26">ACCES MEMBRE</text>
+  <rect x="1208" y="520" width="176" height="56" rx="28" fill="#16324A" stroke="#325878"/>
+  <text x="1262" y="556" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="26">STRIPE</text>
+  <rect x="720" y="630" width="664" height="2" fill="#33516E"/>
+  <text x="720" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">DE L'IDEE A LA PRESTATION VENDABLE</text>
+</svg>

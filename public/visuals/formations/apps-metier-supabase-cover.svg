@@ -1,0 +1,28 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111D"/>
+      <stop offset="1" stop-color="#0F463F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="116" y="142" width="616" height="612" rx="32" fill="#0E1A2D" stroke="#2A776A"/>
+  <rect x="162" y="188" width="524" height="114" rx="24" fill="#17343A"/>
+  <rect x="162" y="334" width="244" height="178" rx="22" fill="#18233A"/>
+  <rect x="442" y="334" width="244" height="178" rx="22" fill="#18233A"/>
+  <rect x="162" y="544" width="524" height="164" rx="24" fill="#17343A"/>
+  <circle cx="246" cy="423" r="32" fill="#EBCB8B" fill-opacity=".18" stroke="#EBCB8B" stroke-opacity=".42"/>
+  <circle cx="566" cy="423" r="32" fill="#6DD0BD" fill-opacity=".18" stroke="#6DD0BD" stroke-opacity=".42"/>
+  <path d="M278 423H534" stroke="#84D8C8" stroke-width="8" stroke-linecap="round"/>
+  <text x="804" y="246" fill="#90E0D2" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">APPS METIER / SUPABASE</text>
+  <text x="804" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">STACK SIMPLE</text>
+  <text x="804" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">SCHEMA, AUTH, ROLES, BACK-OFFICE, DEPLOIEMENT</text>
+  <rect x="804" y="520" width="214" height="56" rx="28" fill="#1A4740" stroke="#4D8E82"/>
+  <text x="848" y="556" fill="#E6F8F4" font-family="Segoe UI, Arial, sans-serif" font-size="26">SUPABASE</text>
+  <rect x="1044" y="520" width="196" height="56" rx="28" fill="#1A4740" stroke="#4D8E82"/>
+  <text x="1106" y="556" fill="#E6F8F4" font-family="Segoe UI, Arial, sans-serif" font-size="26">ROLES</text>
+  <rect x="1266" y="520" width="236" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
+  <text x="1310" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">BACK-OFFICE</text>
+  <rect x="804" y="628" width="698" height="2" fill="#468177"/>
+  <text x="804" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">DES APPS UTILES, LIVRABLES ET FACILES A TENIR</text>
+</svg>

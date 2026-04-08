@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111D"/>
+      <stop offset="1" stop-color="#174B35"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="114" y="146" width="620" height="608" rx="32" fill="#0E1A2D" stroke="#2F6C4F"/>
+  <rect x="160" y="192" width="528" height="108" rx="24" fill="#173629"/>
+  <rect x="160" y="332" width="156" height="188" rx="22" fill="#19333F"/>
+  <rect x="346" y="332" width="156" height="188" rx="22" fill="#19333F"/>
+  <rect x="532" y="332" width="156" height="188" rx="22" fill="#19333F"/>
+  <rect x="160" y="552" width="528" height="154" rx="24" fill="#173629"/>
+  <text x="800" y="246" fill="#9FE0B9" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">GLPI SUPPORT PME</text>
+  <text x="800" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">DEPLOYER ET ADOPTER</text>
+  <text x="800" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">PORTAIL, CATEGORIES, SLA, REPORTING</text>
+  <rect x="800" y="520" width="196" height="56" rx="28" fill="#1E4B37" stroke="#4E8F6A"/>
+  <text x="854" y="556" fill="#E1F7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26">GLPI</text>
+  <rect x="1022" y="520" width="220" height="56" rx="28" fill="#1E4B37" stroke="#4E8F6A"/>
+  <text x="1080" y="556" fill="#E1F7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26">ADOPTION</text>
+  <rect x="1268" y="520" width="234" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
+  <text x="1322" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">SUPPORT INTERNE</text>
+  <rect x="800" y="628" width="702" height="2" fill="#4A7A5F"/>
+  <text x="800" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UN CADRE SUPPORT PROPRE POUR TPE ET PME</text>
+</svg>

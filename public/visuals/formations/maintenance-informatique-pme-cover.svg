@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111D"/>
+      <stop offset="1" stop-color="#46351C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="112" y="140" width="622" height="618" rx="32" fill="#0E1A2D" stroke="#7B6335"/>
+  <rect x="160" y="188" width="530" height="126" rx="24" fill="#2F2718"/>
+  <rect x="160" y="348" width="530" height="120" rx="24" fill="#18233A"/>
+  <rect x="160" y="500" width="530" height="208" rx="24" fill="#18233A"/>
+  <circle cx="224" cy="250" r="26" fill="#67C191"/>
+  <path d="M212 250L221 259L238 240" stroke="#0C1C13" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="800" y="246" fill="#D3C08E" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">MAINTENANCE PME</text>
+  <text x="800" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">REVENU RECURRENT</text>
+  <text x="800" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">FORFAITS, ROUTINES, REPORTING, RENOUVELLEMENT</text>
+  <rect x="800" y="520" width="212" height="56" rx="28" fill="#4A3820" stroke="#927445"/>
+  <text x="852" y="556" fill="#F2E7C8" font-family="Segoe UI, Arial, sans-serif" font-size="26">FORFAITS</text>
+  <rect x="1038" y="520" width="214" height="56" rx="28" fill="#4A3820" stroke="#927445"/>
+  <text x="1090" y="556" fill="#F2E7C8" font-family="Segoe UI, Arial, sans-serif" font-size="26">REPORTING</text>
+  <rect x="1278" y="520" width="224" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
+  <text x="1332" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">RETENTION</text>
+  <rect x="800" y="628" width="702" height="2" fill="#7A6440"/>
+  <text x="800" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">LE PASSAGE DU DEPANNAGE AU CONTRAT PROPRE</text>
+</svg>

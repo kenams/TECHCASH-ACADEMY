@@ -26,8 +26,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 5900,
     currency: "eur",
     stripe_price_id: "price_1TJrENGSZgm5QCNLNNJSXbQS",
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/freelance-it-30-jours-cover.svg",
     is_active: true,
     is_featured: true,
     created_at: now,
@@ -45,8 +44,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 4900,
     currency: "eur",
     stripe_price_id: "price_1TJrEOGSZgm5QCNLeTwUULYt",
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/landing-pages-rentables-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -64,8 +62,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 5400,
     currency: "eur",
     stripe_price_id: "price_1TJrEPGSZgm5QCNLEAP6iWha",
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/sites-web-clients-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -83,8 +80,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 6900,
     currency: "eur",
     stripe_price_id: "price_1TJrEQGSZgm5QCNLSgVsDabX",
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/outils-pme-glpi-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -102,8 +98,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 6200,
     currency: "eur",
     stripe_price_id: "price_1TJrERGSZgm5QCNLa5B2Z3BH",
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/applications-mobiles-rentables-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -121,8 +116,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 6500,
     currency: "eur",
     stripe_price_id: null,
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/glpi-support-pme-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -140,8 +134,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 5800,
     currency: "eur",
     stripe_price_id: null,
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/maintenance-informatique-pme-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -159,8 +152,7 @@ export const localProducts: ProductRecord[] = [
     price_cents: 6800,
     currency: "eur",
     stripe_price_id: null,
-    thumbnail_url:
-      "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80",
+    thumbnail_url: "/visuals/formations/apps-metier-supabase-cover.svg",
     is_active: true,
     is_featured: false,
     created_at: now,
@@ -685,8 +677,16 @@ export const localProductModules: ProductModuleRecord[] = [
   )
 ];
 
-const productSupplements = {
+type ProductSupplement = {
+  bestFor: string[];
+  outcomes: string[];
+  pitch: string;
+  salesPriority?: number;
+};
+
+const productSupplements: Record<string, ProductSupplement> = {
   "freelance-it-30-jours": {
+    salesPriority: 1,
     bestFor: [
       "profils support ou tech qui veulent vendre en independant",
       "debutants motives qui veulent une offre terrain simple",
@@ -757,6 +757,7 @@ const productSupplements = {
       "Le programme pour cadrer une application mobile rentable sans partir sur un produit trop ambitieux des le jour 1."
   },
   "glpi-support-pme": {
+    salesPriority: 3,
     bestFor: [
       "profils support ou sysadmin qui veulent professionnaliser une offre GLPI",
       "freelances IT qui vendent du support à des PME",
@@ -771,6 +772,7 @@ const productSupplements = {
       "La formation pour transformer GLPI en vraie offre de support interne, utile au client et simple à faire adopter."
   },
   "maintenance-informatique-pme": {
+    salesPriority: 2,
     bestFor: [
       "techniciens IT qui veulent créer un revenu récurrent",
       "freelances support qui veulent sortir du dépannage ponctuel",
@@ -846,6 +848,13 @@ export function findLocalProductByPurchaseName(productName: string) {
 
 export function getProductSupplement(slug: string) {
   return productSupplements[slug as keyof typeof productSupplements] || null;
+}
+
+export function getPriorityOfferSlugs() {
+  return Object.entries(productSupplements)
+    .filter(([, supplement]) => typeof supplement.salesPriority === "number")
+    .sort((a, b) => (a[1].salesPriority || 99) - (b[1].salesPriority || 99))
+    .map(([slug]) => slug);
 }
 
 export function getRelatedLocalProducts(slug: string, limit = 2) {

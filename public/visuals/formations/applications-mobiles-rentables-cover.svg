@@ -1,0 +1,28 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09101C"/>
+      <stop offset="1" stop-color="#2B1E47"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="172" y="122" width="300" height="656" rx="42" fill="#0E1A2D" stroke="#67549B"/>
+  <rect x="206" y="186" width="232" height="150" rx="24" fill="#2D2550"/>
+  <rect x="206" y="364" width="232" height="94" rx="22" fill="#17253A"/>
+  <rect x="206" y="484" width="232" height="94" rx="22" fill="#17253A"/>
+  <rect x="206" y="604" width="232" height="94" rx="22" fill="#17253A"/>
+  <circle cx="322" cy="148" r="10" fill="#D9E3F2"/>
+  <text x="570" y="246" fill="#C4B8F2" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">APPLICATIONS MOBILES</text>
+  <text x="570" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">MVP RENTABLE</text>
+  <text x="570" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">MVP, MONETISATION, LANCEMENT, ITERATION</text>
+  <rect x="570" y="520" width="208" height="56" rx="28" fill="#302654" stroke="#7661AF"/>
+  <text x="620" y="556" fill="#EDE7FF" font-family="Segoe UI, Arial, sans-serif" font-size="26">MVP</text>
+  <rect x="804" y="520" width="250" height="56" rx="28" fill="#302654" stroke="#7661AF"/>
+  <text x="864" y="556" fill="#EDE7FF" font-family="Segoe UI, Arial, sans-serif" font-size="26">MONETISATION</text>
+  <rect x="1080" y="520" width="236" height="56" rx="28" fill="#302654" stroke="#7661AF"/>
+  <text x="1148" y="556" fill="#EDE7FF" font-family="Segoe UI, Arial, sans-serif" font-size="26">DELIVERY</text>
+  <rect x="1342" y="520" width="160" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
+  <text x="1380" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">TEST</text>
+  <rect x="570" y="628" width="932" height="2" fill="#5A4D86"/>
+  <text x="570" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UN PRODUIT SIMPLE, LANCABLE ET DEFENDABLE</text>
+</svg>

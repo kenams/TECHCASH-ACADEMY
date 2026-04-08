@@ -1,0 +1,27 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07101C"/>
+      <stop offset="1" stop-color="#1D233C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="116" y="142" width="616" height="602" rx="32" fill="#0E1A2D" stroke="#364166"/>
+  <rect x="160" y="186" width="528" height="132" rx="24" fill="#18233A"/>
+  <rect x="160" y="350" width="248" height="350" rx="24" fill="#18233A"/>
+  <rect x="440" y="350" width="248" height="350" rx="24" fill="#18233A"/>
+  <rect x="202" y="230" width="220" height="18" rx="9" fill="#F6E6BE" fill-opacity=".78"/>
+  <rect x="202" y="266" width="160" height="14" rx="7" fill="#D7DFEF" fill-opacity=".36"/>
+  <rect x="486" y="230" width="144" height="50" rx="25" fill="#EBCB8B" fill-opacity=".16" stroke="#EBCB8B" stroke-opacity=".34"/>
+  <text x="810" y="244" fill="#B7C2F4" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">SITES CLIENTS</text>
+  <text x="810" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">DELIVERY PROPRE</text>
+  <text x="810" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">BRIEF, RECETTE, MISE EN LIGNE, MAINTENANCE</text>
+  <rect x="810" y="520" width="212" height="56" rx="28" fill="#1B2541" stroke="#4C5D8D"/>
+  <text x="874" y="556" fill="#E7ECFF" font-family="Segoe UI, Arial, sans-serif" font-size="26">BRIEF</text>
+  <rect x="1048" y="520" width="212" height="56" rx="28" fill="#1B2541" stroke="#4C5D8D"/>
+  <text x="1107" y="556" fill="#E7ECFF" font-family="Segoe UI, Arial, sans-serif" font-size="26">RECETTE</text>
+  <rect x="1286" y="520" width="214" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
+  <text x="1330" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">MISE EN LIGNE</text>
+  <rect x="810" y="628" width="690" height="2" fill="#46527E"/>
+  <text x="810" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UNE PRESTATION SOBRE, RAPIDE ET FACILE A REPRENDRE</text>
+</svg>

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
+import { getPriorityOfferSlugs } from "@/lib/catalog";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts, getProductBySlug } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
@@ -43,6 +44,8 @@ export default async function LandingPage() {
     (products[0] ? await getProductBySlug(products[0].slug) : null);
   const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const priorityOfferSlugs = new Set(getPriorityOfferSlugs());
+  const priorityProducts = products.filter((product) => priorityOfferSlugs.has(product.slug));
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -191,6 +194,29 @@ export default async function LandingPage() {
 
         {featured ? (
           <ProductHero product={featured} isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)} />
+        ) : null}
+
+        {priorityProducts.length ? (
+          <section className="section">
+            <div className="section-title">
+              <div className="eyebrow">Offres a pousser maintenant</div>
+              <h2>Les offres commerciales a mettre devant</h2>
+              <p>
+                Priorite recommandee: <strong>Freelance IT 30 jours</strong> pour l'offre
+                principale, <strong>Maintenance informatique PME</strong> pour le revenu recurrent,
+                puis <strong>GLPI support PME</strong> pour une specialisation support claire.
+              </p>
+            </div>
+            <div className="product-grid">
+              {priorityProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isOwned={hasGlobalAccess || ownedProductSlugs.has(product.slug)}
+                />
+              ))}
+            </div>
+          </section>
         ) : null}
 
         {/* Comment ça marche */}

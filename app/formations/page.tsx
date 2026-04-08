@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
+import { getPriorityOfferSlugs } from "@/lib/catalog";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
@@ -38,6 +39,8 @@ export default async function FormationsPage() {
   ]);
   const ownedSlugs = new Set(owned.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
+  const priorityOfferSlugs = new Set(getPriorityOfferSlugs());
+  const priorityProducts = products.filter((product) => priorityOfferSlugs.has(product.slug));
   const catalogSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -91,6 +94,31 @@ export default async function FormationsPage() {
                   Acheter
                 </Link>
               </div>
+            </div>
+          ) : null}
+        </section>
+
+        <section className="section">
+          {priorityProducts.length ? (
+            <div className="section-title">
+              <div className="eyebrow">Priorites commerciales</div>
+              <h2>Les offres a pousser en premier</h2>
+              <p>
+                Commence par <strong>Freelance IT 30 jours</strong>, puis pousse{" "}
+                <strong>Maintenance informatique PME</strong> et <strong>GLPI support PME</strong>{" "}
+                comme extensions plus specialisees.
+              </p>
+            </div>
+          ) : null}
+          {priorityProducts.length ? (
+            <div className="product-grid">
+              {priorityProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isOwned={hasGlobalAccess || ownedSlugs.has(product.slug)}
+                />
+              ))}
             </div>
           ) : null}
         </section>
