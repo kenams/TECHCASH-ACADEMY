@@ -39,7 +39,7 @@ export const siteConfig = {
   shortBrand: "KAH-Digital",
   primaryProductSlug: "freelance-it-30-jours",
   legalEntity: "KAH-Digital",
-  supportEmail: trimmed(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "kenams42@gmail.com",
+  supportEmail: trimmed(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "kahdigital42@gmail.com",
   siteUrl: getSiteUrl(),
   headline: "Des formations digitales concretes pour lancer une activite rentable",
   description:
