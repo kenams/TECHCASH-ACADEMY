@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { isReservedAdminEmail } from "@/lib/admin";
-import { getPublicEnv } from "@/lib/env";
 import { logError, logInfo, logWarn } from "@/lib/logger";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
 
@@ -34,17 +32,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const publicEnv = getPublicEnv();
     const supabaseAdmin = getSupabaseAdminClient();
-    const supabaseAuth = createClient(publicEnv.supabaseUrl, publicEnv.supabaseAnonKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false
-      }
-    });
-    const { data: createdUser, error: createError } = await supabaseAuth.auth.signUp({
+    const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email,
-      password
+      password,
+      email_confirm: true
     });
 
     if (createError) {

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { logError, logInfo, logWarn } from "@/lib/logger";
-import { getPublicEnv } from "@/lib/env";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getSupabaseAdminClient } from "@/lib/supabaseAdmin";
 import { getProductById, getProductBySlug } from "@/lib/products";
@@ -25,6 +24,18 @@ async function resolveRequestedProduct(payload: CheckoutPayload) {
   }
 
   return null;
+}
+
+function resolveRequestOrigin(request: Request) {
+  const requestUrl = new URL(request.url);
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const forwardedProto = request.headers.get("x-forwarded-proto");
+
+  if (forwardedHost && forwardedProto) {
+    return `${forwardedProto}://${forwardedHost}`.replace(/\/+$/, "");
+  }
+
+  return requestUrl.origin.replace(/\/+$/, "");
 }
 
 export async function POST(request: Request) {
@@ -67,7 +78,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const origin = getPublicEnv().siteUrl.replace(/\/+$/, "");
+    const origin = resolveRequestOrigin(request);
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
