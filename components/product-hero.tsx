@@ -54,16 +54,18 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
       </div>
 
       <aside className="product-hero-card">
-        {product.thumbnail_url ? (
-          <div
-            className="product-hero-media"
-            style={{
-              backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.05) 0%, rgba(2,6,23,0.38) 65%, rgba(2,6,23,0.78) 100%), url(${product.thumbnail_url})`
-            }}
-          />
-        ) : (
-          <div className="product-hero-media product-thumb-empty" />
-        )}
+        <div className="product-hero-media-wrap">
+          {product.thumbnail_url ? (
+            <img
+              src={product.thumbnail_url}
+              alt={product.title}
+              className="product-hero-media-img"
+            />
+          ) : (
+            <div className="product-hero-media-empty" />
+          )}
+          <div className="product-hero-media-overlay" />
+        </div>
         <div className="product-hero-meta">
           <div className="price-block">
             <span className="helper">Tarif</span>

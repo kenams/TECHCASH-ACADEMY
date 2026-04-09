@@ -12,17 +12,23 @@ type ProductCardProps = {
 export function ProductCard({ product, isOwned = false }: ProductCardProps) {
   return (
     <article className={`product-card ${product.is_featured ? "product-card-featured" : ""}`}>
-      <div
-        className={`product-thumb ${product.thumbnail_url ? "" : "product-thumb-empty"}`}
-        style={
-          product.thumbnail_url
-            ? {
-                backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.08) 0%, rgba(2,6,23,0.42) 60%, rgba(2,6,23,0.82) 100%), url(${product.thumbnail_url})`
-              }
-            : undefined
-        }
-      >
-        {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
+      <div className="product-thumb-wrap">
+        {product.thumbnail_url ? (
+          <img
+            src={product.thumbnail_url}
+            alt={product.title}
+            className="product-thumb-img"
+            loading="lazy"
+          />
+        ) : (
+          <div className="product-thumb-empty product-thumb-img" />
+        )}
+        <div className="product-thumb-overlay" />
+        {product.is_featured ? (
+          <div className="product-thumb-badge">
+            <AccessBadge label="Offre principale" tone="featured" />
+          </div>
+        ) : null}
       </div>
 
       <div className="product-card-body">
