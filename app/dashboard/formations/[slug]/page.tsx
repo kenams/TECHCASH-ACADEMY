@@ -74,8 +74,11 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
           <header className="topbar">
             <div className="brand">{siteConfig.brand}</div>
             <nav className="nav">
-              <Link href="/dashboard" className="button-ghost">
-                Retour au dashboard
+              <Link href="/formations" className="button-ghost">
+                ← Catalogue
+              </Link>
+              <Link href="/dashboard" className="button-secondary">
+                Dashboard
               </Link>
               <Link href={`/checkout?product=${product.slug}`} className="button">
                 Acheter la formation
@@ -127,8 +130,11 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
           <Link href="/dashboard/mes-formations" className="button-secondary">
             Mes formations
           </Link>
+          <Link href={`/formations/${product.slug}`} className="button-ghost">
+            ← Page publique
+          </Link>
           <Link href="/dashboard" className="button-ghost">
-            Retour au dashboard
+            Dashboard
           </Link>
         </div>
       </section>

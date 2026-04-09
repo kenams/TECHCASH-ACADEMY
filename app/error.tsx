@@ -19,13 +19,13 @@ export default function GlobalError({
       <section className="status-card">
         <p className="eyebrow">Erreur application</p>
         <h1>Une erreur inattendue est survenue</h1>
-        <p>Recharge la page ou retourne a l'accueil si le probleme persiste.</p>
+        <p>Recharge la page ou retourne à l'accueil si le problème persiste.</p>
         <div className="cta-row">
           <button className="button" onClick={reset} type="button">
-            Reessayer
+            Réessayer
           </button>
           <Link href="/" className="button-secondary">
-            Retour accueil
+            Retour à l'accueil
           </Link>
         </div>
       </section>

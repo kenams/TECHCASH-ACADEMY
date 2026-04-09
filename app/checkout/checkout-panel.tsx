@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 
@@ -90,9 +91,9 @@ export function CheckoutPanel({
             >
               {loading ? "Redirection..." : "Payer avec Stripe"}
             </button>
-            <a href="/" className="button-secondary">
-              Retour à l'accueil
-            </a>
+            <Link href={`/formations/${productSlug}`} className="button-secondary">
+              ← Voir la formation
+            </Link>
           </div>
         </div>
       </section>
