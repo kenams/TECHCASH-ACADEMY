@@ -27,10 +27,10 @@ values
   ),
   (
     'landing-pages-rentables',
-    'Cr?er des landing pages qui vendent',
+    'CrÃ©er des landing pages qui vendent',
     'Une formation pour designer, vendre et livrer des landing pages efficaces a des clients.',
     'Apprendre a concevoir, vendre et livrer des landing pages professionnelles pour des clients.',
-    'Ce programme montre comment cadrer le besoin, structurer une page de conversion, vendre une prestation simple et eviter les livraisons interminables. Ideal pour proposer une offre web rapide a forte valeur per?ue.',
+    'Ce programme montre comment cadrer le besoin, structurer une page de conversion, vendre une prestation simple et eviter les livraisons interminables. Ideal pour proposer une offre web rapide a forte valeur perÃ§ue.',
     4900,
     'eur',
     'price_1TJrEOGSZgm5QCNLeTwUULYt',
@@ -40,9 +40,9 @@ values
   ),
   (
     'sites-web-clients',
-    'Cr?er des sites web professionnels pour ses clients',
+    'CrÃ©er des sites web professionnels pour ses clients',
     'Le cadre pour vendre des sites sobres, utiles et livrables rapidement.',
-    'Apprendre a creer des sites web modernes, simples ? vendre et a livrer rapidement.',
+    'Apprendre a creer des sites web modernes, simples à vendre et a livrer rapidement.',
     'Tu y trouveras la logique commerciale, les process de cadrage, la structure de projet et les ressources necessaires pour transformer une prestation site web en offre standardisee et rentable.',
     5400,
     'eur',
@@ -53,10 +53,10 @@ values
   ),
   (
     'outils-pme-glpi',
-    'Cr?er des outils m?tier pour PME, support et GLPI',
+    'CrÃ©er des outils mÃ©tier pour PME, support et GLPI',
     'Une offre plus technique pour produire des outils utiles et monnayables.',
-    'Apprendre a creer des outils concrets pour PME, support informatique et besoins m?tier internes, comme un outil support GLPI.',
-    'Cette formation aide a reperer les besoins m?tier repetitifs, cadrer un mini-outil interne, vendre sa valeur a une PME et articuler support, automatisation et maintenance simple autour de GLPI et d''usages m?tier proches.',
+    'Apprendre a creer des outils concrets pour PME, support informatique et besoins mÃ©tier internes, comme un outil support GLPI.',
+    'Cette formation aide a reperer les besoins mÃ©tier repetitifs, cadrer un mini-outil interne, vendre sa valeur a une PME et articuler support, automatisation et maintenance simple autour de GLPI et d''usages mÃ©tier proches.',
     6900,
     'eur',
     'price_1TJrEQGSZgm5QCNLSgVsDabX',
@@ -66,10 +66,10 @@ values
   ),
   (
     'applications-mobiles-rentables',
-    'Cr?er des applications mobiles simples et rentables',
+    'CrÃ©er des applications mobiles simples et rentables',
     'Concevoir une app utile, simple et monnayable sans partir dans une usine a gaz.',
     'Apprendre a concevoir et structurer une application mobile monnayable.',
-    'Un programme pense pour cadrer une idee, definir un MVP mobile cr?dible, choisir un modele economique simple et poser une base produit propre, sans se perdre dans une complexite inutile des le depart.',
+    'Un programme pense pour cadrer une idee, definir un MVP mobile crÃ©dible, choisir un modele economique simple et poser une base produit propre, sans se perdre dans une complexite inutile des le depart.',
     6200,
     'eur',
     'price_1TJrERGSZgm5QCNLa5B2Z3BH',
@@ -104,7 +104,7 @@ values
     false
   ),
   (
-    'apps-m?tier-supabase',
+    'apps-metier-supabase',
     'Créer des applications métier simples avec Supabase',
     'Des apps utiles, livrables vite et faciles à maintenir',
     'Apprendre à cadrer et produire une application métier simple avec base de données, auth, rôles et livraison propre.',
@@ -112,7 +112,7 @@ values
     6800,
     'eur',
     null,
-    '/visuals/formations/apps-m?tier-supabase-cover.svg',
+    '/visuals/formations/apps-metier-supabase-cover.svg',
     true,
     false
   )
@@ -642,7 +642,7 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'landing-pages-rentables',
       'structure-conversion',
       'Structurer une landing page qui convertit',
-      'Une methode sobre pour construire un message clair, une promesse cr?dible et un CTA fort.',
+      'Une methode sobre pour construire un message clair, une promesse crÃ©dible et un CTA fort.',
       'text',
       null,
       'Une landing page vend parce qu''elle clarifie. Le contenu doit parler du probleme, de la transformation et de la prochaine action. Dans ce module, on formalise les blocs indispensables et ce qu''il faut supprimer pour garder une page directe.',
@@ -760,7 +760,7 @@ La video doit t'aider a voir :
       'Une methode pour obtenir le bon perimetre sans se perdre dans un cahier des charges flou.',
       'text',
       null,
-      'Le cadrage d''un site client commence par une promesse claire, 3 a 5 sections utiles et une date de livraison realiste. Le but de cette formation est de rendre les projets web plus simples ? vendre et plus propres a livrer.',
+      'Le cadrage d''un site client commence par une promesse claire, 3 a 5 sections utiles et une date de livraison realiste. Le but de cette formation est de rendre les projets web plus simples à vendre et plus propres a livrer.',
       true,
       1
     ),
@@ -871,12 +871,12 @@ Reprends un ancien projet et note :
     ),
     (
       'outils-pme-glpi',
-      'audit-besoins-m?tier',
-      'Reperer un besoin m?tier monnayable',
-      'Le bon angle pour transformer un irritant m?tier en mini-outil vendable.',
+      'audit-besoins-metier',
+      'Reperer un besoin mÃ©tier monnayable',
+      'Le bon angle pour transformer un irritant mÃ©tier en mini-outil vendable.',
       'text',
       null,
-      'Avant d''ecrire la moindre ligne, il faut comprendre le cout de l''irritant m?tier. Le meilleur outil a vendre n''est pas le plus complexe, c''est celui qui supprime une perte de temps visible pour la PME.',
+      'Avant d''ecrire la moindre ligne, il faut comprendre le cout de l''irritant mÃ©tier. Le meilleur outil a vendre n''est pas le plus complexe, c''est celui qui supprime une perte de temps visible pour la PME.',
       true,
       1
     ),
@@ -930,7 +930,7 @@ Ce pack doit couvrir :
 
 ### Objectif
 
-Transformer un besoin flou en mission claire, puis en process r?p?table.
+Transformer un besoin flou en mission claire, puis en process rÃ©pÃ©table.
 
 > Un bon audit support montre ou l'entreprise perd du temps et ce qui peut etre resolu vite.$$,
       true,
@@ -980,7 +980,7 @@ reprends 3 demandes client et reformule-les en :
       'Comment reduire l''idee a un produit simple, testable et coherent cote business.',
       'text',
       null,
-      'Le bon MVP mobile n''essaie pas de tout faire. Il doit rendre un service precis, etre comprehensible en quelques secondes et proposer une logique de monnayage cr?dible des le depart.',
+      'Le bon MVP mobile n''essaie pas de tout faire. Il doit rendre un service precis, etre comprehensible en quelques secondes et proposer une logique de monnayage crÃ©dible des le depart.',
       true,
       1
     ),
@@ -998,7 +998,7 @@ La roadmap initiale doit tenir sur peu d'etapes :
 - probleme cible
 - flux principal
 - premier ecran critique
-- mode de mon?tisation
+- mode de monÃ©tisation
 - test utilisateur
 - mise en ligne minimale
 
@@ -1033,7 +1033,7 @@ Les 4 modeles les plus simples a evaluer :
 
 ### Questions a se poser
 
-- quand la valeur est-elle per?ue ?
+- quand la valeur est-elle perÃ§ue ?
 - a quelle frequence l'utilisateur revient-il ?
 - qui paie vraiment ?
 - quel prix peut etre annonce des la pre-vente ?
@@ -1052,7 +1052,7 @@ Les 4 modeles les plus simples a evaluer :
       'applications-mobiles-rentables',
       'video-introduction',
       'Video explicative : cadrer une application mobile rentable',
-      'Une capsule pour comprendre le type de MVP vise, la mon?tisation et le niveau de simplicite recherche.',
+      'Une capsule pour comprendre le type de MVP vise, la monÃ©tisation et le niveau de simplicite recherche.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
       $$## Ce que la video doit t'aider a arbitrer
@@ -1061,7 +1061,7 @@ La video appuie 4 decisions :
 
 - quelles fonctions garder
 - lesquelles repousser
-- comment la mon?tisation influence le produit
+- comment la monÃ©tisation influence le produit
 - quel niveau de finition suffit pour lancer
 
 ### Exercice rapide
@@ -1355,8 +1355,8 @@ Le but est d'avoir une base de delivery réutilisable sur chaque client.$$,
       5
     ),
     (
-      'apps-m?tier-supabase',
-      'cadrer-application-m?tier',
+      'apps-metier-supabase',
+      'cadrer-application-metier',
       'Cadrer une application métier avant de coder',
       'Choisir le bon périmètre, le bon utilisateur cible et le bon MVP pour éviter les projets trop gros ou trop flous.',
       'text',
@@ -1384,7 +1384,7 @@ Une app métier rentable commence par un flux clair, pas par 25 écrans.
       1
     ),
     (
-      'apps-m?tier-supabase',
+      'apps-metier-supabase',
       'schema-donnees-supabase',
       'Schéma de données, rôles et sécurité de base',
       'Poser une base Supabase propre: tables, relations, auth, rôles et règles simples de sécurité.',
@@ -1418,7 +1418,7 @@ Supabase te fait gagner du temps si la structure est simple et lisible.
       2
     ),
     (
-      'apps-m?tier-supabase',
+      'apps-metier-supabase',
       'ux-flux-et-delivery',
       'Flux UX, back-office et livraison au client',
       'Concevoir les écrans utiles, le back-office minimum et une livraison rassurante pour un client métier.',
@@ -1450,8 +1450,8 @@ Une app métier doit être comprise vite par quelqu'un qui n'est pas technique.
       3
     ),
     (
-      'apps-m?tier-supabase',
-      'starter-kit-app-m?tier',
+      'apps-metier-supabase',
+      'starter-kit-app-metier',
       'Starter kit Supabase, rôles et déploiement',
       'Une ressource pour démarrer plus vite avec structure de tables, rôles, vues clés et checklist de mise en ligne.',
       'resource',
@@ -1469,7 +1469,7 @@ Utilise ce starter kit pour standardiser tes premières apps métier sans repart
       4
     ),
     (
-      'apps-m?tier-supabase',
+      'apps-metier-supabase',
       'facturation-evolution-a-venir',
       'Facturation, maintenance et feuille de route produit',
       'Le module final couvrira la tarification projet, la maintenance et la gestion des évolutions après livraison.',
