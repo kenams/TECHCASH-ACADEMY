@@ -17,7 +17,7 @@ export function ProductCard({ product, isOwned = false }: ProductCardProps) {
         style={
           product.thumbnail_url
             ? {
-                backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.68)), url(${product.thumbnail_url})`
+                backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.08) 0%, rgba(2,6,23,0.42) 60%, rgba(2,6,23,0.82) 100%), url(${product.thumbnail_url})`
               }
             : undefined
         }

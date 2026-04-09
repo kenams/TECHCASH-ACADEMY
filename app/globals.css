@@ -710,14 +710,32 @@ select {
   overflow: hidden;
 }
 
+.product-thumb {
+  overflow: hidden;
+}
+
 .product-card-featured {
   border-color: rgba(215, 184, 122, 0.28);
   box-shadow: 0 30px 70px rgba(11, 17, 32, 0.45), 0 0 0 1px rgba(215, 184, 122, 0.08);
 }
 
-.product-thumb,
+.product-thumb {
+  min-height: 220px;
+  background-size: cover;
+  background-position: center;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-thumb {
+  transform: scale(1.04);
+}
+
 .product-hero-media {
-  min-height: 180px;
+  min-height: 320px;
   background-size: cover;
   background-position: center;
   padding: 1rem;

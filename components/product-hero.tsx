@@ -58,7 +58,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
           <div
             className="product-hero-media"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url(${product.thumbnail_url})`
+              backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.05) 0%, rgba(2,6,23,0.38) 65%, rgba(2,6,23,0.78) 100%), url(${product.thumbnail_url})`
             }}
           />
         ) : (
