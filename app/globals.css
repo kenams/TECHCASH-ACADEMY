@@ -81,6 +81,10 @@ footer,
   flex-wrap: wrap;
 }
 
+.dashboard-hero {
+  padding: 2.5rem 0 1.5rem;
+}
+
 .topbar {
   padding: 1rem 1.1rem;
   margin-top: 0.85rem;
@@ -440,7 +444,7 @@ footer,
 }
 
 .section-first {
-  padding-top: 1rem;
+  padding-top: 3.5rem;
 }
 
 .grid-3,
@@ -582,7 +586,7 @@ footer,
 .dashboard-frame {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 2.5rem 0 5rem;
+  padding: 3rem 0 6rem;
 }
 
 .field {
@@ -761,7 +765,7 @@ footer,
 /* ---- Product card image ---- */
 .product-thumb-wrap {
   position: relative;
-  height: 220px;
+  height: 240px;
   overflow: hidden;
   border-radius: 24px 24px 0 0;
 }
@@ -808,7 +812,7 @@ footer,
 /* ---- Product hero image ---- */
 .product-hero-media-wrap {
   position: relative;
-  height: 340px;
+  height: 360px;
   overflow: hidden;
   border-radius: 24px 24px 0 0;
 }
@@ -872,18 +876,47 @@ footer,
   display: grid;
 }
 
-.member-product-media {
-  min-height: 176px;
-  padding: 1.1rem;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+.member-product-media-wrap {
+  position: relative;
+  display: block;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+  text-decoration: none;
   border-bottom: 1px solid rgba(201, 169, 109, 0.1);
-  border-radius: 18px;
-  margin-bottom: 1.15rem;
-  box-shadow: inset 0 -30px 60px rgba(4, 8, 20, 0.28);
+}
+
+.member-product-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.member-product-card:hover .member-product-media-img {
+  transform: scale(1.05);
+}
+
+.member-product-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 6, 23, 0.04) 0%,
+    rgba(2, 6, 23, 0.3) 60%,
+    rgba(2, 6, 23, 0.75) 100%
+  );
+}
+
+.member-product-media-badges {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .member-product-accent {
@@ -900,16 +933,11 @@ footer,
 .member-product-body {
   display: grid;
   gap: 1rem;
-  padding-top: 0.15rem;
+  padding: 1.3rem;
 }
 
-.member-product-card .hero-badges {
-  gap: 0.75rem;
-  align-items: flex-start;
-}
-
-.member-product-card .access-badge {
-  box-shadow: 0 10px 24px rgba(4, 8, 20, 0.22);
+.member-product-media-badges .access-badge {
+  box-shadow: 0 8px 20px rgba(4, 8, 20, 0.3);
 }
 
 .product-card-top,
@@ -949,7 +977,7 @@ footer,
   display: grid;
   gap: 1.25rem;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-  padding: 1rem 0 0;
+  padding: 2.5rem 0 0;
 }
 
 .product-hero-copy,

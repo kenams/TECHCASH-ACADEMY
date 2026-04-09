@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
 import { PurchaseCTA } from "@/components/purchase-cta";
 import { formatPrice } from "@/lib/products";
@@ -16,26 +17,26 @@ export function MemberProductCard({
 }: MemberProductCardProps) {
   return (
     <article className="member-product-card">
-      <div
-        className={`member-product-media ${product.thumbnail_url ? "" : "product-thumb-empty"}`}
-        style={
-          product.thumbnail_url
-            ? {
-                backgroundImage: `linear-gradient(180deg, rgba(4,8,20,0.08), rgba(4,8,20,0.8)), url(${product.thumbnail_url})`
-              }
-            : undefined
-        }
-      >
-        <div className="hero-badges">
+      <Link href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`} className="member-product-media-wrap">
+        {product.thumbnail_url ? (
+          <img
+            src={product.thumbnail_url}
+            alt={product.title}
+            className="member-product-media-img"
+            loading="lazy"
+          />
+        ) : (
+          <div className="product-thumb-empty member-product-media-img" />
+        )}
+        <div className="member-product-media-overlay" />
+        <div className="member-product-media-badges">
           {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
           <AccessBadge
             label={isOwned ? "Formation débloquée" : "Disponible"}
             tone={isOwned ? "success" : "default"}
           />
         </div>
-      </div>
-      <div className={`member-product-accent ${isOwned ? "member-product-accent-owned" : ""}`} />
-
+      </Link>
       <div className="member-product-body">
         <div className="member-product-head">
           <div>
