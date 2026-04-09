@@ -328,13 +328,15 @@ footer,
   align-items: center;
   justify-content: center;
   min-width: 92px;
-  padding: 0.55rem 0.8rem;
+  min-height: 44px;
+  padding: 0.72rem 1rem;
   border-radius: 999px;
   background: rgba(215, 184, 122, 0.1);
   border: 1px solid rgba(215, 184, 122, 0.2);
   color: #f8e7c5;
   font-size: 0.92rem;
   font-weight: 700;
+  line-height: 1.15;
 }
 
 .eyebrow,
@@ -350,16 +352,20 @@ footer,
 
 .eyebrow {
   gap: 0.5rem;
-  padding: 0.45rem 0.75rem;
+  min-height: 44px;
+  padding: 0.72rem 1.15rem;
   background: rgba(215, 184, 122, 0.08);
   border: 1px solid rgba(215, 184, 122, 0.2);
   color: #f2dfbb;
+  line-height: 1.15;
 }
 
 .pill {
-  padding: 0.35rem 0.7rem;
+  min-height: 40px;
+  padding: 0.62rem 1rem;
   background: rgba(34, 197, 94, 0.12);
   color: #bbf7d0;
+  line-height: 1.15;
 }
 
 .access-badge {
@@ -398,10 +404,12 @@ footer,
 }
 
 .trust-pill {
-  padding: 0.55rem 0.8rem;
+  min-height: 42px;
+  padding: 0.68rem 1rem;
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid rgba(215, 184, 122, 0.14);
   color: #e8edf7;
+  line-height: 1.15;
 }
 
 .list,
@@ -848,13 +856,15 @@ footer,
 .meta-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.55rem 0.9rem;
+  min-height: 42px;
+  padding: 0.66rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba(201, 169, 109, 0.12);
   background: rgba(255, 255, 255, 0.04);
   color: #e8edf7;
   font-size: 0.82rem;
   font-weight: 600;
+  line-height: 1.15;
 }
 
 .member-product-card {
