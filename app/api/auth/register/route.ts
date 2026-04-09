@@ -18,9 +18,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email et mot de passe requis." }, { status: 400 });
     }
 
-    if (password.length < 6) {
+    if (password.length < 8) {
       return NextResponse.json(
-        { error: "Le mot de passe doit contenir au moins 6 caractères." },
+        { error: "Le mot de passe doit contenir au moins 8 caractères." },
         { status: 400 }
       );
     }
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
-      email_confirm: true
+      email_confirm: false
     });
 
     if (createError) {
@@ -57,18 +57,14 @@ export async function POST(request: Request) {
     });
 
     if (profileError) {
-      logError("Compte créé mais profil impossible à synchroniser.", {
-        email,
-        profileError
-      });
-      return NextResponse.json(
-        { error: "Compte créé mais profil impossible à synchroniser." },
-        { status: 500 }
-      );
+      logError("Compte créé mais profil impossible à synchroniser.", { email, profileError });
     }
 
-    logInfo("Compte créé via route serveur.", { userId: createdUser.user.id, email });
-    return NextResponse.json({ success: true });
+    logInfo("Compte créé via route serveur (confirmation email requise).", {
+      userId: createdUser.user.id,
+      email
+    });
+    return NextResponse.json({ success: true, requiresEmailConfirmation: true });
   } catch (error) {
     logError("Erreur inattendue pendant l'inscription.", { error });
     return NextResponse.json({ error: "Impossible de créer le compte." }, { status: 500 });

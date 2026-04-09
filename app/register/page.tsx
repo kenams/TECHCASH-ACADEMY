@@ -3,27 +3,24 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
-import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 import { siteConfig } from "@/lib/site";
 
 function resolveRedirectTarget(nextParam: string | null, productParam: string | null) {
   if (nextParam?.startsWith("/")) {
     return nextParam;
   }
-
   if (productParam) {
     return `/checkout?product=${encodeURIComponent(productParam)}`;
   }
-
   return "/formations";
 }
 
 export default function RegisterPage() {
-  const supabase = getSupabaseBrowserClient();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,68 +34,54 @@ export default function RegisterPage() {
       ? `/login?product=${encodeURIComponent(productParam)}`
       : "/login";
 
+  function validatePasswords() {
+    if (password.length < 8) {
+      setError("Le mot de passe doit contenir au moins 8 caractères.");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      setError("Les mots de passe ne correspondent pas.");
+      return false;
+    }
+    return true;
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
-      setLoading(true);
       setError("");
       setMessage("");
 
+      if (!validatePasswords()) return;
+
+      setLoading(true);
+
       const registerResponse = await fetch("/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
       });
 
+      const registerData = (await registerResponse.json()) as {
+        error?: string;
+        requiresEmailConfirmation?: boolean;
+      };
+
       if (!registerResponse.ok) {
-        const registerData = (await registerResponse.json()) as { error?: string };
         setError(registerData.error || "Impossible de créer le compte.");
         setLoading(false);
         return;
       }
 
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (signInError) {
-        setError(signInError.message);
-        setLoading(false);
+      if (registerData.requiresEmailConfirmation) {
+        const verifyHref = `/auth/verify-email?email=${encodeURIComponent(email)}`;
+        router.push(verifyHref);
         return;
       }
 
-      const syncResponse = await fetch("/api/auth/sync-profile", {
-        method: "POST",
-        headers: data.session?.access_token
-          ? {
-              Authorization: `Bearer ${data.session.access_token}`
-            }
-          : undefined
-      });
-
-      if (!syncResponse.ok) {
-        const syncData = (await syncResponse.json()) as { error?: string };
-        setError(syncData.error || "Compte créé mais profil introuvable.");
-        setLoading(false);
-        return;
-      }
-
-      if (data.session) {
-        setMessage("Compte créé. Redirection en cours…");
-        setLoading(false);
-        router.push(redirectTarget);
-        return;
-      }
-
-      setMessage("Compte créé. Connecte-toi pour continuer.");
+      setMessage("Compte créé. Redirection en cours…");
       setLoading(false);
-      router.push(loginHref);
+      router.push(redirectTarget);
     } catch (registerError) {
       console.error(registerError);
       setError("Une erreur est survenue pendant l'inscription.");
@@ -125,7 +108,7 @@ export default function RegisterPage() {
               <span className="confidence-dot" />
               <div>
                 <strong>Création instantanée</strong>
-                <p>Ton espace membre est actif dès la validation.</p>
+                <p>Ton espace membre est actif dès la validation de ton email.</p>
               </div>
             </div>
             <div className="confidence-item">
@@ -146,7 +129,7 @@ export default function RegisterPage() {
           <div className="trust-row" style={{ marginTop: "0.5rem" }}>
             <span className="trust-pill">Gratuit</span>
             <span className="trust-pill">Sans engagement</span>
-            <span className="trust-pill">Accès immédiat</span>
+            <span className="trust-pill">Email vérifié</span>
           </div>
         </div>
       </div>
@@ -183,7 +166,7 @@ export default function RegisterPage() {
                 placeholder="toi@exemple.com"
                 disabled={loading}
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -193,17 +176,46 @@ export default function RegisterPage() {
               <input
                 id="password"
                 type="password"
-                minLength={6}
+                minLength={8}
                 autoComplete="new-password"
-                placeholder="Minimum 6 caractères"
+                placeholder="Minimum 8 caractères"
                 disabled={loading}
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
 
-            <button className="button button-full" type="submit" disabled={loading} aria-busy={loading}>
+            <div className="field">
+              <label htmlFor="confirm-password">Confirmer le mot de passe</label>
+              <input
+                id="confirm-password"
+                type="password"
+                minLength={8}
+                autoComplete="new-password"
+                placeholder="Répète ton mot de passe"
+                disabled={loading}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              {confirmPassword && password !== confirmPassword ? (
+                <p className="helper" style={{ color: "var(--error, #f87171)", marginTop: "0.35rem" }}>
+                  Les mots de passe ne correspondent pas.
+                </p>
+              ) : confirmPassword && password === confirmPassword ? (
+                <p className="helper" style={{ color: "var(--success, #34d399)", marginTop: "0.35rem" }}>
+                  Les mots de passe correspondent.
+                </p>
+              ) : null}
+            </div>
+
+            <button
+              className="button button-full"
+              type="submit"
+              disabled={loading || (confirmPassword.length > 0 && password !== confirmPassword)}
+              aria-busy={loading}
+            >
               {loading ? "Création en cours…" : "Créer mon compte"}
             </button>
           </form>

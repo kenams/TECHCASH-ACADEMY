@@ -92,6 +92,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           <Link href="/formations" className="dashboard-nav-link">
             Catalogue complet
           </Link>
+          <Link href="/dashboard/securite" className="dashboard-nav-link">
+            Sécurité
+          </Link>
           {canManageCatalog ? (
             <Link href="/dashboard/admin" className="dashboard-nav-link">
               Admin contenu
