@@ -35,12 +35,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-landing-pages-rentables",
     slug: "landing-pages-rentables",
-    title: "Cr?er des landing pages qui vendent",
-    subtitle: "Une offre claire, simple ? packager et facile ? justifier",
+    title: "Créer des landing pages qui vendent",
+    subtitle: "Une offre claire, simple à packager et facile à justifier",
     short_description:
-      "Apprendre ? concevoir, vendre et livrer des landing pages professionnelles pour des clients.",
+      "Apprendre à concevoir, vendre et livrer des landing pages professionnelles pour des clients.",
     long_description:
-      "Cette formation montre comment construire une offre de landing pages qui convertit vraiment, comment la vendre sans jargon inutile et comment livrer des pages propres, rapides et orient?es business pour des clients qui veulent des r?sultats concrets.",
+      "Cette formation montre comment construire une offre de landing pages qui convertit vraiment, comment la vendre sans jargon inutile et comment livrer des pages propres, rapides et orientées business pour des clients qui veulent des résultats concrets.",
     price_cents: 4900,
     currency: "eur",
     stripe_price_id: "price_1TJrEOGSZgm5QCNLeTwUULYt",
@@ -53,12 +53,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-sites-web-clients",
     slug: "sites-web-clients",
-    title: "Cr?er des sites web professionnels pour ses clients",
-    subtitle: "Des sites simples ? vendre, rapides ? produire et propres ? livrer",
+    title: "Créer des sites web professionnels pour ses clients",
+    subtitle: "Des sites simples à vendre, rapides à produire et propres à livrer",
     short_description:
-      "Apprendre ? cr?er des sites web modernes, simples ? vendre et ? livrer rapidement.",
+      "Apprendre à créer des sites web modernes, simples à vendre et à livrer rapidement.",
     long_description:
-      "Le programme est centr? sur des sites clients utiles et sobres : cadrage du besoin, structure, livraison, maintenance et communication client. L'objectif est de rendre la prestation lisible, rentable et r?p?table.",
+      "Le programme est centré sur des sites clients utiles et sobres : cadrage du besoin, structure, livraison, maintenance et communication client. L'objectif est de rendre la prestation lisible, rentable et répétable.",
     price_cents: 5400,
     currency: "eur",
     stripe_price_id: "price_1TJrEPGSZgm5QCNLEAP6iWha",
@@ -71,12 +71,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-outils-pme-glpi",
     slug: "outils-pme-glpi",
-    title: "Cr?er des outils m?tier pour PME, support et GLPI",
-    subtitle: "Transformer un besoin interne en solution simple ? vendre",
+    title: "Créer des outils métier pour PME, support et GLPI",
+    subtitle: "Transformer un besoin interne en solution simple à vendre",
     short_description:
-      "Apprendre ? cr?er des outils concrets pour PME, support informatique et besoins m?tier internes, comme un outil support GLPI.",
+      "Apprendre à créer des outils concrets pour PME, support informatique et besoins métier internes, comme un outil support GLPI.",
     long_description:
-      "Cette formation se concentre sur des outils ? forte valeur per?ue : support, tickets, formulaires, tableaux de bord internes, micro-outils pour PME. Le but est de savoir transformer un probl?me m?tier en produit ou en mission facturable.",
+      "Cette formation se concentre sur des outils à forte valeur perçue : support, tickets, formulaires, tableaux de bord internes, micro-outils pour PME. Le but est de savoir transformer un problème métier en produit ou en mission facturable.",
     price_cents: 6900,
     currency: "eur",
     stripe_price_id: "price_1TJrEQGSZgm5QCNLSgVsDabX",
@@ -89,12 +89,12 @@ export const localProducts: ProductRecord[] = [
   {
     id: "local-applications-mobiles-rentables",
     slug: "applications-mobiles-rentables",
-    title: "Cr?er des applications mobiles simples et rentables",
-    subtitle: "Concevoir une app mon?tisable sans partir sur un produit trop lourd",
+    title: "Créer des applications mobiles simples et rentables",
+    subtitle: "Concevoir une app monétisable sans partir sur un produit trop lourd",
     short_description:
-      "Apprendre ? concevoir et structurer une application mobile mon?tisable.",
+      "Apprendre à concevoir et structurer une application mobile monétisable.",
     long_description:
-      "Tu y trouves une m?thode pour cadrer une application mobile simple, d?finir une proposition de valeur claire, organiser les ?crans, poser la logique produit et envisager une mon?tisation r?aliste sans complexit? inutile.",
+      "Tu y trouves une méthode pour cadrer une application mobile simple, définir une proposition de valeur claire, organiser les écrans, poser la logique produit et envisager une monétisation réaliste sans complexité inutile.",
     price_cents: 6200,
     currency: "eur",
     stripe_price_id: "price_1TJrERGSZgm5QCNLa5B2Z3BH",
@@ -282,7 +282,7 @@ export const localProductModules: ProductModuleRecord[] = [
     1,
     {
       content_body:
-        "Une landing page vend surtout par clarte.\n\nTu dois faire comprendre en quelques secondes le probleme traite, la promesse, les preuves et l'action attendue.\n\nDans ce module, tu apprends a construire un squelette vendable avant meme d'ouvrir ton outil de design."
+        "Une landing page vend surtout par clarté.\n\nTu dois faire comprendre en quelques secondes le problème traité, la promesse, les preuves et l'action attendue.\n\nDans ce module, tu apprends à construire un squelette vendable avant même d'ouvrir ton outil de design."
     }
   ),
   module(
@@ -294,19 +294,19 @@ export const localProductModules: ProductModuleRecord[] = [
     2,
     {
       content_body:
-        "## Checklist de livraison d'une landing page client\n\nUne landing page n'est pas livree quand elle est jolie. Elle est livree quand elle est **prête à convertir** et facile à reprendre si le client veut une iteration.\n\n### Verification avant envoi\n\n- **Titre hero** : la promesse est comprise en moins de 5 secondes\n- **CTA principal** : visible sans scroller sur desktop et mobile\n- **Preuves** : avis, references, chiffres ou captures presentes\n- **Offre** : ce qui est inclus est explicite\n- **Contact / formulaire** : teste avec un vrai envoi\n\n### Verification technique\n\n- vitesse correcte sur mobile\n- aucun bloc casse sur petit ecran\n- favicon, meta title et description renseignes\n- pixels / analytics poses si prevus\n- formulaires relies a la bonne destination\n\n### Ce que tu remets au client\n\n- lien live\n- recapitulatif de ce qui a ete livre\n- liste des acces si necessaire\n- 3 recommandations d'optimisation pour la suite\n\n> Une bonne livraison anticipe deja les 3 questions du client: comment modifier, comment mesurer, et quoi tester ensuite."
+        "## Checklist de livraison d'une landing page client\n\nUne landing page n'est pas livrée quand elle est jolie. Elle est livrée quand elle est **prête à convertir** et facile à reprendre si le client veut une iteration.\n\n### Vérification avant envoi\n\n- **Titre hero** : la promesse est comprise en moins de 5 secondes\n- **CTA principal** : visible sans scroller sur desktop et mobile\n- **Preuves** : avis, références, chiffres ou captures présentes\n- **Offre** : ce qui est inclus est explicite\n- **Contact / formulaire** : testé avec un vrai envoi\n\n### Vérification technique\n\n- vitesse correcte sur mobile\n- aucun bloc cassé sur petit écran\n- favicon, meta title et description renseignés\n- pixels / analytics posés si prévus\n- formulaires reliés à la bonne destination\n\n### Ce que tu remets au client\n\n- lien live\n- récapitulatif de ce qui a été livré\n- liste des accès si nécessaire\n- 3 recommandations d'optimisation pour la suite\n\n> Une bonne livraison anticipe déjà les 3 questions du client : comment modifier, comment mesurer, et quoi tester ensuite."
     }
   ),
   module(
     "landing-pages-rentables",
     "templates-blocs",
-    "Templates de sections reutilisables",
-    "Bibliotheque de sections hero, preuves, FAQ et CTA pour gagner du temps.",
+    "Templates de sections réutilisables",
+    "Bibliothèque de sections hero, preuves, FAQ et CTA pour gagner du temps.",
     "resource",
     3,
     {
       content_body:
-        "## Bibliotheque de blocs reutilisables\n\nLe but n'est pas de copier-coller les memes pages. Le but est de partir d'une base solide pour produire plus vite.\n\n### Bloc hero\n\nStructure minimale:\n- probleme principal\n- promesse courte\n- preuve immediate\n- CTA unique\n\n### Bloc preuve\n\nUtilise au moins 2 formats:\n- temoignage client\n- chiffre ou resultat\n- logos ou references\n- avant / apres\n\n### Bloc FAQ\n\nLes 5 questions les plus utiles sont souvent:\n- pour qui est cette offre ?\n- en combien de temps c'est livre ?\n- qu'est-ce qui est inclus ?\n- combien d'allers-retours ?\n- comment on demarre ?\n\n### Bloc CTA final\n\nLe dernier CTA doit reformuler l'action, pas juste afficher `Contactez-nous`.\n\n> Un bon template economise du temps de production, mais surtout du temps de decision chez le client."
+        "## Bibliothèque de blocs réutilisables\n\nLe but n'est pas de copier-coller les mêmes pages. Le but est de partir d'une base solide pour produire plus vite.\n\n### Bloc hero\n\nStructure minimale :\n- problème principal\n- promesse courte\n- preuve immédiate\n- CTA unique\n\n### Bloc preuve\n\nUtilise au moins 2 formats :\n- témoignage client\n- chiffre ou résultat\n- logos ou références\n- avant / après\n\n### Bloc FAQ\n\nLes 5 questions les plus utiles sont souvent :\n- pour qui est cette offre ?\n- en combien de temps c'est livré ?\n- qu'est-ce qui est inclus ?\n- combien d'allers-retours ?\n- comment on démarre ?\n\n### Bloc CTA final\n\nLe dernier CTA doit reformuler l'action, pas juste afficher `Contactez-nous`.\n\n> Un bon template économise du temps de production, mais surtout du temps de décision chez le client."
     }
   ),
   module(
@@ -319,14 +319,14 @@ export const localProductModules: ProductModuleRecord[] = [
     {
       content_url: sampleVideos.landingPages,
       content_body:
-        "## Comment utiliser cette video\n\nLa video sert a illustrer le raisonnement du module, pas a le remplacer.\n\n### Ce que tu dois verifier pendant le visionnage\n\n- comment la promesse est formulee\n- ou la preuve arrive dans la page\n- comment le CTA est repete sans lourdeur\n- quels blocs peuvent etre supprimes sans perdre la conversion\n\n### A faire juste apres\n\n- reprendre une landing page deja livree\n- supprimer 20 % du texte inutile\n- renforcer un seul CTA principal\n- ajouter une preuve concrete en haut de page"
+        "## Comment utiliser cette vidéo\n\nLa vidéo sert à illustrer le raisonnement du module, pas à le remplacer.\n\n### Ce que tu dois vérifier pendant le visionnage\n\n- comment la promesse est formulée\n- où la preuve arrive dans la page\n- comment le CTA est répété sans lourdeur\n- quels blocs peuvent être supprimés sans perdre la conversion\n\n### À faire juste après\n\n- reprendre une landing page déjà livrée\n- supprimer 20 % du texte inutile\n- renforcer un seul CTA principal\n- ajouter une preuve concrète en haut de page"
     }
   ),
   module(
     "landing-pages-rentables",
     "cas-a-b-testing",
     "Cas de tests et d'optimisation",
-    "Une serie d'exemples d'avant / apres et d'idees d'optimisation sera ajoutee.",
+    "Une série d'exemples d'avant / après et d'idées d'optimisation sera ajoutée.",
     "coming_soon",
     5
   ),
@@ -335,12 +335,12 @@ export const localProductModules: ProductModuleRecord[] = [
     "sites-web-clients",
     "cadrage-site-client",
     "Cadrer un site client sans perdre du temps",
-    "Questions de cadrage, architecture simple, priorites business et limites de projet a poser des le debut.",
+    "Questions de cadrage, architecture simple, priorités business et limites de projet à poser dès le début.",
     "text",
     1,
     {
       content_body:
-        "Un site client devient vite improductif si le cadrage est flou.\n\nLe but est d'obtenir vite les bons elements : pages necessaires, objectifs, ton, CTA et contraintes techniques.\n\nTu apprendras a garder le projet simple et rentable."
+        "Un site client devient vite improductif si le cadrage est flou.\n\nLe but est d'obtenir vite les bons éléments : pages nécessaires, objectifs, ton, CTA et contraintes techniques.\n\nTu apprendras à garder le projet simple et rentable."
     }
   ),
   module(
@@ -352,7 +352,7 @@ export const localProductModules: ProductModuleRecord[] = [
     2,
     {
       content_body:
-        "## Brief client a faire remplir avant toute production\n\nLe brief n'est pas un document decoratif. Il sert a eviter les demandes floues du type \"on veut un site moderne\".\n\n### Les questions obligatoires\n\n- objectif principal du site\n- pages indispensables\n- action attendue sur chaque page\n- cibles prioritaires\n- references aimees / detestees\n- contraintes de delai et de budget\n\n### Les assets a demander\n\n- logo en bonne qualite\n- textes existants si disponibles\n- photos ou banque d'images autorisee\n- informations legales\n- acces domaine / hebergement si deja existants\n\n### Les limites a poser\n\n- nombre de pages incluses\n- nombre d'allers-retours\n- contenu fourni par qui\n- maintenance incluse ou non\n\n> Si le brief est vide ou flou, le projet le sera aussi. Le brief est deja une partie du delivery."
+        "## Brief client à faire remplir avant toute production\n\nLe brief n'est pas un document décoratif. Il sert à éviter les demandes floues du type \"on veut un site moderne\".\n\n### Les questions obligatoires\n\n- objectif principal du site\n- pages indispensables\n- action attendue sur chaque page\n- cibles prioritaires\n- références aimées / détestées\n- contraintes de délai et de budget\n\n### Les assets à demander\n\n- logo en bonne qualité\n- textes existants si disponibles\n- photos ou banque d'images autorisee\n- informations légales\n- accès domaine / hébergement si déjà existants\n\n### Les limites à poser\n\n- nombre de pages incluses\n- nombre d'allers-retours\n- contenu fourni par qui\n- maintenance incluse ou non\n\n> Si le brief est vide ou flou, le projet le sera aussi. Le brief est déjà une partie du delivery."
     }
   ),
   module(
@@ -364,27 +364,27 @@ export const localProductModules: ProductModuleRecord[] = [
     3,
     {
       content_body:
-        "## Boite a outils de delivery web\n\nPour livrer proprement un site client, tu as besoin d'un process plus que d'un outil miracle.\n\n### Stack minimale recommandee\n\n- environnement de preproduction\n- checklist SEO technique minimale\n- formulaire teste en reel\n- sauvegarde ou export avant mise en ligne\n- acces client documentes\n\n### Checklist recette\n\n- verifier menu et liens\n- verifier responsive mobile\n- verifier titres H1 / H2 et metas\n- verifier les formulaires\n- verifier les redirections et pages legales\n\n### Maintenance de base a proposer\n\n- mises a jour mensuelles\n- correction de petits bugs\n- sauvegarde / restauration\n- ajout de contenus simples\n\n> Le client ne juge pas seulement le site. Il juge aussi la proprete de la passation."
+        "## Boîte à outils de delivery web\n\nPour livrer proprement un site client, tu as besoin d'un process plus que d'un outil miracle.\n\n### Stack minimale recommandée\n\n- environnement de préproduction\n- checklist SEO technique minimale\n- formulaire testé en réel\n- sauvegarde ou export avant mise en ligne\n- accès client documentés\n\n### Checklist recette\n\n- vérifier menu et liens\n- vérifier responsive mobile\n- vérifier titres H1 / H2 et metas\n- vérifier les formulaires\n- vérifier les redirections et pages légales\n\n### Maintenance de base à proposer\n\n- mises à jour mensuelles\n- correction de petits bugs\n- sauvegarde / restauration\n- ajout de contenus simples\n\n> Le client ne juge pas seulement le site. Il juge aussi la propreté de la passation."
     }
   ),
   module(
     "sites-web-clients",
     "video-introduction",
     "Video explicative : cadrer et vendre un site client",
-    "Une capsule pour comprendre le type de projet, le niveau de sobriete attendu et la logique de livraison de la formation.",
+    "Une capsule pour comprendre le type de projet, le niveau de sobriété attendu et la logique de livraison de la formation.",
     "video",
     4,
     {
       content_url: sampleVideos.sitesWeb,
       content_body:
-        "## Ce que la video doit t'aider a voir\n\nLa video montre surtout le niveau de simplicite a viser.\n\n### Pendant le visionnage\n\nobserve:\n- la hierarchie des pages\n- ce qui releve du site et ce qui releve d'une future evolution\n- la logique de navigation\n- le niveau de finition suffisant pour livrer sans surproduire\n\n### Exercice recommande\n\nreprends un projet client passe et demande-toi:\n- quelles pages etaient inutiles ?\n- quel bloc pouvait etre mutualise ?\n- qu'est-ce qui aurait pu passer en option ?"
+        "## Ce que la vidéo doit t'aider à voir\n\nLa vidéo montre surtout le niveau de simplicité à viser.\n\n### Pendant le visionnage\n\nobserve :\n- la hiérarchie des pages\n- ce qui relève du site et ce qui relève d'une future évolution\n- la logique de navigation\n- le niveau de finition suffisant pour livrer sans surproduire\n\n### Exercice recommandé\n\nReprends un projet client passé et demande-toi :\n- quelles pages étaient inutiles ?\n- quel bloc pouvait être mutualisé ?\n- qu'est-ce qui aurait pu passer en option ?"
     }
   ),
   module(
     "sites-web-clients",
     "pack-maintenance",
     "Pack maintenance et evolution",
-    "Le module sur les offres de maintenance sera complete avec scripts et devis.",
+    "Le module sur les offres de maintenance sera complété avec scripts et devis.",
     "coming_soon",
     5
   ),
@@ -392,13 +392,13 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "outils-pme-glpi",
     "problemes-metier-a-vendre",
-    "Problemes metier simples a transformer en outil",
-    "Identifier les irritants internes d'une PME et les transformer en besoins concretement facturables.",
+    "Problèmes métier simples à transformer en outil",
+    "Identifier les irritants internes d'une PME et les transformer en besoins concrètement facturables.",
     "text",
     1,
     {
       content_body:
-        "Les bons outils internes resolvent un irritant clair : tickets, suivi, demandes, workflow ou reporting.\n\nCe module t'aide a traduire un probleme flou en solution simple et finie, donc en proposition commerciale credible."
+        "Les bons outils internes résolvent un irritant clair : tickets, suivi, demandes, workflow ou reporting.\n\nCe module t'aide à traduire un problème flou en solution simple et finie, donc en proposition commerciale crédible."
     }
   ),
   module(
@@ -410,7 +410,7 @@ export const localProductModules: ProductModuleRecord[] = [
     2,
     {
       content_body:
-        "## Schema de cadrage pour un outil support ou metier\n\nUn mini-outil rentable commence par un schema tres simple: probleme, utilisateur, action, resultat.\n\n### Les 5 blocs du cadrage\n\n- **Probleme** : quelle perte de temps ou quel risque existe aujourd'hui ?\n- **Utilisateur** : qui ouvre, traite ou valide ?\n- **Donnees** : que faut-il enregistrer au minimum ?\n- **Workflow** : quelles sont les 3 a 5 etapes reelles ?\n- **Resultat** : qu'est-ce que le dirigeant verra de mieux en 30 jours ?\n\n### Questions de qualification\n\n- combien de personnes sont impliquees ?\n- quel outil remplace-t-on ?\n- qu'est-ce qui bloque aujourd'hui ?\n- quelle action doit devenir plus rapide ?\n\n### Livrable de cadrage\n\ntermine toujours par:\n- perimetre inclus\n- perimetre exclu\n- etape 1 en production\n- evolutions possibles plus tard"
+        "## Schéma de cadrage pour un outil support ou métier\n\nUn mini-outil rentable commence par un schéma très simple : problème, utilisateur, action, résultat.\n\n### Les 5 blocs du cadrage\n\n- **Problème** : quelle perte de temps ou quel risque existe aujourd'hui ?\n- **Utilisateur** : qui ouvre, traite ou valide ?\n- **Données** : que faut-il enregistrer au minimum ?\n- **Workflow** : quelles sont les 3 à 5 étapes réelles ?\n- **Résultat** : qu'est-ce que le dirigeant verra de mieux en 30 jours ?\n\n### Questions de qualification\n\n- combien de personnes sont impliquées ?\n- quel outil remplace-t-on ?\n- qu'est-ce qui bloque aujourd'hui ?\n- quelle action doit devenir plus rapide ?\n\n### Livrable de cadrage\n\ntermine toujours par:\n- périmètre inclus\n- périmètre exclu\n- étape 1 en production\n- évolutions possibles plus tard"
     }
   ),
   module(
@@ -422,27 +422,27 @@ export const localProductModules: ProductModuleRecord[] = [
     3,
     {
       content_body:
-        "## Ressources de support et GLPI a reutiliser\n\nCe module regroupe les briques qui permettent de standardiser ton offre.\n\n### A reutiliser dans chaque mission\n\n- categories de tickets de depart\n- priorites simples\n- trame de base de connaissances\n- modele de compte-rendu de support\n- structure de reporting mensuel\n\n### Ce qui doit rester simple\n\n- peu de categories\n- peu de niveaux de priorite\n- un responsable clair par sujet\n- un tableau de bord compréhensible en 1 minute\n\n### Ce que tu vends au client\n\n- plus de traçabilite\n- moins de demandes perdues\n- une base pour grandir ensuite\n\n> Plus le systeme reste simple au depart, plus il a de chances d'etre vraiment utilise."
+        "## Ressources de support et GLPI à réutiliser\n\nCe module regroupe les briques qui permettent de standardiser ton offre.\n\n### À réutiliser dans chaque mission\n\n- catégories de tickets de départ\n- priorités simples\n- trame de base de connaissances\n- modèle de compte-rendu de support\n- structure de reporting mensuel\n\n### Ce qui doit rester simple\n\n- peu de catégories\n- peu de niveaux de priorité\n- un responsable clair par sujet\n- un tableau de bord compréhensible en 1 minute\n\n### Ce que tu vends au client\n\n- plus de traçabilité\n- moins de demandes perdues\n- une base pour grandir ensuite\n\n> Plus le système reste simple au départ, plus il a de chances d'être vraiment utilisé."
     }
   ),
   module(
     "outils-pme-glpi",
     "video-introduction",
     "Video explicative : transformer un irritant PME en outil",
-    "Une capsule pour voir comment partir d'un besoin support ou GLPI et le traduire en mission concrete et facturable.",
+    "Une capsule pour voir comment partir d'un besoin support ou GLPI et le traduire en mission concrète et facturable.",
     "video",
     4,
     {
       content_url: sampleVideos.outilsPme,
       content_body:
-        "## Comment utiliser cette video dans la formation\n\nLa video te sert a visualiser la traduction d'un besoin flou en offre concrete.\n\n### Ce qu'il faut retenir\n\n- un irritant visible vaut mieux qu'un besoin technique abstrait\n- le premier livrable doit etre simple et adopte rapidement\n- la valeur se voit dans le temps gagne, pas dans la complexite technique\n\n### A appliquer ensuite\n\nreprends 3 demandes client deja vues et reformule-les en:\n- probleme\n- utilisateur\n- flux minimal\n- promesse vendable"
+        "## Comment utiliser cette vidéo dans la formation\n\nLa vidéo te sert à visualiser la traduction d'un besoin flou en offre concrète.\n\n### Ce qu'il faut retenir\n\n- un irritant visible vaut mieux qu'un besoin technique abstrait\n- le premier livrable doit être simple et adopté rapidement\n- la valeur se voit dans le temps gagné, pas dans la complexité technique\n\n### A appliquer ensuite\n\nreprends 3 demandes client déjà vues et reformule-les en:\n- problème\n- utilisateur\n- flux minimal\n- promesse vendable"
     }
   ),
   module(
     "outils-pme-glpi",
     "etudes-de-cas-a-venir",
-    "Etudes de cas et mini-demos",
-    "Des mini-cas reels de demandes PME et support seront ajoutes.",
+    "Études de cas et mini-démos",
+    "Des mini-cas réels de demandes PME et support seront ajoutés.",
     "coming_soon",
     5
   ),
@@ -451,56 +451,56 @@ export const localProductModules: ProductModuleRecord[] = [
     "applications-mobiles-rentables",
     "cadrer-une-app-simple",
     "Cadrer une application mobile simple",
-    "Transformer une idee en application courte, monnayable et tenable techniquement.",
+    "Transformer une idée en application courte, monétisable et tenable techniquement.",
     "text",
     1,
     {
       content_body:
-        "Une bonne application rentable ne commence pas par une liste infinie de features.\n\nElle commence par un probleme clair, une cible precise, un premier flux utile et un mode de monetisation realiste.\n\nTu vas cadrer cela avant d'ecrire du code."
+        "Une bonne application rentable ne commence pas par une liste infinie de features.\n\nElle commence par un problème clair, une cible précise, un premier flux utile et un mode de monétisation réaliste.\n\nTu vas cadrer cela avant d'écrire du code."
     }
   ),
   module(
     "applications-mobiles-rentables",
     "wireframes-app",
     "Pack wireframes et structure de screens",
-    "Pack PDF avec architecture de navigation et ecrans de base.",
+    "Pack PDF avec architecture de navigation et écrans de base.",
     "pdf",
     2,
     {
       content_body:
-        "## Construire des wireframes utiles pour un MVP mobile\n\nUn wireframe doit clarifier le flux, pas faire croire que le design est termine.\n\n### Les ecrans qui suffisent souvent au demarrage\n\n- onboarding ou connexion\n- home / dashboard\n- liste principale\n- fiche detail\n- creation ou action principale\n- profil ou parametres\n\n### Questions a trancher avant design detaille\n\n- quel est l'ecran que l'utilisateur verra le plus ?\n- quelle action doit etre faisable en moins de 30 secondes ?\n- quelle information est prioritaire sur mobile ?\n- que peut-on repousser a la v2 ?\n\n### Regle simple\n\nsi un ecran n'apporte pas une action, une decision ou une preuve, il est probablement inutile dans le MVP."
+        "## Construire des wireframes utiles pour un MVP mobile\n\nUn wireframe doit clarifier le flux, pas faire croire que le design est terminé.\n\n### Les écrans qui suffisent souvent au démarrage\n\n- onboarding ou connexion\n- home / dashboard\n- liste principale\n- fiche détail\n- création ou action principale\n- profil ou paramètres\n\n### Questions à trancher avant design détaillé\n\n- quel est l'écran que l'utilisateur verra le plus ?\n- quelle action doit être faisable en moins de 30 secondes ?\n- quelle information est prioritaire sur mobile ?\n- que peut-on repousser à la v2 ?\n\n### Règle simple\n\nsi un écran n'apporte pas une action, une décision ou une preuve, il est probablement inutile dans le MVP."
     }
   ),
   module(
     "applications-mobiles-rentables",
     "ressources-monetisation",
-    "Ressources monetisation et MVP",
+    "Ressources monétisation et MVP",
     "Ressources pour monetiser, pre-vendre et tester une application mobile.",
     "resource",
     3,
     {
       content_body:
-        "## Monetiser un MVP mobile sans se raconter d'histoire\n\nLa monetisation doit etre pensee des le cadrage.\n\n### Les 4 modeles les plus simples\n\n- abonnement mensuel\n- paiement one-shot\n- freemium avec upgrade\n- licence B2B simple\n\n### Test de pre-vente minimal\n\n- page simple de presentation\n- promesse claire\n- formulaire de demande ou pre-inscription\n- 3 entretiens avec utilisateurs cibles\n- un prix annonce, meme approximatif\n\n### Ce qu'il faut mesurer\n\n- qui comprend l'offre en moins de 10 secondes\n- qui serait pret a payer\n- quelle fonctionnalite declenche le plus de valeur\n- quelle objection revient le plus souvent"
+        "## Monétiser un MVP mobile sans se raconter d'histoire\n\nLa monétisation doit être pensée dès le cadrage.\n\n### Les 4 modèles les plus simples\n\n- abonnement mensuel\n- paiement one-shot\n- freemium avec upgrade\n- licence B2B simple\n\n### Test de pré-vente minimal\n\n- page simple de presentation\n- promesse claire\n- formulaire de demande ou pré-inscription\n- 3 entretiens avec utilisateurs cibles\n- un prix annoncé, même approximatif\n\n### Ce qu'il faut mesurer\n\n- qui comprend l'offre en moins de 10 secondes\n- qui serait prêt à payer\n- quelle fonctionnalité déclenche le plus de valeur\n- quelle objection revient le plus souvent"
     }
   ),
   module(
     "applications-mobiles-rentables",
     "video-introduction",
     "Video explicative : cadrer une application mobile rentable",
-    "Une capsule pour comprendre le type de MVP vise, la monetisation et le niveau de simplicite recherche.",
+    "Une capsule pour comprendre le type de MVP visé, la monétisation et le niveau de simplicité recherchée.",
     "video",
     4,
     {
       content_url: sampleVideos.mobileApps,
       content_body:
-        "## Le role de la video dans ce module\n\nLa video sert a renforcer les arbitrages de produit.\n\n### A regarder en priorite\n\n- quelles fonctionnalites sont vraiment centrales\n- ou passe la limite entre MVP et surproduction\n- comment la monetisation influence le flux produit\n- quel niveau de finition suffit pour lancer\n\n### Exercice rapide\n\necris ton application en une phrase:\n- pour qui\n- pour quoi\n- contre quel resultat\n- avec quel mode de paiement"
+        "## Le rôle de la vidéo dans ce module\n\nLa vidéo sert à renforcer les arbitrages de produit.\n\n### À regarder en priorité\n\n- quelles fonctionnalités sont vraiment centrales\n- où passe la limite entre MVP et surproduction\n- comment la monétisation influence le flux produit\n- quel niveau de finition suffit pour lancer\n\n### Exercice rapide\n\nÉcris ton application en une phrase :\n- pour qui\n- pour quoi\n- contre quel résultat\n- avec quel mode de paiement"
     }
   ),
   module(
     "applications-mobiles-rentables",
     "cas-d-usages-a-venir",
     "Cas d'usages et extensions futures",
-    "Des cas supplementaires seront ajoutes pour aller vers un produit plus ambitieux.",
+    "Des cas supplémentaires seront ajoutés pour aller vers un produit plus ambitieux.",
     "coming_soon",
     5
   ),
@@ -688,9 +688,9 @@ const productSupplements: Record<string, ProductSupplement> = {
   "freelance-it-30-jours": {
     salesPriority: 1,
     bestFor: [
-      "profils support ou tech qui veulent vendre en ind?pendant",
-      "d?butants motiv?s qui veulent une offre terrain simple",
-      "personnes qui veulent vite structurer une premi?re proposition commerciale"
+      "profils support ou tech qui veulent vendre en indépendant",
+      "débutants motivés qui veulent une offre terrain simple",
+      "personnes qui veulent vite structurer une première proposition commerciale"
     ],
     outcomes: [
       "une offre claire de prestations IT",
@@ -698,18 +698,18 @@ const productSupplements: Record<string, ProductSupplement> = {
       "des ressources pour vendre et livrer sans improviser"
     ],
     pitch:
-      "La formation principale pour passer d'une comp?tence IT floue ? une activit? freelance lisible et vendable."
+      "La formation principale pour passer d'une compétence IT floue à une activité freelance lisible et vendable."
   },
   "landing-pages-rentables": {
     bestFor: [
-      "freelances web qui veulent une offre facile ? cadrer",
+      "freelances web qui veulent une offre facile à cadrer",
       "profils marketing ou design qui veulent vendre du concret",
-      "ind?pendants qui veulent livrer vite avec une forte valeur per?ue"
+      "indépendants qui veulent livrer vite avec une forte valeur perçue"
     ],
     outcomes: [
-      "une m?thode de structure de page qui convertit",
+      "une méthode de structure de page qui convertit",
       "un process de livraison client plus propre",
-      "des templates r?utilisables"
+      "des templates réutilisables"
     ],
     pitch:
       "Une offre courte et rentable pour vendre des pages de conversion sans transformer chaque mission en projet interminable."
@@ -726,35 +726,35 @@ const productSupplements: Record<string, ProductSupplement> = {
       "une livraison plus stable et plus rentable"
     ],
     pitch:
-      "Le cadre pour transformer la prestation site web en offre simple, propre et facile a livrer."
+      "Le cadre pour transformer la prestation site web en offre simple, propre et facile à livrer."
   },
   "outils-pme-glpi": {
     bestFor: [
-      "profils support / systeme qui veulent vendre plus que du support",
+      "profils support / système qui veulent vendre plus que du support",
       "freelances qui veulent adresser des besoins internes PME",
-      "personnes qui veulent structurer des mini-outils metier"
+      "personnes qui veulent structurer des mini-outils métier"
     ],
     outcomes: [
-      "une logique de cadrage metier",
+      "une logique de cadrage métier",
       "une offre autour du support et des outils internes",
       "des ressources pour transformer un irritant en mission facturable"
     ],
     pitch:
-      "Une formation plus technique pour vendre des outils simples mais utiles a des PME qui ont de vrais irritants operationnels."
+      "Une formation plus technique pour vendre des outils simples mais utiles à des PME qui ont de vrais irritants opérationnels."
   },
   "applications-mobiles-rentables": {
     bestFor: [
       "profils produit ou freelance qui veulent lancer une app simple",
-      "ind?pendants qui veulent cadrer un MVP mon?tisable",
-      "createurs qui veulent partir d'un besoin clair plutot que d'une usine a gaz"
+      "indépendants qui veulent cadrer un MVP monétisable",
+      "créateurs qui veulent partir d'un besoin clair plutôt que d'une usine à gaz"
     ],
     outcomes: [
       "une structure d'application claire",
-      "une logique de mon?tisation simple",
-      "des ressources pour cadrer et pre-vendre un MVP"
+      "une logique de monétisation simple",
+      "des ressources pour cadrer et pré-vendre un MVP"
     ],
     pitch:
-      "Le programme pour cadrer une application mobile rentable sans partir sur un produit trop ambitieux des le jour 1."
+      "Le programme pour cadrer une application mobile rentable sans partir sur un produit trop ambitieux dès le jour 1."
   },
   "glpi-support-pme": {
     salesPriority: 3,
