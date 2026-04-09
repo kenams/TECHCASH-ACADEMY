@@ -25,11 +25,15 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(215, 184, 122, 0.18), transparent 26%),
     radial-gradient(circle at top right, rgba(79, 110, 163, 0.16), transparent 24%),
@@ -54,7 +58,18 @@ select {
 
 .shell {
   width: min(1180px, calc(100% - 2rem));
+  max-width: calc(100vw - 2rem);
   margin: 0 auto;
+}
+
+main,
+section,
+article,
+header,
+footer,
+.shell,
+.dashboard-frame {
+  min-width: 0;
 }
 
 .topbar,
@@ -129,6 +144,7 @@ select {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #f5ead3;
+  overflow-wrap: anywhere;
 }
 
 .nav,
@@ -145,6 +161,21 @@ select {
 .nav {
   position: relative;
   z-index: 1;
+}
+
+.topbar > *,
+.hero > *,
+.section-title,
+.featured-strip > *,
+.product-card-top > *,
+.member-product-head > *,
+.product-module-head > *,
+.content-card-head > *,
+.dashboard-hero > *,
+.dashboard-spotlight > *,
+.footer-grid > *,
+.admin-grid > * {
+  min-width: 0;
 }
 
 .hero {
@@ -171,6 +202,7 @@ select {
   line-height: 1.05;
   letter-spacing: -0.04em;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  overflow-wrap: anywhere;
 }
 
 .hero h1 {
@@ -187,6 +219,7 @@ select {
 .product-hero p {
   color: var(--muted);
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .lead {
