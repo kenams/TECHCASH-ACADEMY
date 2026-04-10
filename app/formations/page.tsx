@@ -37,10 +37,12 @@ export default async function FormationsPage() {
     getFeaturedProduct(),
     user ? getOwnedProducts(user.id) : Promise.resolve([])
   ]);
+
   const ownedSlugs = new Set(owned.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
   const priorityOfferSlugs = new Set(getPriorityOfferSlugs());
   const priorityProducts = products.filter((product) => priorityOfferSlugs.has(product.slug));
+
   const catalogSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -63,20 +65,13 @@ export default async function FormationsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
         />
 
-        <Navbar
-          brand={siteConfig.brand}
-          links={[{ href: "/", label: "Accueil" }]}
-          isLoggedIn={Boolean(user)}
-        />
+        <Navbar brand={siteConfig.brand} links={[{ href: "/", label: "Accueil" }]} isLoggedIn={Boolean(user)} />
 
         <section className="section section-first">
           <div className="section-title">
             <div className="eyebrow">Catalogue des formations</div>
             <h1>Choisis la compétence digitale la plus rentable pour ton contexte</h1>
-            <p>
-              Chaque formation correspond à une offre claire à vendre. Tu peux acheter une seule
-              formation ou construire ton catalogue de compétences pas à pas.
-            </p>
+            <p>Chaque formation correspond à une offre claire à vendre. Tu peux acheter une seule formation ou construire ton catalogue de compétences pas à pas.</p>
           </div>
 
           {featured ? (
@@ -99,59 +94,88 @@ export default async function FormationsPage() {
         </section>
 
         <section className="section">
-          {priorityProducts.length ? (
+          <div className="offer-highlight-grid">
+            <article className="offer-highlight-card">
+              <span className="eyebrow">Clarté</span>
+              <h3>Un catalogue centré sur des offres vendables</h3>
+              <p>Tu ne parcours pas une bibliothèque technique abstraite. Chaque page te rapproche d'un service que tu peux vraiment proposer.</p>
+            </article>
+            <article className="offer-highlight-card">
+              <span className="eyebrow">Rassurance</span>
+              <h3>Une expérience plus sérieuse qu'une simple landing page</h3>
+              <p>Les fiches formation, le checkout et l'espace membre gardent la même logique visuelle et commerciale.</p>
+            </article>
+            <article className="offer-highlight-card">
+              <span className="eyebrow">Progression</span>
+              <h3>Un catalogue qui accompagne une montée en gamme</h3>
+              <p>Tu peux commencer avec une offre simple puis compléter ton positionnement sans brouiller ton image.</p>
+            </article>
+          </div>
+        </section>
+
+        {priorityProducts.length ? (
+          <section className="section">
             <div className="section-title">
               <div className="eyebrow">Priorités commerciales</div>
               <h2>Les offres à pousser en premier</h2>
               <p>
-                Commence par <strong>Freelance IT 30 jours</strong>, puis pousse{" "}
-                <strong>Maintenance informatique PME</strong> et <strong>GLPI support PME</strong>{" "}
-                comme extensions plus spécialisées.
+                Commence par <strong>Freelance IT 30 jours</strong>, puis pousse <strong>Maintenance informatique PME</strong> et <strong>GLPI support PME</strong> comme extensions plus spécialisées.
               </p>
             </div>
-          ) : null}
-          {priorityProducts.length ? (
             <div className="product-grid">
               {priorityProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isOwned={hasGlobalAccess || ownedSlugs.has(product.slug)}
-                />
+                <ProductCard key={product.id} product={product} isOwned={hasGlobalAccess || ownedSlugs.has(product.slug)} />
               ))}
             </div>
-          ) : null}
-        </section>
+          </section>
+        ) : null}
 
         <section className="section">
           <div className="hero-stat-grid">
             <article className="hero-stat-card">
               <span className="helper">Positionnement</span>
               <strong>Catalogue structuré autour d'offres vendables</strong>
-              <p>Chaque formation répond à un service digital précis et commercialisable.</p>
+              <p>Chaque formation répond à un service digital précis, présentable et commercialisable sans flou.</p>
             </article>
             <article className="hero-stat-card">
               <span className="helper">Parcours</span>
               <strong>Achat clair, accès membre immédiat</strong>
-              <p>Le client comprend ce qu'il achète et retrouve vite le bon contenu.</p>
+              <p>Le membre comprend ce qu'il achète, puis retrouve directement le bon contenu dans son espace.</p>
             </article>
             <article className="hero-stat-card">
-              <span className="helper">Crédibilité</span>
-              <strong>Une image sobre et haut de gamme</strong>
-              <p>Le catalogue inspire davantage confiance qu'une simple page de vente brute.</p>
+              <span className="helper">Image</span>
+              <strong>Un rendu sobre, haut de gamme et cohérent</strong>
+              <p>Le catalogue porte une activité crédible, pas un simple assemblage de pages de vente disparates.</p>
             </article>
           </div>
         </section>
 
         <section className="section">
+          <div className="section-title">
+            <h2>Toutes les formations disponibles</h2>
+            <p>Explore le catalogue complet et choisis la porte d'entrée la plus adaptée à ton activité, ton niveau actuel et ton objectif commercial.</p>
+          </div>
           <div className="product-grid">
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isOwned={hasGlobalAccess || ownedSlugs.has(product.slug)}
-              />
+              <ProductCard key={product.id} product={product} isOwned={hasGlobalAccess || ownedSlugs.has(product.slug)} />
             ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="panel">
+            <div className="section-title">
+              <h2>Construire une présence plus premium</h2>
+              <p>Le catalogue n'est pas seulement une liste de produits. Il sert aussi de vitrine crédible pour montrer que ton offre est claire, structurée et sérieuse.</p>
+            </div>
+            <div className="cta-row">
+              <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button">
+                {user ? "Voir mes formations" : "Créer mon accès"}
+              </Link>
+              <Link href="/" className="button-secondary">
+                Revenir à l'accueil
+              </Link>
+            </div>
           </div>
         </section>
 

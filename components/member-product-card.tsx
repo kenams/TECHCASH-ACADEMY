@@ -10,34 +10,19 @@ type MemberProductCardProps = {
   purchaseDate?: string | null;
 };
 
-export function MemberProductCard({
-  product,
-  isOwned = false,
-  purchaseDate
-}: MemberProductCardProps) {
+export function MemberProductCard({ product, isOwned = false, purchaseDate }: MemberProductCardProps) {
   return (
     <article className="member-product-card">
-      <Link
-        href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`}
-        className="member-product-media-wrap"
-      >
+      <Link href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`} className="member-product-media-wrap">
         {product.thumbnail_url ? (
-          <img
-            src={product.thumbnail_url}
-            alt={product.title}
-            className="member-product-media-img"
-            loading="lazy"
-          />
+          <img src={product.thumbnail_url} alt={product.title} className="member-product-media-img" loading="lazy" />
         ) : (
           <div className="product-thumb-empty member-product-media-img" />
         )}
         <div className="member-product-media-overlay" />
         <div className="member-product-media-badges">
           {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
-          <AccessBadge
-            label={isOwned ? "Formation débloquée" : "Disponible"}
-            tone={isOwned ? "success" : "default"}
-          />
+          <AccessBadge label={isOwned ? "Formation débloquée" : "Disponible"} tone={isOwned ? "success" : "default"} />
         </div>
       </Link>
       <div className="member-product-body">
@@ -56,17 +41,10 @@ export function MemberProductCard({
           <span className="meta-chip">Espace membre dédié</span>
         </div>
 
-        {purchaseDate ? (
-          <p className="helper">Achetée le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p>
-        ) : null}
+        {purchaseDate ? <p className="helper">Achetée le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p> : null}
 
         <div className="cta-row">
-          <PurchaseCTA
-            productSlug={product.slug}
-            priceCents={product.price_cents}
-            currency={product.currency}
-            isOwned={isOwned}
-          />
+          <PurchaseCTA productSlug={product.slug} priceCents={product.price_cents} currency={product.currency} isOwned={isOwned} />
         </div>
       </div>
     </article>

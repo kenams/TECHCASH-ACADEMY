@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
                 Piloter le catalogue de formations
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Crée une formation, modifie son positionnement et ajoute des modules texte, PDF, ressources, vidéos ou contenus à venir.
+                Crée une formation, affine son positionnement et ajoute des modules texte, PDF, ressources, vidéos ou contenus à venir dans un back-office plus lisible.
               </p>
             </div>
           </div>
@@ -45,19 +45,20 @@ export default async function AdminDashboardPage() {
         <div className="grid gap-4 md:grid-cols-3">
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Formations</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
-              {snapshot.products.length}
-            </h2>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{snapshot.products.length}</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Nombre d'offres actuellement présentes dans le catalogue administrable.</p>
           </GlowCard>
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Modules</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
               {snapshot.products.reduce((sum, product) => sum + product.modules.length, 0)}
             </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Blocs de contenu déjà reliés aux formations et prêts à être enrichis.</p>
           </GlowCard>
           <GlowCard glowColor="emerald">
             <p className="text-sm text-[var(--muted)]">État</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">Live</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Le catalogue administré ici est celui qui porte directement l'expérience publique et membre.</p>
           </GlowCard>
         </div>
       </AnimatedSection>

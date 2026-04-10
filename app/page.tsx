@@ -26,6 +26,29 @@ export const metadata: Metadata = {
   }
 };
 
+const audienceCards = [
+  {
+    title: "Freelances en lancement",
+    description:
+      "Pour passer d'une compétence floue à une offre vendable, avec un positionnement simple à expliquer et des premiers livrables crédibles."
+  },
+  {
+    title: "Techniciens et profils support",
+    description:
+      "Pour transformer une logique de dépannage ou de maintenance en offre plus lisible, mieux tarifée et plus rassurante pour des PME."
+  },
+  {
+    title: "Créateurs de services digitaux",
+    description:
+      "Pour structurer des landing pages, sites clients ou outils métier comme de vraies prestations, pas comme des expérimentations improvisées."
+  },
+  {
+    title: "Profils orientés exécution",
+    description:
+      "Pour ceux qui veulent un cadre concret, des modules directement exploitables et une progression utile sans théâtre marketing."
+  }
+];
+
 export default async function LandingPage() {
   const supabase = await getSupabaseServerClient();
   const {
@@ -42,6 +65,7 @@ export default async function LandingPage() {
   const featured =
     (featuredCard && (await getProductBySlug(featuredCard.slug))) ||
     (products[0] ? await getProductBySlug(products[0].slug) : null);
+
   const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
   const priorityOfferSlugs = new Set(getPriorityOfferSlugs());
@@ -54,6 +78,7 @@ export default async function LandingPage() {
     url: siteConfig.siteUrl,
     description: siteConfig.description
   };
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -61,6 +86,7 @@ export default async function LandingPage() {
     url: siteConfig.siteUrl,
     email: siteConfig.supportEmail
   };
+
   const productListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -105,10 +131,9 @@ export default async function LandingPage() {
             <div className="eyebrow">Formations digitales concrètes et vendables</div>
             <h1>{siteConfig.headline}</h1>
             <p className="lead">
-              Apprends à vendre des prestations digitales utiles, structurer une activité propre et
-              livrer avec des process simples. Pas de discours miracle, seulement des offres que tu
-              peux proposer à de vrais clients.
+              Apprends à vendre des prestations digitales utiles, structurer une activité propre et livrer avec des process simples. Pas de promesse miracle, seulement des offres compréhensibles, vendables et exploitables.
             </p>
+
             <div className="cta-row">
               <Link href="/formations" className="button">
                 Voir le catalogue
@@ -117,42 +142,46 @@ export default async function LandingPage() {
                 {user ? "Accéder à mon espace" : "Créer un compte"}
               </Link>
             </div>
+
             <div className="hero-proof-strip">
               <div className="metric-pill">
                 <strong>{products.length}</strong>
-                <span>formations prêtes à vendre</span>
+                <span>formations pensées comme de vraies offres</span>
               </div>
               <div className="metric-pill">
-                <strong>Stripe</strong>
-                <span>checkout propre et rassurant</span>
+                <strong>Checkout</strong>
+                <span>un tunnel plus propre qu'une simple page de vente brute</span>
               </div>
               <div className="metric-pill">
-                <strong>Membre</strong>
-                <span>accès clair produit par produit</span>
+                <strong>Espace membre</strong>
+                <span>accès clair, produit par produit, sans ambiguïté</span>
               </div>
             </div>
+
             <div className="hero-stat-grid">
               <article className="hero-stat-card">
                 <span className="helper">Catalogue actuel</span>
-                <strong>{products.length} formations</strong>
-                <p>Des offres ciblées, structurées pour des besoins clients concrets.</p>
+                <strong>{products.length} offres publiées</strong>
+                <p>Des sujets utiles pour vendre vite : support IT, maintenance, landing pages, outils métier et services digitaux concrets.</p>
               </article>
               <article className="hero-stat-card">
-                <span className="helper">Accès et paiement</span>
-                <strong>Stripe + espace membre</strong>
-                <p>Un tunnel propre, rassurant et pensé pour une vente sérieuse.</p>
+                <span className="helper">Positionnement</span>
+                <strong>Un cadre premium et lisible</strong>
+                <p>Chaque page cherche à rassurer, clarifier et donner envie d'acheter sans surpromesse ni friction inutile.</p>
               </article>
               <article className="hero-stat-card">
                 <span className="helper">Formats inclus</span>
-                <strong>PDF, texte, vidéos, ressources</strong>
-                <p>Le contenu peut être publié progressivement sans casser l'expérience.</p>
+                <strong>Texte, PDF, ressources, vidéos</strong>
+                <p>Le contenu peut monter en puissance progressivement sans casser l'expérience ni dégrader la valeur perçue.</p>
               </article>
             </div>
+
             <ul className="bullet-list">
               {siteConfig.benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
               ))}
             </ul>
+
             <div className="trust-row">
               {siteConfig.trustPoints.map((point) => (
                 <span key={point} className="trust-pill">
@@ -168,29 +197,36 @@ export default async function LandingPage() {
               <div className="stack">
                 <h2>{featured.title}</h2>
                 <p>{featured.short_description}</p>
+
                 <div className="luxury-note">
-                  <strong>Cadre rassurant</strong>
-                  <span>
-                    Paiement sécurisé, accès membre propre, catalogue lisible et progression par
-                    produit acheté.
-                  </span>
+                  <strong>Une présentation rassurante de bout en bout</strong>
+                  <span>Catalogue lisible, détails clairs, checkout propre et espace membre cohérent dès le premier achat.</span>
                 </div>
+
                 <div className="confidence-list">
                   <div className="confidence-item">
                     <span className="confidence-dot" />
                     <div>
-                      <strong>Positionnement clair</strong>
-                      <p>Des offres pensées pour être comprises et revendues à de vrais clients.</p>
+                      <strong>Promesse claire</strong>
+                      <p>Une offre qui se comprend rapidement, sans longs tunnels ni langage creux.</p>
                     </div>
                   </div>
                   <div className="confidence-item">
                     <span className="confidence-dot" />
                     <div>
-                      <strong>Expérience propre</strong>
-                      <p>Pages détaillées, checkout stable et espace membre prêt pour la suite.</p>
+                      <strong>Livrable crédible</strong>
+                      <p>Un contenu structuré pour être utilisé, vendu et réexploité dans la vraie vie client.</p>
+                    </div>
+                  </div>
+                  <div className="confidence-item">
+                    <span className="confidence-dot" />
+                    <div>
+                      <strong>Montée en gamme</strong>
+                      <p>Le catalogue te permet d'ajouter ensuite d'autres compétences sans perdre la cohérence du positionnement.</p>
                     </div>
                   </div>
                 </div>
+
                 <div className="cta-row">
                   <Link href={`/formations/${featured.slug}`} className="button-secondary">
                     Voir le détail
@@ -206,12 +242,7 @@ export default async function LandingPage() {
           </aside>
         </section>
 
-        {featured ? (
-          <ProductHero
-            product={featured}
-            isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)}
-          />
-        ) : null}
+        {featured ? <ProductHero product={featured} isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)} /> : null}
 
         {priorityProducts.length ? (
           <section className="section">
@@ -219,40 +250,29 @@ export default async function LandingPage() {
               <div className="eyebrow">Offres à pousser maintenant</div>
               <h2>Les offres commerciales à mettre devant</h2>
               <p>
-                Priorité recommandée : <strong>Freelance IT 30 jours</strong> pour l'offre
-                principale, <strong>Maintenance informatique PME</strong> pour le revenu récurrent,
-                puis <strong>GLPI support PME</strong> pour une spécialisation support claire.
+                Priorité recommandée : <strong>Freelance IT 30 jours</strong> pour l'offre d'entrée, <strong>Maintenance informatique PME</strong> pour le revenu récurrent, puis <strong>GLPI support PME</strong> pour une spécialisation support claire et crédible.
               </p>
             </div>
             <div className="offer-highlight-grid">
               <article className="offer-highlight-card">
                 <span className="eyebrow">Entrée</span>
                 <h3>Freelance IT 30 jours</h3>
-                <p>
-                  Le point de départ le plus lisible pour transformer une compétence en offre
-                  vendable.
-                </p>
+                <p>La formation la plus simple à comprendre et la plus efficace pour transformer une compétence technique en offre vendable.</p>
               </article>
               <article className="offer-highlight-card">
                 <span className="eyebrow">Récurrent</span>
                 <h3>Maintenance informatique PME</h3>
-                <p>
-                  La meilleure base pour vendre du suivi, de la stabilité et du revenu mensuel.
-                </p>
+                <p>Le meilleur point d'appui pour vendre du suivi, de la stabilité et un revenu mensuel plus lisible.</p>
               </article>
               <article className="offer-highlight-card">
                 <span className="eyebrow">Spécialisation</span>
                 <h3>GLPI support PME</h3>
-                <p>Une offre support plus pointue, claire à expliquer et crédible en B2B.</p>
+                <p>Une offre support plus précise, plus B2B et plus facile à présenter comme solution d'organisation.</p>
               </article>
             </div>
             <div className="product-grid">
               {priorityProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isOwned={hasGlobalAccess || ownedProductSlugs.has(product.slug)}
-                />
+                <ProductCard key={product.id} product={product} isOwned={hasGlobalAccess || ownedProductSlugs.has(product.slug)} />
               ))}
             </div>
           </section>
@@ -261,36 +281,24 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <div className="eyebrow">Le parcours</div>
-            <h2>Comment ça marche</h2>
-            <p>
-              De la découverte à la livraison client, tout est pensé pour aller vite et rester
-              propre.
-            </p>
+            <h2>Comment l'expérience est pensée</h2>
+            <p>De la découverte à l'accès membre, le site est construit pour rester clair, rassurant et exploitable sans surcharge.</p>
           </div>
           <div className="steps-grid">
             <div className="step-card">
               <span className="step-number">1</span>
-              <h3>Choisis ta formation</h3>
-              <p>
-                Parcours le catalogue et sélectionne la compétence digitale la plus adaptée à ton
-                contexte. Chaque offre correspond à un service réel que tu peux vendre.
-              </p>
+              <h3>Choisir une compétence rentable</h3>
+              <p>Tu parcours un catalogue orienté business réel, pas un simple empilement de sujets techniques sans logique commerciale.</p>
             </div>
             <div className="step-card">
               <span className="step-number">2</span>
-              <h3>Achète et accède immédiatement</h3>
-              <p>
-                Paiement sécurisé via Stripe. Ton accès est activé instantanément dans l'espace
-                membre dédié, sans attente ni friction.
-              </p>
+              <h3>Acheter dans un cadre propre</h3>
+              <p>Paiement Stripe, pages lisibles, accès membre clair et continuité immédiate entre achat, dashboard et consommation du contenu.</p>
             </div>
             <div className="step-card">
               <span className="step-number">3</span>
-              <h3>Applique et vends</h3>
-              <p>
-                Consulte le contenu structuré, télécharge les ressources et commence à proposer ta
-                nouvelle offre à de vrais clients rapidement.
-              </p>
+              <h3>Appliquer et vendre</h3>
+              <p>Les contenus sont conçus pour t'aider à structurer une vraie offre, un vrai discours et des livrables qui tiennent la route.</p>
             </div>
           </div>
         </section>
@@ -298,18 +306,11 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Catalogue des formations</h2>
-            <p>
-              Un catalogue structuré autour d'offres simples à vendre : support IT, landing pages,
-              sites clients, outils métier et applications mobiles monétisables.
-            </p>
+            <p>Un catalogue structuré autour d'offres simples à vendre : support IT, landing pages, sites clients, outils métier et applications monétisables.</p>
           </div>
           <div className="product-grid">
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isOwned={hasGlobalAccess || ownedProductSlugs.has(product.slug)}
-              />
+              <ProductCard key={product.id} product={product} isOwned={hasGlobalAccess || ownedProductSlugs.has(product.slug)} />
             ))}
           </div>
         </section>
@@ -317,19 +318,13 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Pour qui</h2>
-            <p>
-              Des formations faites pour des profils qui veulent vendre vite, livrer proprement et
-              progresser sans perdre de temps.
-            </p>
+            <p>Le catalogue est pensé pour des profils qui veulent vendre vite, livrer proprement et construire une présence crédible sans bruit inutile.</p>
           </div>
           <div className="grid-2">
-            {siteConfig.audiences.map((audience) => (
-              <article className="card" key={audience}>
-                <h3>{audience}</h3>
-                <p>
-                  Le contenu reste praticable, même si tu n'as pas encore construit une activité ou
-                  un gros portefeuille client.
-                </p>
+            {audienceCards.map((audience) => (
+              <article className="card" key={audience.title}>
+                <h3>{audience.title}</h3>
+                <p>{audience.description}</p>
               </article>
             ))}
           </div>
@@ -337,68 +332,45 @@ export default async function LandingPage() {
 
         <section className="section">
           <div className="section-title">
-            <h2>Pourquoi la plateforme est utile</h2>
-            <p>
-              Tu peux publier, vendre et consommer du contenu même si toutes les vidéos ne sont pas
-              encore tournées.
-            </p>
+            <h2>Pourquoi la plateforme tient la route</h2>
+            <p>Tu peux publier, vendre et faire évoluer les contenus sans attendre d'avoir tout filmé ni refaire tout le tunnel à chaque ajout.</p>
           </div>
           <div className="grid-3">
             <article className="card">
               <h3>Formats flexibles</h3>
-              <p>
-                PDF, texte, ressources, liens vidéo externes et modules bientôt disponibles sont
-                tous pris en charge.
-              </p>
+              <p>Texte, PDF, ressources, vidéos externes et modules à venir cohabitent proprement dans une expérience unifiée.</p>
             </article>
             <article className="card">
               <h3>Accès par produit</h3>
-              <p>
-                Chaque achat débloque une formation précise. Le dashboard sait exactement ce que le
-                membre possède.
-              </p>
+              <p>Chaque achat débloque ce qu'il faut, au bon endroit, sans confusion pour le membre ni bricolage dans le dashboard.</p>
             </article>
             <article className="card">
-              <h3>Base solide pour la suite</h3>
-              <p>
-                Le tunnel de vente, Supabase, Stripe et le dashboard sont déjà prêts pour évoluer
-                sans replatforming.
-              </p>
+              <h3>Base évolutive</h3>
+              <p>Supabase, Stripe, le catalogue et l'espace membre sont déjà assez propres pour monter en gamme sans repartir de zéro.</p>
             </article>
           </div>
         </section>
 
         <section className="section">
           <div className="section-title">
-            <h2>Une présentation premium, sans discours agressif</h2>
-            <p>
-              TechCash Academy est pensée pour inspirer confiance : offre lisible, tunnel propre,
-              contenu structuré et expérience membre cohérente dès le premier achat.
-            </p>
+            <h2>Une présence premium, sans agressivité marketing</h2>
+            <p>TechCash Academy cherche à inspirer confiance : design net, structure claire, contenus sérieux et parcours d'achat cohérent.</p>
           </div>
           <div className="trust-panel-grid">
             <article className="card trust-panel-card">
               <span className="eyebrow">Conversion</span>
-              <h3>Des pages faites pour rassurer avant de vendre</h3>
-              <p>
-                Le catalogue met en avant les bénéfices concrets, la structure de chaque formation
-                et la logique d'accès produit par produit.
-              </p>
+              <h3>Des pages pensées pour rassurer avant de vendre</h3>
+              <p>Le catalogue met en avant les bénéfices concrets, la structure de chaque formation et une logique d'achat lisible.</p>
             </article>
             <article className="card trust-panel-card">
               <span className="eyebrow">Exécution</span>
               <h3>Une plateforme exploitable même si tout n'est pas encore filmé</h3>
-              <p>
-                Tu peux vendre et publier avec des textes, PDF, ressources téléchargeables et des
-                modules "bientôt disponibles".
-              </p>
+              <p>Tu peux publier progressivement avec des textes, des PDF, des ressources téléchargeables et des modules à venir déjà intégrés.</p>
             </article>
             <article className="card trust-panel-card">
               <span className="eyebrow">Image</span>
-              <h3>Une présence plus sérieuse qu'une simple page de vente</h3>
-              <p>
-                Le design reste sobre, net et premium pour porter une activité crédible et durable.
-              </p>
+              <h3>Un rendu plus sérieux qu'une simple page de vente</h3>
+              <p>Le site vise un rendu sobre, luxueux et durable, pour porter une activité crédible plutôt qu'une simple promesse de lancement.</p>
             </article>
           </div>
         </section>
@@ -406,10 +378,7 @@ export default async function LandingPage() {
         <section className="section">
           <div className="section-title">
             <h2>Questions fréquentes</h2>
-            <p>
-              Le positionnement reste simple : apprendre à vendre des compétences digitales utiles,
-              sans théâtre marketing.
-            </p>
+            <p>Le positionnement reste volontairement simple : apprendre à vendre des compétences digitales utiles, sans théâtre marketing.</p>
           </div>
           <div className="faq-list">
             {siteConfig.faq.map((entry) => (
@@ -424,20 +393,14 @@ export default async function LandingPage() {
         <section className="section">
           <div className="panel">
             <div className="section-title">
-              <h2>Prendre une formation, puis évoluer</h2>
-              <p>
-                Commence par l'offre principale ou choisis directement le sujet qui colle à ton
-                activité. Le catalogue est conçu pour permettre plusieurs achats successifs.
-              </p>
+              <h2>Commencer avec une offre, puis élargir proprement</h2>
+              <p>Tu peux entrer par l'offre principale ou choisir directement le sujet qui colle à ton activité. Le catalogue est pensé pour permettre plusieurs achats successifs sans perdre la cohérence globale.</p>
             </div>
             <div className="cta-row">
               <Link href="/formations" className="button">
                 Explorer les formations
               </Link>
-              <Link
-                href={user ? "/dashboard/mes-formations" : "/register"}
-                className="button-secondary"
-              >
+              <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button-secondary">
                 {user ? "Voir mes formations" : "Créer mon accès"}
               </Link>
             </div>

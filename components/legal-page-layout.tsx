@@ -34,6 +34,9 @@ export function LegalPageLayout({ title, eyebrow, updatedAt, children }: LegalPa
               <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
                 {title}
               </h1>
+              <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">
+                Une présentation claire, lisible et sans surcharge pour garder la même qualité perçue que le reste du site, même sur les pages légales.
+              </p>
             </div>
           </div>
 

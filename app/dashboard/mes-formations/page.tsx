@@ -48,7 +48,7 @@ export default async function MemberProductsPage() {
               Tout ce que tu as débloqué
             </h1>
             <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-              Une vue complète de tes accès actifs, avec un point direct vers le contenu.
+              Une vue complète de tes accès actifs, avec un point direct vers le contenu et une vision claire de ce qu'il reste à explorer.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -65,26 +65,24 @@ export default async function MemberProductsPage() {
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Formations débloquées</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{products.length}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Uniquement les accès disponibles sur ton compte.</p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Uniquement les accès disponibles sur ton compte aujourd'hui.</p>
           </GlowCard>
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Catalogue à explorer</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{remainingProducts}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Des offres complémentaires restent disponibles à l'achat.</p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Des offres complémentaires restent disponibles si tu veux élargir ton positionnement.</p>
           </GlowCard>
           <GlowCard glowColor="emerald">
             <p className="text-sm text-[var(--muted)]">Statut d'accès</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{hasGlobalAccess ? "Global" : "Par produit"}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              {hasGlobalAccess ? "Toutes les formations actives sont ouvertes." : "Chaque achat débloque son espace membre dédié."}
-            </p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{hasGlobalAccess ? "Toutes les formations actives sont ouvertes." : "Chaque achat débloque son espace membre dédié."}</p>
           </GlowCard>
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Valeur débloquée</p>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
               {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(unlockedValue / 100)}
             </h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue actuellement accessible.</p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue actuellement accessible dans ton espace.</p>
           </GlowCard>
         </div>
       </AnimatedSection>
@@ -94,9 +92,8 @@ export default async function MemberProductsPage() {
           <>
             <div className="grid gap-2">
               <Badge variant="success">Accès complet</Badge>
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                Formations prêtes à être consultées
-              </h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Formations prêtes à être consultées</h2>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">Chaque carte te donne un accès direct au bon contenu, dans un espace membre plus clair et plus cohérent.</p>
             </div>
             <div className="grid gap-5 xl:grid-cols-2">
               {products.map((product) => (
@@ -112,13 +109,11 @@ export default async function MemberProductsPage() {
         ) : (
           <GlowCard className="grid gap-5 p-8 text-center">
             <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border border-[var(--border)] bg-white/5 text-2xl">
-              🧭
+              ✦
             </div>
             <div className="grid gap-2">
               <h3 className="text-2xl font-semibold text-[var(--foreground)]">Aucune formation débloquée</h3>
-              <p className="text-base leading-8 text-[var(--muted)]">
-                Ton espace membre est vide pour l'instant. Choisis une formation pour commencer.
-              </p>
+              <p className="text-base leading-8 text-[var(--muted)]">Ton espace membre est prêt. Choisis une première formation pour commencer dans un cadre clair, premium et immédiatement exploitable.</p>
             </div>
             <div className="flex justify-center">
               <Link href="/formations" className={buttonClasses("primary", "md")}>
