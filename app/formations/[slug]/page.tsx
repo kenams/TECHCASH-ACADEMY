@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
@@ -55,14 +54,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const {
     data: { user }
   } = await supabase.auth.getUser();
+
   const [profile, ownedProducts] = user
     ? await Promise.all([getUserProfile(user.id, supabase), getOwnedProducts(user.id)])
     : [null, []];
+
   const isOwned = Boolean(profile?.is_premium) || ownedProducts.some((entry) => entry.slug === product.slug);
   const supplement = getProductSupplement(product.slug);
   const relatedProducts = getRelatedLocalProducts(product.slug, 2);
   const publishedModules = product.modules.filter((module) => module.is_published).length;
   const comingSoonModules = product.modules.filter((module) => module.content_type === "coming_soon").length;
+
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -90,17 +92,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
         />
-        <Navbar
-          brand={siteConfig.brand}
-          links={[{ href: "/formations", label: "Retour catalogue" }]}
-          isLoggedIn={Boolean(user)}
-        />
 
-        <ProductHero
-          product={product}
-          isOwned={isOwned}
-          detailHref={`/dashboard/formations/${product.slug}`}
-        />
+        <Navbar brand={siteConfig.brand} links={[{ href: "/formations", label: "Retour catalogue" }]} isLoggedIn={Boolean(user)} />
+
+        <ProductHero product={product} isOwned={isOwned} detailHref={`/dashboard/formations/${product.slug}`} />
 
         <section className="section">
           <div className="product-stats-grid">
@@ -146,8 +141,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <div className="section-title">
             <h2>Ce que tu trouveras dans la formation</h2>
             <p>
-              Les modules déjà publiés sont accessibles immédiatement après achat. Les blocs
-              signalés comme bientôt disponibles apparaissent déjà dans la feuille de route.
+              Les modules déjà publiés sont accessibles immédiatement après achat. Les blocs signalés comme bientôt disponibles apparaissent déjà dans la feuille de route.
             </p>
           </div>
           <ProductModulesList modules={product.modules} />
@@ -169,8 +163,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <article className="card">
               <h3>Logique d'accès</h3>
               <p>
-                L'achat débloque uniquement cette formation, sauf si tu disposes plus tard d'un
-                accès premium global. Le dashboard affichera clairement ce que tu possèdes.
+                L'achat débloque uniquement cette formation, sauf si tu disposes plus tard d'un accès premium global. Le dashboard affichera clairement ce que tu possèdes.
               </p>
             </article>
           </div>
@@ -204,20 +197,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <section className="section">
             <div className="section-title">
               <h2>Autres formations utiles</h2>
-              <p>
-                Si cette offre te parle, ces autres formations peuvent étendre ton catalogue de
-                services.
-              </p>
+              <p>Si cette offre te parle, ces autres formations peuvent étendre ton catalogue de services.</p>
             </div>
             <div className="product-grid">
               {relatedProducts.map((relatedProduct) => (
                 <ProductCard
                   key={relatedProduct.id}
                   product={relatedProduct}
-                  isOwned={
-                    Boolean(profile?.is_premium) ||
-                    ownedProducts.some((entry) => entry.slug === relatedProduct.slug)
-                  }
+                  isOwned={Boolean(profile?.is_premium) || ownedProducts.some((entry) => entry.slug === relatedProduct.slug)}
                 />
               ))}
             </div>

@@ -568,6 +568,7 @@ footer,
 .product-modules-grid {
   display: grid;
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .grid-3 {
@@ -595,6 +596,7 @@ footer,
 .hero-assurance-grid {
   display: grid;
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .hero-stat-grid,
@@ -608,6 +610,7 @@ footer,
 
 .hero-assurance-grid-wide {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .hero-stat-card,
@@ -626,6 +629,15 @@ footer,
 .offer-highlight-grid {
   display: grid;
   gap: 1rem;
+}
+
+.product-stats-grid > *,
+.hero-assurance-grid > *,
+.hero-assurance-grid-wide > *,
+.product-modules-grid > *,
+.grid-2 > *,
+.product-grid > * {
+  min-width: 0;
 }
 
 .hero-proof-strip {
@@ -1181,12 +1193,14 @@ footer,
   padding: 1.35rem;
   display: grid;
   gap: 0.8rem;
+  align-content: start;
 }
 
 .product-stats-grid {
   display: grid;
   gap: 1.25rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .member-stats-grid {
