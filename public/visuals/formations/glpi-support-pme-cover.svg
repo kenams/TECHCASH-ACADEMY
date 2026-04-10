@@ -1,26 +1,133 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#08111D"/>
-      <stop offset="1" stop-color="#174B35"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
-  <rect x="114" y="146" width="620" height="608" rx="32" fill="#0E1A2D" stroke="#2F6C4F"/>
-  <rect x="160" y="192" width="528" height="108" rx="24" fill="#173629"/>
-  <rect x="160" y="332" width="156" height="188" rx="22" fill="#19333F"/>
-  <rect x="346" y="332" width="156" height="188" rx="22" fill="#19333F"/>
-  <rect x="532" y="332" width="156" height="188" rx="22" fill="#19333F"/>
-  <rect x="160" y="552" width="528" height="154" rx="24" fill="#173629"/>
-  <text x="800" y="246" fill="#9FE0B9" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">GLPI SUPPORT PME</text>
-  <text x="800" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">DEPLOYER ET ADOPTER</text>
-  <text x="800" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">PORTAIL, CATEGORIES, SLA, REPORTING</text>
-  <rect x="800" y="520" width="196" height="56" rx="28" fill="#1E4B37" stroke="#4E8F6A"/>
-  <text x="854" y="556" fill="#E1F7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26">GLPI</text>
-  <rect x="1022" y="520" width="220" height="56" rx="28" fill="#1E4B37" stroke="#4E8F6A"/>
-  <text x="1080" y="556" fill="#E1F7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26">ADOPTION</text>
-  <rect x="1268" y="520" width="234" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
-  <text x="1322" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">SUPPORT INTERNE</text>
-  <rect x="800" y="628" width="702" height="2" fill="#4A7A5F"/>
-  <text x="800" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UN CADRE SUPPORT PROPRE POUR TPE ET PME</text>
+  <rect width="1600" height="900" fill="#0E0608"/>
+  <circle cx="1380" cy="150" r="240" fill="#1C0810" opacity=".8"/>
+  <circle cx="1320" cy="120" r="130" fill="#250D18" opacity=".7"/>
+  <rect x="80" y="100" width="620" height="700" rx="28" fill="#130408" stroke="#5B1228"/>
+
+  <!-- GLPI Header -->
+  <rect x="100" y="128" width="580" height="46" rx="14" fill="#1C0810" stroke="#5B1228"/>
+  <text x="124" y="157" fill="#FB7185" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700">GLPI — Helpdesk Support PME</text>
+  <rect x="544" y="138" width="122" height="24" rx="12" fill="#9F1239"/>
+  <text x="570" y="154" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Nouveau ticket</text>
+
+  <!-- Dashboard stats -->
+  <rect x="100" y="184" width="580" height="80" fill="#180610"/>
+  <rect x="116" y="196" width="120" height="52" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="130" y="214" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Tickets ouverts</text>
+  <text x="130" y="236" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">8</text>
+  <text x="130" y="242" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="9">+2 aujourd'hui</text>
+  <rect x="252" y="196" width="120" height="52" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="266" y="214" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Résolus ce mois</text>
+  <text x="266" y="236" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">47</text>
+  <text x="266" y="242" fill="#6EE7B7" font-family="Segoe UI,Arial,sans-serif" font-size="9">94% résolution</text>
+  <rect x="388" y="196" width="120" height="52" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="402" y="214" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Tps moyen résol.</text>
+  <text x="402" y="236" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">2.4h</text>
+  <text x="402" y="242" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="9">SLA: 4h max</text>
+  <rect x="524" y="196" width="140" height="52" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="538" y="214" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Satisfaction client</text>
+  <text x="538" y="236" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">4.7/5</text>
+  <text x="538" y="242" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="9">★★★★★</text>
+
+  <!-- SLA progress bars -->
+  <rect x="100" y="264" width="580" height="70" fill="#130408"/>
+  <text x="118" y="284" fill="#FB7185" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">SLA en cours</text>
+  <text x="118" y="302" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">#047 Imprimante — 1h12 / 4h</text>
+  <rect x="118" y="308" width="420" height="10" rx="5" fill="#290C18"/>
+  <rect x="118" y="308" width="126" height="10" rx="5" fill="#34D399"/>
+  <text x="118" y="330" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">#046 Outlook — 3h05 / 4h</text>
+  <rect x="118" y="308" width="420" height="10" rx="5" fill="#290C18"/>
+  <rect x="118" y="320" width="420" height="10" rx="5" fill="#290C18"/>
+  <rect x="118" y="320" width="325" height="10" rx="5" fill="#FCD34D"/>
+
+  <!-- Ticket list -->
+  <rect x="100" y="334" width="580" height="26" fill="#1C0810"/>
+  <text x="120" y="352" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#    Titre                                Catégorie    SLA      Statut</text>
+  <rect x="100" y="360" width="580" height="1" fill="#3B0D1C"/>
+
+  <rect x="100" y="361" width="580" height="44" fill="#180610"/>
+  <text x="118" y="385" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#047</text>
+  <text x="152" y="380" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">Imprimante réseau hors service</text>
+  <text x="152" y="395" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Matériel · Bureau direction</text>
+  <text x="380" y="385" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Matériel</text>
+  <text x="454" y="385" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="11">2h32</text>
+  <rect x="540" y="369" width="108" height="22" rx="11" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)"/>
+  <text x="557" y="384" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">EN COURS</text>
+  <rect x="100" y="405" width="580" height="1" fill="#3B0D1C"/>
+
+  <rect x="100" y="406" width="580" height="44" fill="#130408"/>
+  <text x="118" y="430" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#046</text>
+  <text x="152" y="425" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">Outlook ne démarre plus — Compta</text>
+  <text x="152" y="440" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Logiciel · Service comptabilité</text>
+  <text x="380" y="430" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Logiciel</text>
+  <text x="454" y="430" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="11">3h05</text>
+  <rect x="540" y="414" width="108" height="22" rx="11" fill="rgba(239,68,68,.15)" stroke="rgba(239,68,68,.4)"/>
+  <text x="560" y="429" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">SLA PROCHE</text>
+  <rect x="100" y="450" width="580" height="1" fill="#3B0D1C"/>
+
+  <rect x="100" y="451" width="580" height="44" fill="#180610"/>
+  <text x="118" y="475" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#045</text>
+  <text x="152" y="470" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">VPN ne fonctionne pas — Commercial</text>
+  <text x="152" y="485" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Réseau · Accès distant</text>
+  <text x="380" y="475" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Réseau</text>
+  <text x="454" y="475" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="11">45min</text>
+  <rect x="540" y="459" width="108" height="22" rx="11" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.4)"/>
+  <text x="560" y="474" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">RÉSOLU</text>
+  <rect x="100" y="495" width="580" height="1" fill="#3B0D1C"/>
+
+  <!-- Parc informatique section -->
+  <rect x="100" y="496" width="580" height="90" fill="#1C0810"/>
+  <text x="118" y="518" fill="#FB7185" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Parc informatique — Inventaire</text>
+  <rect x="118" y="526" width="124" height="50" rx="8" fill="#290C18" stroke="#5B1228"/>
+  <text x="132" y="545" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Postes</text>
+  <text x="132" y="565" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">24</text>
+  <rect x="256" y="526" width="124" height="50" rx="8" fill="#290C18" stroke="#5B1228"/>
+  <text x="270" y="545" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Serveurs</text>
+  <text x="270" y="565" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">3</text>
+  <rect x="394" y="526" width="124" height="50" rx="8" fill="#290C18" stroke="#5B1228"/>
+  <text x="408" y="545" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Imprimantes</text>
+  <text x="408" y="565" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">6</text>
+  <rect x="532" y="526" width="124" height="50" rx="8" fill="#290C18" stroke="#5B1228"/>
+  <text x="546" y="545" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Licences</text>
+  <text x="546" y="565" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">48</text>
+
+  <!-- Knowledge base + Contract value -->
+  <rect x="100" y="586" width="280" height="100" rx="0" fill="#130408"/>
+  <text x="118" y="608" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="11">Base de connaissances</text>
+  <rect x="118" y="616" width="244" height="26" rx="6" fill="#290C18"/>
+  <text x="132" y="633" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="11">📄 Réinstaller pilotes réseau</text>
+  <rect x="118" y="648" width="244" height="26" rx="6" fill="#290C18"/>
+  <text x="132" y="665" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="11">📄 Configurer VPN Windows 11</text>
+  <rect x="400" y="586" width="280" height="100" rx="0" fill="#1C0810"/>
+  <text x="418" y="608" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="11">Valeur mission annuelle</text>
+  <text x="418" y="638" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700">7 800 €</text>
+  <text x="418" y="664" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">Forfait mensuel récurrent</text>
+
+  <!-- GLPI branding footer -->
+  <rect x="100" y="686" width="580" height="88" fill="#1A0410"/>
+  <rect x="118" y="702" width="180" height="58" rx="10" fill="#290C18" stroke="#9F1239"/>
+  <text x="168" y="736" fill="#FB7185" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">GLPI</text>
+  <text x="128" y="752" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Support PME open-source</text>
+  <rect x="316" y="702" width="192" height="58" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="332" y="726" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Tickets + SLA</text>
+  <text x="332" y="742" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Inventaire actifs</text>
+  <text x="332" y="758" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Base de conn.</text>
+  <rect x="526" y="702" width="136" height="58" rx="10" fill="#290C18" stroke="#5B1228"/>
+  <text x="552" y="736" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="24">✓</text>
+  <text x="538" y="752" fill="#6EE7B7" font-family="Segoe UI,Arial,sans-serif" font-size="11">Livrable PME</text>
+
+  <!-- RIGHT SIDE -->
+  <text x="760" y="210" fill="#FB7185" font-family="Segoe UI,Arial,sans-serif" font-size="28" letter-spacing="8">SUPPORT PME</text>
+  <text x="760" y="316" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="84" font-weight="700">GLPI</text>
+  <text x="760" y="412" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="66" font-weight="700">HELPDESK</text>
+  <text x="760" y="466" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="28">Déployer GLPI et structurer</text>
+  <text x="760" y="500" fill="#FCA5A5" font-family="Segoe UI,Arial,sans-serif" font-size="28">un support interne pour PME</text>
+  <rect x="760" y="542" width="166" height="52" rx="26" fill="#881337" stroke="#FB7185"/>
+  <text x="797" y="574" fill="#FECDD3" font-family="Segoe UI,Arial,sans-serif" font-size="22">TICKETS</text>
+  <rect x="944" y="542" width="136" height="52" rx="26" fill="#881337" stroke="#FB7185"/>
+  <text x="982" y="574" fill="#FECDD3" font-family="Segoe UI,Arial,sans-serif" font-size="22">SLA</text>
+  <rect x="1098" y="542" width="110" height="52" rx="26" fill="rgba(235,203,139,.14)" stroke="rgba(235,203,139,.38)"/>
+  <text x="1130" y="574" fill="#F6E6BE" font-family="Segoe UI,Arial,sans-serif" font-size="22">65 €</text>
+  <rect x="760" y="642" width="680" height="2" fill="#5B1228"/>
+  <text x="760" y="700" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="26">UN SUPPORT PROPRE, SIMPLE À VENDRE ET À LIVRER</text>
 </svg>

@@ -1,27 +1,112 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#07101C"/>
-      <stop offset="1" stop-color="#1D233C"/>
+      <stop stop-color="#060E1A"/>
+      <stop offset="1" stop-color="#0A1E32"/>
     </linearGradient>
   </defs>
-  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
-  <rect x="116" y="142" width="616" height="602" rx="32" fill="#0E1A2D" stroke="#364166"/>
-  <rect x="160" y="186" width="528" height="132" rx="24" fill="#18233A"/>
-  <rect x="160" y="350" width="248" height="350" rx="24" fill="#18233A"/>
-  <rect x="440" y="350" width="248" height="350" rx="24" fill="#18233A"/>
-  <rect x="202" y="230" width="220" height="18" rx="9" fill="#F6E6BE" fill-opacity=".78"/>
-  <rect x="202" y="266" width="160" height="14" rx="7" fill="#D7DFEF" fill-opacity=".36"/>
-  <rect x="486" y="230" width="144" height="50" rx="25" fill="#EBCB8B" fill-opacity=".16" stroke="#EBCB8B" stroke-opacity=".34"/>
-  <text x="810" y="244" fill="#B7C2F4" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">SITES CLIENTS</text>
-  <text x="810" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">DELIVERY PROPRE</text>
-  <text x="810" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">BRIEF, RECETTE, MISE EN LIGNE, MAINTENANCE</text>
-  <rect x="810" y="520" width="212" height="56" rx="28" fill="#1B2541" stroke="#4C5D8D"/>
-  <text x="874" y="556" fill="#E7ECFF" font-family="Segoe UI, Arial, sans-serif" font-size="26">BRIEF</text>
-  <rect x="1048" y="520" width="212" height="56" rx="28" fill="#1B2541" stroke="#4C5D8D"/>
-  <text x="1107" y="556" fill="#E7ECFF" font-family="Segoe UI, Arial, sans-serif" font-size="26">RECETTE</text>
-  <rect x="1286" y="520" width="214" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
-  <text x="1330" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">MISE EN LIGNE</text>
-  <rect x="810" y="628" width="690" height="2" fill="#46527E"/>
-  <text x="810" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UNE PRESTATION SOBRE, RAPIDE ET FACILE A REPRENDRE</text>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1380" cy="150" r="240" fill="#0C1F36" opacity=".7"/>
+  <circle cx="1320" cy="120" r="130" fill="#112840" opacity=".6"/>
+
+  <!-- LEFT PANEL -->
+  <rect x="80" y="100" width="620" height="700" rx="28" fill="#091828" stroke="#163248"/>
+
+  <!-- Desktop monitor frame -->
+  <rect x="100" y="128" width="580" height="390" rx="16" fill="#0C2038" stroke="#1A3A5E"/>
+  <rect x="100" y="128" width="580" height="36" rx="16" fill="#112846"/>
+  <rect x="100" y="150" width="580" height="14" fill="#112846"/>
+  <circle cx="126" cy="146" r="6" fill="#D96060"/>
+  <circle cx="148" cy="146" r="6" fill="#DBA94A"/>
+  <circle cx="170" cy="146" r="6" fill="#5BB87A"/>
+  <rect x="196" y="138" width="280" height="16" rx="8" fill="#0D2038"/>
+  <text x="210" y="150" fill="#4A90B0" font-family="monospace" font-size="10">cabinet-martin-avocat.fr</text>
+  <rect x="496" y="138" width="172" height="16" rx="8" fill="#1E3A5F"/>
+  <text x="524" y="150" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="10">✓ Livré au client</text>
+
+  <!-- Website nav -->
+  <rect x="100" y="164" width="580" height="36" fill="#0E2540"/>
+  <text x="120" y="187" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700">Cabinet Martin</text>
+  <text x="300" y="187" fill="#8AB4CC" font-family="Segoe UI,Arial,sans-serif" font-size="11">Accueil</text>
+  <text x="368" y="187" fill="#8AB4CC" font-family="Segoe UI,Arial,sans-serif" font-size="11">Services</text>
+  <text x="436" y="187" fill="#8AB4CC" font-family="Segoe UI,Arial,sans-serif" font-size="11">Contact</text>
+  <rect x="526" y="176" width="136" height="22" rx="11" fill="#1D4ED8"/>
+  <text x="556" y="191" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Prendre RDV</text>
+
+  <!-- Hero section -->
+  <rect x="100" y="200" width="580" height="156" fill="#0C1E36"/>
+  <text x="118" y="238" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700">Votre droit, notre expertise</text>
+  <text x="118" y="258" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="12">Cabinet d'avocat à Lyon · Droit des affaires</text>
+  <rect x="118" y="272" width="130" height="30" rx="15" fill="#1D4ED8"/>
+  <text x="148" y="291" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Prendre RDV</text>
+  <rect x="264" y="272" width="120" height="30" rx="15" fill="transparent" stroke="#3B82F6"/>
+  <text x="293" y="291" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="12">Services</text>
+  <rect x="450" y="204" width="218" height="146" rx="8" fill="#112840"/>
+  <text x="520" y="284" fill="#254868" font-family="Segoe UI,Arial,sans-serif" font-size="40">⚖</text>
+
+  <!-- 3 service cards -->
+  <rect x="100" y="356" width="580" height="106" fill="#0A1E36"/>
+  <rect x="114" y="366" width="172" height="80" rx="8" fill="#0E2740" stroke="#1A3A5E"/>
+  <text x="134" y="394" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="20">📜</text>
+  <text x="134" y="414" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Droit des affaires</text>
+  <text x="134" y="430" fill="#4A7A9B" font-family="Segoe UI,Arial,sans-serif" font-size="10">Contrats, création</text>
+  <rect x="300" y="366" width="172" height="80" rx="8" fill="#0E2740" stroke="#1A3A5E"/>
+  <text x="320" y="394" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="20">👥</text>
+  <text x="320" y="414" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Droit du travail</text>
+  <text x="320" y="430" fill="#4A7A9B" font-family="Segoe UI,Arial,sans-serif" font-size="10">Litiges, RH</text>
+  <rect x="486" y="366" width="186" height="80" rx="8" fill="#0E2740" stroke="#1A3A5E"/>
+  <text x="506" y="394" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="20">🏠</text>
+  <text x="506" y="414" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Droit immobilier</text>
+  <text x="506" y="430" fill="#4A7A9B" font-family="Segoe UI,Arial,sans-serif" font-size="10">Transactions</text>
+
+  <!-- Monitor stand -->
+  <rect x="340" y="518" width="20" height="38" fill="#0A1828"/>
+  <rect x="280" y="556" width="140" height="10" rx="5" fill="#0D2038"/>
+
+  <!-- Mobile phone -->
+  <rect x="126" y="572" width="126" height="210" rx="22" fill="#0C2038" stroke="#1A3A5E"/>
+  <rect x="166" y="582" width="46" height="8" rx="4" fill="#112846"/>
+  <rect x="140" y="598" width="98" height="18" rx="0" fill="#0E2540"/>
+  <text x="148" y="611" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="7" font-weight="700">Cabinet Martin</text>
+  <rect x="140" y="616" width="98" height="68" fill="#0C1E36"/>
+  <text x="148" y="636" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="8" font-weight="700">Votre droit,</text>
+  <text x="148" y="648" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="8" font-weight="700">notre expertise</text>
+  <rect x="148" y="656" width="80" height="18" rx="9" fill="#1D4ED8"/>
+  <text x="170" y="669" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="7" font-weight="600">Prendre RDV</text>
+  <rect x="140" y="692" width="98" height="22" rx="4" fill="#0E2740"/>
+  <text x="148" y="707" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="7">📜 Droit des affaires</text>
+  <rect x="140" y="720" width="98" height="22" rx="4" fill="#0E2740"/>
+  <text x="148" y="735" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="7">👥 Droit du travail</text>
+  <rect x="157" y="766" width="64" height="4" rx="2" fill="#1A3A5E"/>
+
+  <!-- Deliverables card -->
+  <rect x="278" y="572" width="392" height="210" rx="14" fill="#0C2038" stroke="#1A3A5E"/>
+  <text x="300" y="604" fill="#7AAFCC" font-family="Segoe UI,Arial,sans-serif" font-size="13">Livraison incluse</text>
+  <rect x="300" y="614" width="348" height="1" fill="#1A3A5E"/>
+  <rect x="300" y="628" width="260" height="24" rx="6" fill="#0E2740"/>
+  <text x="312" y="644" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Site responsive desktop + mobile</text>
+  <rect x="300" y="658" width="220" height="24" rx="6" fill="#0E2740"/>
+  <text x="312" y="674" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ SEO de base configuré</text>
+  <rect x="300" y="688" width="260" height="24" rx="6" fill="#0E2740"/>
+  <text x="312" y="704" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Formulaire de contact</text>
+  <rect x="300" y="718" width="200" height="24" rx="6" fill="#0E2740"/>
+  <text x="312" y="734" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Hébergement configuré</text>
+  <text x="300" y="766" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700">Valeur perçue : 800–1 500 €</text>
+
+  <!-- RIGHT SIDE -->
+  <text x="760" y="210" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="28" letter-spacing="8">SITES WEB CLIENTS</text>
+  <text x="760" y="316" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="88" font-weight="700">CRÉER ET</text>
+  <text x="760" y="416" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="88" font-weight="700">LIVRER</text>
+  <text x="760" y="468" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="28">Sites pros, rapides à produire,</text>
+  <text x="760" y="502" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="28">faciles à livrer et rentables</text>
+
+  <rect x="760" y="544" width="186" height="52" rx="26" fill="#1E3A8A" stroke="#3B82F6"/>
+  <text x="782" y="576" fill="#BFDBFE" font-family="Segoe UI,Arial,sans-serif" font-size="22">RESPONSIVE</text>
+  <rect x="964" y="544" width="166" height="52" rx="26" fill="#1E3A8A" stroke="#3B82F6"/>
+  <text x="992" y="576" fill="#BFDBFE" font-family="Segoe UI,Arial,sans-serif" font-size="22">LIVRAISON</text>
+  <rect x="1148" y="544" width="110" height="52" rx="26" fill="rgba(235,203,139,.14)" stroke="rgba(235,203,139,.38)"/>
+  <text x="1180" y="576" fill="#F6E6BE" font-family="Segoe UI,Arial,sans-serif" font-size="22">54 €</text>
+
+  <rect x="760" y="642" width="680" height="2" fill="#1A3A5E"/>
+  <text x="760" y="700" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="26">UNE PRESTATION PROPRE, VENDABLE, RÉPÉTABLE</text>
 </svg>

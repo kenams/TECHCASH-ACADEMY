@@ -1,26 +1,113 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#08111D"/>
-      <stop offset="1" stop-color="#46351C"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
-  <rect x="112" y="140" width="622" height="618" rx="32" fill="#0E1A2D" stroke="#7B6335"/>
-  <rect x="160" y="188" width="530" height="126" rx="24" fill="#2F2718"/>
-  <rect x="160" y="348" width="530" height="120" rx="24" fill="#18233A"/>
-  <rect x="160" y="500" width="530" height="208" rx="24" fill="#18233A"/>
-  <circle cx="224" cy="250" r="26" fill="#67C191"/>
-  <path d="M212 250L221 259L238 240" stroke="#0C1C13" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="800" y="246" fill="#D3C08E" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">MAINTENANCE PME</text>
-  <text x="800" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">REVENU RECURRENT</text>
-  <text x="800" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">FORFAITS, ROUTINES, REPORTING, RENOUVELLEMENT</text>
-  <rect x="800" y="520" width="212" height="56" rx="28" fill="#4A3820" stroke="#927445"/>
-  <text x="852" y="556" fill="#F2E7C8" font-family="Segoe UI, Arial, sans-serif" font-size="26">FORFAITS</text>
-  <rect x="1038" y="520" width="214" height="56" rx="28" fill="#4A3820" stroke="#927445"/>
-  <text x="1090" y="556" fill="#F2E7C8" font-family="Segoe UI, Arial, sans-serif" font-size="26">REPORTING</text>
-  <rect x="1278" y="520" width="224" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
-  <text x="1332" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">RETENTION</text>
-  <rect x="800" y="628" width="702" height="2" fill="#7A6440"/>
-  <text x="800" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">LE PASSAGE DU DEPANNAGE AU CONTRAT PROPRE</text>
+  <rect width="1600" height="900" fill="#060C14"/>
+  <circle cx="1380" cy="150" r="240" fill="#0C1A2E" opacity=".8"/>
+  <circle cx="1320" cy="120" r="130" fill="#112238" opacity=".7"/>
+  <rect x="80" y="100" width="620" height="700" rx="28" fill="#091420" stroke="#1A3252"/>
+
+  <!-- Header -->
+  <rect x="100" y="128" width="580" height="46" rx="14" fill="#102030" stroke="#1A3252"/>
+  <text x="124" y="157" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700">Maintenance IT — Forfait mensuel PME</text>
+  <rect x="530" y="138" width="136" height="24" rx="12" fill="#1E3A5F"/>
+  <text x="554" y="154" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Contrat actif ✓</text>
+
+  <!-- Forfait contract card -->
+  <rect x="100" y="184" width="580" height="150" rx="0" fill="#0D1E30"/>
+  <rect x="118" y="196" width="340" height="126" rx="12" fill="#102840" stroke="#1E4060"/>
+  <text x="138" y="222" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">CONTRAT DE MAINTENANCE</text>
+  <text x="138" y="244" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">Garage Dumas — PME 15 postes</text>
+  <text x="138" y="266" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="13">Forfait mensuel · Engagement 12 mois</text>
+  <text x="138" y="290" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">650 €/mois</text>
+  <text x="138" y="310" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">Renouvellement auto · Stripe · Facture mensuelle</text>
+  <rect x="476" y="196" width="186" height="126" rx="12" fill="#0E2030" stroke="#1A3252"/>
+  <text x="496" y="222" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">Revenus récurrents</text>
+  <text x="496" y="248" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">3 200€</text>
+  <text x="496" y="264" fill="#6EE7B7" font-family="Segoe UI,Arial,sans-serif" font-size="11">/mois · 5 contrats</text>
+  <text x="496" y="288" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="10">→ Annualisé :</text>
+  <text x="496" y="306" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700">38 400 €</text>
+
+  <!-- Maintenance checklist -->
+  <rect x="100" y="334" width="580" height="260" rx="0" fill="#091420"/>
+  <text x="118" y="358" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Routines de maintenance incluses</text>
+
+  <rect x="118" y="368" width="260" height="210" rx="10" fill="#0D1E30" stroke="#1A3252"/>
+  <text x="136" y="392" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Mensuel</text>
+  <rect x="136" y="400" width="224" height="28" rx="6" fill="#102840"/>
+  <text x="150" y="418" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Mises à jour Windows</text>
+  <rect x="136" y="434" width="224" height="28" rx="6" fill="#0D1E30"/>
+  <text x="150" y="452" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Antivirus — analyse complète</text>
+  <rect x="136" y="468" width="224" height="28" rx="6" fill="#102840"/>
+  <text x="150" y="486" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Vérification sauvegardes</text>
+  <rect x="136" y="502" width="224" height="28" rx="6" fill="#0D1E30"/>
+  <text x="150" y="520" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Rapport santé réseau</text>
+  <rect x="136" y="536" width="224" height="28" rx="6" fill="#102840"/>
+  <text x="150" y="554" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Nettoyage disques</text>
+
+  <rect x="398" y="368" width="264" height="210" rx="10" fill="#0D1E30" stroke="#1A3252"/>
+  <text x="416" y="392" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Trimestriel + Annuel</text>
+  <rect x="416" y="400" width="228" height="28" rx="6" fill="#102840"/>
+  <text x="430" y="418" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Visite sur site (audit)</text>
+  <rect x="416" y="434" width="228" height="28" rx="6" fill="#0D1E30"/>
+  <text x="430" y="452" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Renouvellement licences</text>
+  <rect x="416" y="468" width="228" height="28" rx="6" fill="#102840"/>
+  <text x="430" y="486" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Plan de reprise PRA</text>
+  <rect x="416" y="502" width="228" height="28" rx="6" fill="#0D1E30"/>
+  <text x="430" y="520" fill="#D9E3F2" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Rapport annuel PDF</text>
+  <rect x="416" y="536" width="228" height="28" rx="6" fill="#102840"/>
+  <text x="430" y="554" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="11">✓ Révision tarifaire</text>
+
+  <!-- Active clients -->
+  <rect x="100" y="594" width="580" height="82" fill="#0D1E30"/>
+  <text x="118" y="616" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">Clients actifs sous contrat</text>
+  <rect x="118" y="624" width="100" height="42" rx="8" fill="#102840" stroke="#1A3252"/>
+  <text x="132" y="642" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="9">Garage Dumas</text>
+  <text x="132" y="656" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">650€/m</text>
+  <rect x="232" y="624" width="100" height="42" rx="8" fill="#102840" stroke="#1A3252"/>
+  <text x="244" y="642" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="9">Cabinet Martin</text>
+  <text x="244" y="656" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">800€/m</text>
+  <rect x="346" y="624" width="100" height="42" rx="8" fill="#102840" stroke="#1A3252"/>
+  <text x="358" y="642" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="9">PME Roblin</text>
+  <text x="358" y="656" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">500€/m</text>
+  <rect x="460" y="624" width="100" height="42" rx="8" fill="#102840" stroke="#1A3252"/>
+  <text x="472" y="642" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="9">Boulangerie P.</text>
+  <text x="472" y="656" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">350€/m</text>
+  <rect x="574" y="624" width="88" height="42" rx="8" fill="#0E2638" stroke="#1E4060"/>
+  <text x="586" y="642" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="9">+ 1 prospect</text>
+  <text x="586" y="658" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="11">→</text>
+
+  <!-- Stripe recurring payments visual -->
+  <rect x="100" y="676" width="580" height="98" fill="#091420"/>
+  <text x="118" y="698" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">Paiements Stripe — Récurrents</text>
+  <rect x="118" y="706" width="540" height="56" rx="10" fill="#0D1E30" stroke="#1A3252"/>
+  <text x="136" y="724" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Janv</text>
+  <rect x="136" y="728" width="32" height="24" rx="4" fill="#1E4060"/>
+  <text x="138" y="744" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="8">3.2k</text>
+  <text x="184" y="724" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Fév</text>
+  <rect x="184" y="728" width="32" height="24" rx="4" fill="#1E4060"/>
+  <text x="186" y="744" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="8">3.2k</text>
+  <text x="232" y="724" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Mars</text>
+  <rect x="232" y="728" width="32" height="24" rx="4" fill="#1E4060"/>
+  <text x="234" y="744" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="8">3.2k</text>
+  <text x="280" y="724" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Avr</text>
+  <rect x="280" y="728" width="32" height="24" rx="4" fill="#1E4060"/>
+  <text x="282" y="744" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="8">3.2k</text>
+  <text x="328" y="724" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Mai</text>
+  <rect x="328" y="716" width="32" height="36" rx="4" fill="#1D4ED8"/>
+  <text x="330" y="744" fill="#BFDBFE" font-family="Segoe UI,Arial,sans-serif" font-size="8">3.8k</text>
+  <text x="476" y="744" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700">Stable · Prévisible</text>
+  <text x="476" y="756" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="11">Revenu récurrent mensuel</text>
+
+  <!-- RIGHT SIDE -->
+  <text x="760" y="210" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="28" letter-spacing="8">MAINTENANCE IT</text>
+  <text x="760" y="316" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="84" font-weight="700">FORFAIT</text>
+  <text x="760" y="412" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="84" font-weight="700">PME</text>
+  <text x="760" y="466" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="28">Vendre une maintenance IT</text>
+  <text x="760" y="500" fill="#93C5FD" font-family="Segoe UI,Arial,sans-serif" font-size="28">récurrente et bien structurée</text>
+  <rect x="760" y="542" width="166" height="52" rx="26" fill="#1E3A8A" stroke="#3B82F6"/>
+  <text x="795" y="574" fill="#BFDBFE" font-family="Segoe UI,Arial,sans-serif" font-size="22">FORFAIT</text>
+  <rect x="944" y="542" width="196" height="52" rx="26" fill="#1E3A8A" stroke="#3B82F6"/>
+  <text x="970" y="574" fill="#BFDBFE" font-family="Segoe UI,Arial,sans-serif" font-size="22">RÉCURRENT</text>
+  <rect x="1158" y="542" width="110" height="52" rx="26" fill="rgba(235,203,139,.14)" stroke="rgba(235,203,139,.38)"/>
+  <text x="1190" y="574" fill="#F6E6BE" font-family="Segoe UI,Arial,sans-serif" font-size="22">58 €</text>
+  <rect x="760" y="642" width="680" height="2" fill="#1A3252"/>
+  <text x="760" y="700" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="26">UN REVENU STABLE, DÉFENDABLE ET RENOUVELABLE</text>
 </svg>

@@ -1,29 +1,106 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#07111E"/>
-      <stop offset="1" stop-color="#123B3F"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
-  <rect x="112" y="138" width="646" height="620" rx="32" fill="#0E1A2D" stroke="#2C5E63"/>
-  <rect x="160" y="188" width="550" height="122" rx="24" fill="#163237"/>
-  <rect x="160" y="342" width="170" height="120" rx="22" fill="#18323E"/>
-  <rect x="358" y="342" width="170" height="120" rx="22" fill="#18323E"/>
-  <rect x="556" y="342" width="154" height="120" rx="22" fill="#18323E"/>
-  <rect x="160" y="494" width="550" height="214" rx="24" fill="#18323E"/>
-  <path d="M250 402H438" stroke="#EBCB8B" stroke-width="12" stroke-linecap="round"/>
-  <path d="M448 402H618" stroke="#72D0C4" stroke-width="12" stroke-linecap="round"/>
-  <path d="M438 402L456 402" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
-  <text x="820" y="244" fill="#8DE0D4" font-family="Segoe UI, Arial, sans-serif" font-size="34" letter-spacing="10">OUTILS PME / GLPI</text>
-  <text x="820" y="352" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700">SUPPORT STRUCTURE</text>
-  <text x="820" y="426" fill="#D9E3F2" font-family="Segoe UI, Arial, sans-serif" font-size="34">TICKETS, FLUX, DEMANDES, TABLEAUX DE BORD</text>
-  <rect x="820" y="520" width="198" height="56" rx="28" fill="#19434A" stroke="#3E7F86"/>
-  <text x="874" y="556" fill="#DDF8F4" font-family="Segoe UI, Arial, sans-serif" font-size="26">GLPI</text>
-  <rect x="1046" y="520" width="218" height="56" rx="28" fill="#19434A" stroke="#3E7F86"/>
-  <text x="1106" y="556" fill="#DDF8F4" font-family="Segoe UI, Arial, sans-serif" font-size="26">SUPPORT</text>
-  <rect x="1288" y="520" width="212" height="56" rx="28" fill="#EBCB8B" fill-opacity=".14" stroke="#EBCB8B" stroke-opacity=".38"/>
-  <text x="1332" y="556" fill="#F6E6BE" font-family="Segoe UI, Arial, sans-serif" font-size="26">PROCESS</text>
-  <rect x="820" y="628" width="680" height="2" fill="#3B6A70"/>
-  <text x="820" y="700" fill="#EBCB8B" font-family="Segoe UI, Arial, sans-serif" font-size="30">UN BESOIN INTERNE DEVENU OFFRE FACTURABLE</text>
+  <rect width="1600" height="900" fill="#0E0A04"/>
+  <circle cx="1380" cy="150" r="240" fill="#1C1000" opacity=".8"/>
+  <circle cx="1320" cy="120" r="130" fill="#251800" opacity=".7"/>
+  <rect x="80" y="100" width="620" height="700" rx="28" fill="#130E04" stroke="#3D2A04"/>
+  <rect x="100" y="128" width="580" height="46" rx="14" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="124" y="157" fill="#F59E0B" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700">GLPI — Tickets support PME</text>
+  <rect x="554" y="138" width="112" height="24" rx="12" fill="#D97706"/>
+  <text x="578" y="154" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">+ Nouveau</text>
+  <rect x="100" y="184" width="580" height="62" fill="#1A1206"/>
+  <rect x="116" y="196" width="118" height="38" rx="8" fill="#261A00" stroke="#3D2A04"/>
+  <text x="130" y="211" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Ouverts</text>
+  <text x="130" y="228" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">12</text>
+  <rect x="248" y="196" width="118" height="38" rx="8" fill="#261A00" stroke="#3D2A04"/>
+  <text x="262" y="211" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">En cours</text>
+  <text x="262" y="228" fill="#60A5FA" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">5</text>
+  <rect x="380" y="196" width="118" height="38" rx="8" fill="#261A00" stroke="#3D2A04"/>
+  <text x="394" y="211" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Résolus</text>
+  <text x="394" y="228" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">47</text>
+  <rect x="512" y="196" width="154" height="38" rx="8" fill="#261A00" stroke="#3D2A04"/>
+  <text x="526" y="211" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Taux résolution</text>
+  <text x="526" y="228" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">94%</text>
+  <rect x="100" y="246" width="580" height="26" fill="#1C1400"/>
+  <text x="120" y="264" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#    Titre                          Demandeur    Priorité   Statut</text>
+  <rect x="100" y="272" width="580" height="1" fill="#2A1E00"/>
+  <rect x="100" y="273" width="580" height="46" fill="#171008"/>
+  <text x="118" y="299" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#047</text>
+  <text x="154" y="294" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">Imprimante HP hors service — Accueil</text>
+  <text x="154" y="309" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">12 min · Bureau direction</text>
+  <text x="374" y="299" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">M. Bernard</text>
+  <rect x="476" y="283" width="66" height="22" rx="11" fill="rgba(239,68,68,.18)" stroke="rgba(239,68,68,.5)"/>
+  <text x="492" y="298" fill="#F87171" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">URGENT</text>
+  <rect x="556" y="283" width="108" height="22" rx="11" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)"/>
+  <text x="573" y="298" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">EN COURS</text>
+  <rect x="100" y="319" width="580" height="1" fill="#2A1E00"/>
+  <rect x="100" y="320" width="580" height="46" fill="#130E04"/>
+  <text x="118" y="346" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#046</text>
+  <text x="154" y="341" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">Outlook ne se lance plus — Comptabilité</text>
+  <text x="154" y="356" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">1h · Service compta</text>
+  <text x="374" y="346" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Mme Duval</text>
+  <rect x="476" y="330" width="60" height="22" rx="11" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)"/>
+  <text x="490" y="345" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">MOYEN</text>
+  <rect x="556" y="330" width="108" height="22" rx="11" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)"/>
+  <text x="573" y="345" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">EN COURS</text>
+  <rect x="100" y="366" width="580" height="1" fill="#2A1E00"/>
+  <rect x="100" y="367" width="580" height="46" fill="#171008"/>
+  <text x="118" y="393" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#045</text>
+  <text x="154" y="388" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">VPN client ne fonctionne plus</text>
+  <text x="154" y="403" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">2h · Commercial terrain</text>
+  <text x="374" y="393" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">R. Simon</text>
+  <rect x="476" y="377" width="56" height="22" rx="11" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.4)"/>
+  <text x="492" y="392" fill="#A5B4FC" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">BAS</text>
+  <rect x="556" y="377" width="108" height="22" rx="11" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.4)"/>
+  <text x="576" y="392" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">RÉSOLU</text>
+  <rect x="100" y="413" width="580" height="1" fill="#2A1E00"/>
+  <rect x="100" y="414" width="580" height="46" fill="#130E04"/>
+  <text x="118" y="440" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="11">#044</text>
+  <text x="154" y="435" fill="#F3F4F6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600">Nouveau poste à configurer — RH</text>
+  <text x="154" y="450" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">3h · Arrivée collaborateur</text>
+  <text x="374" y="440" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">DRH Martin</text>
+  <rect x="476" y="424" width="60" height="22" rx="11" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)"/>
+  <text x="490" y="439" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">MOYEN</text>
+  <rect x="556" y="424" width="82" height="22" rx="11" fill="rgba(251,191,36,.12)" stroke="rgba(251,191,36,.35)"/>
+  <text x="572" y="439" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="700">OUVERT</text>
+  <rect x="100" y="460" width="580" height="1" fill="#2A1E00"/>
+  <rect x="100" y="461" width="580" height="110" fill="#1A1206"/>
+  <text x="118" y="484" fill="#F59E0B" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Ticket #047 — Détail technique</text>
+  <text x="118" y="502" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="11">Catégorie : Matériel · SLA : 4h · Assigné : Tech Dupont</text>
+  <text x="118" y="520" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Action : Vérifier pilote réseau, remplacer cartouche si nécessaire</text>
+  <rect x="118" y="534" width="120" height="26" rx="13" fill="#D97706"/>
+  <text x="148" y="551" fill="#FFF" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Résoudre</text>
+  <rect x="252" y="534" width="120" height="26" rx="13" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="280" y="551" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="12">Transférer</text>
+  <rect x="100" y="571" width="580" height="82" fill="#130E04"/>
+  <text x="118" y="592" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="11">Base de connaissances</text>
+  <rect x="118" y="600" width="256" height="44" rx="8" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="132" y="618" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="11">📄 Réinstaller les pilotes HP</text>
+  <text x="132" y="634" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Procédure standard · Vue 48x</text>
+  <rect x="390" y="600" width="272" height="44" rx="8" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="404" y="618" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="11">📄 Configurer VPN Windows 11</text>
+  <text x="404" y="634" fill="#6B7280" font-family="Segoe UI,Arial,sans-serif" font-size="10">Procédure · Vue 32x</text>
+  <rect x="100" y="653" width="580" height="120" fill="#1A1206"/>
+  <rect x="118" y="668" width="180" height="88" rx="10" fill="#261A00" stroke="#D97706"/>
+  <text x="162" y="712" fill="#F59E0B" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">GLPI</text>
+  <text x="125" y="744" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="10">Helpdesk open-source</text>
+  <rect x="314" y="668" width="196" height="88" rx="10" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="330" y="692" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Gestion des actifs</text>
+  <text x="330" y="710" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Inventaire réseau</text>
+  <text x="330" y="728" fill="#D1D5DB" font-family="Segoe UI,Arial,sans-serif" font-size="11">Rapports SLA</text>
+  <rect x="526" y="668" width="138" height="88" rx="10" fill="#1C1400" stroke="#3D2A04"/>
+  <text x="548" y="712" fill="#34D399" font-family="Segoe UI,Arial,sans-serif" font-size="26">✓</text>
+  <text x="536" y="742" fill="#6EE7B7" font-family="Segoe UI,Arial,sans-serif" font-size="11">Livrable PME</text>
+  <text x="760" y="210" fill="#F59E0B" font-family="Segoe UI,Arial,sans-serif" font-size="28" letter-spacing="8">OUTILS PME</text>
+  <text x="760" y="316" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="84" font-weight="700">SUPPORT</text>
+  <text x="760" y="412" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="84" font-weight="700">ET GLPI</text>
+  <text x="760" y="466" fill="#FCD34D" font-family="Segoe UI,Arial,sans-serif" font-size="28">Tickets · Actifs · SLA · PME</text>
+  <text x="760" y="500" fill="#9CA3AF" font-family="Segoe UI,Arial,sans-serif" font-size="26">Transformer un besoin interne en mission</text>
+  <rect x="760" y="542" width="152" height="52" rx="26" fill="#78350F" stroke="#F59E0B"/>
+  <text x="790" y="574" fill="#FDE68A" font-family="Segoe UI,Arial,sans-serif" font-size="22">TICKETS</text>
+  <rect x="930" y="542" width="130" height="52" rx="26" fill="#78350F" stroke="#F59E0B"/>
+  <text x="962" y="574" fill="#FDE68A" font-family="Segoe UI,Arial,sans-serif" font-size="22">GLPI</text>
+  <rect x="1078" y="542" width="110" height="52" rx="26" fill="rgba(235,203,139,.14)" stroke="rgba(235,203,139,.38)"/>
+  <text x="1110" y="574" fill="#F6E6BE" font-family="Segoe UI,Arial,sans-serif" font-size="22">69 €</text>
+  <rect x="760" y="642" width="680" height="2" fill="#3D2A04"/>
+  <text x="760" y="700" fill="#EBCB8B" font-family="Segoe UI,Arial,sans-serif" font-size="26">TRANSFORMER UN BESOIN PME EN PRODUIT FACTURABLE</text>
 </svg>
