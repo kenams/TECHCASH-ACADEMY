@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 import { AuthShell } from "@/components/auth-shell";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
@@ -113,7 +114,18 @@ export default function RegisterPage() {
     <AuthShell
       eyebrow="Création de compte"
       title="Créer mon accès"
-      subtitle="Rejoins TechCash Academy et commence à apprendre."
+      subtitle="Rejoins TechCash Academy et commence à apprendre avec un espace membre propre dès la première connexion."
+      helper={
+        <div className="rounded-[24px] border border-[rgba(120,119,198,0.24)] bg-[rgba(120,119,198,0.08)] p-5 text-left">
+          <div className="mb-3 flex flex-wrap items-center gap-3">
+            <Badge variant="muted">Sécurité</Badge>
+            <span className="text-sm text-[var(--foreground)]">Activation 2FA ensuite</span>
+          </div>
+          <p className="text-sm leading-7 text-[var(--muted)]">
+            Une fois ton compte créé, tu pourras activer la double authentification depuis l'espace membre dans la section «&nbsp;Sécurité 2FA&nbsp;».
+          </p>
+        </div>
+      }
       footer={
         <p className="text-sm text-[var(--muted)]">
           Déjà inscrit&nbsp;?{" "}
@@ -209,11 +221,7 @@ export default function RegisterPage() {
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
           disabled={loading}
-          error={
-            confirmPassword.length > 0 && !passwordsMatch
-              ? "Les mots de passe ne correspondent pas."
-              : undefined
-          }
+          error={confirmPassword.length > 0 && !passwordsMatch ? "Les mots de passe ne correspondent pas." : undefined}
           endAdornment={
             <button
               type="button"
@@ -226,9 +234,7 @@ export default function RegisterPage() {
           }
         />
 
-        {passwordsMatch ? (
-          <p className="text-sm text-[#bbf7d0]">Les mots de passe correspondent.</p>
-        ) : null}
+        {passwordsMatch ? <p className="text-sm text-[#bbf7d0]">Les mots de passe correspondent.</p> : null}
 
         <label className="flex items-start gap-3 rounded-[20px] border border-[var(--border)] bg-white/5 px-4 py-4 text-sm text-[var(--muted)]">
           <input
@@ -246,12 +252,7 @@ export default function RegisterPage() {
           </span>
         </label>
 
-        <Button
-          type="submit"
-          loading={loading}
-          className="w-full"
-          disabled={confirmPassword.length > 0 && !passwordsMatch}
-        >
+        <Button type="submit" loading={loading} className="w-full" disabled={confirmPassword.length > 0 && !passwordsMatch}>
           Créer mon accès
         </Button>
       </form>

@@ -143,26 +143,18 @@ export function SecurityPanel({ email, enrolledFactorId }: Props) {
           <Badge variant="primary" className="w-fit">
             Configuration 2FA
           </Badge>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-            Scanne le QR code
-          </h2>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Scanne le QR code</h2>
           <p className="text-base leading-8 text-[var(--muted)]">
             Ouvre ton application d'authentification, scanne ce QR code puis saisis le code affiché pour confirmer l'activation.
           </p>
         </div>
 
         <div className="mx-auto rounded-[24px] bg-white p-4 shadow-[0_20px_40px_rgba(2,8,23,0.24)]">
-          <img
-            src={enrollData.qrCode}
-            alt="QR code pour l'activation de la double authentification"
-            className="h-44 w-44"
-          />
+          <img src={enrollData.qrCode} alt="QR code pour l'activation de la double authentification" className="h-44 w-44" />
         </div>
 
         <details className="rounded-[20px] border border-[var(--border)] bg-white/5 p-4 text-sm text-[var(--muted)]">
-          <summary className="cursor-pointer font-medium text-[var(--foreground)]">
-            Je ne peux pas scanner le QR code
-          </summary>
+          <summary className="cursor-pointer font-medium text-[var(--foreground)]">Je ne peux pas scanner le QR code</summary>
           <div className="mt-3 grid gap-2">
             <p>Entre cette clé manuelle dans ton application&nbsp;:</p>
             <code className="break-all rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-[var(--foreground)]">

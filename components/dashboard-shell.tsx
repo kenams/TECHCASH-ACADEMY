@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 import { cn } from "@/lib/cn";
 import { BrandMark } from "@/components/ui/BrandMark";
@@ -42,7 +42,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
     () => [
       { href: "/dashboard", label: "Tableau de bord", icon: "🏠" },
       { href: "/dashboard/mes-formations", label: "Mes formations", icon: "📚" },
-      { href: "/dashboard/securite", label: "Profil", icon: "👤" }
+      { href: "/dashboard/securite", label: "Sécurité 2FA", icon: "🛡️" }
     ],
     []
   );
@@ -58,6 +58,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
       <div className="mx-auto flex min-h-screen max-w-[1440px]">
         <aside className="sticky top-0 hidden h-screen w-[240px] shrink-0 border-r border-[var(--border)] bg-[var(--surface-strong)]/95 px-5 py-6 backdrop-blur-xl lg:flex lg:flex-col">
           <BrandMark compact className="mb-8" />
+
           <div className="mb-8 rounded-[24px] border border-[var(--border)] bg-white/5 p-4 shadow-[var(--shadow)]">
             <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[linear-gradient(135deg,rgba(215,184,122,0.18),rgba(255,255,255,0.04))] text-sm font-semibold text-[var(--foreground)]">
               {initialsFromEmail(email)}
@@ -68,9 +69,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
 
           <nav className="grid gap-2">
             {mainNav.map((item) => {
-              const active =
-                pathname === item.href ||
-                (item.href !== "/dashboard" && pathname.startsWith(item.href));
+              const active = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
 
               return (
                 <Link
@@ -88,6 +87,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
                 </Link>
               );
             })}
+
             {canManageCatalog ? (
               <Link
                 href="/dashboard/admin"
@@ -124,9 +124,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--border)] bg-[var(--surface-strong)]/95 px-3 py-3 backdrop-blur-xl lg:hidden">
         <div className="mx-auto grid max-w-xl grid-cols-4 gap-2">
           {mainNav.map((item) => {
-            const active =
-              pathname === item.href ||
-              (item.href !== "/dashboard" && pathname.startsWith(item.href));
+            const active = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
 
             return (
               <Link
@@ -142,6 +140,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
               </Link>
             );
           })}
+
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
@@ -187,6 +186,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
                   {item.icon} {item.label}
                 </Link>
               ))}
+
               {canManageCatalog ? (
                 <Link
                   href="/dashboard/admin"

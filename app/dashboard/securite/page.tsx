@@ -22,7 +22,7 @@ export default async function SecuritePage() {
   }
 
   const { data: factorsData } = await supabase.auth.mfa.listFactors();
-  const enrolledTotp = factorsData?.totp?.find((f) => f.status === "verified") ?? null;
+  const enrolledTotp = factorsData?.totp?.find((factor) => factor.status === "verified") ?? null;
 
   return (
     <div className="grid gap-8">

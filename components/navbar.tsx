@@ -27,11 +27,7 @@ function initialsFromEmail(email: string) {
     .slice(0, 2);
 }
 
-export function Navbar({
-  brand,
-  isLoggedIn,
-  primaryProductSlug = "freelance-it-30-jours"
-}: NavbarProps) {
+export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-30-jours" }: NavbarProps) {
   const supabase = getSupabaseBrowserClient();
   const pathname = usePathname();
   const router = useRouter();
@@ -124,9 +120,7 @@ export function Navbar({
 
         <nav className="nav ml-auto hidden items-center gap-3 md:flex">
           {baseLinks.map((link) => {
-            const active =
-              pathname === link.href ||
-              (link.href !== "/" && pathname.startsWith(link.href));
+            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
 
             return (
               <Link
@@ -134,9 +128,7 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
-                  active
-                    ? "bg-white/8 text-[var(--foreground)]"
-                    : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                  active ? "bg-white/8 text-[var(--foreground)]" : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 )}
               >
                 {link.label}
@@ -156,9 +148,7 @@ export function Navbar({
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[linear-gradient(135deg,rgba(215,184,122,0.18),rgba(255,255,255,0.04))] font-semibold">
                   {initials}
                 </span>
-                <span className="hidden max-w-[160px] truncate text-left lg:block">
-                  {email || "Mon espace"}
-                </span>
+                <span className="hidden max-w-[160px] truncate text-left lg:block">{email || "Mon espace"}</span>
               </button>
 
               {dropdownOpen ? (
@@ -166,11 +156,11 @@ export function Navbar({
                   <Link href="/dashboard" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
                     Mon espace
                   </Link>
-                  <Link
-                    href="/dashboard/mes-formations"
-                    className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5"
-                  >
+                  <Link href="/dashboard/mes-formations" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
                     Mes formations
+                  </Link>
+                  <Link href="/dashboard/securite" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
+                    Sécurité 2FA
                   </Link>
                   <button
                     type="button"
@@ -251,6 +241,16 @@ export function Navbar({
                   {link.label}
                 </Link>
               ))}
+              {authState.loggedIn ? (
+                <Link
+                  href="/dashboard/securite"
+                  onClick={() => setMenuOpen(false)}
+                  className="animate-fade-in rounded-[24px] border border-[var(--border)] bg-white/5 px-5 py-4 text-lg text-[var(--foreground)]"
+                  style={{ animationDelay: `${baseLinks.length * 80}ms` }}
+                >
+                  Sécurité 2FA
+                </Link>
+              ) : null}
             </div>
 
             <div className="mt-auto grid gap-3 pb-8 pt-8">
@@ -260,7 +260,7 @@ export function Navbar({
                     <p className="mb-1 text-sm text-[var(--muted)]">Connecté avec</p>
                     <p className="truncate text-base text-[var(--foreground)]">{email}</p>
                   </div>
-                  <Button variant="secondary" onClick={() => { setMenuOpen(false); router.push('/dashboard/mes-formations'); }}>
+                  <Button variant="secondary" onClick={() => { setMenuOpen(false); router.push("/dashboard/mes-formations"); }}>
                     Mes formations
                   </Button>
                   <Button variant="ghost" onClick={handleSignOut}>

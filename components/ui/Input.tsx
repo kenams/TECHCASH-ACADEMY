@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           ref={ref}
           id={inputId}
           className={cn(
-            "peer h-full w-full border-none bg-transparent pb-1 pt-5 text-[var(--foreground)] outline-none placeholder:text-transparent",
+            "peer h-full w-full border-none bg-transparent pb-1 pt-5 text-[var(--foreground)] outline-none placeholder:text-transparent autofill:bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:var(--foreground)] [&:-webkit-autofill]:shadow-[0_0_0_1000px_rgba(10,16,31,1)_inset] [&:-webkit-autofill:hover]:[-webkit-text-fill-color:var(--foreground)] [&:-webkit-autofill:focus]:[-webkit-text-fill-color:var(--foreground)]",
             endAdornment ? "pr-10" : "",
             icon ? "" : "pl-0",
             className

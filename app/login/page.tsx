@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AuthShell } from "@/components/auth-shell";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
@@ -90,7 +91,7 @@ export default function LoginPage() {
 
     if (!syncResponse.ok) {
       const syncData = (await syncResponse.json()) as { error?: string };
-      setError(syncData.error || "Connexion réussie mais profil introuvable.");
+      setError(syncData.error || "Connexion réussie, mais le profil n'a pas pu être synchronisé.");
       setLoading(false);
       return;
     }
@@ -186,11 +187,33 @@ export default function LoginPage() {
   return (
     <AuthShell
       eyebrow={step === "mfa" ? "Vérification 2FA" : "Connexion membre"}
-      title={step === "mfa" ? "Double authentification" : "Bon retour 👋"}
+      title={step === "mfa" ? "Double authentification" : "Bon retour"}
       subtitle={
         step === "mfa"
-          ? "Valide ton code de sécurité pour ouvrir ton espace membre."
-          : "Accède à tes formations et ressources."
+          ? "Entre le code à 6 chiffres généré par ton application d'authentification pour ouvrir ton espace membre."
+          : "Accède à tes formations, ton tableau de bord et tes ressources sans friction."
+      }
+      helper={
+        step === "credentials" ? (
+          <div className="rounded-[24px] border border-[rgba(120,119,198,0.24)] bg-[linear-gradient(135deg,rgba(120,119,198,0.12),rgba(215,184,122,0.08))] p-5 text-left">
+            <div className="mb-3 flex flex-wrap items-center gap-3">
+              <Badge variant="primary">Sécurité du compte</Badge>
+              <span className="text-sm text-[var(--foreground)]">2FA disponible</span>
+            </div>
+            <div className="grid gap-2 text-sm leading-7 text-[var(--muted)]">
+              <p>
+                Si la double authentification est activée sur ton compte, un second écran te demandera ton code juste après le mot de passe.
+              </p>
+              <p>
+                Tu peux l'activer ensuite depuis <span className="text-[var(--foreground)]">Mon espace &gt; Sécurité 2FA</span>.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-[24px] border border-[rgba(120,119,198,0.24)] bg-[rgba(120,119,198,0.08)] p-5 text-left text-sm leading-7 text-[var(--muted)]">
+            Utilise le code généré par Google Authenticator, Authy, 1Password, Bitwarden ou Microsoft Authenticator.
+          </div>
+        )
       }
       footer={
         step === "mfa" ? (
