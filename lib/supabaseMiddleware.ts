@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient, type SetAllCookies } from "@supabase/ssr";
 import { getPublicEnv } from "@/lib/env";
 
-const protectedRoutes = ["/dashboard", "/checkout"];
+const protectedRoutes = ["/dashboard"];
 const authRoutes = ["/login", "/register"];
 
 function buildSafeNextPath(request: NextRequest) {

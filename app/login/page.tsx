@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { AuthShell } from "@/components/auth-shell";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 import { siteConfig } from "@/lib/site";
 
@@ -35,7 +38,7 @@ export default function LoginPage() {
   const [mfaState, setMfaState] = useState<MfaState | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const mfaInputRef = useRef<HTMLInputElement>(null);
 
   const nextParam = searchParams.get("next")?.trim() || null;
@@ -53,10 +56,12 @@ export default function LoginPage() {
       const {
         data: { session }
       } = await supabase.auth.getSession();
+
       if (session) {
         router.replace(redirectTarget);
       }
     }
+
     void checkSession();
   }, [redirectTarget, router, supabase]);
 
@@ -65,6 +70,17 @@ export default function LoginPage() {
       mfaInputRef.current.focus();
     }
   }, [step]);
+
+  useEffect(() => {
+    if (!errorParam) return;
+
+    if (errorParam === "email_confirmation") {
+      setError("Ton e-mail doit être confirmé avant la connexion.");
+      return;
+    }
+
+    setError("Une action de sécurité est nécessaire avant de continuer.");
+  }, [errorParam]);
 
   async function syncProfileAndRedirect(accessToken: string | undefined) {
     const syncResponse = await fetch("/api/auth/sync-profile", {
@@ -95,25 +111,24 @@ export default function LoginPage() {
 
       if (signInError) {
         if (signInError.message.toLowerCase().includes("email not confirmed")) {
-          setError(
-            "Ton email n'est pas encore confirmé. Vérifie ta boîte mail et clique sur le lien de confirmation."
-          );
+          setError("Ton e-mail n'est pas encore confirmé. Vérifie ta boîte mail.");
         } else {
-          setError("Email ou mot de passe incorrect.");
+          setError("E-mail ou mot de passe incorrect.");
         }
         setLoading(false);
         return;
       }
 
-      // Check if MFA is required
       const { data: aalData } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+
       if (aalData?.nextLevel === "aal2" && aalData.currentLevel !== "aal2") {
         const { data: factorsData } = await supabase.auth.mfa.listFactors();
         const totpFactor = factorsData?.totp?.[0];
 
         if (totpFactor) {
-          const { data: challengeData, error: challengeError } =
-            await supabase.auth.mfa.challenge({ factorId: totpFactor.id });
+          const { data: challengeData, error: challengeError } = await supabase.auth.mfa.challenge({
+            factorId: totpFactor.id
+          });
 
           if (challengeError || !challengeData) {
             setError("Impossible de démarrer la vérification 2FA. Réessaie.");
@@ -169,224 +184,118 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="auth-wrap-split">
-      <div className="auth-side-brand">
-        <Link href="/" className="brand">
-          {siteConfig.brand}
-        </Link>
-        <div className="stack">
-          {step === "mfa" ? (
-            <>
-              <h2 style={{ margin: 0, fontSize: "1.6rem", lineHeight: 1.2 }}>
-                Double authentification
-              </h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
-                Ton compte est protégé par une double authentification. Ouvre ton application
-                d&apos;authentification (Google Authenticator, Authy…) et entre le code à 6
-                chiffres affiché.
-              </p>
-              <div className="confidence-list">
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Code valide 30 secondes</strong>
-                    <p>Le code change toutes les 30 secondes. Utilise le code actuel.</p>
-                  </div>
-                </div>
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Application requise</strong>
-                    <p>Google Authenticator, Authy ou toute app compatible TOTP.</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 style={{ margin: 0, fontSize: "1.6rem", lineHeight: 1.2 }}>
-                Reprends là où tu t&apos;es arrêté
-              </h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
-                Ton espace membre t&apos;attend avec toutes les formations que tu as débloquées.
-              </p>
-              <div className="confidence-list">
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Accès immédiat à tes formations</strong>
-                    <p>Retrouve tous tes modules et ressources disponibles.</p>
-                  </div>
-                </div>
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Dashboard personnel</strong>
-                    <p>Un espace propre qui liste exactement ce que tu possèdes.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="trust-row" style={{ marginTop: "0.5rem" }}>
-                <span className="trust-pill">Stripe sécurisé</span>
-                <span className="trust-pill">Espace membre dédié</span>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="auth-side-form">
-        <div className="auth-form-inner">
-          <Link
-            href="/"
-            className="brand"
-            style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}
+    <AuthShell
+      eyebrow={step === "mfa" ? "Vérification 2FA" : "Connexion membre"}
+      title={step === "mfa" ? "Double authentification" : "Bon retour 👋"}
+      subtitle={
+        step === "mfa"
+          ? "Valide ton code de sécurité pour ouvrir ton espace membre."
+          : "Accède à tes formations et ressources."
+      }
+      footer={
+        step === "mfa" ? (
+          <button
+            type="button"
+            onClick={() => {
+              setStep("credentials");
+              setMfaCode("");
+              setMfaState(null);
+              setError("");
+            }}
+            className="text-sm text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
           >
-            ← {siteConfig.brand}
-          </Link>
-
-          {step === "mfa" ? (
-            <>
-              <div className="eyebrow" style={{ marginBottom: "1rem" }}>
-                Vérification 2FA
-              </div>
-              <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>
-                Entre ton code d&apos;authentification
-              </h1>
-              <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-                Ouvre ton application d&apos;authentification et entre le code à 6 chiffres.
-              </p>
-
-              {error ? <div className="message error">{error}</div> : null}
-
-              <form onSubmit={handleMfaSubmit}>
-                <div className="field">
-                  <label htmlFor="mfa-code">Code à 6 chiffres</label>
-                  <input
-                    id="mfa-code"
-                    ref={mfaInputRef}
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]{6}"
-                    maxLength={6}
-                    autoComplete="one-time-code"
-                    placeholder="000000"
-                    disabled={loading}
-                    value={mfaCode}
-                    onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, ""))}
-                    required
-                    style={{ fontSize: "1.5rem", letterSpacing: "0.3em", textAlign: "center" }}
-                  />
-                </div>
-
-                <button
-                  className="button button-full"
-                  type="submit"
-                  disabled={loading || mfaCode.length !== 6}
-                  aria-busy={loading}
-                >
-                  {loading ? "Vérification…" : "Valider le code"}
-                </button>
-              </form>
-
-              <p className="helper" style={{ textAlign: "center", marginTop: "1rem" }}>
-                <button
-                  className="muted-link"
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "var(--muted)",
-                    fontSize: "inherit",
-                    padding: 0
-                  }}
-                  onClick={() => {
-                    setStep("credentials");
-                    setMfaState(null);
-                    setMfaCode("");
-                    setError("");
-                  }}
-                >
-                  ← Retour à la connexion
-                </button>
-              </p>
-            </>
-          ) : (
-            <>
-              <div className="eyebrow" style={{ marginBottom: "1rem" }}>
-                Connexion membre
-              </div>
-              <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>
-                Accède à ton espace
-              </h1>
-              <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-                Connecte-toi pour retrouver tes formations, tes ressources et ton accès après
-                achat.
-              </p>
-
-              {errorParam === "lien-invalide" && (
-                <div className="message error">
-                  Le lien de confirmation est invalide ou expiré. Crée un nouveau compte ou
-                  contacte le support.
-                </div>
-              )}
-              {error ? <div className="message error">{error}</div> : null}
-
-              <form onSubmit={handleCredentialsSubmit}>
-                <div className="field">
-                  <label htmlFor="email">Adresse email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="toi@exemple.com"
-                    disabled={loading}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="field">
-                  <label htmlFor="password">Mot de passe</label>
-                  <input
-                    id="password"
-                    type="password"
-                    autoComplete="current-password"
-                    placeholder="••••••••"
-                    disabled={loading}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <button
-                  className="button button-full"
-                  type="submit"
-                  disabled={loading}
-                  aria-busy={loading}
-                >
-                  {loading ? "Connexion en cours…" : "Se connecter"}
-                </button>
-              </form>
-
-              <div className="divider">ou</div>
-
-              <p className="helper" style={{ textAlign: "center" }}>
-                Pas encore de compte ?{" "}
-                <Link
-                  className="muted-link"
-                  href={registerHref}
-                  style={{ color: "var(--accent)", fontWeight: 600 }}
-                >
-                  Créer un compte gratuit
-                </Link>
-              </p>
-            </>
-          )}
+            Retour à la connexion
+          </button>
+        ) : (
+          <p className="text-sm text-[var(--muted)]">
+            Pas encore de compte&nbsp;?{" "}
+            <Link href={registerHref} className="text-[var(--accent)] transition-colors duration-200 hover:text-[var(--foreground)]">
+              Créer mon accès&nbsp;→
+            </Link>
+          </p>
+        )
+      }
+    >
+      {error ? (
+        <div className="mb-5 rounded-2xl border border-[rgba(239,124,131,0.32)] bg-[rgba(239,124,131,0.12)] px-4 py-3 text-sm text-[#fecaca]">
+          {error}
         </div>
-      </div>
-    </main>
+      ) : null}
+
+      {step === "mfa" ? (
+        <form className="grid gap-5" onSubmit={handleMfaSubmit}>
+          <Input
+            ref={mfaInputRef}
+            label="Code à 6 chiffres"
+            id="mfa-code"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]{6}"
+            maxLength={6}
+            autoComplete="one-time-code"
+            value={mfaCode}
+            onChange={(event) => setMfaCode(event.target.value.replace(/\D/g, ""))}
+            disabled={loading}
+            className="text-center text-xl tracking-[0.45em]"
+          />
+
+          <Button type="submit" loading={loading} disabled={mfaCode.length !== 6} className="w-full">
+            Valider le code
+          </Button>
+        </form>
+      ) : (
+        <form className="grid gap-5" onSubmit={handleCredentialsSubmit}>
+          <Input
+            label="Adresse e-mail"
+            id="email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={loading}
+          />
+
+          <div className="grid gap-2">
+            <Input
+              label="Mot de passe"
+              id="password"
+              type={passwordVisible ? "text" : "password"}
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              disabled={loading}
+              endAdornment={
+                <button
+                  type="button"
+                  onClick={() => setPasswordVisible((value) => !value)}
+                  className="text-xs font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
+                  aria-label={passwordVisible ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                >
+                  {passwordVisible ? "Masquer" : "Afficher"}
+                </button>
+              }
+            />
+            <div className="flex justify-end">
+              <a
+                href={`mailto:${siteConfig.supportEmail}?subject=Réinitialisation de mot de passe`}
+                className="text-sm text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
+              >
+                Mot de passe oublié&nbsp;?
+              </a>
+            </div>
+          </div>
+
+          <Button type="submit" loading={loading} className="w-full">
+            Se connecter
+          </Button>
+
+          <div className="flex items-center gap-4 text-sm text-[var(--muted)]">
+            <span className="h-px flex-1 bg-[rgba(148,163,184,0.18)]" />
+            <span>ou</span>
+            <span className="h-px flex-1 bg-[rgba(148,163,184,0.18)]" />
+          </div>
+        </form>
+      )}
+    </AuthShell>
   );
 }

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminCatalogManager } from "@/components/admin-catalog-manager";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Badge } from "@/components/ui/Badge";
+import { buttonClasses } from "@/components/ui/Button";
+import { GlowCard } from "@/components/ui/GlowCard";
 import { getCatalogSnapshot } from "@/lib/catalog-admin";
 import { requireAdminSession } from "@/lib/admin";
 
@@ -14,44 +18,53 @@ export default async function AdminDashboardPage() {
   const snapshot = await getCatalogSnapshot();
 
   return (
-    <main className="dashboard-frame">
-      <section className="dashboard-hero">
-        <div className="max-w-3xl">
-          <div className="eyebrow">Administration</div>
-          <h1>Piloter le catalogue de formations</h1>
-          <p className="lead">
-            Crée une formation, modifie son positionnement, ajoute des modules texte, PDF,
-            ressources, vidéos ou blocs bientôt disponibles.
-          </p>
+    <div className="grid gap-8">
+      <AnimatedSection className="grid gap-5">
+        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+          <div className="grid gap-3">
+            <Badge variant="primary">Administration</Badge>
+            <div className="grid gap-3">
+              <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+                Piloter le catalogue de formations
+              </h1>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+                Crée une formation, modifie son positionnement et ajoute des modules texte, PDF, ressources, vidéos ou contenus à venir.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/dashboard" className={buttonClasses("ghost", "sm")}>
+              Retour au tableau de bord
+            </Link>
+            <Link href="/formations" className={buttonClasses("secondary", "sm")}>
+              Voir le site public
+            </Link>
+          </div>
         </div>
-        <div className="cta-row">
-          <Link href="/dashboard" className="button-secondary">
-            Retour au dashboard
-          </Link>
-          <Link href="/formations" className="button">
-            Voir le site public
-          </Link>
-        </div>
-      </section>
 
-      <section className="section dashboard-nav-section">
-        <div className="dashboard-nav-grid">
-          <Link href="/dashboard" className="dashboard-nav-link">
-            Vue d'ensemble
-          </Link>
-          <Link href="/dashboard/mes-formations" className="dashboard-nav-link">
-            Mes formations
-          </Link>
-          <Link href="/formations" className="dashboard-nav-link">
-            Catalogue complet
-          </Link>
-          <Link href="/dashboard/admin" className="dashboard-nav-link dashboard-nav-link-active">
-            Admin contenu
-          </Link>
+        <div className="grid gap-4 md:grid-cols-3">
+          <GlowCard>
+            <p className="text-sm text-[var(--muted)]">Formations</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {snapshot.products.length}
+            </h2>
+          </GlowCard>
+          <GlowCard>
+            <p className="text-sm text-[var(--muted)]">Modules</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {snapshot.products.reduce((sum, product) => sum + product.modules.length, 0)}
+            </h2>
+          </GlowCard>
+          <GlowCard glowColor="emerald">
+            <p className="text-sm text-[var(--muted)]">État</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">Live</h2>
+          </GlowCard>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <AdminCatalogManager initialSnapshot={snapshot} />
-    </main>
+      <AnimatedSection delay={80}>
+        <AdminCatalogManager initialSnapshot={snapshot} />
+      </AnimatedSection>
+    </div>
   );
 }

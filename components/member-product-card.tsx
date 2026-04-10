@@ -17,7 +17,10 @@ export function MemberProductCard({
 }: MemberProductCardProps) {
   return (
     <article className="member-product-card">
-      <Link href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`} className="member-product-media-wrap">
+      <Link
+        href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`}
+        className="member-product-media-wrap"
+      >
         {product.thumbnail_url ? (
           <img
             src={product.thumbnail_url}

@@ -3,11 +3,12 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ContentRenderer } from "@/components/content-renderer";
 import { MemberProductCard } from "@/components/member-product-card";
-import { ProductHero } from "@/components/product-hero";
-import { ProductModulesList } from "@/components/product-modules-list";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Badge } from "@/components/ui/Badge";
+import { GlowCard } from "@/components/ui/GlowCard";
+import { buttonClasses } from "@/components/ui/Button";
 import { getProductSupplement, getRelatedLocalProducts } from "@/lib/catalog";
-import { getActiveProducts, getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
-import { siteConfig } from "@/lib/site";
+import { getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { userHasProductAccess } from "@/lib/access";
 
@@ -22,9 +23,7 @@ export async function generateMetadata({ params }: MemberProductPageProps): Prom
   const product = await getProductWithModulesBySlug(slug);
 
   if (!product) {
-    return {
-      title: "Formation introuvable | TechCash Academy"
-    };
+    return { title: "Formation introuvable | Espace membre" };
   }
 
   return {
@@ -56,7 +55,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
     notFound();
   }
 
-  const [ownedProducts, activeProducts] = await Promise.all([getOwnedProducts(user.id), getActiveProducts()]);
+  const ownedProducts = await getOwnedProducts(user.id);
   const supplement = getProductSupplement(product.slug);
   const publishedModules = product.modules.filter((module) => module.is_published).length;
   const comingSoonModules = product.modules.filter((module) => module.content_type === "coming_soon").length;
@@ -69,167 +68,165 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
 
   if (!access.hasAccess) {
     return (
-      <main>
-        <div className="shell">
-          <header className="topbar">
-            <div className="brand">{siteConfig.brand}</div>
-            <nav className="nav">
-              <Link href="/formations" className="button-ghost">
-                ← Catalogue
-              </Link>
-              <Link href="/dashboard" className="button-secondary">
-                Dashboard
-              </Link>
-              <Link href={`/checkout?product=${product.slug}`} className="button">
-                Acheter la formation
-              </Link>
-            </nav>
-          </header>
-
-          <ProductHero product={product} />
-
-          <section className="section">
-            <article className="card empty-state-card">
-              <h3>Accès réservé aux membres</h3>
-              <p>
+      <div className="grid gap-8">
+        <AnimatedSection className="grid gap-5">
+          <Badge variant="warning">Accès réservé</Badge>
+          <GlowCard className="grid gap-5 p-8">
+            <div className="grid gap-3">
+              <h1 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                Cette formation n'est pas encore débloquée
+              </h1>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
                 Ton compte existe bien, mais cette formation n'a pas encore été achetée. Tu peux
-                consulter le détail public, puis passer au checkout si le sujet t'intéresse.
+                consulter la version publique ou passer au checkout.
               </p>
-              <div className="cta-row">
-                <Link href={`/checkout?product=${product.slug}`} className="button">
-                  Débloquer cette formation
-                </Link>
-                <Link href={`/formations/${product.slug}`} className="button-secondary">
-                  Voir la version publique
-                </Link>
-              </div>
-            </article>
-          </section>
-
-          <section className="section">
-            <div className="section-title">
-              <h2>Modules inclus</h2>
-              <p>Voici la structure que tu débloqueras après achat.</p>
             </div>
-            <ProductModulesList modules={product.modules} />
-          </section>
-        </div>
-      </main>
+            <div className="flex flex-wrap gap-3">
+              <Link href={`/checkout?product=${product.slug}`} className={buttonClasses("primary", "md")}>
+                Débloquer cette formation
+              </Link>
+              <Link href={`/formations/${product.slug}`} className={buttonClasses("secondary", "md")}>
+                Voir la page publique
+              </Link>
+            </div>
+          </GlowCard>
+        </AnimatedSection>
+      </div>
     );
   }
 
   return (
-    <main className="dashboard-frame">
-      <section className="dashboard-hero">
-        <div className="max-w-3xl">
-          <div className="eyebrow">Formation débloquée</div>
-          <h1>{product.title}</h1>
-          <p className="lead">{product.long_description}</p>
+    <div className="grid gap-8">
+      <AnimatedSection className="grid gap-5">
+        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+          <div className="grid gap-3">
+            <Badge variant="success">Formation débloquée</Badge>
+            <div className="grid gap-3">
+              <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+                {product.title}
+              </h1>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">{product.long_description}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/dashboard/mes-formations" className={buttonClasses("secondary", "sm")}>
+              Mes formations
+            </Link>
+            <Link href={`/formations/${product.slug}`} className={buttonClasses("ghost", "sm")}>
+              Page publique
+            </Link>
+          </div>
         </div>
-        <div className="cta-row">
-          <Link href="/dashboard/mes-formations" className="button-secondary">
-            Mes formations
-          </Link>
-          <Link href={`/formations/${product.slug}`} className="button-ghost">
-            ← Page publique
-          </Link>
-          <Link href="/dashboard" className="button-ghost">
-            Dashboard
-          </Link>
-        </div>
-      </section>
 
-      <section className="section dashboard-nav-section">
-        <div className="dashboard-nav-grid">
-          <Link href="/dashboard" className="dashboard-nav-link">
-            Vue d'ensemble
-          </Link>
-          <Link href="/dashboard/mes-formations" className="dashboard-nav-link">
-            Mes formations
-          </Link>
-          <Link href={`/dashboard/formations/${product.slug}`} className="dashboard-nav-link dashboard-nav-link-active">
-            Formation ouverte
-          </Link>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <GlowCard>
+            <p className="text-sm text-[var(--muted)]">Modules publiés</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {publishedModules}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+              Des ressources déjà accessibles dans ton espace membre.
+            </p>
+          </GlowCard>
+          <GlowCard>
+            <p className="text-sm text-[var(--muted)]">Ressources directes</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {directResources}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+              PDF et ressources téléchargeables disponibles immédiatement.
+            </p>
+          </GlowCard>
+          <GlowCard glowColor="emerald">
+            <p className="text-sm text-[var(--muted)]">Bientôt disponible</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {comingSoonModules}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+              La roadmap reste visible, même si tout n'est pas encore publié.
+            </p>
+          </GlowCard>
+          <GlowCard>
+            <p className="text-sm text-[var(--muted)]">Positionnement</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
+              {product.is_featured ? "Principal" : "Spécialisé"}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+              Une offre pensée pour s'intégrer dans un catalogue de services vendables.
+            </p>
+          </GlowCard>
         </div>
-      </section>
-
-      <section className="section">
-        <div className="member-stats-grid">
-          <article className="card">
-            <p className="helper">Modules publiés</p>
-            <h2>{publishedModules}</h2>
-            <p>Des ressources déjà accessibles dans l'espace membre.</p>
-          </article>
-          <article className="card">
-            <p className="helper">Ressources directes</p>
-            <h2>{directResources}</h2>
-            <p>PDF et ressources téléchargeables disponibles immédiatement.</p>
-          </article>
-          <article className="card">
-            <p className="helper">Bientôt disponible</p>
-            <h2>{comingSoonModules}</h2>
-            <p>La roadmap est visible, même quand tout n'est pas encore publié.</p>
-          </article>
-          <article className="card">
-            <p className="helper">Positionnement</p>
-            <h2>{product.is_featured ? "Principal" : "Spécialisé"}</h2>
-            <p>Cette formation s'intègre dans un catalogue plus large d'offres monétisables.</p>
-          </article>
-        </div>
-      </section>
+      </AnimatedSection>
 
       {supplement ? (
-        <section className="section">
-          <div className="dashboard-spotlight">
-            <div className="dashboard-spotlight-copy">
-              <div className="eyebrow">Ce que tu vas vraiment en tirer</div>
-              <h2>{supplement.pitch}</h2>
-              <ul className="bullet-list">
+        <AnimatedSection delay={80} className="grid gap-5 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <GlowCard className="grid gap-5">
+            <Badge variant="primary">Ce que tu vas vraiment en tirer</Badge>
+            <div className="grid gap-3">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                {supplement.pitch}
+              </h2>
+              <ul className="grid gap-3">
                 {supplement.outcomes.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li
+                    key={item}
+                    className="rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-4 text-sm leading-7 text-[var(--foreground)]"
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
-            <aside className="card dashboard-spotlight-card">
-              <p className="helper">Pour qui ce module est idéal</p>
-              <ul className="list">
-                {supplement.bestFor.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </aside>
-          </div>
-        </section>
+          </GlowCard>
+          <GlowCard className="grid gap-4">
+            <Badge variant="muted">Pour qui ce module est idéal</Badge>
+            <ul className="grid gap-3">
+              {supplement.bestFor.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-4 text-sm leading-7 text-[var(--foreground)]"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </GlowCard>
+        </AnimatedSection>
       ) : null}
 
-      <section className="section">
-        <div className="section-title">
-          <h2>Modules et contenus</h2>
-          <p>
-            Le contenu peut mélanger texte, PDF, ressources et modules à venir, sans attendre que
-            toute la production vidéo soit terminée.
+      <AnimatedSection delay={140} className="grid gap-5">
+        <div className="grid gap-2">
+          <Badge variant="success">Modules et contenus</Badge>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Tout le contenu disponible dans l'espace membre
+          </h2>
+          <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+            Le contenu mélange texte, PDF, ressources et modules à venir sans attendre que toute la
+            production vidéo soit terminée.
           </p>
         </div>
-        <div className="content-stack">
+        <div className="grid gap-5">
           {product.modules.map((module) => (
             <ContentRenderer key={module.id} module={module} />
           ))}
         </div>
-      </section>
+      </AnimatedSection>
 
       {recommendedProducts.length ? (
-        <section className="section">
-          <div className="section-title">
-            <h2>Aller plus loin</h2>
-            <p>Ces formations complètent bien ce que tu es déjà en train de débloquer.</p>
+        <AnimatedSection delay={220} className="grid gap-5">
+          <div className="grid gap-2">
+            <Badge variant="muted">Aller plus loin</Badge>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+              Des formations qui complètent bien celle-ci
+            </h2>
           </div>
-          <div className="product-grid">
+          <div className="grid gap-5 xl:grid-cols-2">
             {recommendedProducts.map((candidate) => (
               <MemberProductCard key={candidate.id} product={candidate} />
             ))}
           </div>
-        </section>
+        </AnimatedSection>
       ) : null}
-    </main>
+    </div>
   );
 }

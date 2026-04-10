@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased" suppressHydrationWarning>
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Badge } from "@/components/ui/Badge";
+import { GlowCard } from "@/components/ui/GlowCard";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { SecurityPanel } from "./security-panel";
 
 export const metadata: Metadata = {
   title: "Sécurité | TechCash Academy",
-  description: "Gérez la double authentification et la sécurité de ton compte."
+  description: "Gère la double authentification et la sécurité de ton compte."
 };
 
 export default async function SecuritePage() {
@@ -22,31 +25,22 @@ export default async function SecuritePage() {
   const enrolledTotp = factorsData?.totp?.find((f) => f.status === "verified") ?? null;
 
   return (
-    <main className="dashboard-frame">
-      <section className="dashboard-hero">
-        <div>
-          <div className="eyebrow">Espace membre</div>
-          <h1>Sécurité du compte</h1>
-          <p className="lead">
-            Protège ton compte avec la double authentification (2FA). Une fois activée, un code
-            de ton application sera requis à chaque connexion.
+    <div className="grid gap-8">
+      <AnimatedSection className="grid gap-5">
+        <Badge variant="primary">Sécurité du compte</Badge>
+        <GlowCard className="grid gap-4 p-8">
+          <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+            Protège ton accès membre
+          </h1>
+          <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+            Active la double authentification 2FA pour renforcer la sécurité de ton compte et garder un accès propre à tes formations.
           </p>
-        </div>
-      </section>
+        </GlowCard>
+      </AnimatedSection>
 
-      <section className="section">
-        <div className="dashboard-nav-grid" style={{ marginBottom: "2.5rem" }}>
-          <a href="/dashboard" className="dashboard-nav-link">Vue d&apos;ensemble</a>
-          <a href="/dashboard/mes-formations" className="dashboard-nav-link">Mes formations</a>
-          <a href="/formations" className="dashboard-nav-link">Catalogue complet</a>
-          <a href="/dashboard/securite" className="dashboard-nav-link dashboard-nav-link-active">Sécurité</a>
-        </div>
-
-        <SecurityPanel
-          email={user.email ?? ""}
-          enrolledFactorId={enrolledTotp?.id ?? null}
-        />
-      </section>
-    </main>
+      <AnimatedSection delay={80}>
+        <SecurityPanel email={user.email ?? ""} enrolledFactorId={enrolledTotp?.id ?? null} />
+      </AnimatedSection>
+    </div>
   );
 }

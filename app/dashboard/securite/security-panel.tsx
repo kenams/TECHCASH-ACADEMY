@@ -1,14 +1,19 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { GlowCard } from "@/components/ui/GlowCard";
+import { Input } from "@/components/ui/Input";
 
 type Props = {
   email: string;
   enrolledFactorId: string | null;
 };
 
-type PanelStep = "idle" | "enrolling" | "verifying" | "success" | "unenrolling";
+type PanelStep = "idle" | "enrolling" | "success" | "unenrolling";
 
 type EnrollData = {
   factorId: string;
@@ -42,7 +47,6 @@ export function SecurityPanel({ email, enrolledFactorId }: Props) {
       return;
     }
 
-    // Create a challenge immediately so the user can verify right away
     const { data: challengeData, error: challengeError } = await supabase.auth.mfa.challenge({
       factorId: data.id
     });
@@ -90,13 +94,14 @@ export function SecurityPanel({ email, enrolledFactorId }: Props) {
 
   async function handleUnenroll() {
     if (!factorId) return;
+
     setLoading(true);
     setError("");
 
     const { error: unenrollError } = await supabase.auth.mfa.unenroll({ factorId });
 
     if (unenrollError) {
-      setError("Impossible de désactiver la 2FA. Tu dois peut-être te reconnecter d'abord.");
+      setError("Impossible de désactiver la 2FA. Reconnecte-toi puis réessaie.");
       setLoading(false);
       return;
     }
@@ -108,316 +113,198 @@ export function SecurityPanel({ email, enrolledFactorId }: Props) {
     setLoading(false);
   }
 
-  // 2FA already enrolled and active
-  if (factorId && step !== "success") {
-    return (
-      <div style={{ maxWidth: 560 }}>
-        <article className="card" style={{ marginBottom: "1.5rem" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-            <span
-              style={{
-                display: "inline-flex",
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                background: "rgba(52, 211, 153, 0.12)",
-                border: "1.5px solid #34d399",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.1rem",
-                flexShrink: 0
-              }}
-            >
-              ✓
-            </span>
-            <div>
-              <strong>Double authentification activée</strong>
-              <p className="helper" style={{ margin: 0 }}>
-                Ton compte est protégé. Un code TOTP est requis à chaque connexion.
-              </p>
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: 8,
-              padding: "0.75rem 1rem",
-              marginBottom: "1rem"
-            }}
-          >
-            <p className="helper" style={{ margin: "0 0 0.25rem" }}>Application requise</p>
-            <p style={{ margin: 0, fontSize: "0.875rem" }}>
-              Google Authenticator, Authy, 1Password ou toute app compatible TOTP.
-            </p>
-          </div>
-
-          {error ? <div className="message error" style={{ marginBottom: "1rem" }}>{error}</div> : null}
-
-          {step === "unenrolling" ? (
-            <div>
-              <div className="message" style={{ background: "rgba(248, 113, 113, 0.08)", border: "1px solid rgba(248, 113, 113, 0.3)", borderRadius: 8, padding: "1rem", marginBottom: "1rem" }}>
-                <strong>Désactiver la 2FA ?</strong>
-                <p style={{ margin: "0.25rem 0 0", fontSize: "0.875rem" }}>
-                  Ton compte sera moins sécurisé. Confirme pour continuer.
-                </p>
-              </div>
-              <div className="cta-row">
-                <button
-                  className="button"
-                  style={{ background: "rgba(248, 113, 113, 0.15)", color: "#f87171", border: "1px solid rgba(248, 113, 113, 0.4)" }}
-                  onClick={handleUnenroll}
-                  disabled={loading}
-                >
-                  {loading ? "Désactivation…" : "Confirmer la désactivation"}
-                </button>
-                <button
-                  className="button-ghost"
-                  onClick={() => { setStep("idle"); setError(""); }}
-                  disabled={loading}
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
-          ) : (
-            <button
-              className="button-ghost"
-              style={{ fontSize: "0.875rem", color: "var(--muted)" }}
-              onClick={() => setStep("unenrolling")}
-              disabled={loading}
-            >
-              Désactiver la double authentification
-            </button>
-          )}
-        </article>
-      </div>
-    );
-  }
-
-  // After successful enrollment
   if (step === "success") {
     return (
-      <div style={{ maxWidth: 560 }}>
-        <article className="card">
-          <div style={{ textAlign: "center", padding: "1.5rem 0 1rem" }}>
-            <div
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                background: "rgba(52, 211, 153, 0.12)",
-                border: "2px solid #34d399",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 1rem",
-                fontSize: "1.5rem"
-              }}
-            >
-              ✓
-            </div>
-            <h2 style={{ margin: "0 0 0.5rem" }}>2FA activée avec succès !</h2>
-            <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-              Ton compte est maintenant protégé. À chaque connexion, tu devras entrer le code
-              à 6 chiffres de ton application d&apos;authentification.
-            </p>
-            <a href="/dashboard" className="button">
-              Retour au dashboard
-            </a>
-          </div>
-        </article>
-      </div>
+      <GlowCard className="grid max-w-2xl gap-6 p-8 text-center" glowColor="emerald">
+        <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border border-[rgba(56,199,147,0.28)] bg-[rgba(56,199,147,0.14)] text-2xl text-[#bbf7d0]">
+          ✓
+        </div>
+        <div className="grid gap-2">
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Double authentification activée
+          </h2>
+          <p className="text-base leading-8 text-[var(--muted)]">
+            Ton compte est maintenant protégé. À chaque connexion, un code à 6 chiffres sera demandé.
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <a href="/dashboard" className="button">
+            Retour au tableau de bord
+          </a>
+        </div>
+      </GlowCard>
     );
   }
 
-  // Enrolling — show QR code
   if (step === "enrolling" && enrollData) {
     return (
-      <div style={{ maxWidth: 560 }}>
-        <article className="card">
-          <h2 style={{ margin: "0 0 0.5rem" }}>Scanne le QR code</h2>
-          <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-            Ouvre ton application d&apos;authentification (Google Authenticator, Authy…) et
-            scanne ce QR code. Ensuite, entre le code à 6 chiffres affiché pour confirmer.
+      <GlowCard className="grid max-w-2xl gap-6 p-8">
+        <div className="grid gap-3">
+          <Badge variant="primary" className="w-fit">
+            Configuration 2FA
+          </Badge>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Scanne le QR code
+          </h2>
+          <p className="text-base leading-8 text-[var(--muted)]">
+            Ouvre ton application d'authentification, scanne ce QR code puis saisis le code affiché pour confirmer l'activation.
           </p>
+        </div>
 
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 12,
-              padding: "1rem",
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: "1.5rem",
-              maxWidth: 200,
-              margin: "0 auto 1.5rem"
-            }}
-          >
-            {/* Supabase returns totp.qr_code as a data URL SVG */}
-            <img
-              src={enrollData.qrCode}
-              alt="QR code pour scanner avec votre application 2FA"
-              style={{ width: 160, height: 160, display: "block" }}
-            />
+        <div className="mx-auto rounded-[24px] bg-white p-4 shadow-[0_20px_40px_rgba(2,8,23,0.24)]">
+          <img
+            src={enrollData.qrCode}
+            alt="QR code pour l'activation de la double authentification"
+            className="h-44 w-44"
+          />
+        </div>
+
+        <details className="rounded-[20px] border border-[var(--border)] bg-white/5 p-4 text-sm text-[var(--muted)]">
+          <summary className="cursor-pointer font-medium text-[var(--foreground)]">
+            Je ne peux pas scanner le QR code
+          </summary>
+          <div className="mt-3 grid gap-2">
+            <p>Entre cette clé manuelle dans ton application&nbsp;:</p>
+            <code className="break-all rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-[var(--foreground)]">
+              {enrollData.secret}
+            </code>
           </div>
+        </details>
 
-          <details style={{ marginBottom: "1.5rem" }}>
-            <summary
-              style={{
-                cursor: "pointer",
-                color: "var(--muted)",
-                fontSize: "0.875rem",
-                userSelect: "none"
+        {error ? (
+          <div className="rounded-2xl border border-[rgba(239,124,131,0.32)] bg-[rgba(239,124,131,0.12)] px-4 py-3 text-sm text-[#fecaca]">
+            {error}
+          </div>
+        ) : null}
+
+        <form onSubmit={handleVerify} className="grid gap-5">
+          <Input
+            label="Code à 6 chiffres"
+            id="verify-code"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]{6}"
+            maxLength={6}
+            autoComplete="one-time-code"
+            value={verifyCode}
+            onChange={(event) => setVerifyCode(event.target.value.replace(/\D/g, ""))}
+            disabled={loading}
+            className="text-center text-xl tracking-[0.45em]"
+          />
+
+          <div className="flex flex-wrap gap-3">
+            <Button type="submit" loading={loading} disabled={verifyCode.length !== 6}>
+              Activer la 2FA
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => {
+                setStep("idle");
+                setEnrollData(null);
+                setVerifyCode("");
+                setError("");
               }}
             >
-              Je ne peux pas scanner le QR code — voir la clé manuelle
-            </summary>
-            <div
-              style={{
-                marginTop: "0.75rem",
-                background: "var(--surface)",
-                border: "1px solid var(--border)",
-                borderRadius: 8,
-                padding: "0.75rem 1rem"
-              }}
-            >
-              <p className="helper" style={{ margin: "0 0 0.5rem" }}>Clé secrète</p>
-              <code
-                style={{
-                  fontFamily: "monospace",
-                  fontSize: "0.8rem",
-                  wordBreak: "break-all",
-                  color: "var(--foreground)"
-                }}
-              >
-                {enrollData.secret}
-              </code>
-            </div>
-          </details>
-
-          {error ? <div className="message error" style={{ marginBottom: "1rem" }}>{error}</div> : null}
-
-          <form onSubmit={handleVerify}>
-            <div className="field">
-              <label htmlFor="verify-code">Code à 6 chiffres</label>
-              <input
-                id="verify-code"
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]{6}"
-                maxLength={6}
-                autoComplete="one-time-code"
-                placeholder="000000"
-                disabled={loading}
-                value={verifyCode}
-                onChange={(e) => setVerifyCode(e.target.value.replace(/\D/g, ""))}
-                required
-                style={{ fontSize: "1.5rem", letterSpacing: "0.3em", textAlign: "center" }}
-              />
-            </div>
-
-            <div className="cta-row">
-              <button
-                className="button"
-                type="submit"
-                disabled={loading || verifyCode.length !== 6}
-                aria-busy={loading}
-              >
-                {loading ? "Vérification…" : "Activer la 2FA"}
-              </button>
-              <button
-                type="button"
-                className="button-ghost"
-                onClick={() => {
-                  setStep("idle");
-                  setEnrollData(null);
-                  setVerifyCode("");
-                  setError("");
-                }}
-                disabled={loading}
-              >
-                Annuler
-              </button>
-            </div>
-          </form>
-        </article>
-      </div>
+              Annuler
+            </Button>
+          </div>
+        </form>
+      </GlowCard>
     );
   }
 
-  // Default — no 2FA enrolled
-  return (
-    <div style={{ maxWidth: 560 }}>
-      <article className="card" style={{ marginBottom: "1.5rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-          <span
-            style={{
-              display: "inline-flex",
-              width: 36,
-              height: 36,
-              borderRadius: "50%",
-              background: "var(--surface)",
-              border: "1.5px solid var(--border)",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.1rem",
-              flexShrink: 0
-            }}
-          >
-            🔒
-          </span>
-          <div>
-            <strong>Double authentification désactivée</strong>
-            <p className="helper" style={{ margin: 0 }}>
-              Ton compte est protégé uniquement par ton mot de passe.
-            </p>
-          </div>
-        </div>
-
-        <p style={{ color: "var(--muted)", lineHeight: 1.6, margin: "0 0 1.5rem" }}>
-          La double authentification (2FA) ajoute une couche de sécurité supplémentaire. Même
-          si ton mot de passe est compromis, personne ne pourra accéder à ton compte sans le
-          code de ton application.
-        </p>
-
-        <div
-          style={{
-            background: "var(--surface)",
-            border: "1px solid var(--border)",
-            borderRadius: 8,
-            padding: "0.75rem 1rem",
-            marginBottom: "1.5rem"
-          }}
-        >
-          <p className="helper" style={{ margin: "0 0 0.25rem" }}>Applications compatibles</p>
-          <p style={{ margin: 0, fontSize: "0.875rem" }}>
-            Google Authenticator, Authy, 1Password, Bitwarden, Microsoft Authenticator
+  if (factorId) {
+    return (
+      <GlowCard className="grid max-w-2xl gap-6 p-8" glowColor="emerald">
+        <div className="grid gap-3">
+          <Badge variant="success" className="w-fit">
+            Protection active
+          </Badge>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Double authentification activée
+          </h2>
+          <p className="text-base leading-8 text-[var(--muted)]">
+            Ton compte est protégé. Un code TOTP est requis à chaque connexion.
           </p>
         </div>
 
-        {error ? <div className="message error" style={{ marginBottom: "1rem" }}>{error}</div> : null}
-
-        <button className="button" onClick={handleEnroll} disabled={loading} aria-busy={loading}>
-          {loading ? "Initialisation…" : "Activer la double authentification"}
-        </button>
-      </article>
-
-      <article className="card">
-        <h3 style={{ margin: "0 0 0.5rem" }}>Informations du compte</h3>
-        <div
-          style={{
-            background: "var(--surface)",
-            border: "1px solid var(--border)",
-            borderRadius: 8,
-            padding: "0.75rem 1rem"
-          }}
-        >
-          <p className="helper" style={{ margin: "0 0 0.25rem" }}>Adresse email</p>
-          <p style={{ margin: 0 }}>{email}</p>
+        <div className="rounded-[20px] border border-[var(--border)] bg-white/5 p-5">
+          <p className="text-sm text-[var(--muted)]">Applications compatibles</p>
+          <p className="mt-2 text-sm leading-7 text-[var(--foreground)]">
+            Google Authenticator, Authy, 1Password, Bitwarden, Microsoft Authenticator.
+          </p>
         </div>
-      </article>
+
+        {error ? (
+          <div className="rounded-2xl border border-[rgba(239,124,131,0.32)] bg-[rgba(239,124,131,0.12)] px-4 py-3 text-sm text-[#fecaca]">
+            {error}
+          </div>
+        ) : null}
+
+        {step === "unenrolling" ? (
+          <div className="grid gap-4 rounded-[20px] border border-[rgba(239,124,131,0.3)] bg-[rgba(239,124,131,0.08)] p-5">
+            <div className="grid gap-2">
+              <h3 className="text-xl font-semibold text-[var(--foreground)]">Désactiver la 2FA&nbsp;?</h3>
+              <p className="text-sm leading-7 text-[var(--muted)]">
+                Ton compte sera moins sécurisé. Confirme seulement si c'est bien intentionnel.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button type="button" loading={loading} onClick={handleUnenroll}>
+                Confirmer la désactivation
+              </Button>
+              <Button type="button" variant="ghost" onClick={() => setStep("idle")}>
+                Annuler
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <Button type="button" variant="ghost" onClick={() => setStep("unenrolling")} className="justify-start">
+            Désactiver la double authentification
+          </Button>
+        )}
+      </GlowCard>
+    );
+  }
+
+  return (
+    <div className="grid max-w-2xl gap-6">
+      <GlowCard className="grid gap-6 p-8">
+        <div className="grid gap-3">
+          <Badge variant="muted" className="w-fit">
+            2FA inactive
+          </Badge>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Active une couche de sécurité supplémentaire
+          </h2>
+          <p className="text-base leading-8 text-[var(--muted)]">
+            Même si ton mot de passe est compromis, personne ne pourra accéder à ton compte sans le code généré par ton application.
+          </p>
+        </div>
+
+        <div className="rounded-[20px] border border-[var(--border)] bg-white/5 p-5">
+          <p className="text-sm text-[var(--muted)]">Applications compatibles</p>
+          <p className="mt-2 text-sm leading-7 text-[var(--foreground)]">
+            Google Authenticator, Authy, 1Password, Bitwarden, Microsoft Authenticator.
+          </p>
+        </div>
+
+        {error ? (
+          <div className="rounded-2xl border border-[rgba(239,124,131,0.32)] bg-[rgba(239,124,131,0.12)] px-4 py-3 text-sm text-[#fecaca]">
+            {error}
+          </div>
+        ) : null}
+
+        <Button type="button" loading={loading} onClick={handleEnroll} className="w-fit">
+          Activer la double authentification
+        </Button>
+      </GlowCard>
+
+      <GlowCard className="grid gap-3 p-6" glowColor="none">
+        <p className="text-sm text-[var(--muted)]">Compte concerné</p>
+        <p className="text-base text-[var(--foreground)]">{email}</p>
+      </GlowCard>
     </div>
   );
 }

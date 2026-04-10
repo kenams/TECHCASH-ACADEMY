@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useState } from "react";
-import { siteConfig } from "@/lib/site";
+import { FormEvent, useMemo, useState } from "react";
+import { AuthShell } from "@/components/auth-shell";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 
 function resolveRedirectTarget(nextParam: string | null, productParam: string | null) {
   if (nextParam?.startsWith("/")) {
@@ -21,6 +23,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,6 +39,18 @@ export default function RegisterPage() {
       ? `/login?product=${encodeURIComponent(productParam)}`
       : "/login";
 
+  const passwordChecks = useMemo(
+    () => [
+      password.length >= 8,
+      /[A-Z]/.test(password),
+      /\d/.test(password),
+      /[^A-Za-z0-9]/.test(password)
+    ],
+    [password]
+  );
+  const passwordStrength = passwordChecks.filter(Boolean).length;
+  const passwordsMatch = confirmPassword.length > 0 && password === confirmPassword;
+
   function validatePasswords() {
     if (password.length < 8) {
       setError("Le mot de passe doit contenir au moins 8 caractères.");
@@ -41,6 +58,10 @@ export default function RegisterPage() {
     }
     if (password !== confirmPassword) {
       setError("Les mots de passe ne correspondent pas.");
+      return false;
+    }
+    if (!acceptedTerms) {
+      setError("Tu dois accepter les conditions d'utilisation.");
       return false;
     }
     return true;
@@ -74,8 +95,7 @@ export default function RegisterPage() {
       }
 
       if (registerData.requiresEmailConfirmation) {
-        const verifyHref = `/auth/verify-email?email=${encodeURIComponent(email)}`;
-        router.push(verifyHref);
+        router.push(`/auth/verify-email?email=${encodeURIComponent(email)}`);
         return;
       }
 
@@ -90,150 +110,151 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="auth-wrap-split">
-      <div className="auth-side-brand">
-        <Link href="/" className="brand">
-          {siteConfig.brand}
-        </Link>
-        <div className="stack">
-          <h2 style={{ margin: 0, fontSize: "1.6rem", lineHeight: 1.2 }}>
-            Lance-toi avec une vraie base
-          </h2>
-          <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
-            Crée ton compte gratuit et accède immédiatement au catalogue de formations pour
-            monétiser tes compétences digitales.
-          </p>
-          <div className="confidence-list">
-            <div className="confidence-item">
-              <span className="confidence-dot" />
-              <div>
-                <strong>Création instantanée</strong>
-                <p>Ton espace membre est actif dès la validation de ton email.</p>
-              </div>
-            </div>
-            <div className="confidence-item">
-              <span className="confidence-dot" />
-              <div>
-                <strong>Paiement sécurisé via Stripe</strong>
-                <p>Achète uniquement les formations qui t&apos;intéressent.</p>
-              </div>
-            </div>
-            <div className="confidence-item">
-              <span className="confidence-dot" />
-              <div>
-                <strong>Accès à vie par formation achetée</strong>
-                <p>Reviens consulter ton contenu quand tu veux.</p>
-              </div>
-            </div>
-          </div>
-          <div className="trust-row" style={{ marginTop: "0.5rem" }}>
-            <span className="trust-pill">Gratuit</span>
-            <span className="trust-pill">Sans engagement</span>
-            <span className="trust-pill">Email vérifié</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="auth-side-form">
-        <div className="auth-form-inner">
-          <Link
-            href="/"
-            className="brand"
-            style={{ display: "block", marginBottom: "2rem", fontSize: "1rem" }}
-          >
-            ← {siteConfig.brand}
+    <AuthShell
+      eyebrow="Création de compte"
+      title="Créer mon accès"
+      subtitle="Rejoins TechCash Academy et commence à apprendre."
+      footer={
+        <p className="text-sm text-[var(--muted)]">
+          Déjà inscrit&nbsp;?{" "}
+          <Link href={loginHref} className="text-[var(--accent)] transition-colors duration-200 hover:text-[var(--foreground)]">
+            Se connecter&nbsp;→
           </Link>
-
-          <div className="eyebrow" style={{ marginBottom: "1rem" }}>
-            Création de compte
-          </div>
-          <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem" }}>Crée ton accès membre</h1>
-          <p style={{ color: "var(--muted)", margin: "0 0 1.5rem", lineHeight: 1.6 }}>
-            Gratuit. Ton compte te permettra d&apos;acheter et d&apos;accéder à tes formations
-            directement.
-          </p>
-
-          {error ? <div className="message error">{error}</div> : null}
-          {message ? <div className="message success">{message}</div> : null}
-
-          <form onSubmit={handleSubmit}>
-            <div className="field">
-              <label htmlFor="email">Adresse email</label>
-              <input
-                id="email"
-                type="email"
-                autoComplete="email"
-                placeholder="toi@exemple.com"
-                disabled={loading}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="field">
-              <label htmlFor="password">Mot de passe</label>
-              <input
-                id="password"
-                type="password"
-                minLength={8}
-                autoComplete="new-password"
-                placeholder="Minimum 8 caractères"
-                disabled={loading}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="field">
-              <label htmlFor="confirm-password">Confirmer le mot de passe</label>
-              <input
-                id="confirm-password"
-                type="password"
-                minLength={8}
-                autoComplete="new-password"
-                placeholder="Répète ton mot de passe"
-                disabled={loading}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              {confirmPassword && password !== confirmPassword ? (
-                <p className="helper" style={{ color: "var(--error, #f87171)", marginTop: "0.35rem" }}>
-                  Les mots de passe ne correspondent pas.
-                </p>
-              ) : confirmPassword && password === confirmPassword ? (
-                <p className="helper" style={{ color: "var(--success, #34d399)", marginTop: "0.35rem" }}>
-                  Les mots de passe correspondent.
-                </p>
-              ) : null}
-            </div>
-
-            <button
-              className="button button-full"
-              type="submit"
-              disabled={loading || (confirmPassword.length > 0 && password !== confirmPassword)}
-              aria-busy={loading}
-            >
-              {loading ? "Création en cours…" : "Créer mon compte"}
-            </button>
-          </form>
-
-          <div className="divider">ou</div>
-
-          <p className="helper" style={{ textAlign: "center" }}>
-            Déjà inscrit ?{" "}
-            <Link
-              className="muted-link"
-              href={loginHref}
-              style={{ color: "var(--accent)", fontWeight: 600 }}
-            >
-              Se connecter
-            </Link>
-          </p>
+        </p>
+      }
+    >
+      {error ? (
+        <div className="mb-5 rounded-2xl border border-[rgba(239,124,131,0.32)] bg-[rgba(239,124,131,0.12)] px-4 py-3 text-sm text-[#fecaca]">
+          {error}
         </div>
-      </div>
-    </main>
+      ) : null}
+      {message ? (
+        <div className="mb-5 rounded-2xl border border-[rgba(56,199,147,0.32)] bg-[rgba(56,199,147,0.12)] px-4 py-3 text-sm text-[#bbf7d0]">
+          {message}
+        </div>
+      ) : null}
+
+      <form className="grid gap-5" onSubmit={handleSubmit}>
+        <Input
+          label="Adresse e-mail"
+          id="register-email"
+          type="email"
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          disabled={loading}
+        />
+
+        <div className="grid gap-3">
+          <Input
+            label="Mot de passe"
+            id="register-password"
+            type={passwordVisible ? "text" : "password"}
+            autoComplete="new-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={loading}
+            endAdornment={
+              <button
+                type="button"
+                onClick={() => setPasswordVisible((value) => !value)}
+                className="text-xs font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
+                aria-label={passwordVisible ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+              >
+                {passwordVisible ? "Masquer" : "Afficher"}
+              </button>
+            }
+          />
+
+          <div className="grid gap-2">
+            <div className="grid grid-cols-4 gap-2">
+              {passwordChecks.map((passed, index) => (
+                <span
+                  key={index}
+                  className={[
+                    "h-2 rounded-full transition-colors duration-200",
+                    passwordStrength === 0
+                      ? "bg-white/8"
+                      : passed
+                        ? passwordStrength <= 2
+                          ? "bg-[#ef7c83]"
+                          : passwordStrength === 3
+                            ? "bg-[#f4b860]"
+                            : "bg-[#38c793]"
+                        : "bg-white/8"
+                  ].join(" ")}
+                />
+              ))}
+            </div>
+            <p className="text-sm text-[var(--muted)]">
+              Force du mot de passe&nbsp;:{" "}
+              <span className="text-[var(--foreground)]">
+                {passwordStrength <= 1
+                  ? "faible"
+                  : passwordStrength === 2
+                    ? "correcte"
+                    : passwordStrength === 3
+                      ? "bonne"
+                      : "forte"}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <Input
+          label="Confirmation du mot de passe"
+          id="register-confirm-password"
+          type={confirmVisible ? "text" : "password"}
+          autoComplete="new-password"
+          value={confirmPassword}
+          onChange={(event) => setConfirmPassword(event.target.value)}
+          disabled={loading}
+          error={
+            confirmPassword.length > 0 && !passwordsMatch
+              ? "Les mots de passe ne correspondent pas."
+              : undefined
+          }
+          endAdornment={
+            <button
+              type="button"
+              onClick={() => setConfirmVisible((value) => !value)}
+              className="text-xs font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
+              aria-label={confirmVisible ? "Masquer la confirmation" : "Afficher la confirmation"}
+            >
+              {confirmVisible ? "Masquer" : "Afficher"}
+            </button>
+          }
+        />
+
+        {passwordsMatch ? (
+          <p className="text-sm text-[#bbf7d0]">Les mots de passe correspondent.</p>
+        ) : null}
+
+        <label className="flex items-start gap-3 rounded-[20px] border border-[var(--border)] bg-white/5 px-4 py-4 text-sm text-[var(--muted)]">
+          <input
+            type="checkbox"
+            checked={acceptedTerms}
+            onChange={(event) => setAcceptedTerms(event.target.checked)}
+            className="mt-1 h-4 w-4 rounded border-[var(--border)] bg-transparent accent-[var(--accent)]"
+          />
+          <span>
+            J'accepte les{" "}
+            <Link href="/conditions-utilisation" className="text-[var(--accent)] transition-colors duration-200 hover:text-[var(--foreground)]">
+              conditions d'utilisation
+            </Link>
+            .
+          </span>
+        </label>
+
+        <Button
+          type="submit"
+          loading={loading}
+          className="w-full"
+          disabled={confirmPassword.length > 0 && !passwordsMatch}
+        >
+          Créer mon accès
+        </Button>
+      </form>
+    </AuthShell>
   );
 }
