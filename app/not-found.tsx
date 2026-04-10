@@ -14,8 +14,7 @@ export default function NotFound() {
         <div className="stack" style={{ gap: "0.75rem" }}>
           <h1 style={{ margin: 0, fontSize: "1.75rem" }}>Page introuvable</h1>
           <p style={{ color: "var(--muted)", margin: 0, lineHeight: 1.7 }}>
-            Cette page n'existe pas ou a été déplacée. Retourne au catalogue pour
-            trouver ce que tu cherches.
+            Cette page n'existe pas ou a été déplacée. Retourne au catalogue pour trouver ce que tu cherches.
           </p>
         </div>
 
