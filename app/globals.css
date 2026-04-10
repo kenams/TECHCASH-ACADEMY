@@ -1132,8 +1132,7 @@ footer,
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  position: sticky;
-  top: calc(var(--nav-height) + 1.5rem);
+  position: relative;
 }
 
 .product-hero-copy {
@@ -1166,6 +1165,13 @@ footer,
 
 .hero-assurance-grid {
   margin-top: 0.5rem;
+}
+
+@media (min-width: 1280px) {
+  .product-hero-card {
+    position: sticky;
+    top: calc(var(--nav-height) + 1.5rem);
+  }
 }
 
 /* =============================================

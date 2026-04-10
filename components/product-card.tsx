@@ -14,12 +14,7 @@ export function ProductCard({ product, isOwned = false }: ProductCardProps) {
     <article className={`product-card ${product.is_featured ? "product-card-featured" : ""}`}>
       <div className="product-thumb-wrap">
         {product.thumbnail_url ? (
-          <img
-            src={product.thumbnail_url}
-            alt={product.title}
-            className="product-thumb-img"
-            loading="lazy"
-          />
+          <img src={product.thumbnail_url} alt={product.title} className="product-thumb-img" loading="lazy" />
         ) : (
           <div className="product-thumb-empty product-thumb-img" />
         )}
@@ -51,12 +46,7 @@ export function ProductCard({ product, isOwned = false }: ProductCardProps) {
           <Link href={`/formations/${product.slug}`} className="button-secondary">
             Voir le détail
           </Link>
-          <PurchaseCTA
-            productSlug={product.slug}
-            priceCents={product.price_cents}
-            currency={product.currency}
-            isOwned={isOwned}
-          />
+          <PurchaseCTA productSlug={product.slug} priceCents={product.price_cents} currency={product.currency} isOwned={isOwned} />
         </div>
       </div>
     </article>

@@ -15,10 +15,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
       <div className="product-hero-copy">
         <div className="hero-badges">
           {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
-          <AccessBadge
-            label={isOwned ? "Accès actif" : "Formation digitale"}
-            tone={isOwned ? "success" : "default"}
-          />
+          <AccessBadge label={isOwned ? "Accès actif" : "Formation digitale"} tone={isOwned ? "success" : "default"} />
         </div>
         <h1>{product.title}</h1>
         <p className="product-hero-subtitle">{product.subtitle}</p>
@@ -56,11 +53,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
       <aside className="product-hero-card">
         <div className="product-hero-media-wrap">
           {product.thumbnail_url ? (
-            <img
-              src={product.thumbnail_url}
-              alt={product.title}
-              className="product-hero-media-img"
-            />
+            <img src={product.thumbnail_url} alt={product.title} className="product-hero-media-img" />
           ) : (
             <div className="product-hero-media-empty" />
           )}
@@ -73,10 +66,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
           </div>
           <div className="luxury-note">
             <strong>Positionnement premium et rassurant</strong>
-            <span>
-              Un cadre propre pour vendre une compétence utile, sans promesses excessives ni tunnel
-              brouillon.
-            </span>
+            <span>Un cadre propre pour vendre une compétence utile, sans promesses excessives ni tunnel brouillon.</span>
           </div>
           <ul className="list product-hero-points">
             <li>Accès immédiat à tous les modules publiés</li>
