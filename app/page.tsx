@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { Navbar } from "@/components/navbar";
-import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
+import { PublicFooter } from "@/components/public-footer";
 import { getPriorityOfferSlugs } from "@/lib/catalog";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts, getProductBySlug } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
@@ -117,6 +117,20 @@ export default async function LandingPage() {
                 {user ? "Accéder à mon espace" : "Créer un compte"}
               </Link>
             </div>
+            <div className="hero-proof-strip">
+              <div className="metric-pill">
+                <strong>{products.length}</strong>
+                <span>formations prêtes à vendre</span>
+              </div>
+              <div className="metric-pill">
+                <strong>Stripe</strong>
+                <span>checkout propre et rassurant</span>
+              </div>
+              <div className="metric-pill">
+                <strong>Membre</strong>
+                <span>accès clair produit par produit</span>
+              </div>
+            </div>
             <div className="hero-stat-grid">
               <article className="hero-stat-card">
                 <span className="helper">Catalogue actuel</span>
@@ -193,7 +207,10 @@ export default async function LandingPage() {
         </section>
 
         {featured ? (
-          <ProductHero product={featured} isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)} />
+          <ProductHero
+            product={featured}
+            isOwned={hasGlobalAccess || ownedProductSlugs.has(featured.slug)}
+          />
         ) : null}
 
         {priorityProducts.length ? (
@@ -206,6 +223,28 @@ export default async function LandingPage() {
                 principale, <strong>Maintenance informatique PME</strong> pour le revenu récurrent,
                 puis <strong>GLPI support PME</strong> pour une spécialisation support claire.
               </p>
+            </div>
+            <div className="offer-highlight-grid">
+              <article className="offer-highlight-card">
+                <span className="eyebrow">Entrée</span>
+                <h3>Freelance IT 30 jours</h3>
+                <p>
+                  Le point de départ le plus lisible pour transformer une compétence en offre
+                  vendable.
+                </p>
+              </article>
+              <article className="offer-highlight-card">
+                <span className="eyebrow">Récurrent</span>
+                <h3>Maintenance informatique PME</h3>
+                <p>
+                  La meilleure base pour vendre du suivi, de la stabilité et du revenu mensuel.
+                </p>
+              </article>
+              <article className="offer-highlight-card">
+                <span className="eyebrow">Spécialisation</span>
+                <h3>GLPI support PME</h3>
+                <p>Une offre support plus pointue, claire à expliquer et crédible en B2B.</p>
+              </article>
             </div>
             <div className="product-grid">
               {priorityProducts.map((product) => (
@@ -395,7 +434,10 @@ export default async function LandingPage() {
               <Link href="/formations" className="button">
                 Explorer les formations
               </Link>
-              <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button-secondary">
+              <Link
+                href={user ? "/dashboard/mes-formations" : "/register"}
+                className="button-secondary"
+              >
                 {user ? "Voir mes formations" : "Créer mon accès"}
               </Link>
             </div>

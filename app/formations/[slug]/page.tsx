@@ -3,10 +3,10 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
-import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
 import { ProductModulesList } from "@/components/product-modules-list";
+import { PublicFooter } from "@/components/public-footer";
 import { getProductSupplement, getRelatedLocalProducts } from "@/lib/catalog";
 import { getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
@@ -137,7 +137,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <article className="assurance-item assurance-item-card">
               <span className="helper">Continuité</span>
               <strong>Le dashboard retrouve exactement ce que tu possèdes</strong>
-              <p>Chaque achat alimente l’espace membre sans ambiguïté.</p>
+              <p>Chaque achat alimente l'espace membre sans ambiguïté.</p>
             </article>
           </div>
         </section>
@@ -204,14 +204,20 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <section className="section">
             <div className="section-title">
               <h2>Autres formations utiles</h2>
-              <p>Si cette offre te parle, ces autres formations peuvent étendre ton catalogue de services.</p>
+              <p>
+                Si cette offre te parle, ces autres formations peuvent étendre ton catalogue de
+                services.
+              </p>
             </div>
             <div className="product-grid">
               {relatedProducts.map((relatedProduct) => (
                 <ProductCard
                   key={relatedProduct.id}
                   product={relatedProduct}
-                  isOwned={Boolean(profile?.is_premium) || ownedProducts.some((entry) => entry.slug === relatedProduct.slug)}
+                  isOwned={
+                    Boolean(profile?.is_premium) ||
+                    ownedProducts.some((entry) => entry.slug === relatedProduct.slug)
+                  }
                 />
               ))}
             </div>

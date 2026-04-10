@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { Navbar } from "@/components/navbar";
-import { PublicFooter } from "@/components/public-footer";
 import { ProductCard } from "@/components/product-card";
+import { PublicFooter } from "@/components/public-footer";
 import { getPriorityOfferSlugs } from "@/lib/catalog";
 import { getActiveProducts, getFeaturedProduct, getOwnedProducts } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
@@ -63,7 +63,11 @@ export default async function FormationsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
         />
 
-        <Navbar brand={siteConfig.brand} links={[{ href: "/", label: "Accueil" }]} isLoggedIn={Boolean(user)} />
+        <Navbar
+          brand={siteConfig.brand}
+          links={[{ href: "/", label: "Accueil" }]}
+          isLoggedIn={Boolean(user)}
+        />
 
         <section className="section section-first">
           <div className="section-title">
