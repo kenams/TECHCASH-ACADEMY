@@ -17,6 +17,7 @@ type DashboardShellProps = {
 type NavItem = {
   href: string;
   label: string;
+  shortLabel: string;
   icon: string;
 };
 
@@ -40,9 +41,9 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
 
   const mainNav = useMemo<NavItem[]>(
     () => [
-      { href: "/dashboard", label: "Tableau de bord", icon: "🏠" },
-      { href: "/dashboard/mes-formations", label: "Mes formations", icon: "📚" },
-      { href: "/dashboard/securite", label: "Sécurité 2FA", icon: "🛡️" }
+      { href: "/dashboard", label: "Tableau de bord", shortLabel: "Accueil", icon: "🏠" },
+      { href: "/dashboard/mes-formations", label: "Mes formations", shortLabel: "Formations", icon: "📚" },
+      { href: "/dashboard/securite", label: "Sécurité 2FA", shortLabel: "Sécurité", icon: "🛡️" }
     ],
     []
   );
@@ -75,6 +76,7 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
                     "flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition-all duration-200",
                     active
@@ -130,13 +132,14 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "grid justify-items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-medium transition-all duration-200",
                   active ? "bg-[rgba(215,184,122,0.12)] text-[var(--foreground)]" : "text-[var(--muted)]"
                 )}
               >
                 <span className="text-base">{item.icon}</span>
-                <span>{item.label}</span>
+                <span className="truncate max-w-full">{item.shortLabel}</span>
               </Link>
             );
           })}

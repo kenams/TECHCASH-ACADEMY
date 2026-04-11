@@ -3,13 +3,6 @@ import { localProducts } from "@/lib/catalog";
 import { siteConfig } from "@/lib/site";
 import { BrandMark } from "@/components/ui/BrandMark";
 
-function slugLabel(slug: string) {
-  return slug
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
-
 export function PublicFooter() {
   const popularCourses = localProducts.slice(0, 3);
 
@@ -22,15 +15,15 @@ export function PublicFooter() {
           <BrandMark />
           <p className="max-w-md text-sm leading-7 text-[var(--muted)]">Formations digitales vendables et livrables.</p>
           <div className="flex flex-wrap gap-3 text-sm text-[var(--foreground)]">
-            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">Stripe sécurisé</span>
-            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">Accès immédiat</span>
-            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">Éditeur français</span>
+            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">🔒 Stripe sécurisé</span>
+            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">⚡ Accès immédiat</span>
+            <span className="rounded-full border border-[var(--border)] bg-white/5 px-4 py-2">🇫🇷 Éditeur français</span>
           </div>
           <a
             href={`mailto:${siteConfig.supportEmail}`}
             className="w-fit text-sm text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
           >
-            {siteConfig.supportEmail}
+            Contact : {siteConfig.supportEmail}
           </a>
         </div>
 
@@ -59,10 +52,10 @@ export function PublicFooter() {
               <Link
                 key={course.slug}
                 href={`/formations/${course.slug}`}
-                className="grid gap-1 rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-3 transition-colors duration-200 hover:text-[var(--foreground)]"
+                className="grid gap-1 rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-3 transition-colors duration-200 hover:border-[rgba(215,184,122,0.22)] hover:text-[var(--foreground)]"
               >
-                <span className="text-[var(--foreground)]">{slugLabel(course.slug)}</span>
-                <span className="text-[var(--muted)]">{course.slug}</span>
+                <span className="text-[var(--foreground)] text-sm font-medium leading-snug">{course.title}</span>
+                <span className="text-[var(--muted)] text-xs leading-relaxed line-clamp-2">{course.subtitle}</span>
               </Link>
             ))}
           </div>

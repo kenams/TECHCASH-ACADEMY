@@ -492,6 +492,8 @@ footer,
   font-weight: 700;
   line-height: 1.15;
   white-space: nowrap;
+  align-self: flex-start;
+  width: fit-content;
 }
 
 /* =============================================
@@ -1768,7 +1770,8 @@ footer,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin: 0 auto 0.75rem;
+  flex-shrink: 0;
 }
 
 .status-icon-success {
@@ -2226,5 +2229,97 @@ footer,
 
   .dashboard-hero .cta-row {
     width: 100%;
+  }
+}
+
+/* =============================================
+   SMALL MOBILE (< 640px)
+   ============================================= */
+@media (max-width: 640px) {
+  .shell {
+    width: calc(100% - 2rem);
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+
+  .hero {
+    padding: 1rem 0 3rem;
+  }
+
+  .topbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .button,
+  .button-secondary,
+  .button-ghost {
+    min-height: 48px;
+    padding: 0.9rem 1.4rem;
+    font-size: 0.93rem;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-row .button,
+  .cta-row .button-secondary,
+  .cta-row .button-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-title {
+    margin-bottom: 1.75rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+  }
+
+  .status-card-rich {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .product-card-body {
+    padding: 1.25rem;
+  }
+
+  .member-product-body {
+    padding: 1.1rem;
+  }
+
+  .panel,
+  .card {
+    padding: 1.25rem;
+  }
+
+  .hero-stat-card,
+  .assurance-item-card,
+  .step-card {
+    padding: 1.25rem;
+  }
+
+  .featured-strip {
+    padding: 1.25rem;
+  }
+
+  .product-thumb-wrap {
+    height: 200px;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    min-height: 36px;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .trust-pill {
+    font-size: 0.8rem;
+    min-height: 38px;
+    padding: 0.55rem 0.9rem;
   }
 }

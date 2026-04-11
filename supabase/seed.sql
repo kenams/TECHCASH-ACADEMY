@@ -27,10 +27,10 @@ values
   ),
   (
     'landing-pages-rentables',
-    'CrÃ©er des landing pages qui vendent',
+    'Créer des landing pages qui vendent',
     'Une formation pour designer, vendre et livrer des landing pages efficaces a des clients.',
     'Apprendre a concevoir, vendre et livrer des landing pages professionnelles pour des clients.',
-    'Ce programme montre comment cadrer le besoin, structurer une page de conversion, vendre une prestation simple et eviter les livraisons interminables. Ideal pour proposer une offre web rapide a forte valeur perÃ§ue.',
+    'Ce programme montre comment cadrer le besoin, structurer une page de conversion, vendre une prestation simple et eviter les livraisons interminables. Ideal pour proposer une offre web rapide a forte valeur perçue.',
     4900,
     'eur',
     'price_1TJrEOGSZgm5QCNLeTwUULYt',
@@ -40,7 +40,7 @@ values
   ),
   (
     'sites-web-clients',
-    'CrÃ©er des sites web professionnels pour ses clients',
+    'Créer des sites web professionnels pour ses clients',
     'Le cadre pour vendre des sites sobres, utiles et livrables rapidement.',
     'Apprendre a creer des sites web modernes, simples à vendre et a livrer rapidement.',
     'Tu y trouveras la logique commerciale, les process de cadrage, la structure de projet et les ressources necessaires pour transformer une prestation site web en offre standardisee et rentable.',
@@ -53,10 +53,10 @@ values
   ),
   (
     'outils-pme-glpi',
-    'CrÃ©er des outils mÃ©tier pour PME, support et GLPI',
+    'Créer des outils métier pour PME, support et GLPI',
     'Une offre plus technique pour produire des outils utiles et monnayables.',
-    'Apprendre a creer des outils concrets pour PME, support informatique et besoins mÃ©tier internes, comme un outil support GLPI.',
-    'Cette formation aide a reperer les besoins mÃ©tier repetitifs, cadrer un mini-outil interne, vendre sa valeur a une PME et articuler support, automatisation et maintenance simple autour de GLPI et d''usages mÃ©tier proches.',
+    'Apprendre a creer des outils concrets pour PME, support informatique et besoins métier internes, comme un outil support GLPI.',
+    'Cette formation aide a reperer les besoins métier repetitifs, cadrer un mini-outil interne, vendre sa valeur a une PME et articuler support, automatisation et maintenance simple autour de GLPI et d''usages métier proches.',
     6900,
     'eur',
     'price_1TJrEQGSZgm5QCNLSgVsDabX',
@@ -66,10 +66,10 @@ values
   ),
   (
     'applications-mobiles-rentables',
-    'CrÃ©er des applications mobiles simples et rentables',
+    'Créer des applications mobiles simples et rentables',
     'Concevoir une app utile, simple et monnayable sans partir dans une usine a gaz.',
     'Apprendre a concevoir et structurer une application mobile monnayable.',
-    'Un programme pense pour cadrer une idee, definir un MVP mobile crÃ©dible, choisir un modele economique simple et poser une base produit propre, sans se perdre dans une complexite inutile des le depart.',
+    'Un programme pense pour cadrer une idee, definir un MVP mobile crédible, choisir un modele economique simple et poser une base produit propre, sans se perdre dans une complexite inutile des le depart.',
     6200,
     'eur',
     'price_1TJrERGSZgm5QCNLa5B2Z3BH',
@@ -642,7 +642,7 @@ Un bon technicien IT freelance travaille avec des outils professionnels. Voici l
       'landing-pages-rentables',
       'structure-conversion',
       'Structurer une landing page qui convertit',
-      'Une methode sobre pour construire un message clair, une promesse crÃ©dible et un CTA fort.',
+      'Une methode sobre pour construire un message clair, une promesse crédible et un CTA fort.',
       'text',
       null,
       'Une landing page vend parce qu''elle clarifie. Le contenu doit parler du probleme, de la transformation et de la prochaine action. Dans ce module, on formalise les blocs indispensables et ce qu''il faut supprimer pour garder une page directe.',
@@ -872,11 +872,11 @@ Reprends un ancien projet et note :
     (
       'outils-pme-glpi',
       'audit-besoins-metier',
-      'Reperer un besoin mÃ©tier monnayable',
-      'Le bon angle pour transformer un irritant mÃ©tier en mini-outil vendable.',
+      'Reperer un besoin métier monnayable',
+      'Le bon angle pour transformer un irritant métier en mini-outil vendable.',
       'text',
       null,
-      'Avant d''ecrire la moindre ligne, il faut comprendre le cout de l''irritant mÃ©tier. Le meilleur outil a vendre n''est pas le plus complexe, c''est celui qui supprime une perte de temps visible pour la PME.',
+      'Avant d''ecrire la moindre ligne, il faut comprendre le cout de l''irritant métier. Le meilleur outil a vendre n''est pas le plus complexe, c''est celui qui supprime une perte de temps visible pour la PME.',
       true,
       1
     ),
@@ -930,7 +930,7 @@ Ce pack doit couvrir :
 
 ### Objectif
 
-Transformer un besoin flou en mission claire, puis en process rÃ©pÃ©table.
+Transformer un besoin flou en mission claire, puis en process répétable.
 
 > Un bon audit support montre ou l'entreprise perd du temps et ce qui peut etre resolu vite.$$,
       true,
@@ -980,7 +980,7 @@ reprends 3 demandes client et reformule-les en :
       'Comment reduire l''idee a un produit simple, testable et coherent cote business.',
       'text',
       null,
-      'Le bon MVP mobile n''essaie pas de tout faire. Il doit rendre un service precis, etre comprehensible en quelques secondes et proposer une logique de monnayage crÃ©dible des le depart.',
+      'Le bon MVP mobile n''essaie pas de tout faire. Il doit rendre un service precis, etre comprehensible en quelques secondes et proposer une logique de monnayage crédible des le depart.',
       true,
       1
     ),
@@ -998,7 +998,7 @@ La roadmap initiale doit tenir sur peu d'etapes :
 - probleme cible
 - flux principal
 - premier ecran critique
-- mode de monÃ©tisation
+- mode de monétisation
 - test utilisateur
 - mise en ligne minimale
 
@@ -1033,7 +1033,7 @@ Les 4 modeles les plus simples a evaluer :
 
 ### Questions a se poser
 
-- quand la valeur est-elle perÃ§ue ?
+- quand la valeur est-elle perçue ?
 - a quelle frequence l'utilisateur revient-il ?
 - qui paie vraiment ?
 - quel prix peut etre annonce des la pre-vente ?
@@ -1052,7 +1052,7 @@ Les 4 modeles les plus simples a evaluer :
       'applications-mobiles-rentables',
       'video-introduction',
       'Video explicative : cadrer une application mobile rentable',
-      'Une capsule pour comprendre le type de MVP vise, la monÃ©tisation et le niveau de simplicite recherche.',
+      'Une capsule pour comprendre le type de MVP vise, la monétisation et le niveau de simplicite recherche.',
       'video',
       'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
       $$## Ce que la video doit t'aider a arbitrer
@@ -1061,7 +1061,7 @@ La video appuie 4 decisions :
 
 - quelles fonctions garder
 - lesquelles repousser
-- comment la monÃ©tisation influence le produit
+- comment la monétisation influence le produit
 - quel niveau de finition suffit pour lancer
 
 ### Exercice rapide
