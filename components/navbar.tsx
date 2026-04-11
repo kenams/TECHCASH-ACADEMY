@@ -110,7 +110,7 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
     <>
       <header
         className={cn(
-          "topbar !mb-8 !mt-4 !flex-nowrap !gap-4 !overflow-visible !px-5 transition-all duration-300",
+          "topbar isolate !mb-8 !mt-4 !flex-nowrap !gap-4 !overflow-visible !px-5 transition-all duration-300",
           scrolled ? "border-[rgba(215,184,122,0.22)] bg-[rgba(7,12,24,0.9)]" : ""
         )}
       >
@@ -139,7 +139,7 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
 
         <div className="ml-auto hidden items-center gap-3 md:flex">
           {authState.loggedIn ? (
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative z-[70]" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setDropdownOpen((value) => !value)}
@@ -152,20 +152,27 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
               </button>
 
               {dropdownOpen ? (
-                <div className="absolute right-0 mt-3 grid min-w-[220px] gap-1 rounded-[24px] border border-[var(--border)] bg-[var(--surface-strong)]/95 p-3 shadow-[var(--shadow)] backdrop-blur-xl">
-                  <Link href="/dashboard" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
+                <div className="absolute right-0 top-full z-[80] mt-4 grid min-w-[260px] gap-1 rounded-[26px] border border-[rgba(215,184,122,0.16)] bg-[rgba(8,13,26,0.98)] p-3 shadow-[0_28px_90px_rgba(2,8,23,0.72)] backdrop-blur-2xl">
+                  <Link href="/dashboard" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] transition-colors duration-200 hover:bg-white/5">
                     Mon espace
                   </Link>
-                  <Link href="/dashboard/mes-formations" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
+                  <Link
+                    href="/dashboard/mes-formations"
+                    className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] transition-colors duration-200 hover:bg-white/5"
+                  >
                     Mes formations
                   </Link>
-                  <Link href="/dashboard/securite" className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] hover:bg-white/5">
+                  <Link
+                    href="/dashboard/securite"
+                    className="rounded-2xl px-4 py-3 text-sm text-[var(--foreground)] transition-colors duration-200 hover:bg-white/5"
+                  >
                     Sécurité 2FA
                   </Link>
+                  <div className="my-1 h-px bg-[rgba(148,163,184,0.12)]" />
                   <button
                     type="button"
                     onClick={handleSignOut}
-                    className="rounded-2xl px-4 py-3 text-left text-sm text-[var(--danger)] hover:bg-white/5"
+                    className="rounded-2xl px-4 py-3 text-left text-sm text-[var(--danger)] transition-colors duration-200 hover:bg-white/5"
                   >
                     Déconnexion
                   </button>
@@ -260,7 +267,13 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
                     <p className="mb-1 text-sm text-[var(--muted)]">Connecté avec</p>
                     <p className="truncate text-base text-[var(--foreground)]">{email}</p>
                   </div>
-                  <Button variant="secondary" onClick={() => { setMenuOpen(false); router.push("/dashboard/mes-formations"); }}>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      router.push("/dashboard/mes-formations");
+                    }}
+                  >
                     Mes formations
                   </Button>
                   <Button variant="ghost" onClick={handleSignOut}>
