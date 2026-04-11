@@ -126,123 +126,88 @@ export default async function MemberProductsPage() {
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
               {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(unlockedValue / 100)}
             </h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue total déjà disponible dans ton espace membre.</p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue actuellement accessible dans ton espace.</p>
           </GlowCard>
         </div>
       </AnimatedSection>
 
       {featuredOwned ? (
-        <AnimatedSection delay={50}>
-          <GlowCard className="dashboard-spotlight p-8" glowColor="indigo">
+        <AnimatedSection delay={40}>
+          <GlowCard className="dashboard-spotlight p-8" glowColor="emerald">
             <div className="dashboard-spotlight-copy">
-              <Badge variant="success" className="w-fit">
-                Reprendre maintenant
-              </Badge>
+              <Badge variant="success" className="w-fit">Formation à reprendre</Badge>
               <div className="grid gap-3">
                 <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                  Continue là où tu t'étais arrêté
+                  Remets-toi vite dans le bon module
                 </h2>
                 <p className="text-base leading-8 text-[var(--muted)]">
-                  {featuredOwned.title} est la formation la plus récemment débloquée dans ton espace.
+                  {featuredOwned.title} est prête à être reprise immédiatement, avec son espace membre, ses modules publiés et son accès déjà actif.
                 </p>
               </div>
               <div className="confidence-list">
                 <div className="confidence-item">
                   <span className="confidence-dot" />
                   <div>
-                    <strong>Accès direct</strong>
-                    <p>Tu arrives immédiatement sur les modules disponibles, sans passer par le catalogue.</p>
+                    <strong>Moins de friction</strong>
+                    <p>Tu repars depuis le bon produit sans repasser par le catalogue ni relire toute la structure.</p>
                   </div>
                 </div>
                 <div className="confidence-item">
                   <span className="confidence-dot" />
                   <div>
-                    <strong>Contenu actif</strong>
-                    <p>Les modules publiés sont disponibles dès maintenant, sans délai supplémentaire.</p>
+                    <strong>Accès consolidé</strong>
+                    <p>Le compte, le contenu et la page privée restent alignés dans le même parcours membre.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="dashboard-spotlight-card">
-              <MemberProductCard product={featuredOwned} isOwned={true} />
+              <MemberProductCard
+                product={featuredOwned}
+                isOwned
+                purchaseDate={"purchase" in featuredOwned ? featuredOwned.purchase?.created_at || null : null}
+              />
             </div>
           </GlowCard>
         </AnimatedSection>
       ) : null}
 
       <AnimatedSection delay={80} className="grid gap-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div className="grid gap-2">
-            <Badge variant="success">Mes formations débloquées</Badge>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-              {products.length ? "Toutes tes formations actives" : "Aucune formation débloquée pour l'instant"}
-            </h2>
-            <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-              {products.length
-                ? "Chaque carte mène directement à l'espace membre dédié de la formation, sans passer par le catalogue."
-                : "Explore le catalogue et achète une première formation pour accéder à ton espace membre dédié."}
-            </p>
-          </div>
-          {products.length > 0 ? (
-            <Link href="/formations" className={buttonClasses("ghost", "sm")}>
-              Voir le catalogue
-            </Link>
-          ) : null}
-        </div>
-
         {products.length ? (
-          <div className="grid gap-5 xl:grid-cols-2">
-            {products.map((product) => (
-              <MemberProductCard
-                key={product.id}
-                product={product}
-                isOwned={true}
-                purchaseDate={"purchase" in product && product.purchase ? product.purchase.created_at : null}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid gap-2">
+              <Badge variant="success">Accès complet</Badge>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Formations prêtes à être consultées</h2>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">Chaque carte te donne un accès direct au bon contenu, dans un espace membre plus clair et plus cohérent.</p>
+            </div>
+            <div className="grid gap-5 xl:grid-cols-2">
+              {products.map((product) => (
+                <MemberProductCard
+                  key={product.id}
+                  product={product}
+                  isOwned
+                  purchaseDate={"purchase" in product ? product.purchase?.created_at || null : null}
+                />
+              ))}
+            </div>
+          </>
         ) : (
           <GlowCard className="grid gap-5 p-8 text-center">
-            <div className="grid gap-3">
-              <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                Aucune formation achetée
-              </h3>
-              <p className="mx-auto max-w-xl text-base leading-8 text-[var(--muted)]">
-                Le catalogue contient des formations pensées pour être directement vendables. Choisis celle qui correspond le mieux à ton projet.
-              </p>
+            <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border border-[var(--border)] bg-white/5 text-2xl">
+              ✦
             </div>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="grid gap-2">
+              <h3 className="text-2xl font-semibold text-[var(--foreground)]">Aucune formation débloquée</h3>
+              <p className="text-base leading-8 text-[var(--muted)]">Ton espace membre est prêt. Choisis une première formation pour commencer dans un cadre clair, premium et immédiatement exploitable.</p>
+            </div>
+            <div className="flex justify-center">
               <Link href="/formations" className={buttonClasses("primary", "md")}>
-                Explorer le catalogue
-              </Link>
-              <Link href="/dashboard" className={buttonClasses("secondary", "md")}>
-                Retour au tableau de bord
+                Voir le catalogue
               </Link>
             </div>
           </GlowCard>
         )}
       </AnimatedSection>
-
-      {remainingProducts > 0 ? (
-        <AnimatedSection delay={140}>
-          <GlowCard className="p-8" glowColor="indigo">
-            <div className="grid gap-4 sm:flex sm:items-center sm:justify-between">
-              <div className="grid gap-2">
-                <Badge variant="muted">Aller plus loin</Badge>
-                <h2 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                  {remainingProducts} formation{remainingProducts > 1 ? "s" : ""} encore disponible{remainingProducts > 1 ? "s" : ""} au catalogue
-                </h2>
-                <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">
-                  Tu peux compléter ton catalogue de compétences et élargir ton positionnement en ajoutant une nouvelle formation.
-                </p>
-              </div>
-              <Link href="/formations" className={buttonClasses("secondary", "md")}>
-                Voir le catalogue
-              </Link>
-            </div>
-          </GlowCard>
-        </AnimatedSection>
-      ) : null}
     </div>
   );
 }

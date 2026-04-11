@@ -282,10 +282,10 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
                 </>
               ) : (
                 <>
-                  <Link href="/login" className={buttonClasses("ghost", "md")}>
-                    Se connecter
+                  <Link href="/login" onClick={() => setMenuOpen(false)} className={buttonClasses("ghost", "md")}>
+                    Connexion
                   </Link>
-                  <Link href={startHref} className={buttonClasses("primary", "md")}>
+                  <Link href={startHref} onClick={() => setMenuOpen(false)} className={buttonClasses("primary", "md")}>
                     Commencer
                   </Link>
                 </>

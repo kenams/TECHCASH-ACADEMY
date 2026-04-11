@@ -1,24 +1,6 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Paiement confirmé | TechCash Academy",
-  description: "Ton paiement a été confirmé. Ta formation est maintenant accessible dans ton espace membre."
-};
-
-type SuccessPageProps = {
-  searchParams: Promise<{
-    product?: string;
-  }>;
-};
-
-export default async function SuccessPage({ searchParams }: SuccessPageProps) {
-  const resolved = await searchParams;
-  const productSlug = resolved.product?.trim() || null;
-  const formationHref = productSlug
-    ? `/dashboard/formations/${productSlug}`
-    : "/dashboard/mes-formations";
-
+export default function SuccessPage() {
   return (
     <main className="status-wrap">
       <section className="status-card status-card-rich">
@@ -52,8 +34,8 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
         <p className="helper">Si l'accès n'apparaît pas tout de suite, attends 5 à 10 secondes puis recharge la page.</p>
 
         <div className="cta-row">
-          <Link href={formationHref} className="button">
-            {productSlug ? "Ouvrir ma formation" : "Accéder à mes formations"}
+          <Link href="/dashboard/mes-formations" className="button">
+            Accéder à mes formations
           </Link>
           <Link href="/dashboard" className="button-secondary">
             Mon tableau de bord

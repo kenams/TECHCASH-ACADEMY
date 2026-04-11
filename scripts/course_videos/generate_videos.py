@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import math
+import shutil
 import textwrap
 import time
 import urllib.parse
@@ -13,6 +14,8 @@ from moviepy import AudioFileClip, ImageClip, concatenate_videoclips
 
 ROOT = Path(__file__).resolve().parents[2]
 PUBLIC_VIDEOS_DIR = ROOT / "public" / "videos" / "formations"
+PUBLIC_POSTERS_DIR = ROOT / "public" / "videos" / "posters"
+PUBLIC_STILLS_DIR = ROOT / "public" / "videos" / "stills"
 TMP_DIR = ROOT / "tmp" / "course_videos"
 WIDTH = 1280
 HEIGHT = 720
@@ -307,10 +310,12 @@ def valid_audio(path: Path) -> bool:
         return False
 
 
-def build_course(slug: str, course: dict, force: bool) -> Path:
+def build_course(slug: str, course: dict, force: bool, assets_only: bool = False) -> Path:
     workdir = TMP_DIR / slug
     workdir.mkdir(parents=True, exist_ok=True)
     PUBLIC_VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_POSTERS_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_STILLS_DIR.mkdir(parents=True, exist_ok=True)
 
     bg1 = workdir / "scene-1.jpg"
     bg2 = workdir / "scene-2.jpg"
@@ -327,6 +332,13 @@ def build_course(slug: str, course: dict, force: bool) -> Path:
     render_scene(course, course["scene_a"], bg1, slide_a)
     render_scene(course, course["scene_b"], bg2, slide_b)
     render_summary(course, summary_slide)
+
+    shutil.copy2(title_slide, PUBLIC_POSTERS_DIR / f"{slug}-overview-poster.jpg")
+    shutil.copy2(slide_a, PUBLIC_STILLS_DIR / f"{slug}-overview-story-1.jpg")
+    shutil.copy2(slide_b, PUBLIC_STILLS_DIR / f"{slug}-overview-story-2.jpg")
+
+    if assets_only:
+        return PUBLIC_VIDEOS_DIR / f"{slug}-overview.mp4"
 
     audio_texts = [
         f"{course['title']}. {course['narration'][0]}",
@@ -368,14 +380,18 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--slug", action="append")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--assets-only", action="store_true")
     args = parser.parse_args()
     selected = set(args.slug or [])
     for slug, course in COURSES.items():
         if selected and slug not in selected:
             continue
         print(f"Generating {slug}...")
-        output = build_course(slug, course, args.force)
-        print(f"done {output}")
+        output = build_course(slug, course, args.force, args.assets_only)
+        if args.assets_only:
+            print(f"assets ready for {slug}")
+        else:
+            print(f"done {output}")
 
 
 if __name__ == "__main__":

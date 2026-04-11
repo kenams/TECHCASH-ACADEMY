@@ -5,6 +5,13 @@ type ContentRendererProps = {
   module: ProductModuleRecord;
 };
 
+type VideoVisualSet = {
+  slug: string | null;
+  posterUrl: string | null;
+  coverUrl: string | null;
+  storyUrls: string[];
+};
+
 function isDirectVideoFile(url: string) {
   return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
 }
@@ -33,7 +40,27 @@ function getEmbedUrl(url: string): string | null {
   return null;
 }
 
-// ─── Markdown renderer ────────────────────────────────────────────────────────
+function getVideoVisuals(url: string | null): VideoVisualSet {
+  if (!url) {
+    return { slug: null, posterUrl: null, coverUrl: null, storyUrls: [] };
+  }
+
+  const match = url.match(/\/videos\/formations\/(.+)-overview\.(mp4|webm|ogg)(\?.*)?$/i);
+  if (!match) {
+    return { slug: null, posterUrl: null, coverUrl: null, storyUrls: [] };
+  }
+
+  const slug = match[1];
+  return {
+    slug,
+    posterUrl: `/videos/posters/${slug}-overview-poster.jpg`,
+    coverUrl: `/visuals/formations/${slug}-cover.svg`,
+    storyUrls: [
+      `/videos/stills/${slug}-overview-story-1.jpg`,
+      `/videos/stills/${slug}-overview-story-2.jpg`
+    ]
+  };
+}
 
 type InlineNode =
   | { type: "text"; value: string }
@@ -66,11 +93,11 @@ function parseInline(raw: string): InlineNode[] {
 }
 
 function renderInline(raw: string, keyPrefix: string) {
-  return parseInline(raw).map((node, i) => {
-    const k = `${keyPrefix}-${i}`;
-    if (node.type === "bold") return <strong key={k}>{node.value}</strong>;
-    if (node.type === "code") return <code key={k} className="content-inline-code">{node.value}</code>;
-    return <span key={k}>{node.value}</span>;
+  return parseInline(raw).map((node, index) => {
+    const key = `${keyPrefix}-${index}`;
+    if (node.type === "bold") return <strong key={key}>{node.value}</strong>;
+    if (node.type === "code") return <code key={key} className="content-inline-code">{node.value}</code>;
+    return <span key={key}>{node.value}</span>;
   });
 }
 
@@ -128,46 +155,95 @@ function MarkdownBody({ body }: { body: string }) {
 
   return (
     <div className="content-rich-text">
-      {blocks.map((block, i) => {
-        const k = `block-${i}`;
+      {blocks.map((block, index) => {
+        const key = `block-${index}`;
 
         if (block.type === "h2") {
-          return <h2 key={k} className="content-h2">{renderInline(block.content, k)}</h2>;
+          return <h2 key={key} className="content-h2">{renderInline(block.content, key)}</h2>;
         }
 
         if (block.type === "h3") {
-          return <h3 key={k} className="content-h3">{renderInline(block.content, k)}</h3>;
+          return <h3 key={key} className="content-h3">{renderInline(block.content, key)}</h3>;
         }
 
         if (block.type === "callout") {
           return (
-            <div key={k} className="content-callout">
-              {renderInline(block.content, k)}
+            <div key={key} className="content-callout">
+              {renderInline(block.content, key)}
             </div>
           );
         }
 
         if (block.type === "divider") {
-          return <hr key={k} className="content-divider" />;
+          return <hr key={key} className="content-divider" />;
         }
 
         if (block.type === "list") {
           return (
-            <ul key={k} className="content-list">
-              {block.items.map((item, j) => (
-                <li key={j}>{renderInline(item, `${k}-li-${j}`)}</li>
+            <ul key={key} className="content-list">
+              {block.items.map((item, itemIndex) => (
+                <li key={`${key}-${itemIndex}`}>{renderInline(item, `${key}-li-${itemIndex}`)}</li>
               ))}
             </ul>
           );
         }
 
-        return <p key={k} className="content-p">{renderInline(block.content, k)}</p>;
+        return <p key={key} className="content-p">{renderInline(block.content, key)}</p>;
       })}
     </div>
   );
 }
 
-// ─── Module components ────────────────────────────────────────────────────────
+function VideoShowcase({ module }: { module: ProductModuleRecord }) {
+  const visuals = getVideoVisuals(module.content_url);
+  const heroImage = visuals.posterUrl || visuals.coverUrl;
+
+  if (!heroImage) {
+    return null;
+  }
+
+  return (
+    <div className="video-showcase">
+      <div className="video-showcase-main">
+        <img src={heroImage} alt={module.title} className="video-showcase-image" loading="lazy" />
+        <div className="video-showcase-overlay" />
+        <div className="video-showcase-copy">
+          <span className="video-showcase-kicker">Vue d&apos;ensemble</span>
+          <h4>{module.title}</h4>
+          <p>Voix IA, images explicites et lecture intégrée pour comprendre la formation avant d&apos;entrer dans les modules.</p>
+          <div className="video-feature-row">
+            <span className="video-feature-pill">Voix IA</span>
+            <span className="video-feature-pill">Visuels guidés</span>
+            <span className="video-feature-pill">Lecture intégrée</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="video-story-grid">
+        {visuals.coverUrl ? (
+          <div className="video-story-card">
+            <img src={visuals.coverUrl} alt={`Couverture de ${module.title}`} className="video-story-image" loading="lazy" />
+            <div className="video-story-overlay" />
+            <div className="video-story-copy">
+              <span>Formation</span>
+              <strong>Identité visuelle dédiée</strong>
+            </div>
+          </div>
+        ) : null}
+        {visuals.storyUrls.map((storyUrl, index) => (
+          <div key={storyUrl} className="video-story-card">
+            <img src={storyUrl} alt={`Visuel ${index + 1} pour ${module.title}`} className="video-story-image" loading="lazy" />
+            <div className="video-story-overlay" />
+            <div className="video-story-copy">
+              <span>Scène {index + 1}</span>
+              <strong>Illustration explicative</strong>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function TextModule({ module }: { module: ProductModuleRecord }) {
   return (
@@ -183,17 +259,21 @@ function TextModule({ module }: { module: ProductModuleRecord }) {
 }
 
 function VideoModule({ module }: { module: ProductModuleRecord }) {
+  const visuals = getVideoVisuals(module.content_url);
+  const videoBadge = visuals.slug ? "Vidéo IA" : "Vidéo";
+
   if (!module.content_url) {
     return (
       <article className="content-card">
         <div className="content-card-head">
           <h3>{module.title}</h3>
-          <AccessBadge label="Vidéo" tone="success" />
+          <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
+        <VideoShowcase module={module} />
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
         <div className="video-placeholder">
-          <p>La vidéo sera intégrée ici dès que la production est prête.</p>
+          <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
         </div>
       </article>
     );
@@ -204,13 +284,26 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
       <article className="content-card">
         <div className="content-card-head">
           <h3>{module.title}</h3>
-          <AccessBadge label="Vidéo" tone="success" />
+          <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <video className="video-embed" controls preload="metadata">
-          <source src={module.content_url} />
-          Votre navigateur ne supporte pas la lecture vidéo intégrée.
-        </video>
+        <VideoShowcase module={module} />
+        <div className="video-player-shell">
+          <div className="video-player-meta">
+            <span>Lecture intégrée</span>
+            <strong>Vidéo explicative disponible immédiatement</strong>
+          </div>
+          <video
+            className="video-embed"
+            controls
+            preload="metadata"
+            playsInline
+            poster={visuals.posterUrl ?? undefined}
+          >
+            <source src={module.content_url} />
+            Votre navigateur ne supporte pas la lecture vidéo intégrée.
+          </video>
+        </div>
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       </article>
     );
@@ -223,16 +316,23 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
       <article className="content-card">
         <div className="content-card-head">
           <h3>{module.title}</h3>
-          <AccessBadge label="Vidéo" tone="success" />
+          <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <div className="video-frame">
-          <iframe
-            src={embedUrl}
-            title={module.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-          />
+        <VideoShowcase module={module} />
+        <div className="video-player-shell">
+          <div className="video-player-meta">
+            <span>Lecture embarquée</span>
+            <strong>Le player reste intégré dans la formation</strong>
+          </div>
+          <div className="video-frame">
+            <iframe
+              src={embedUrl}
+              title={module.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+            />
+          </div>
         </div>
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       </article>
@@ -243,9 +343,10 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
     <article className="content-card">
       <div className="content-card-head">
         <h3>{module.title}</h3>
-        <AccessBadge label="Vidéo" tone="success" />
+        <AccessBadge label={videoBadge} tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
+      <VideoShowcase module={module} />
       {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       <div className="video-placeholder">
         <p>La vidéo est disponible via le lien ci-dessous.</p>
@@ -256,8 +357,6 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
     </article>
   );
 }
-
-// ─── ContentRenderer ─────────────────────────────────────────────────────────
 
 export function ContentRenderer({ module }: ContentRendererProps) {
   switch (module.content_type) {

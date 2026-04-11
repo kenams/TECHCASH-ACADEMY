@@ -7,16 +7,22 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { buttonClasses } from "@/components/ui/Button";
+import { userHasProductAccess } from "@/lib/access";
 import { getProductSupplement, getRelatedLocalProducts } from "@/lib/catalog";
 import { getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
-import { userHasProductAccess } from "@/lib/access";
 
 type MemberProductPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+function getVideoPosterUrl(url: string | null) {
+  if (!url) return null;
+  const match = url.match(/\/videos\/formations\/(.+)-overview\.(mp4|webm|ogg)(\?.*)?$/i);
+  return match ? `/videos/posters/${match[1]}-overview-poster.jpg` : null;
+}
 
 export async function generateMetadata({ params }: MemberProductPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -62,6 +68,8 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
   const directResources = product.modules.filter(
     (module) => module.content_type === "resource" || module.content_type === "pdf"
   ).length;
+  const overviewVideo = product.modules.find((module) => module.content_type === "video" && module.content_url);
+  const overviewPosterUrl = getVideoPosterUrl(overviewVideo?.content_url ?? null);
   const recommendedProducts = getRelatedLocalProducts(product.slug, 2).filter(
     (candidate) => !ownedProducts.some((owned) => owned.slug === candidate.slug)
   );
@@ -74,10 +82,10 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
           <GlowCard className="grid gap-5 p-8">
             <div className="grid gap-3">
               <h1 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                Cette formation n'est pas encore débloquée
+                Cette formation n&apos;est pas encore débloquée
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Ton compte existe bien, mais cette formation n'a pas encore été achetée. Tu peux
+                Ton compte existe bien, mais cette formation n&apos;a pas encore été achetée. Tu peux
                 consulter la version publique ou passer au checkout.
               </p>
             </div>
@@ -118,6 +126,59 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
           </div>
         </div>
 
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <GlowCard className="member-formation-visual">
+            <div className="member-formation-visual-stage">
+              <img
+                src={overviewPosterUrl ?? product.thumbnail_url ?? "/visuals/formations/freelance-it-30-jours-cover.svg"}
+                alt={product.title}
+                className="member-formation-visual-image"
+              />
+              <div className="member-formation-visual-overlay" />
+              <div className="member-formation-visual-copy">
+                <span className="member-formation-visual-kicker">Formation premium</span>
+                <h2>{product.subtitle}</h2>
+                <p>
+                  Une formation pensée pour être regardée, relue et transformée en offre ou en mission
+                  claire dès la première session.
+                </p>
+              </div>
+            </div>
+          </GlowCard>
+
+          <GlowCard className="grid gap-4">
+            <Badge variant="primary">Repères rapides</Badge>
+            <div className="grid gap-3">
+              <div className="featured-strip featured-strip-luxury">
+                <strong>{publishedModules} modules publiés</strong>
+                <span>Le socle opérationnel est déjà accessible dans l&apos;espace membre.</span>
+              </div>
+              <div className="featured-strip featured-strip-luxury">
+                <strong>{directResources} ressources directes</strong>
+                <span>PDF, ressources et guides exploitables sans attendre.</span>
+              </div>
+              <div className="featured-strip featured-strip-luxury">
+                <strong>{overviewVideo ? "Vidéo explicative disponible" : "Lecture structurée disponible"}</strong>
+                <span>
+                  {overviewVideo
+                    ? "Une vidéo IA introduit la logique de la formation avant les modules détaillés."
+                    : "La formation reste directement exploitable via ses modules texte et ressources."}
+                </span>
+              </div>
+            </div>
+            <div className="cta-row">
+              {overviewVideo ? (
+                <a href={`#module-${overviewVideo.id}`} className={buttonClasses("primary", "sm")}>
+                  Voir la vidéo d&apos;introduction
+                </a>
+              ) : null}
+              <Link href="/dashboard/mes-formations" className={buttonClasses("secondary", "sm")}>
+                Revenir à mes formations
+              </Link>
+            </div>
+          </GlowCard>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <GlowCard>
             <p className="text-sm text-[var(--muted)]">Modules publiés</p>
@@ -143,7 +204,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
               {comingSoonModules}
             </h2>
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              La roadmap reste visible, même si tout n'est pas encore publié.
+              La roadmap reste visible, même si tout n&apos;est pas encore publié.
             </p>
           </GlowCard>
           <GlowCard>
@@ -152,7 +213,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
               {product.is_featured ? "Principal" : "Spécialisé"}
             </h2>
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              Une offre pensée pour s'intégrer dans un catalogue de services vendables.
+              Une offre pensée pour s&apos;intégrer dans un catalogue de services vendables.
             </p>
           </GlowCard>
         </div>
@@ -198,7 +259,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
         <div className="grid gap-2">
           <Badge variant="success">Modules et contenus</Badge>
           <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-            Tout le contenu disponible dans l'espace membre
+            Tout le contenu disponible dans l&apos;espace membre
           </h2>
           <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
             Le contenu mélange texte, PDF, ressources et modules à venir sans attendre que toute la
@@ -207,7 +268,9 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
         </div>
         <div className="grid gap-5">
           {product.modules.map((module) => (
-            <ContentRenderer key={module.id} module={module} />
+            <div key={module.id} id={`module-${module.id}`}>
+              <ContentRenderer module={module} />
+            </div>
           ))}
         </div>
       </AnimatedSection>

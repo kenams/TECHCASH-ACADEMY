@@ -42,9 +42,9 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
             isOwned={isOwned}
             dashboardHref={detailHref}
           />
-          {!isOwned ? (
-            <a href={`/formations/${product.slug}`} className="button-secondary">
-              Voir le programme
+          {detailHref && isOwned ? (
+            <a href={detailHref} className="button-secondary">
+              Ouvrir l'espace membre
             </a>
           ) : null}
         </div>
