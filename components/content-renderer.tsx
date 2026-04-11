@@ -194,58 +194,6 @@ function MarkdownBody({ body }: { body: string }) {
   );
 }
 
-function VideoShowcase({ module }: { module: ProductModuleRecord }) {
-  const visuals = getVideoVisuals(module.content_url);
-  const heroImage = visuals.storyUrls[0] || visuals.coverUrl || visuals.posterUrl;
-  const sideStoryUrls = visuals.storyUrls.slice(1);
-
-  if (!heroImage) {
-    return null;
-  }
-
-  return (
-    <div className="video-showcase">
-      <div className="video-showcase-main">
-        <img src={heroImage} alt={module.title} className="video-showcase-image" loading="lazy" />
-        <div className="video-showcase-overlay" />
-        <div className="video-showcase-copy">
-          <span className="video-showcase-kicker">Vue d&apos;ensemble</span>
-          <h4>{module.title}</h4>
-          <p>Voix IA, images explicites et lecture intégrée pour comprendre la formation avant d&apos;entrer dans les modules.</p>
-          <div className="video-feature-row">
-            <span className="video-feature-pill">Voix IA</span>
-            <span className="video-feature-pill">Visuels guidés</span>
-            <span className="video-feature-pill">Lecture intégrée</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="video-story-grid">
-        {visuals.coverUrl ? (
-          <div className="video-story-card">
-            <img src={visuals.coverUrl} alt={`Couverture de ${module.title}`} className="video-story-image" loading="lazy" />
-            <div className="video-story-overlay" />
-            <div className="video-story-copy">
-              <span>Formation</span>
-              <strong>Identité visuelle dédiée</strong>
-            </div>
-          </div>
-        ) : null}
-        {sideStoryUrls.map((storyUrl, index) => (
-          <div key={storyUrl} className="video-story-card">
-            <img src={storyUrl} alt={`Visuel ${index + 2} pour ${module.title}`} className="video-story-image" loading="lazy" />
-            <div className="video-story-overlay" />
-            <div className="video-story-copy">
-              <span>Scène {index + 2}</span>
-              <strong>Illustration explicative</strong>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function TextModule({ module }: { module: ProductModuleRecord }) {
   return (
     <article className="content-card">
@@ -271,7 +219,6 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <VideoShowcase module={module} />
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
         <div className="video-placeholder">
           <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
@@ -288,7 +235,6 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <VideoShowcase module={module} />
         <div className="video-player-shell">
           <div className="video-player-meta">
             <span>Lecture intégrée</span>
@@ -320,7 +266,6 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <VideoShowcase module={module} />
         <div className="video-player-shell">
           <div className="video-player-meta">
             <span>Lecture embarquée</span>
@@ -347,7 +292,6 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
         <AccessBadge label={videoBadge} tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
-      <VideoShowcase module={module} />
       {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       <div className="video-placeholder">
         <p>La vidéo est disponible via le lien ci-dessous.</p>
