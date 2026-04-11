@@ -26,6 +26,11 @@ export function AnimatedSection({
     const node = ref.current;
     if (!node || visible) return;
 
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -33,7 +38,10 @@ export function AnimatedSection({
           observer.disconnect();
         }
       },
-      { threshold: 0.18, rootMargin: "0px 0px -40px 0px" }
+      {
+        threshold: 0.01,
+        rootMargin: "0px 0px 20% 0px"
+      }
     );
 
     observer.observe(node);
