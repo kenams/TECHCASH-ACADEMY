@@ -1606,6 +1606,8 @@ footer,
 
 .video-showcase-copy h4 {
   font-size: clamp(1.65rem, 3vw, 2.3rem);
+  max-width: 12ch;
+  text-wrap: balance;
 }
 
 .video-showcase-copy p,
@@ -1614,6 +1616,10 @@ footer,
   margin: 0;
   color: #dbe6f7;
   line-height: 1.7;
+}
+
+.video-showcase-copy p {
+  max-width: 54ch;
 }
 
 .video-feature-row {
@@ -1650,6 +1656,7 @@ footer,
   gap: 0.2rem;
   min-height: 150px;
   padding: 1rem;
+  background: linear-gradient(180deg, transparent, rgba(5, 8, 20, 0.92));
 }
 
 .video-story-copy strong {

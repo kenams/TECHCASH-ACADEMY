@@ -196,7 +196,8 @@ function MarkdownBody({ body }: { body: string }) {
 
 function VideoShowcase({ module }: { module: ProductModuleRecord }) {
   const visuals = getVideoVisuals(module.content_url);
-  const heroImage = visuals.posterUrl || visuals.coverUrl;
+  const heroImage = visuals.storyUrls[0] || visuals.coverUrl || visuals.posterUrl;
+  const sideStoryUrls = visuals.storyUrls.slice(1);
 
   if (!heroImage) {
     return null;
@@ -230,12 +231,12 @@ function VideoShowcase({ module }: { module: ProductModuleRecord }) {
             </div>
           </div>
         ) : null}
-        {visuals.storyUrls.map((storyUrl, index) => (
+        {sideStoryUrls.map((storyUrl, index) => (
           <div key={storyUrl} className="video-story-card">
-            <img src={storyUrl} alt={`Visuel ${index + 1} pour ${module.title}`} className="video-story-image" loading="lazy" />
+            <img src={storyUrl} alt={`Visuel ${index + 2} pour ${module.title}`} className="video-story-image" loading="lazy" />
             <div className="video-story-overlay" />
             <div className="video-story-copy">
-              <span>Scène {index + 1}</span>
+              <span>Scène {index + 2}</span>
               <strong>Illustration explicative</strong>
             </div>
           </div>
