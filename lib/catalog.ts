@@ -6,11 +6,14 @@ function isoDate() {
 
 const now = isoDate();
 const sampleVideos = {
-  freelanceIt: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  landingPages: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  sitesWeb: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  outilsPme: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  mobileApps: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+  freelanceIt: "/videos/formations/freelance-it-30-jours-overview.mp4",
+  landingPages: "/videos/formations/landing-pages-rentables-overview.mp4",
+  sitesWeb: "/videos/formations/sites-web-clients-overview.mp4",
+  outilsPme: "/videos/formations/outils-pme-glpi-overview.mp4",
+  mobileApps: "/videos/formations/applications-mobiles-rentables-overview.mp4",
+  glpiSupport: "/videos/formations/glpi-support-pme-overview.mp4",
+  maintenancePme: "/videos/formations/maintenance-informatique-pme-overview.mp4",
+  appsMetier: "/videos/formations/apps-metier-supabase-overview.mp4"
 } as const;
 
 export const localProducts: ProductRecord[] = [
@@ -271,6 +274,20 @@ export const localProductModules: ProductModuleRecord[] = [
     "Études de cas réels, scénarios de mission complexe, gestion des clients difficiles et stratégies pour fidéliser sur le long terme. Module en cours de production.",
     "coming_soon",
     7
+  ),
+
+  module(
+    "freelance-it-30-jours",
+    "video-explicative-ia",
+    "VidÃ©o explicative IA : lancer une activitÃ© freelance IT rentable",
+    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "video",
+    8,
+    {
+      content_url: sampleVideos.freelanceIt,
+      content_body:
+        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+    }
   ),
 
   module(
@@ -563,6 +580,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
 
   module(
+    "glpi-support-pme",
+    "video-explicative-ia",
+    "VidÃ©o explicative IA : dÃ©ployer GLPI et structurer un support PME",
+    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "video",
+    6,
+    {
+      content_url: sampleVideos.glpiSupport,
+      content_body:
+        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+    }
+  ),
+
+  module(
     "maintenance-informatique-pme",
     "offre-maintenance-qui-se-vend",
     "Construire une offre de maintenance qui se vend",
@@ -620,6 +651,20 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
 
   module(
+    "maintenance-informatique-pme",
+    "video-explicative-ia",
+    "VidÃ©o explicative IA : vendre une maintenance informatique rÃ©currente",
+    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "video",
+    6,
+    {
+      content_url: sampleVideos.maintenancePme,
+      content_body:
+        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+    }
+  ),
+
+  module(
     "apps-metier-supabase",
     "cadrer-application-metier",
     "Cadrer une application métier avant de coder",
@@ -674,6 +719,19 @@ export const localProductModules: ProductModuleRecord[] = [
     "Le module final couvrira la tarification projet, la maintenance et la gestion des évolutions après livraison.",
     "coming_soon",
     5
+  ),
+  module(
+    "apps-metier-supabase",
+    "video-explicative-ia",
+    "Video explicative IA : creer une application metier simple avec Supabase",
+    "Une video avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le resultat concret de cette formation.",
+    "video",
+    6,
+    {
+      content_url: sampleVideos.appsMetier,
+      content_body:
+        "## Comment utiliser cette video\n\nCette video explicative generee en IA te donne une vue rapide de la promesse, des modules et du resultat concret vise par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le resultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaine sur les modules texte, PDF et ressources pour passer a l'application."
+    }
   )
 ];
 
