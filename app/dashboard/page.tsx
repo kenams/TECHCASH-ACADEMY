@@ -31,6 +31,16 @@ function getGreeting(email: string) {
   return `Bonsoir ${name} 👋`;
 }
 
+function getFocusLine(accessibleCount: number, discoverCount: number) {
+  if (accessibleCount === 0) {
+    return "Ton espace est prêt. Il ne manque qu’une première formation pour ouvrir un vrai parcours membre.";
+  }
+  if (discoverCount === 0) {
+    return "Tout le catalogue visible est déjà aligné avec ton compte. Le cadre membre est complet et cohérent.";
+  }
+  return "Tu peux reprendre tes contenus actifs et ouvrir ensuite la prochaine formation la plus logique, sans dispersion.";
+}
+
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   const resolvedSearchParams = await searchParams;
   const requestedProduct = resolvedSearchParams.product?.trim();
@@ -62,32 +72,71 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   const discoverProducts = activeProducts.filter((product) => !ownedSlugs.has(product.slug)).slice(0, 3);
   const totalValue = accessibleProducts.reduce((sum, product) => sum + product.price_cents, 0);
   const spotlightProduct = accessibleProducts[0] ?? discoverProducts[0] ?? null;
+  const focusLine = getFocusLine(accessibleProducts.length, discoverProducts.length);
 
   return (
     <div className="grid gap-8">
       <AnimatedSection className="grid gap-6">
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div className="grid gap-3">
-            <Badge variant="primary">Espace membre</Badge>
+        <GlowCard className="dashboard-luxury-hero p-6 md:p-8" glowColor="indigo">
+          <div className="dashboard-luxury-hero-copy">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge variant="primary">Espace membre</Badge>
+              <Badge variant={accessibleProducts.length ? "success" : "muted"}>
+                {accessibleProducts.length ? "Contenus actifs" : "Compte prêt"}
+              </Badge>
+            </div>
             <div className="grid gap-3">
               <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
                 {getGreeting(profile?.email || user.email || "")}
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Tu retrouves ici tes formations achetées, ce qui reste à débloquer et la suite logique pour faire monter ton catalogue en gamme sans friction.
+                Un tableau de bord plus net pour reprendre tes formations, voir ce qui est déjà débloqué et choisir la suite la plus rentable sans friction.
               </p>
             </div>
+            <div className="dashboard-hero-metrics">
+              <div className="metric-pill">
+                <strong>{accessibleProducts.length}</strong>
+                <span>formations actives dans ton espace</span>
+              </div>
+              <div className="metric-pill">
+                <strong>{discoverProducts.length}</strong>
+                <span>offres complémentaires prêtes à ouvrir</span>
+              </div>
+              <div className="metric-pill">
+                <strong>{new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(totalValue / 100)}</strong>
+                <span>valeur déjà disponible côté membre</span>
+              </div>
+            </div>
+            <div className="luxury-note">
+              <strong>Focus du moment</strong>
+              <span>{focusLine}</span>
+            </div>
           </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Link href="/formations" className={buttonClasses("secondary", "md")}>
-              Explorer le catalogue
-            </Link>
-            <Link href="/dashboard/mes-formations" className={buttonClasses("primary", "md")}>
-              Voir mes formations
-            </Link>
+          <div className="dashboard-luxury-hero-side">
+            <div className="offer-highlight-grid">
+              <div className="offer-highlight-card">
+                <h3>Lecture immédiate</h3>
+                <p>Tu vois en un coup d’œil ce que tu possèdes, ce qui est prioritaire et ce qui reste à ouvrir ensuite.</p>
+              </div>
+              <div className="offer-highlight-card">
+                <h3>Parcours cohérent</h3>
+                <p>Les accès, les boutons et la hiérarchie restent alignés entre le membre, le catalogue et le checkout.</p>
+              </div>
+              <div className="offer-highlight-card">
+                <h3>Cadre premium</h3>
+                <p>Le rendu membre est plus dense, plus rassurant et plus crédible pour une vraie academy vendable.</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/formations" className={buttonClasses("secondary", "md")}>
+                Explorer le catalogue
+              </Link>
+              <Link href="/dashboard/mes-formations" className={buttonClasses("primary", "md")}>
+                Voir mes formations
+              </Link>
+            </div>
           </div>
-        </div>
+        </GlowCard>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <GlowCard glowColor="indigo">
@@ -120,14 +169,14 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           <GlowCard className="dashboard-spotlight p-8" glowColor="indigo">
             <div className="dashboard-spotlight-copy">
               <Badge variant={accessibleProducts.length ? "success" : "muted"} className="w-fit">
-                {accessibleProducts.length ? "Accès recommandé" : "Prochaine étape"}
+                {accessibleProducts.length ? "Accès recommandé" : "Point d’entrée conseillé"}
               </Badge>
               <div className="grid gap-3">
                 <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                  {accessibleProducts.length ? "Reprends ton contenu le plus stratégique" : "Choisis ton point d'entrée le plus rentable"}
+                  {accessibleProducts.length ? "Reprends ton contenu le plus stratégique" : "Choisis ton premier produit le plus rentable"}
                 </h2>
                 <p className="text-base leading-8 text-[var(--muted)]">
-                  {spotlightProduct.title} reste une excellente porte d'entrée pour garder un parcours simple, sérieux et orienté résultat.
+                  {spotlightProduct.title} reste une excellente porte d’entrée pour garder un parcours simple, sérieux et orienté résultat.
                 </p>
               </div>
               <div className="confidence-list">
@@ -135,14 +184,14 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                   <span className="confidence-dot" />
                   <div>
                     <strong>Vision claire</strong>
-                    <p>Le dashboard t'aide à voir immédiatement ce que tu possèdes et ce qui mérite d'être ouvert ensuite.</p>
+                    <p>Le dashboard montre immédiatement ce que tu possèdes et la formation qui mérite d’être ouverte ensuite.</p>
                   </div>
                 </div>
                 <div className="confidence-item">
                   <span className="confidence-dot" />
                   <div>
                     <strong>Suite logique</strong>
-                    <p>Le catalogue suggère des prolongements cohérents au lieu de te noyer dans un choix sans hiérarchie.</p>
+                    <p>Le catalogue suggère des prolongements cohérents au lieu de te noyer dans une sélection sans hiérarchie.</p>
                   </div>
                 </div>
               </div>

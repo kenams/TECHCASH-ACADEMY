@@ -978,6 +978,28 @@ footer,
   gap: 1rem;
 }
 
+.dashboard-luxury-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+  background:
+    radial-gradient(circle at top left, rgba(215, 184, 122, 0.1), transparent 30%),
+    radial-gradient(circle at top right, rgba(79, 110, 163, 0.1), transparent 28%),
+    rgba(8, 13, 26, 0.94);
+}
+
+.dashboard-luxury-hero-copy,
+.dashboard-luxury-hero-side,
+.dashboard-hero-metrics {
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-hero-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 /* =============================================
    PRODUCT CARDS
    ============================================= */
@@ -1201,6 +1223,44 @@ footer,
   padding: 1.4rem;
 }
 
+.member-product-price-stack {
+  display: grid;
+  justify-items: end;
+  gap: 0.45rem;
+}
+
+.member-product-price-caption {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.member-product-note {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(201, 169, 109, 0.1);
+  background: linear-gradient(135deg, rgba(215, 184, 122, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+.member-product-note strong {
+  color: #f7f0e2;
+}
+
+.member-product-note p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+.member-product-cta-row {
+  margin-top: 0.2rem;
+}
+
 /* =============================================
    PRODUCT HERO (formation detail page)
    ============================================= */
@@ -1256,6 +1316,49 @@ footer,
 
 .product-hero-meta {
   padding: 1.4rem;
+}
+
+.checkout-price-card,
+.checkout-action-panel {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.15rem 1.2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(201, 169, 109, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(255, 255, 255, 0.03);
+}
+
+.checkout-summary-grid,
+.checkout-trust-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.checkout-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(201, 169, 109, 0.1);
+}
+
+.checkout-action-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.checkout-action-row span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.checkout-action-row strong {
+  color: #f7f0e2;
+  text-align: right;
+  line-height: 1.4;
 }
 
 .price-block {
@@ -2106,7 +2209,9 @@ footer,
   .product-modules-grid,
   .faq-list,
   .product-stats-grid,
-  .dashboard-spotlight {
+  .dashboard-spotlight,
+  .dashboard-luxury-hero,
+  .dashboard-hero-metrics {
     grid-template-columns: 1fr;
   }
 
@@ -2290,6 +2395,10 @@ footer,
 
   .member-product-body {
     padding: 1.1rem;
+  }
+
+  .member-product-price-stack {
+    justify-items: start;
   }
 
   .panel,

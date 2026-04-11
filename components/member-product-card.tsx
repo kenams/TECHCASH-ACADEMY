@@ -31,7 +31,10 @@ export function MemberProductCard({ product, isOwned = false, purchaseDate }: Me
             <h3>{product.title}</h3>
             <p className="product-subtitle">{product.subtitle}</p>
           </div>
-          <div className="price-chip">{formatPrice(product.price_cents, product.currency)}</div>
+          <div className="member-product-price-stack">
+            <div className="price-chip">{formatPrice(product.price_cents, product.currency)}</div>
+            <span className="member-product-price-caption">{isOwned ? "Déjà inclus" : "Accès immédiat"}</span>
+          </div>
         </div>
 
         <p className="product-summary">{product.short_description}</p>
@@ -41,9 +44,18 @@ export function MemberProductCard({ product, isOwned = false, purchaseDate }: Me
           <span className="meta-chip">Espace membre dédié</span>
         </div>
 
+        <div className="member-product-note">
+          <strong>{isOwned ? "Espace prêt" : "Prise en main rapide"}</strong>
+          <p>
+            {isOwned
+              ? "Le bon contenu, les bons modules et le bon accès sont déjà en place dans ton espace membre."
+              : "La fiche formation, le checkout et l’espace membre restent alignés dans un parcours simple et propre."}
+          </p>
+        </div>
+
         {purchaseDate ? <p className="helper">Achetée le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p> : null}
 
-        <div className="cta-row">
+        <div className="cta-row member-product-cta-row">
           <PurchaseCTA productSlug={product.slug} priceCents={product.price_cents} currency={product.currency} isOwned={isOwned} />
         </div>
       </div>

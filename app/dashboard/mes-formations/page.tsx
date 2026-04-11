@@ -37,29 +37,73 @@ export default async function MemberProductsPage() {
     : ownedProducts;
   const unlockedValue = products.reduce((sum, product) => sum + product.price_cents, 0);
   const remainingProducts = Math.max(activeProducts.length - products.length, 0);
+  const featuredOwned = products[0] ?? null;
 
   return (
     <div className="grid gap-8">
       <AnimatedSection className="grid gap-5">
-        <Badge variant="primary">Mes formations</Badge>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div className="grid gap-3">
-            <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
-              Tout ce que tu as débloqué
-            </h1>
-            <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-              Une vue complète de tes accès actifs, avec un point direct vers le contenu et une vision claire de ce qu'il reste à explorer.
-            </p>
+        <GlowCard className="dashboard-luxury-hero p-6 md:p-8" glowColor="indigo">
+          <div className="dashboard-luxury-hero-copy">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge variant="primary">Mes formations</Badge>
+              <Badge variant={products.length ? "success" : "muted"}>
+                {products.length ? "Accès complet" : "Aucun accès actif"}
+              </Badge>
+            </div>
+            <div className="grid gap-3">
+              <h1 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',Georgia,serif] text-4xl leading-tight tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+                Tout ce que tu as débloqué
+              </h1>
+              <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+                Une vue complète de tes accès actifs, pensée pour reprendre vite un contenu, garder une lecture claire et éviter toute friction dans l’espace membre.
+              </p>
+            </div>
+            <div className="dashboard-hero-metrics">
+              <div className="metric-pill">
+                <strong>{products.length}</strong>
+                <span>formations déjà ouvertes</span>
+              </div>
+              <div className="metric-pill">
+                <strong>{remainingProducts}</strong>
+                <span>formations encore disponibles au catalogue</span>
+              </div>
+              <div className="metric-pill">
+                <strong>{new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(unlockedValue / 100)}</strong>
+                <span>valeur membre déjà débloquée</span>
+              </div>
+            </div>
+            <div className="luxury-note">
+              <strong>Rituel recommandé</strong>
+              <span>
+                Reprends d’abord un contenu déjà acheté, termine-le proprement, puis ouvre seulement la prochaine offre qui renforce ton positionnement.
+              </span>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/dashboard" className={buttonClasses("ghost", "sm")}>
-              Retour au tableau de bord
-            </Link>
-            <Link href="/formations" className={buttonClasses("secondary", "sm")}>
-              Voir le catalogue
-            </Link>
+          <div className="dashboard-luxury-hero-side">
+            <div className="offer-highlight-grid">
+              <div className="offer-highlight-card">
+                <h3>Accès direct</h3>
+                <p>Chaque carte mène au bon contenu sans détour et garde la logique membre intacte.</p>
+              </div>
+              <div className="offer-highlight-card">
+                <h3>Lecture propre</h3>
+                <p>Les formations actives et les options restantes sont clairement séparées pour éviter toute confusion.</p>
+              </div>
+              <div className="offer-highlight-card">
+                <h3>Suite maîtrisée</h3>
+                <p>Le catalogue reste accessible sans casser l’impression premium du parcours déjà débloqué.</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/dashboard" className={buttonClasses("ghost", "sm")}>
+                Retour au tableau de bord
+              </Link>
+              <Link href="/formations" className={buttonClasses("secondary", "sm")}>
+                Voir le catalogue
+              </Link>
+            </div>
           </div>
-        </div>
+        </GlowCard>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <GlowCard>
@@ -86,6 +130,47 @@ export default async function MemberProductsPage() {
           </GlowCard>
         </div>
       </AnimatedSection>
+
+      {featuredOwned ? (
+        <AnimatedSection delay={40}>
+          <GlowCard className="dashboard-spotlight p-8" glowColor="emerald">
+            <div className="dashboard-spotlight-copy">
+              <Badge variant="success" className="w-fit">Formation à reprendre</Badge>
+              <div className="grid gap-3">
+                <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                  Remets-toi vite dans le bon module
+                </h2>
+                <p className="text-base leading-8 text-[var(--muted)]">
+                  {featuredOwned.title} est prête à être reprise immédiatement, avec son espace membre, ses modules publiés et son accès déjà actif.
+                </p>
+              </div>
+              <div className="confidence-list">
+                <div className="confidence-item">
+                  <span className="confidence-dot" />
+                  <div>
+                    <strong>Moins de friction</strong>
+                    <p>Tu repars depuis le bon produit sans repasser par le catalogue ni relire toute la structure.</p>
+                  </div>
+                </div>
+                <div className="confidence-item">
+                  <span className="confidence-dot" />
+                  <div>
+                    <strong>Accès consolidé</strong>
+                    <p>Le compte, le contenu et la page privée restent alignés dans le même parcours membre.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="dashboard-spotlight-card">
+              <MemberProductCard
+                product={featuredOwned}
+                isOwned
+                purchaseDate={"purchase" in featuredOwned ? featuredOwned.purchase?.created_at || null : null}
+              />
+            </div>
+          </GlowCard>
+        </AnimatedSection>
+      ) : null}
 
       <AnimatedSection delay={80} className="grid gap-5">
         {products.length ? (

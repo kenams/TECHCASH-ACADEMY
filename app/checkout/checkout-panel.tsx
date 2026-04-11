@@ -71,7 +71,7 @@ export function CheckoutPanel({
   if (invalidRequestedSlug) {
     return (
       <section className="grid gap-8 pb-12 pt-2">
-        <GlowCard className="mx-auto grid max-w-3xl gap-5 p-8 text-center">
+        <GlowCard className="mx-auto grid max-w-3xl gap-5 p-8 text-center" glowColor="indigo">
           <Badge variant="warning" className="justify-self-center">
             Produit introuvable
           </Badge>
@@ -98,10 +98,13 @@ export function CheckoutPanel({
 
   return (
     <section className="grid gap-8 pb-12 pt-2 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
-      <GlowCard className="grid gap-6 p-6 md:p-8">
-        <Badge variant="primary" className="w-fit">
-          Résumé de commande
-        </Badge>
+      <GlowCard className="grid gap-6 p-6 md:p-8" glowColor="indigo">
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge variant="primary" className="w-fit">
+            Résumé de commande
+          </Badge>
+          <Badge variant="muted">Accès membre inclus</Badge>
+        </div>
 
         <div className="overflow-hidden rounded-[24px] border border-[var(--border)] bg-white/5">
           {productThumbnailUrl ? (
@@ -123,30 +126,64 @@ export function CheckoutPanel({
           <p className="text-base leading-8 text-[var(--muted)]">{productDescription}</p>
         </div>
 
-        <div className="rounded-[24px] border border-[var(--border)] bg-white/5 p-5">
+        <div className="checkout-price-card">
           <p className="text-sm text-[var(--muted)]">Prix</p>
           <div className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
             {formattedPrice}
           </div>
+          <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+            Paiement unique pour débloquer l’espace membre lié à cette formation.
+          </p>
         </div>
 
-        <div className="grid gap-3">
-          <div className="rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-4 text-sm leading-7 text-[var(--foreground)]">
-            Accès immédiat à la formation après confirmation du paiement.
+        <div className="checkout-summary-grid">
+          <div className="offer-highlight-card">
+            <h3>Accès immédiat</h3>
+            <p>La formation s’ouvre dans ton espace membre juste après confirmation du paiement.</p>
           </div>
-          <div className="rounded-2xl border border-[var(--border)] bg-white/5 px-4 py-4 text-sm leading-7 text-[var(--foreground)]">
-            Formats inclus&nbsp;: texte, PDF, ressources et ajouts futurs selon la feuille de route.
+          <div className="offer-highlight-card">
+            <h3>Formats utiles</h3>
+            <p>Textes, PDF, ressources et ajouts futurs selon la feuille de route du produit.</p>
           </div>
-          <div className="rounded-2xl border border-[rgba(215,184,122,0.22)] bg-[rgba(215,184,122,0.1)] px-4 py-4 text-sm leading-7 text-[#f7e4c0]">
-            🔒 Paiement 100% sécurisé via Stripe
+          <div className="offer-highlight-card">
+            <h3>Parcours propre</h3>
+            <p>Le compte, l’achat et la page privée restent reliés sans bricolage ni doublon.</p>
+          </div>
+        </div>
+
+        <div className="checkout-trust-list">
+          <div className="luxury-note">
+            <strong>🔒 Paiement 100% sécurisé via Stripe</strong>
+            <span>Aucune carte n’est stockée côté application. Le paiement passe uniquement par l’infrastructure Stripe.</span>
+          </div>
+          <div className="confidence-list">
+            <div className="confidence-item">
+              <span className="confidence-dot" />
+              <div>
+                <strong>Lecture claire</strong>
+                <p>Tu achètes une formation précise, avec un prix net et un accès membre dédié.</p>
+              </div>
+            </div>
+            <div className="confidence-item">
+              <span className="confidence-dot" />
+              <div>
+                <strong>Cadre rassurant</strong>
+                <p>Le support reste joignable rapidement si un souci de paiement ou d’accès apparaît.</p>
+              </div>
+            </div>
           </div>
         </div>
       </GlowCard>
 
-      <GlowCard className="grid h-fit gap-6 p-6 md:p-8">
-        <Badge variant="success" className="w-fit">
-          Finaliser mon accès
-        </Badge>
+      <GlowCard className="grid h-fit gap-6 p-6 md:p-8" glowColor="emerald">
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge variant="success" className="w-fit">
+            Finaliser mon accès
+          </Badge>
+          <Badge variant={isAuthenticated ? "primary" : "muted"}>
+            {isAuthenticated ? "Compte connecté" : "Connexion requise"}
+          </Badge>
+        </div>
 
         <div className="grid gap-3">
           <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
@@ -157,6 +194,21 @@ export function CheckoutPanel({
               ? `Tu es connecté avec ${email}. Le paiement débloquera immédiatement cette formation dans ton espace membre.`
               : "Ton accès membre est nécessaire pour rattacher proprement l'achat à ton compte."}
           </p>
+        </div>
+
+        <div className="checkout-action-panel">
+          <div className="checkout-action-row">
+            <span>Formation sélectionnée</span>
+            <strong>{productName}</strong>
+          </div>
+          <div className="checkout-action-row">
+            <span>Montant à régler</span>
+            <strong>{formattedPrice}</strong>
+          </div>
+          <div className="checkout-action-row">
+            <span>Déblocage</span>
+            <strong>Immédiat après validation</strong>
+          </div>
         </div>
 
         {error ? (
@@ -187,9 +239,9 @@ export function CheckoutPanel({
         )}
 
         <div className="grid gap-3 rounded-[24px] border border-[var(--border)] bg-white/5 p-5 text-sm leading-7 text-[var(--muted)]">
-          <p>Support&nbsp;: réponse rapide par e-mail si un souci de paiement ou d'accès apparaît.</p>
+          <p>Support&nbsp;: réponse rapide par e-mail si un souci de paiement ou d’accès apparaît.</p>
           <p>Accès immédiat après validation Stripe et rattachement automatique à ton espace membre.</p>
-          <p>Le remboursement n'est pas automatisé en libre-service&nbsp;: il passe par le support.</p>
+          <p>Le remboursement n’est pas automatisé en libre-service&nbsp;: il passe par le support.</p>
         </div>
 
         <div className="flex flex-wrap gap-3">
