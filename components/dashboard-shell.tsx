@@ -223,3 +223,4 @@ export function DashboardShell({ email, canManageCatalog = false, children }: Da
     </div>
   );
 }
+�

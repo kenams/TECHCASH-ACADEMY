@@ -160,6 +160,24 @@ export const localProducts: ProductRecord[] = [
     is_featured: false,
     created_at: now,
     updated_at: now
+  },
+  {
+    id: "local-microsoft-365-pme",
+    slug: "microsoft-365-pme",
+    title: "Déployer Microsoft 365 en PME et en faire une offre facturable",
+    subtitle: "Migration, formation utilisateurs et revenu récurrent sur M365",
+    short_description:
+      "Apprendre à déployer Microsoft 365 en PME, structurer une offre de migration reproductible et facturer l'accompagnement utilisateurs.",
+    long_description:
+      "Cette formation structure une offre de déploiement M365 complète : audit de l'existant, migration des boîtes mail, configuration SharePoint et Teams, formation utilisateurs et contrat de support. L'objectif est de transformer chaque déploiement en mission récurrente défendable.",
+    price_cents: 5900,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/microsoft-365-pme-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
   }
 ];
 
@@ -819,110 +837,100 @@ const productSupplements: Record<string, ProductSupplement> = {
     bestFor: [
       "profils support ou sysadmin qui veulent professionnaliser une offre GLPI",
       "freelances IT qui vendent du support à des PME",
-      "personnes qui veulent transformer un besoin de tickets en mission claire"
+      "personnes qui veulent transformer un besoin de support en offre IT structurée"
     ],
     outcomes: [
-      "un cadrage GLPI vendable",
-      "un plan de déploiement simple et crédible",
-      "une logique de reporting et d'adoption côté client"
+      "un déploiement GLPI propre et maintenable",
+      "un process de tickets et SLA lisible",
+      "une offre support vendable à des PME"
     ],
     pitch:
-      "La formation pour transformer GLPI en vraie offre de support interne, utile au client et simple à faire adopter."
+      "La formation pour déployer GLPI sérieusement et en faire une offre facturable, pas juste un outil interne."
   },
   "maintenance-informatique-pme": {
     salesPriority: 2,
     bestFor: [
-      "techniciens IT qui veulent créer un revenu récurrent",
-      "freelances support qui veulent sortir du dépannage ponctuel",
-      "profils terrain qui veulent mieux cadrer leurs forfaits"
+      "techniciens freelance qui veulent un revenu récurrent stable",
+      "profils support qui veulent vendre du suivi PME",
+      "indépendants IT qui veulent sortir du modèle 100% à la demande"
     ],
     outcomes: [
-      "une offre de maintenance plus lisible",
-      "un onboarding client plus propre",
-      "des routines de reporting et de renouvellement"
+      "une offre de maintenance mensuelle claire",
+      "un process d'onboarding et de renouvellement",
+      "des outils pour livrer et reporter proprement"
     ],
     pitch:
-      "Le cadre pour vendre et livrer une maintenance PME rentable, sans promesse floue ni support mal borné."
+      "La formation pour construire une offre de maintenance récurrente sérieuse, défendable et rentable face à des PME."
   },
   "apps-metier-supabase": {
     bestFor: [
-      "profils produit ou dev qui veulent livrer des apps métier simples",
-      "freelances qui travaillent avec Supabase et veulent standardiser leur delivery",
-      "créateurs qui veulent vendre autre chose qu'un site vitrine"
+      "freelances qui veulent livrer des apps métier crédibles",
+      "profils tech qui veulent structurer des bases de données et des rôles proprement",
+      "personnes qui veulent facturer du développement d'outil interne"
     ],
     outcomes: [
-      "un cadrage MVP plus propre",
-      "une base Supabase bien structurée",
-      "une logique de livraison et de maintenance plus vendable"
+      "une architecture Supabase propre et maintenable",
+      "un process de cadrage et livraison d'app métier",
+      "des ressources pour vendre et maintenir des apps simples"
     ],
     pitch:
-      "Une formation orientée delivery pour produire des applications métier utiles avec Supabase, sans architecture trop lourde."
+      "La formation pour livrer des applications métier crédibles avec Supabase, sans surarchitecture ni délais excessifs."
+  },
+  "microsoft-365-pme": {
+    bestFor: [
+      "techniciens IT qui veulent vendre du déploiement Microsoft 365",
+      "freelances qui accompagnent des PME dans leur migration cloud",
+      "profils support qui veulent structurer une offre M365 reproductible"
+    ],
+    outcomes: [
+      "un process de déploiement M365 propre",
+      "une offre de migration et formation utilisateurs",
+      "des ressources pour vendre et maintenir des environnements M365 en PME"
+    ],
+    pitch:
+      "La formation pour déployer Microsoft 365 en PME de manière structurée et en faire une offre facturable répétable."
   }
-} as const;
+};
 
-export function getLocalActiveProducts() {
-  return localProducts
-    .filter((product) => product.is_active)
-    .sort((a, b) => Number(b.is_featured) - Number(a.is_featured));
-}
+// ─── Exported catalog helpers ─────────────────────────────────────────────────
 
-export function getLocalFeaturedProduct() {
-  return getLocalActiveProducts().find((product) => product.is_featured) || getLocalActiveProducts()[0] || null;
-}
-
-export function getLocalProductBySlug(slug: string) {
+export function getLocalProductBySlug(slug: string): ProductRecord | null {
   return localProducts.find((product) => product.slug === slug) || null;
 }
 
-export function getLocalProductById(productId: string) {
-  return localProducts.find((product) => product.id === productId) || null;
+export function getLocalProductById(id: string): ProductRecord | null {
+  return localProducts.find((product) => product.id === id) || null;
 }
 
-export function getLocalModulesByProductId(productId: string) {
-  return localProductModules
-    .filter((module) => module.product_id === productId)
-    .sort((a, b) => a.sort_order - b.sort_order);
+export function getLocalActiveProducts(): ProductRecord[] {
+  return localProducts.filter((product) => product.is_active);
 }
 
-export function getLocalProductWithModulesBySlug(slug: string): ProductWithModules | null {
-  const product = getLocalProductBySlug(slug);
-  if (!product) {
-    return null;
-  }
-
-  return {
-    ...product,
-    modules: getLocalModulesByProductId(product.id)
-  };
+export function getLocalModulesByProductId(productId: string): ProductModuleRecord[] {
+  return localProductModules.filter((module) => module.product_id === productId);
 }
 
-export function findLocalProductByPurchaseName(productName: string) {
-  return (
-    localProducts.find((product) => product.title === productName) ||
-    localProducts.find((product) => product.slug === productName) ||
-    null
-  );
+export function getProductSupplement(slug: string): ProductSupplement | null {
+  return productSupplements[slug] || null;
 }
 
-export function getProductSupplement(slug: string) {
-  return productSupplements[slug as keyof typeof productSupplements] || null;
+export function getRelatedLocalProducts(currentSlug: string, limit = 2): ProductRecord[] {
+  return localProducts.filter((product) => product.slug !== currentSlug && product.is_active).slice(0, limit);
 }
 
-export function getPriorityOfferSlugs() {
+export function getPriorityOfferSlugs(): string[] {
   return Object.entries(productSupplements)
-    .filter(([, supplement]) => typeof supplement.salesPriority === "number")
-    .sort((a, b) => (a[1].salesPriority || 99) - (b[1].salesPriority || 99))
+    .filter(([, supplement]) => supplement.salesPriority !== undefined)
+    .sort(([, a], [, b]) => (a.salesPriority ?? 99) - (b.salesPriority ?? 99))
     .map(([slug]) => slug);
 }
 
-export function getRelatedLocalProducts(slug: string, limit = 2) {
-  const featured = getLocalFeaturedProduct();
-  const ordered = getLocalActiveProducts().filter((product) => product.slug !== slug);
-
-  if (featured && featured.slug !== slug) {
-    const withoutFeatured = ordered.filter((product) => product.slug !== featured.slug);
-    return [featured, ...withoutFeatured].slice(0, limit);
-  }
-
-  return ordered.slice(0, limit);
+export function findLocalProductByPurchaseName(productName: string): ProductRecord | null {
+  if (!productName) return null;
+  const normalized = productName.trim().toLowerCase();
+  return (
+    localProducts.find((product) => product.title.trim().toLowerCase() === normalized) ||
+    localProducts.find((product) => normalized.includes(product.slug.replace(/-/g, " "))) ||
+    null
+  );
 }

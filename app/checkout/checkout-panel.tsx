@@ -205,10 +205,6 @@ export function CheckoutPanel({
             <span>Montant à régler</span>
             <strong>{formattedPrice}</strong>
           </div>
-          <div className="checkout-action-row">
-            <span>Déblocage</span>
-            <strong>Immédiat après validation</strong>
-          </div>
         </div>
 
         {error ? (
@@ -218,40 +214,29 @@ export function CheckoutPanel({
         ) : null}
 
         {isAuthenticated ? (
-          <Button type="button" loading={loading} onClick={startCheckout} className="w-full">
-            Payer {formattedPrice}
+          <Button onClick={startCheckout} loading={loading} className="w-full">
+            Payer via Stripe
           </Button>
         ) : (
           <div className="grid gap-3">
             <Link
               href={`/login?next=${encodeURIComponent(`/checkout?product=${productSlug}`)}`}
-              className={buttonClasses("primary", "lg", "w-full")}
+              className={buttonClasses("primary", "md")}
             >
-              Se connecter
+              Se connecter pour payer
             </Link>
             <Link
               href={`/register?next=${encodeURIComponent(`/checkout?product=${productSlug}`)}`}
-              className={buttonClasses("secondary", "md", "w-full")}
+              className={buttonClasses("secondary", "md")}
             >
-              Créer mon accès
+              Créer un compte
             </Link>
           </div>
         )}
 
-        <div className="grid gap-3 rounded-[24px] border border-[var(--border)] bg-white/5 p-5 text-sm leading-7 text-[var(--muted)]">
-          <p>Support&nbsp;: réponse rapide par e-mail si un souci de paiement ou d’accès apparaît.</p>
-          <p>Accès immédiat après validation Stripe et rattachement automatique à ton espace membre.</p>
-          <p>Le remboursement n’est pas automatisé en libre-service&nbsp;: il passe par le support.</p>
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <Link href={`/formations/${productSlug}`} className={buttonClasses("ghost", "sm")}>
-            Revoir la fiche formation
-          </Link>
-          <Link href="/formations" className={buttonClasses("secondary", "sm")}>
-            Retour au catalogue
-          </Link>
-        </div>
+        <p className="text-center text-xs text-[var(--muted)]">
+          Paiement traité par Stripe. Aucune donnée bancaire n'est stockée sur nos serveurs.
+        </p>
       </GlowCard>
     </section>
   );
