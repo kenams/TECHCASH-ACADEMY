@@ -18,12 +18,6 @@ type MemberProductPageProps = {
   }>;
 };
 
-function getVideoPosterUrl(url: string | null) {
-  if (!url) return null;
-  const match = url.match(/\/videos\/formations\/(.+)-overview\.(mp4|webm|ogg)(\?.*)?$/i);
-  return match ? `/videos/posters/${match[1]}-overview-poster.jpg` : null;
-}
-
 export async function generateMetadata({ params }: MemberProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductWithModulesBySlug(slug);
@@ -69,7 +63,6 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
     (module) => module.content_type === "resource" || module.content_type === "pdf"
   ).length;
   const overviewVideo = product.modules.find((module) => module.content_type === "video" && module.content_url);
-  const overviewPosterUrl = getVideoPosterUrl(overviewVideo?.content_url ?? null);
   const recommendedProducts = getRelatedLocalProducts(product.slug, 2).filter(
     (candidate) => !ownedProducts.some((owned) => owned.slug === candidate.slug)
   );
@@ -129,19 +122,26 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
         <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <GlowCard className="member-formation-visual">
             <div className="member-formation-visual-stage">
-              <img
-                src={overviewPosterUrl ?? product.thumbnail_url ?? "/visuals/formations/freelance-it-30-jours-cover.svg"}
-                alt={product.title}
-                className="member-formation-visual-image"
-              />
-              <div className="member-formation-visual-overlay" />
+              <div className="member-formation-visual-media">
+                <img
+                  src={product.thumbnail_url ?? "/visuals/formations/freelance-it-30-jours-cover.svg"}
+                  alt={product.title}
+                  className="member-formation-visual-image"
+                />
+                <div className="member-formation-visual-overlay" />
+              </div>
               <div className="member-formation-visual-copy">
                 <span className="member-formation-visual-kicker">Formation premium</span>
                 <h2>{product.subtitle}</h2>
                 <p>
-                  Une formation pensée pour être regardée, relue et transformée en offre ou en mission
-                  claire dès la première session.
+                  Une formation pensée pour être suivie proprement, puis transformée en offre ou en
+                  mission claire dès la première session.
                 </p>
+                <div className="video-feature-row">
+                  <span className="video-feature-pill">{publishedModules} modules publiés</span>
+                  <span className="video-feature-pill">{directResources} ressources directes</span>
+                  {overviewVideo ? <span className="video-feature-pill">Vidéo d&apos;introduction</span> : null}
+                </div>
               </div>
             </div>
           </GlowCard>
