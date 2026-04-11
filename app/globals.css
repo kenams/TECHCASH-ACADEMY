@@ -1925,47 +1925,6 @@ footer,
   overflow: hidden;
 }
 
-.member-formation-visual {
-  padding: 0;
-  overflow: hidden;
-}
-
-.member-formation-visual-stage {
-  min-height: 360px;
-  display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
-}
-
-.member-formation-visual-media {
-  position: relative;
-  min-height: 360px;
-  border-right: 1px solid rgba(201, 169, 109, 0.1);
-}
-
-.member-formation-visual-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  align-content: center;
-  gap: 1rem;
-  min-height: 360px;
-  padding: 1.9rem;
-}
-
-.member-formation-visual-copy h2 {
-  font-size: clamp(1.8rem, 3vw, 2.65rem);
-  margin: 0;
-  max-width: 13ch;
-  text-wrap: balance;
-}
-
-.member-formation-visual-copy p {
-  margin: 0;
-  max-width: 52ch;
-  color: #dbe6f7;
-  line-height: 1.75;
-}
-
 .hero-side-panel::after {
   content: "";
   position: absolute;
@@ -2431,8 +2390,7 @@ footer,
   .trust-panel-grid,
   .hero-assurance-grid,
   .hero-assurance-grid-wide,
-  .video-showcase,
-  .member-formation-visual-stage {
+  .video-showcase {
     grid-template-columns: 1fr;
   }
 
@@ -2570,10 +2528,8 @@ footer,
   }
 
   .video-showcase-main,
-  .member-formation-visual-stage,
-  .member-formation-visual-media,
   .video-showcase-copy,
-  .member-formation-visual-copy {
+  .video-story-card {
     min-height: 260px;
   }
 

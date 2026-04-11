@@ -62,7 +62,6 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
   const directResources = product.modules.filter(
     (module) => module.content_type === "resource" || module.content_type === "pdf"
   ).length;
-  const overviewVideo = product.modules.find((module) => module.content_type === "video" && module.content_url);
   const recommendedProducts = getRelatedLocalProducts(product.slug, 2).filter(
     (candidate) => !ownedProducts.some((owned) => owned.slug === candidate.slug)
   );
@@ -117,66 +116,6 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
               Page publique
             </Link>
           </div>
-        </div>
-
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-          <GlowCard className="member-formation-visual">
-            <div className="member-formation-visual-stage">
-              <div className="member-formation-visual-media">
-                <img
-                  src={product.thumbnail_url ?? "/visuals/formations/freelance-it-30-jours-cover.svg"}
-                  alt={product.title}
-                  className="member-formation-visual-image"
-                />
-                <div className="member-formation-visual-overlay" />
-              </div>
-              <div className="member-formation-visual-copy">
-                <span className="member-formation-visual-kicker">Formation premium</span>
-                <h2>{product.subtitle}</h2>
-                <p>
-                  Une formation pensée pour être suivie proprement, puis transformée en offre ou en
-                  mission claire dès la première session.
-                </p>
-                <div className="video-feature-row">
-                  <span className="video-feature-pill">{publishedModules} modules publiés</span>
-                  <span className="video-feature-pill">{directResources} ressources directes</span>
-                  {overviewVideo ? <span className="video-feature-pill">Vidéo d&apos;introduction</span> : null}
-                </div>
-              </div>
-            </div>
-          </GlowCard>
-
-          <GlowCard className="grid gap-4">
-            <Badge variant="primary">Repères rapides</Badge>
-            <div className="grid gap-3">
-              <div className="featured-strip featured-strip-luxury">
-                <strong>{publishedModules} modules publiés</strong>
-                <span>Le socle opérationnel est déjà accessible dans l&apos;espace membre.</span>
-              </div>
-              <div className="featured-strip featured-strip-luxury">
-                <strong>{directResources} ressources directes</strong>
-                <span>PDF, ressources et guides exploitables sans attendre.</span>
-              </div>
-              <div className="featured-strip featured-strip-luxury">
-                <strong>{overviewVideo ? "Vidéo explicative disponible" : "Lecture structurée disponible"}</strong>
-                <span>
-                  {overviewVideo
-                    ? "Une vidéo IA introduit la logique de la formation avant les modules détaillés."
-                    : "La formation reste directement exploitable via ses modules texte et ressources."}
-                </span>
-              </div>
-            </div>
-            <div className="cta-row">
-              {overviewVideo ? (
-                <a href={`#module-${overviewVideo.id}`} className={buttonClasses("primary", "sm")}>
-                  Voir la vidéo d&apos;introduction
-                </a>
-              ) : null}
-              <Link href="/dashboard/mes-formations" className={buttonClasses("secondary", "sm")}>
-                Revenir à mes formations
-              </Link>
-            </div>
-          </GlowCard>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
