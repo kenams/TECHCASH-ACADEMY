@@ -74,7 +74,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
             poster={posterUrl}
           >
             <source src={videoUrl} type="video/mp4" />
-            <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" default />
+            <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" />
             <track kind="chapters" src={`/videos/subtitles/${product.slug}-chapters.vtt`} srcLang="fr" />
           </video>
         </div>
