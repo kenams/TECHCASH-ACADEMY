@@ -129,6 +129,25 @@ def gradient() -> Image.Image:
     return base
 
 
+def fallback_visual(prompt: str, output_path: Path) -> None:
+    canvas = gradient().convert("RGBA")
+    draw = ImageDraw.Draw(canvas, "RGBA")
+    draw.ellipse((-120, 420, 420, 940), fill=(56, 199, 147, 38))
+    draw.ellipse((860, -140, 1460, 420), fill=(215, 184, 122, 40))
+    draw.rounded_rectangle((72, 72, 1208, 648), radius=44, fill=(11, 17, 32, 168), outline=(255, 255, 255, 18), width=2)
+    draw.line((110, 170, 1170, 170), fill=(255, 255, 255, 18), width=2)
+    draw.line((110, 510, 1170, 510), fill=(255, 255, 255, 12), width=1)
+    for idx in range(5):
+        top = 220 + idx * 48
+        draw.rounded_rectangle((120, top, 860, top + 24), radius=12, fill=(255, 255, 255, 10))
+    snippet = wrap(strip_markdown(prompt), 42)[:3]
+    y = 548
+    for line in snippet:
+        draw.text((120, y), line, fill=(206, 215, 231), font=font(BODY_FONT, 20))
+        y += 28
+    canvas.convert("RGB").save(output_path, quality=92)
+
+
 def resize_cover(image: Image.Image) -> Image.Image:
     ratio = max(WIDTH / image.width, HEIGHT / image.height)
     size = (math.ceil(image.width * ratio), math.ceil(image.height * ratio))
@@ -189,9 +208,9 @@ def subtitle_text(text: str) -> str:
 
 def clip_audio_excerpt(text: str) -> str:
     normalized = compact(text)
-    if len(normalized) <= 160:
+    if len(normalized) <= 300:
         return normalized
-    cut = normalized[:160].rsplit(" ", 1)[0].strip()
+    cut = normalized[:300].rsplit(" ", 1)[0].strip()
     return f"{cut}..."
 
 
@@ -207,6 +226,43 @@ def summarize_for_voice(module: dict) -> str:
 def course_price(product: dict) -> str:
     cents = int(product.get("price_cents") or 0)
     return f"{cents / 100:.2f} EUR".replace(".", ",")
+
+
+def parse_sections(content_body: str) -> dict[str, list[str]]:
+    sections: dict[str, list[str]] = {"__intro__": []}
+    current = "__intro__"
+    for raw in (content_body or "").splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if line.startswith("### "):
+            current = strip_markdown(line[4:]).lower()
+            sections[current] = []
+            continue
+        if line.startswith("## "):
+            continue
+        sections.setdefault(current, []).append(line)
+    return sections
+
+
+def paragraph_from_lines(lines_: list[str]) -> str:
+    text = strip_markdown(" ".join(lines_))
+    if not text:
+        return ""
+    return text[:320]
+
+
+def bullets_from_lines(lines_: list[str], fallback: str) -> list[str]:
+    text = "\n".join(lines_)
+    return extract_bullets(text, fallback)
+
+
+def get_section(sections: dict[str, list[str]], prefix: str) -> list[str]:
+    prefix = prefix.lower()
+    for key, value in sections.items():
+        if key.startswith(prefix):
+            return value
+    return []
 
 
 def fetch_courses(selected: set[str]) -> list[dict]:
@@ -256,34 +312,71 @@ def slide_plan(course: dict) -> list[dict]:
             "summary": compact(product.get("long_description") or product.get("short_description") or ""),
             "bullets": intro_bullets,
             "narration": (
-                f"{product['title']}. {compact(product.get('long_description') or product.get('short_description') or '')} "
-                f"Dans cette formation, tu avances module par module pour pouvoir vendre et livrer une offre claire."
+                f"Bienvenue sur la vidéo tutorielle : {product['title'].lower()}. "
+                f"{compact(product.get('long_description') or product.get('short_description') or '')} "
+                "Dans cette vidéo, je vais te montrer la logique complète de la formation, ce que tu dois préparer, comment avancer module par module, et comment transformer le contenu en offre ou en méthode de travail réellement exploitable, même si tu débutes encore sur le sujet."
             ),
-            "prompt": image_prompt(product["slug"], product["title"], product.get("subtitle") or "", 1, len(modules) + 2),
+            "prompt": image_prompt(product["slug"], product["title"], product.get("subtitle") or "", 1, len(modules) * 2 + 2),
             "eyebrow": course_price(product),
         }
     ]
-    total = len(modules) + 2
-    for index, module in enumerate(modules, start=2):
+    total = len(modules) * 2 + 2
+    step = 2
+    for index, module in enumerate(modules, start=1):
+        sections = parse_sections(module.get("content_body") or "")
         summary = compact(module.get("description") or first_paragraph(module.get("content_body") or ""))
-        bullets = extract_bullets(module.get("content_body") or "", summary)
-        narration = (
-            f"Module {index - 1}. {module['title']}. "
-            f"{summarize_for_voice(module)} "
-            "L'objectif est de te donner une methode simple, directement exploitable sur le terrain."
+        intro_text = paragraph_from_lines(sections.get("__intro__", []))
+        understand_text = paragraph_from_lines(get_section(sections, "ce que tu dois comprendre"))
+        tools_bullets = bullets_from_lines(get_section(sections, "outils"), summary)
+        steps_bullets = bullets_from_lines(get_section(sections, "methode"), summary)
+        checklist_bullets = bullets_from_lines(get_section(sections, "verification"), summary)
+        behavior_bullets = bullets_from_lines(get_section(sections, "comportement"), summary)
+        deliverables_bullets = bullets_from_lines(get_section(sections, "livrables"), summary)
+
+        concept_narration = (
+            f"Module {index}. {module['title']}. "
+            f"{intro_text or summary} "
+            f"{understand_text or 'Ce module sert à comprendre la logique avant de passer à l’exécution.'} "
+            "Si tu es débutant, retiens surtout l’idée centrale du module, le résultat attendu, et le vocabulaire minimum à maîtriser pour être crédible face à un client ou dans une vraie mission."
         )
         slides.append(
             {
-                "kind": "module",
-                "label": f"Module {index - 1}",
+                "kind": "module-concept",
+                "label": f"Module {index}",
                 "title": module["title"],
-                "summary": summary,
-                "bullets": bullets,
-                "narration": narration,
-                "prompt": image_prompt(product["slug"], module["title"], summary, index, total),
+                "summary": compact(" ".join(part for part in [intro_text, understand_text] if part)) or summary,
+                "bullets": tools_bullets[:3],
+                "narration": concept_narration,
+                "prompt": image_prompt(product["slug"], module["title"], f"{summary} preparation and explanation", step, total),
                 "eyebrow": module["content_type"].upper(),
+                "background_key": f"module-{index}",
+                "background_prompt": image_prompt(product["slug"], module["title"], f"{summary} preparation and explanation", index, len(modules)),
             }
         )
+        step += 1
+        action_narration = (
+            f"Passons maintenant à l’application du module {index}. "
+            f"Pour avancer proprement, prépare d’abord les éléments suivants : {', '.join(tools_bullets[:3]) if tools_bullets else 'les bons outils et un cadre clair'}. "
+            f"Ensuite, suis cette logique de mise en œuvre : {', '.join(steps_bullets[:3]) if steps_bullets else 'avance étape par étape sans vouloir tout faire d’un coup'}. "
+            f"Sur le terrain, adopte aussi une posture simple et professionnelle : {', '.join(behavior_bullets[:2]) if behavior_bullets else 'reste clair, concret et rassurant'}. "
+            f"À la fin du module, tu dois pouvoir produire ou montrer quelque chose de tangible, par exemple : {', '.join(deliverables_bullets[:2]) if deliverables_bullets else 'un livrable propre ou une preuve de travail'}. "
+            f"Avant de passer au module suivant, vérifie enfin ceci : {', '.join(checklist_bullets[:2]) if checklist_bullets else 'que le résultat soit compréhensible et réutilisable'}."
+        )
+        slides.append(
+            {
+                "kind": "module-action",
+                "label": f"Module {index} · application",
+                "title": f"Appliquer {module['title'].lower()}",
+                "summary": "Préparation, exécution, posture terrain et vérification finale.",
+                "bullets": (steps_bullets or checklist_bullets or tools_bullets)[:3],
+                "narration": action_narration,
+                "prompt": image_prompt(product["slug"], module["title"], f"{summary} execution and delivery", step, total),
+                "eyebrow": "Action",
+                "background_key": f"module-{index}",
+                "background_prompt": image_prompt(product["slug"], module["title"], f"{summary} execution and delivery", index, len(modules)),
+            }
+        )
+        step += 1
     slides.append(
         {
             "kind": "outro",
@@ -296,11 +389,14 @@ def slide_plan(course: dict) -> list[dict]:
                 "Passer rapidement a une premiere application terrain",
             ],
             "narration": (
-                f"Tu as maintenant une vue d'ensemble de {product['title'].lower()}. "
-                "Le plus important est d'appliquer chaque module sur un cas reel, meme simple, pour transformer la formation en offre vendable."
+                f"Tu as maintenant une vue d'ensemble tutorielle de {product['title'].lower()}. "
+                "Le bon usage de cette formation, ce n’est pas de tout regarder passivement. C’est de reprendre chaque module, de préparer les outils, de rédiger les documents utiles, puis de tester la méthode sur un cas réel, même simple. "
+                "C’est comme ça que tu transformes la formation en compétence vendable, puis en prestation ou en système de travail durable."
             ),
             "prompt": image_prompt(product["slug"], "application terrain", product.get("subtitle") or "", total, total),
             "eyebrow": "Action",
+            "background_key": "outro",
+            "background_prompt": image_prompt(product["slug"], "application terrain", product.get("subtitle") or "", total, total),
         }
     )
     return slides
@@ -331,7 +427,7 @@ def download_image(prompt: str, output_path: Path, force: bool) -> None:
             last_error = error
             if attempt < len(urls) * 3:
                 time.sleep(min(8 * attempt, 36))
-    raise RuntimeError(f"Impossible de generer un visuel IA pour {output_path.name}") from last_error
+    fallback_visual(prompt, output_path)
 
 
 def render_slide(slide: dict, background_path: Path, output_path: Path) -> None:
@@ -444,11 +540,16 @@ def build_course(course: dict, force: bool, assets_only: bool = False) -> Path:
 
     rendered_slides: list[Path] = []
     audio_paths: list[Path] = []
+    background_cache: dict[str, Path] = {}
     for index, slide in enumerate(slides, start=1):
-        background_path = workdir / f"scene-{index}.jpg"
+        background_key = slide.get("background_key", f"slide-{index}")
+        background_path = background_cache.get(background_key)
+        if background_path is None:
+            background_path = workdir / f"{background_key}.jpg"
+            download_image(slide.get("background_prompt") or slide["prompt"], background_path, force)
+            background_cache[background_key] = background_path
         slide_path = workdir / f"slide-{index}.jpg"
         audio_path = workdir / f"audio-{index}.mp3"
-        download_image(slide["prompt"], background_path, force)
         render_slide(slide, background_path, slide_path)
         rendered_slides.append(slide_path)
         audio_paths.append(audio_path)
