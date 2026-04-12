@@ -16,6 +16,10 @@ import type {
   PurchaseRecord
 } from "@/lib/types";
 
+function isUuidLike(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
 function enrichProductRecord<T extends { slug: string }>(product: T): T {
   const localProduct = getLocalProductBySlug(product.slug);
 
@@ -140,6 +144,12 @@ export async function getProductModules(
   productId: string,
   onlyPublished = false
 ): Promise<ProductModuleRecord[]> {
+  if (!isUuidLike(productId)) {
+    return getLocalModulesByProductId(productId).filter((module) =>
+      onlyPublished ? module.is_published : true
+    );
+  }
+
   const supabaseAdmin = getSupabaseAdminClient();
   let query = supabaseAdmin
     .from("product_modules")
