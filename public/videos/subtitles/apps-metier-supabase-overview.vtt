@@ -1,0 +1,268 @@
+WEBVTT
+
+cue-1
+00:00:00.000 --> 00:00:05.824
+Bienvenue sur la vidéo tutorielle : créer des
+applications métier simples avec supabase.
+
+cue-2
+00:00:05.824 --> 00:00:14.296
+Cette formation s'adresse aux profils qui veulent livrer des apps métier
+crédibles sans partir sur une architecture trop lourde.
+
+cue-3
+00:00:14.296 --> 00:00:19.790
+Tu y trouves le cadrage, le schéma de données,
+l'authentification, les rôles, le...
+
+cue-4
+00:00:19.790 --> 00:00:23.909
+Module 1. Cadrer l'application metier avant de coder.
+
+cue-5
+00:00:23.909 --> 00:00:29.193
+Une app metier simple vaut plus qu'un produit ambitieux non utilise.
+
+cue-6
+00:00:29.193 --> 00:00:35.333
+Commence par l'action centrale : creer, valider, suivre, exporter ou controler.
+
+cue-7
+00:00:35.333 --> 00:00:37.353
+Tout le reste vient apres.
+
+cue-8
+00:00:37.353 --> 00:00:42.560
+Si tu es débutant, retiens surtout l’idée centrale du module, le...
+
+cue-9
+00:00:42.560 --> 00:00:45.729
+Passons maintenant à l’application du module 1.
+
+cue-10
+00:00:45.729 --> 00:00:55.777
+Pour avancer proprement, prépare d’abord les éléments suivants : trame besoin
+utilisateur action resultat, schema d'etapes metier, document V1 et V2.
+
+cue-11
+00:00:55.777 --> 00:01:02.790
+Ensuite, suis cette logique de mise en œuvre : decrire le
+probleme metier en mots simples, determiner...
+
+cue-12
+00:01:02.790 --> 00:01:06.581
+Module 2. Schema de donnees, roles et authentification.
+
+cue-13
+00:01:06.581 --> 00:01:14.370
+Supabase donne une base solide, mais il faut penser le schema,
+les roles et les acces avant d'empiler les ecrans.
+
+cue-14
+00:01:14.370 --> 00:01:17.058
+Tu n'as pas besoin d'un schema parfait.
+
+cue-15
+00:01:17.058 --> 00:01:23.400
+Tu as besoin d'un schema lisible, d'une auth coherente
+et de roles limites mais corrects....
+
+cue-16
+00:01:23.400 --> 00:01:26.613
+Passons maintenant à l’application du module 2.
+
+cue-17
+00:01:26.613 --> 00:01:36.184
+Pour avancer proprement, prépare d’abord les éléments suivants : projet
+Supabase, schema entites et relations, liste des roles utilisateurs.
+
+cue-18
+00:01:36.184 --> 00:01:43.840
+Ensuite, suis cette logique de mise en œuvre : lister les objets
+metier a stocker, choisir les roles minimum,...
+
+cue-19
+00:01:43.840 --> 00:01:47.616
+Module 3. Flux UX, back-office et experience client.
+
+cue-20
+00:01:47.616 --> 00:01:53.716
+Une app metier efficace cherche a rendre les
+actions frequentes rapides et visibles.
+
+cue-21
+00:01:53.716 --> 00:01:56.766
+Le back-office compte autant que le front.
+
+cue-22
+00:01:56.766 --> 00:02:01.995
+C'est souvent lui qui permet au client de vraiment s'approprier l'outil.
+
+cue-23
+00:02:01.995 --> 00:02:05.190
+Si tu es débutant, retiens surtout l’idée...
+
+cue-24
+00:02:05.190 --> 00:02:08.354
+Passons maintenant à l’application du module 3.
+
+cue-25
+00:02:08.354 --> 00:02:17.710
+Pour avancer proprement, prépare d’abord les éléments suivants : wireframes
+simples, liste des actions frequentes, tableau de bord minimal.
+
+cue-26
+00:02:17.710 --> 00:02:24.980
+Ensuite, suis cette logique de mise en œuvre : dessiner le flux
+principal, prevoir les vues de suivi cote...
+
+cue-27
+00:02:24.980 --> 00:02:26.180
+Module 4.
+
+cue-28
+00:02:26.180 --> 00:02:30.290
+Vendre l'application, chiffrer et structurer le support.
+
+cue-29
+00:02:30.290 --> 00:02:40.785
+Une app metier se vend mieux quand tu presentes une V1 precise, un gain metier
+visible, un cadre de maintenance et une trajectoire d'evolution.
+
+cue-30
+00:02:40.785 --> 00:02:44.014
+Tu n'as pas besoin de vendre une plateforme.
+
+cue-31
+00:02:44.014 --> 00:02:46.509
+Tu peux vendre une V1 utile, un...
+
+cue-32
+00:02:45.970 --> 00:02:49.134
+Passons maintenant à l’application du module 4.
+
+cue-33
+00:02:49.134 --> 00:02:58.829
+Pour avancer proprement, prépare d’abord les éléments suivants : offre V1 plus
+options, devis structure, support de presentation du gain metier.
+
+cue-34
+00:02:58.829 --> 00:03:06.100
+Ensuite, suis cette logique de mise en œuvre : presenter le
+probleme et le resultat attendu, chiffrer une...
+
+cue-35
+00:03:06.100 --> 00:03:07.300
+Module 5.
+
+cue-36
+00:03:07.300 --> 00:03:11.378
+Securite, tests, mise en production et maintenance.
+
+cue-37
+00:03:11.378 --> 00:03:19.615
+Le client achete aussi ta capacite a livrer proprement :
+tests, acces, domaine, reprise et maintenance.
+
+cue-38
+00:03:19.615 --> 00:03:29.531
+Meme sur un projet simple, tu dois verifier les scenarios cles, les
+acces, les erreurs visibles et la documentation de base.
+
+cue-39
+00:03:29.531 --> 00:03:30.731
+Si tu es...
+
+cue-40
+00:03:29.930 --> 00:03:33.085
+Passons maintenant à l’application du module 5.
+
+cue-41
+00:03:33.085 --> 00:03:42.349
+Pour avancer proprement, prépare d’abord les éléments suivants : checklist de
+recette, liste des roles et acces, documentation deployment.
+
+cue-42
+00:03:42.349 --> 00:03:49.800
+Ensuite, suis cette logique de mise en œuvre : tester les
+scenarios critiques avec plusieurs roles, verifier...
+
+cue-43
+00:03:49.800 --> 00:03:54.056
+Module 6. Faire evoluer l'application sans casser le socle.
+
+cue-44
+00:03:54.056 --> 00:04:04.445
+Une bonne application metier grandit par increments : plus d'automatisation, plus
+de reporting, plus d'adoption, pas par explosion du perimetre.
+
+cue-45
+00:04:04.445 --> 00:04:10.216
+Le socle doit rester propre pendant que tu ajoutes de nouvelles demandes client.
+
+cue-46
+00:04:10.216 --> 00:04:11.416
+Si tu es...
+
+cue-47
+00:04:11.010 --> 00:04:14.203
+Passons maintenant à l’application du module 6.
+
+cue-48
+00:04:14.203 --> 00:04:22.424
+Pour avancer proprement, prépare d’abord les éléments suivants :
+journal des demandes, roadmap courte, offre d'evolution.
+
+cue-49
+00:04:22.424 --> 00:04:31.120
+Ensuite, suis cette logique de mise en œuvre : noter les demandes reelles
+d'usage, prioriser selon gain et effort, separer le...
+
+cue-50
+00:04:31.120 --> 00:04:32.320
+Module 7.
+
+cue-51
+00:04:32.320 --> 00:04:36.360
+Starter kit Supabase, livraison et support client.
+
+cue-52
+00:04:36.360 --> 00:04:44.115
+Ce pack te donne la base operationnelle : cadrage,
+schema, roles, recette, livraison et support.
+
+cue-53
+00:04:44.115 --> 00:04:49.690
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+cue-54
+00:04:49.690 --> 00:04:55.103
+Si tu es débutant, retiens surtout l’idée centrale du module, le...
+
+cue-55
+00:04:54.630 --> 00:04:57.816
+Passons maintenant à l’application du module 7.
+
+cue-56
+00:04:57.816 --> 00:05:09.002
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack de base pour
+cadrer, produire et, transmettre une application metier simple, avec Supabase..
+
+cue-57
+00:05:09.002 --> 00:05:14.900
+Ensuite, suis cette logique de mise en œuvre : Le
+pack de base pour cadrer, produire...
+
+cue-58
+00:05:14.900 --> 00:05:21.329
+Tu as maintenant une vue d'ensemble tutorielle de créer des
+applications métier simples avec supabase.
+
+cue-59
+00:05:21.329 --> 00:05:26.057
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+cue-60
+00:05:26.057 --> 00:05:33.810
+C’est de reprendre chaque module, de préparer les outils, de rédiger
+les documents utiles, puis de tester la méthode sur...

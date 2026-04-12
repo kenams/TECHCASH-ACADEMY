@@ -1,0 +1,272 @@
+WEBVTT
+
+cue-1
+00:00:00.000 --> 00:00:06.092
+Bienvenue sur la vidéo tutorielle : automatiser les
+tâches répétitives des pme avec n8n.
+
+cue-2
+00:00:06.092 --> 00:00:15.507
+Les PME perdent des heures chaque semaine sur des tâches répétitives : saisie
+manuelle, envoi d'emails, exports Excel, relances clients.
+
+cue-3
+00:00:15.507 --> 00:00:20.560
+n8n permet d'automatiser ces processus en quelques heures, sans coder,...
+
+cue-4
+00:00:20.560 --> 00:00:21.760
+Module 1.
+
+cue-5
+00:00:21.760 --> 00:00:26.450
+Identifier les taches repetitives qui valent une automatisation.
+
+cue-6
+00:00:26.450 --> 00:00:33.559
+n8n devient vendable quand tu l'utilises pour supprimer
+une tache penible, repetitive et visible.
+
+cue-7
+00:00:33.559 --> 00:00:41.694
+Les meilleurs cas d'usage de depart tournent autour de la
+collecte, du tri, de la notification et du reporting.
+
+cue-8
+00:00:41.694 --> 00:00:42.894
+Si tu es...
+
+cue-9
+00:00:41.960 --> 00:00:45.181
+Passons maintenant à l’application du module 1.
+
+cue-10
+00:00:45.181 --> 00:00:57.309
+Pour avancer proprement, prépare d’abord les éléments suivants : grille cas d'usage, frequence,
+valeur et risque, liste des logiciels deja utilises, schema des etapes manuelles.
+
+cue-11
+00:00:57.309 --> 00:01:01.900
+Ensuite, suis cette logique de mise en œuvre : reperer une tache...
+
+cue-12
+00:01:01.900 --> 00:01:03.100
+Module 2.
+
+cue-13
+00:01:03.100 --> 00:01:07.320
+Installer et securiser n8n sur un environnement propre.
+
+cue-14
+00:01:07.320 --> 00:01:13.841
+La qualite de l'installation conditionne la
+fiabilite, la securite et la maintenance.
+
+cue-15
+00:01:13.841 --> 00:01:24.046
+Une bonne installation n8n demande peu d'elements mais ils doivent etre
+clairs : hebergement, domaine, acces, secrets et sauvegardes.
+
+cue-16
+00:01:24.046 --> 00:01:25.246
+Si tu es...
+
+cue-17
+00:01:24.380 --> 00:01:27.601
+Passons maintenant à l’application du module 2.
+
+cue-18
+00:01:27.601 --> 00:01:38.564
+Pour avancer proprement, prépare d’abord les éléments suivants : VPS ou hebergement
+adapte, Docker ou methode d'installation maitrisee, gestionnaire de secrets.
+
+cue-19
+00:01:38.564 --> 00:01:44.800
+Ensuite, suis cette logique de mise en œuvre :
+preparer un serveur simple, installer n8n...
+
+cue-20
+00:01:44.800 --> 00:01:49.114
+Module 3. Construire tes premiers workflows vendables.
+
+cue-21
+00:01:49.114 --> 00:01:57.823
+Un bon workflow vendable fait une chose utile de maniere
+lisible avec des entrees et sorties comprehensibles.
+
+cue-22
+00:01:57.823 --> 00:02:03.336
+Commence simple : capture, condition, transformation, envoi, journal.
+
+cue-23
+00:02:03.336 --> 00:02:05.733
+La sophistication vient apres.
+
+cue-24
+00:02:05.733 --> 00:02:08.050
+Si tu es débutant, retiens...
+
+cue-25
+00:02:08.050 --> 00:02:11.268
+Passons maintenant à l’application du module 3.
+
+cue-26
+00:02:11.268 --> 00:02:19.621
+Pour avancer proprement, prépare d’abord les éléments suivants :
+noeuds n8n de base, scenarios de test, donnees d'exemple.
+
+cue-27
+00:02:19.621 --> 00:02:28.590
+Ensuite, suis cette logique de mise en œuvre : decrire le workflow en
+etapes humaines, assembler les noeuds minimum, tester avec...
+
+cue-28
+00:02:28.590 --> 00:02:31.920
+Module 4. Vendre une mission d'automatisation.
+
+cue-29
+00:02:31.920 --> 00:02:40.171
+L'automatisation se vend mieux comme une mission ciblee avec
+resultat visible, puis comme un accompagnement leger.
+
+cue-30
+00:02:40.171 --> 00:02:48.061
+Tu peux vendre un audit de processus, un premier workflow, puis
+une maintenance ou une extension progressive.
+
+cue-31
+00:02:48.061 --> 00:02:50.160
+Si tu es débutant, retiens...
+
+cue-32
+00:02:50.160 --> 00:02:53.268
+Passons maintenant à l’application du module 4.
+
+cue-33
+00:02:53.268 --> 00:03:02.329
+Pour avancer proprement, prépare d’abord les éléments suivants : offre audit
+plus workflow, support de demonstration, devis avec options.
+
+cue-34
+00:03:02.329 --> 00:03:09.670
+Ensuite, suis cette logique de mise en œuvre : presenter un cas
+d'usage concret, vendre une premiere mission...
+
+cue-35
+00:03:09.670 --> 00:03:13.851
+Module 5. Logs, secrets, surveillance et maintenance.
+
+cue-36
+00:03:13.851 --> 00:03:19.688
+Une automatisation vendable ne doit pas seulement fonctionner aujourd'hui.
+
+cue-37
+00:03:19.688 --> 00:03:22.765
+Elle doit etre suivable et corrigeable.
+
+cue-38
+00:03:22.765 --> 00:03:25.999
+Le client n'achete pas juste un workflow.
+
+cue-39
+00:03:25.999 --> 00:03:32.152
+Il achete aussi la tranquillite que ce workflow ne casse pas sans explication.
+
+cue-40
+00:03:32.152 --> 00:03:33.352
+Si tu es...
+
+cue-41
+00:03:33.020 --> 00:03:36.124
+Passons maintenant à l’application du module 5.
+
+cue-42
+00:03:36.124 --> 00:03:44.906
+Pour avancer proprement, prépare d’abord les éléments suivants : journaux
+d'execution, gestion des erreurs, alertes mail ou messages.
+
+cue-43
+00:03:44.906 --> 00:03:52.500
+Ensuite, suis cette logique de mise en œuvre : reperer les points
+de panne possibles, ajouter une logique simple...
+
+cue-44
+00:03:52.500 --> 00:03:56.954
+Module 6. Construire une activite recurrente autour de n8n.
+
+cue-45
+00:03:56.954 --> 00:04:07.448
+Une fois un premier workflow en place, tu peux ouvrir des sujets
+complementaires : nouveaux flux, maintenance, monitoring et documentation.
+
+cue-46
+00:04:07.448 --> 00:04:13.790
+La recurrence se vend mieux quand tu prouves le
+temps gagne et la fiabilite obtenue.
+
+cue-47
+00:04:13.790 --> 00:04:14.990
+Si tu es...
+
+cue-48
+00:04:14.620 --> 00:04:17.768
+Passons maintenant à l’application du module 6.
+
+cue-49
+00:04:17.768 --> 00:04:26.341
+Pour avancer proprement, prépare d’abord les éléments suivants : journal
+des gains, roadmap des workflows, offre de maintenance.
+
+cue-50
+00:04:26.341 --> 00:04:34.580
+Ensuite, suis cette logique de mise en œuvre : mesurer les gains
+visibles, noter les demandes connexes, proposer un plan...
+
+cue-51
+00:04:34.580 --> 00:04:35.780
+Module 7.
+
+cue-52
+00:04:35.780 --> 00:04:40.966
+Pack de cas d'usage, connecteurs utiles et checklists de livraison.
+
+cue-53
+00:04:40.966 --> 00:04:49.247
+Ce pack te donne la base de travail : cas d'usage, checklist
+installation, recette, demonstration et suivi.
+
+cue-54
+00:04:49.247 --> 00:04:54.588
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+cue-55
+00:04:54.588 --> 00:04:57.993
+Si tu es débutant, retiens surtout l’idée...
+
+cue-56
+00:04:57.490 --> 00:05:00.801
+Passons maintenant à l’application du module 7.
+
+cue-57
+00:05:00.801 --> 00:05:11.718
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack de base pour
+qualifier, construire, et maintenir des automatisations n8n en, PME..
+
+cue-58
+00:05:11.718 --> 00:05:18.480
+Ensuite, suis cette logique de mise en œuvre : Le pack de
+base pour qualifier, construire, et...
+
+cue-59
+00:05:18.480 --> 00:05:25.062
+Tu as maintenant une vue d'ensemble tutorielle de
+automatiser les tâches répétitives des pme avec n8n.
+
+cue-60
+00:05:25.062 --> 00:05:29.902
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+cue-61
+00:05:29.902 --> 00:05:37.840
+C’est de reprendre chaque module, de préparer les outils, de rédiger
+les documents utiles, puis de tester la méthode sur...

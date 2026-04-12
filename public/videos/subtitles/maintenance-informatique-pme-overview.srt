@@ -1,0 +1,273 @@
+1
+00:00:00,000 --> 00:00:06,841
+Bienvenue sur la vidéo tutorielle : vendre et livrer une
+offre de maintenance informatique pour pme.
+
+2
+00:00:06,841 --> 00:00:17,787
+Le programme structure une vraie offre de maintenance : promesse commerciale, périmètre,
+onboarding, visites préventives, reporting, relances et renouvellement.
+
+3
+00:00:17,787 --> 00:00:20,250
+L'objectif est de créer un revenu...
+
+4
+00:00:20,250 --> 00:00:21,450
+Module 1.
+
+5
+00:00:21,450 --> 00:00:25,881
+Construire une offre de maintenance claire et rassurante.
+
+6
+00:00:25,881 --> 00:00:33,888
+Le client doit comprendre ce qu'il achete : prevention,
+support, visites, suivi, limites et reactivite.
+
+7
+00:00:33,888 --> 00:00:41,196
+Une PME achete de la tranquillite, de la visibilite et
+de la reduction d'incidents repetitifs.
+
+8
+00:00:41,196 --> 00:00:43,450
+Si tu es débutant, retiens...
+
+9
+00:00:42,950 --> 00:00:46,126
+Passons maintenant à l’application du module 1.
+
+10
+00:00:46,126 --> 00:00:55,115
+Pour avancer proprement, prépare d’abord les éléments suivants : fiche
+offre maintenance, grille inclus et exclus, modele de forfait.
+
+11
+00:00:55,115 --> 00:01:02,820
+Ensuite, suis cette logique de mise en œuvre : choisir une cible
+simple, ecrire la promesse de service, definir...
+
+12
+00:01:02,820 --> 00:01:04,020
+Module 2.
+
+13
+00:01:04,020 --> 00:01:07,608
+Installer les outils et l'environnement de travail.
+
+14
+00:01:07,608 --> 00:01:12,110
+Une offre recurrente tient sur des outils simples mais ordonnes.
+
+15
+00:01:12,110 --> 00:01:19,144
+Tu dois pouvoir retrouver vite les acces, les postes
+critiques, les incidents et les comptes-rendus.
+
+16
+00:01:19,144 --> 00:01:23,857
+Si tu es débutant, retiens surtout l’idée centrale du module, le...
+
+17
+00:01:23,290 --> 00:01:26,608
+Passons maintenant à l’application du module 2.
+
+18
+00:01:26,608 --> 00:01:36,423
+Pour avancer proprement, prépare d’abord les éléments suivants : AnyDesk ou
+RustDesk, GLPI ou suivi tickets simple, Bitwarden ou KeePassXC.
+
+19
+00:01:36,423 --> 00:01:44,260
+Ensuite, suis cette logique de mise en œuvre : creer un espace
+client standardise, tester la prise en main a...
+
+20
+00:01:44,260 --> 00:01:48,637
+Module 3. Onboarding client et premiere visite structuree.
+
+21
+00:01:48,637 --> 00:01:51,505
+Le demarrage conditionne la confiance.
+
+22
+00:01:51,505 --> 00:01:56,864
+Tu dois comprendre le parc, les irritants et les urgences silencieuses.
+
+23
+00:01:56,864 --> 00:02:03,808
+Le but n'est pas de tout refaire le premier jour, mais
+de reprendre l'existant avec methode.
+
+24
+00:02:03,808 --> 00:02:06,600
+Si tu es débutant, retiens surtout...
+
+25
+00:02:06,600 --> 00:02:09,775
+Passons maintenant à l’application du module 3.
+
+26
+00:02:09,775 --> 00:02:19,098
+Pour avancer proprement, prépare d’abord les éléments suivants : checklist
+premiere visite, fiche parc, questionnaire usages et irritants.
+
+27
+00:02:19,098 --> 00:02:26,800
+Ensuite, suis cette logique de mise en œuvre : preparer la visite,
+recueillir les acces et contraintes, reperer...
+
+28
+00:02:26,800 --> 00:02:28,000
+Module 4.
+
+29
+00:02:28,000 --> 00:02:32,117
+Vendre la maintenance, relancer et renouveler proprement.
+
+30
+00:02:32,117 --> 00:02:41,218
+La maintenance se vend mieux quand tu relies le service a la stabilite,
+au gain de temps et a la visibilite pour le dirigeant.
+
+31
+00:02:41,218 --> 00:02:48,152
+Il faut savoir repondre aux objections prix, urgence et
+on verra plus tard sans perdre le cadre.
+
+32
+00:02:48,152 --> 00:02:49,352
+Si tu...
+
+33
+00:02:48,180 --> 00:02:51,312
+Passons maintenant à l’application du module 4.
+
+34
+00:02:51,312 --> 00:02:59,643
+Pour avancer proprement, prépare d’abord les éléments suivants : script
+de presentation, trame objections, devis maintenance.
+
+35
+00:02:59,643 --> 00:03:07,640
+Ensuite, suis cette logique de mise en œuvre : presenter l'offre avec
+promesse et limites, repondre aux objections en...
+
+36
+00:03:07,640 --> 00:03:08,840
+Module 5.
+
+37
+00:03:08,840 --> 00:03:13,064
+Derouler la routine de maintenance et le reporting mensuel.
+
+38
+00:03:13,064 --> 00:03:17,788
+Le client doit sentir la valeur de la maintenance meme hors panne.
+
+39
+00:03:17,788 --> 00:03:26,737
+Une maintenance credible alterne actions preventives, support reactif
+raisonnable, traces ecrites et recommandations simples.
+
+40
+00:03:26,737 --> 00:03:29,386
+Si tu es débutant, retiens surtout...
+
+41
+00:03:28,830 --> 00:03:32,103
+Passons maintenant à l’application du module 5.
+
+42
+00:03:32,103 --> 00:03:41,711
+Pour avancer proprement, prépare d’abord les éléments suivants : checklist
+visite preventive, journal d'intervention, modele de reporting.
+
+43
+00:03:41,711 --> 00:03:49,440
+Ensuite, suis cette logique de mise en œuvre : fixer une
+frequence de visite, executer une checklist stable,...
+
+44
+00:03:49,440 --> 00:03:50,640
+Module 6.
+
+45
+00:03:50,640 --> 00:03:55,159
+Monter en gamme : securite, sauvegardes, M365 et parc.
+
+46
+00:03:55,159 --> 00:04:06,204
+Une bonne maintenance revele naturellement des besoins d'amelioration :
+cyber, sauvegardes, Microsoft 365 ou renouvellement de parc.
+
+47
+00:04:06,204 --> 00:04:10,471
+L'upsell ne doit pas ressembler a une vente forcee.
+
+48
+00:04:10,471 --> 00:04:14,237
+Il doit sortir des observations reelles du...
+
+49
+00:04:13,790 --> 00:04:16,894
+Passons maintenant à l’application du module 6.
+
+50
+00:04:16,894 --> 00:04:25,546
+Pour avancer proprement, prépare d’abord les éléments suivants : journal
+d'incidents, liste d'ameliorations, argumentaires simples.
+
+51
+00:04:25,546 --> 00:04:33,340
+Ensuite, suis cette logique de mise en œuvre : noter les irritants
+qui reviennent, lier chaque sujet a un risque ou...
+
+52
+00:04:33,340 --> 00:04:34,540
+Module 7.
+
+53
+00:04:34,540 --> 00:04:39,003
+Pack contrat, premiere visite, reporting et renouvellement.
+
+54
+00:04:39,003 --> 00:04:45,130
+Ce pack transforme la formation en methode de travail immediatement reutilisable.
+
+55
+00:04:45,130 --> 00:04:50,350
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+56
+00:04:50,350 --> 00:04:56,099
+Si tu es débutant, retiens surtout l’idée centrale du module, le résultat...
+
+57
+00:04:55,580 --> 00:04:58,861
+Passons maintenant à l’application du module 7.
+
+58
+00:04:58,861 --> 00:05:09,889
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack operationnel
+pour vendre, lancer, et piloter une maintenance informatique, pour PME..
+
+59
+00:05:09,889 --> 00:05:16,450
+Ensuite, suis cette logique de mise en œuvre : Le pack
+operationnel pour vendre, lancer, et...
+
+60
+00:05:16,450 --> 00:05:23,469
+Tu as maintenant une vue d'ensemble tutorielle de vendre et livrer
+une offre de maintenance informatique pour pme.
+
+61
+00:05:23,469 --> 00:05:28,086
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+62
+00:05:28,086 --> 00:05:34,920
+C’est de reprendre chaque module, de préparer les outils, de
+rédiger les documents utiles, puis de tester la...

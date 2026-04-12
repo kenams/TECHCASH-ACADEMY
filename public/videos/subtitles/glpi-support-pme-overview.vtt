@@ -1,0 +1,275 @@
+WEBVTT
+
+cue-1
+00:00:00.000 --> 00:00:06.224
+Bienvenue sur la vidéo tutorielle : déployer glpi et
+structurer un support interne pour pme.
+
+cue-2
+00:00:06.224 --> 00:00:19.550
+Cette formation te montre comment transformer un besoin flou de support interne en dispositif clair :
+tickets, catégories, SLA simples, base de connaissances, automatisations utiles et reporting...
+
+cue-3
+00:00:19.550 --> 00:00:23.828
+Module 1. Cadrer le besoin support avant d'ouvrir GLPI.
+
+cue-4
+00:00:23.828 --> 00:00:28.340
+GLPI n'est utile que si tu sais quel support tu organises.
+
+cue-5
+00:00:28.340 --> 00:00:30.907
+L'outil vient apres le flux reel.
+
+cue-6
+00:00:30.907 --> 00:00:38.374
+Le sujet n'est pas installer GLPI, mais rendre le support
+plus lisible, tracable et exploitable.
+
+cue-7
+00:00:38.374 --> 00:00:42.730
+Si tu es débutant, retiens surtout l’idée centrale du...
+
+cue-8
+00:00:42.730 --> 00:00:45.801
+Passons maintenant à l’application du module 1.
+
+cue-9
+00:00:45.801 --> 00:00:54.818
+Pour avancer proprement, prépare d’abord les éléments suivants : grille
+d'entretien support, liste demandes recurrentes, schema des roles.
+
+cue-10
+00:00:54.818 --> 00:01:02.070
+Ensuite, suis cette logique de mise en œuvre : lister les
+demandes frequentes, identifier qui demande et qui...
+
+cue-11
+00:01:02.070 --> 00:01:03.270
+Module 2.
+
+cue-12
+00:01:03.270 --> 00:01:07.561
+Installer GLPI proprement et securiser l'environnement.
+
+cue-13
+00:01:07.561 --> 00:01:16.847
+Une installation propre se voit a la facilite de reprise, a la
+securite des acces et a la sobriete de la configuration.
+
+cue-14
+00:01:16.847 --> 00:01:19.890
+Tu n'as pas besoin de tous les plugins.
+
+cue-15
+00:01:19.890 --> 00:01:24.649
+Tu as besoin d'une base stable, documentee et comprehensible.
+
+cue-16
+00:01:24.649 --> 00:01:25.849
+Si tu es...
+
+cue-17
+00:01:25.010 --> 00:01:28.325
+Passons maintenant à l’application du module 2.
+
+cue-18
+00:01:28.325 --> 00:01:37.284
+Pour avancer proprement, prépare d’abord les éléments suivants :
+hebergement adapte, acces admin securises, sauvegarde de base.
+
+cue-19
+00:01:37.284 --> 00:01:45.960
+Ensuite, suis cette logique de mise en œuvre : preparer le serveur,
+installer GLPI avec une methode reproductible, creer...
+
+cue-20
+00:01:45.960 --> 00:01:47.160
+Module 3.
+
+cue-21
+00:01:47.160 --> 00:01:51.628
+Configurer categories, SLA, formulaires et regles simples.
+
+cue-22
+00:01:51.628 --> 00:01:58.253
+Les premieres decisions de configuration determinent
+si GLPI sera adopte ou contourne.
+
+cue-23
+00:01:58.253 --> 00:02:05.417
+Une PME a besoin de categories claires, de priorites
+limitees et d'un parcours ticket simple.
+
+cue-24
+00:02:05.417 --> 00:02:08.807
+Si tu es débutant, retiens surtout l’idée...
+
+cue-25
+00:02:08.300 --> 00:02:11.614
+Passons maintenant à l’application du module 3.
+
+cue-26
+00:02:11.614 --> 00:02:20.428
+Pour avancer proprement, prépare d’abord les éléments suivants : liste
+de categories, formulaire ticket, grille SLA realiste.
+
+cue-27
+00:02:20.428 --> 00:02:29.030
+Ensuite, suis cette logique de mise en œuvre : creer des categories
+orientees usage, limiter les priorites, preparer un...
+
+cue-28
+00:02:29.030 --> 00:02:33.688
+Module 4. Vendre le support GLPI et cadrer la gouvernance.
+
+cue-29
+00:02:33.688 --> 00:02:42.522
+GLPI se vend mieux comme cadre de support : tickets, delais,
+base de connaissances, visibilite et gouvernance.
+
+cue-30
+00:02:42.522 --> 00:02:45.493
+Le client n'achete pas une interface.
+
+cue-31
+00:02:45.493 --> 00:02:51.517
+Il achete une meilleure circulation des demandes et une vision plus claire.
+
+cue-32
+00:02:51.517 --> 00:02:52.717
+Si tu es...
+
+cue-33
+00:02:52.400 --> 00:02:55.621
+Passons maintenant à l’application du module 4.
+
+cue-34
+00:02:55.621 --> 00:03:04.323
+Pour avancer proprement, prépare d’abord les éléments suivants : support
+de demonstration, offre support, trame de gouvernance.
+
+cue-35
+00:03:04.323 --> 00:03:12.820
+Ensuite, suis cette logique de mise en œuvre : presenter le probleme
+actuel, montrer comment GLPI structure les demandes,...
+
+cue-36
+00:03:12.820 --> 00:03:14.020
+Module 5.
+
+cue-37
+00:03:14.020 --> 00:03:19.829
+Faire adopter GLPI, construire la base de connaissances et sortir un reporting.
+
+cue-38
+00:03:19.829 --> 00:03:23.946
+Une instance GLPI sans adoption reste une coquille vide.
+
+cue-39
+00:03:23.946 --> 00:03:30.711
+Commence par peu d'articles de base de connaissances et
+un reporting dirigeant tres lisible.
+
+cue-40
+00:03:30.711 --> 00:03:34.828
+Si tu es débutant, retiens surtout l’idée centrale du...
+
+cue-41
+00:03:34.290 --> 00:03:37.519
+Passons maintenant à l’application du module 5.
+
+cue-42
+00:03:37.519 --> 00:03:47.342
+Pour avancer proprement, prépare d’abord les éléments suivants : mini-guide
+utilisateur, articles de base de connaissances, template reporting.
+
+cue-43
+00:03:47.342 --> 00:03:54.830
+Ensuite, suis cette logique de mise en œuvre : preparer une
+demonstration orientee cas concrets, creer les...
+
+cue-44
+00:03:54.830 --> 00:03:56.030
+Module 6.
+
+cue-45
+00:03:56.030 --> 00:04:01.714
+Etendre le support : inventaire, automatisations et amelioration continue.
+
+cue-46
+00:04:01.714 --> 00:04:10.624
+Une fois GLPI adopte, tu peux ouvrir des sujets complementaires :
+inventaire, automatisations ou extensions d'usage.
+
+cue-47
+00:04:10.624 --> 00:04:14.311
+Il faut d'abord que le noyau support fonctionne.
+
+cue-48
+00:04:14.311 --> 00:04:18.229
+Ensuite seulement tu ajoutes des couches utiles....
+
+cue-49
+00:04:17.720 --> 00:04:20.958
+Passons maintenant à l’application du module 6.
+
+cue-50
+00:04:20.958 --> 00:04:29.913
+Pour avancer proprement, prépare d’abord les éléments suivants : liste des
+evolutions possibles, journal d'usage, roadmap support.
+
+cue-51
+00:04:29.913 --> 00:04:38.110
+Ensuite, suis cette logique de mise en œuvre : observer les usages
+apres lancement, reperer les ameliorations a fort...
+
+cue-52
+00:04:38.110 --> 00:04:39.310
+Module 7.
+
+cue-53
+00:04:39.310 --> 00:04:43.936
+Pack de lancement GLPI, adoption, reporting et gouvernance.
+
+cue-54
+00:04:43.936 --> 00:04:49.189
+Ce pack sert a derouler un deploiement GLPI propre et reutilisable.
+
+cue-55
+00:04:49.189 --> 00:04:54.599
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+cue-56
+00:04:54.599 --> 00:05:01.734
+Si tu es débutant, retiens surtout l’idée centrale du
+module, le résultat attendu, et le...
+
+cue-57
+00:05:01.240 --> 00:05:04.517
+Passons maintenant à l’application du module 7.
+
+cue-58
+00:05:04.517 --> 00:05:14.489
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack de base
+pour cadrer, lancer et, piloter un support interne avec GLPI..
+
+cue-59
+00:05:14.489 --> 00:05:22.020
+Ensuite, suis cette logique de mise en œuvre : Le pack de base
+pour cadrer, lancer et, piloter un support...
+
+cue-60
+00:05:22.020 --> 00:05:28.885
+Tu as maintenant une vue d'ensemble tutorielle de déployer
+glpi et structurer un support interne pour pme.
+
+cue-61
+00:05:28.885 --> 00:05:33.743
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+cue-62
+00:05:33.743 --> 00:05:41.450
+C’est de reprendre chaque module, de préparer les outils, de rédiger
+les documents utiles, puis de tester la méthode...

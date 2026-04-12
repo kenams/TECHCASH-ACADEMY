@@ -1,0 +1,264 @@
+WEBVTT
+
+cue-1
+00:00:00.000 --> 00:00:06.780
+Bienvenue sur la vidéo tutorielle : déployer et
+administrer microsoft 365 pour une pme.
+
+cue-2
+00:00:06.780 --> 00:00:12.625
+Microsoft 365 est l'environnement professionnel de 80 % des PME françaises.
+
+cue-3
+00:00:12.625 --> 00:00:22.600
+Pourtant, la grande majorité n'a jamais eu de migration propre : boîtes
+mail mal configurées, pas de MFA, partages SharePoint...
+
+cue-4
+00:00:22.600 --> 00:00:26.615
+Module 1. Auditer un tenant Microsoft 365 existant.
+
+cue-5
+00:00:26.615 --> 00:00:32.912
+Une mission M365 reussie commence par une bonne lecture du tenant et des usages.
+
+cue-6
+00:00:32.912 --> 00:00:35.509
+Tu n'es pas la pour tout refaire.
+
+cue-7
+00:00:35.509 --> 00:00:41.728
+Tu es la pour clarifier, corriger l'essentiel et rendre l'environnement fiable.
+
+cue-8
+00:00:41.728 --> 00:00:45.900
+Si tu es débutant, retiens surtout l’idée centrale...
+
+cue-9
+00:00:45.900 --> 00:00:49.137
+Passons maintenant à l’application du module 1.
+
+cue-10
+00:00:49.137 --> 00:00:59.122
+Pour avancer proprement, prépare d’abord les éléments suivants : grille audit
+M365, liste utilisateurs et licences, inventaire boites et groupes.
+
+cue-11
+00:00:59.122 --> 00:01:06.560
+Ensuite, suis cette logique de mise en œuvre : verifier les
+comptes et roles admin, regarder les licences...
+
+cue-12
+00:01:06.560 --> 00:01:10.783
+Module 2. Outils a telecharger et prerequis de migration.
+
+cue-13
+00:01:10.783 --> 00:01:20.191
+Une migration propre repose autant sur les prerequis que sur l'outil
+choisi : DNS, comptes, licences, donnees et communication.
+
+cue-14
+00:01:20.191 --> 00:01:27.154
+Une migration preparee se vit comme une amelioration
+controlee, pas comme un choc utilisateur.
+
+cue-15
+00:01:27.154 --> 00:01:28.710
+Si tu es débutant,...
+
+cue-16
+00:01:28.710 --> 00:01:31.824
+Passons maintenant à l’application du module 2.
+
+cue-17
+00:01:31.824 --> 00:01:42.290
+Pour avancer proprement, prépare d’abord les éléments suivants : outils ou assistants de
+migration, acces domaines et DNS, liste des boites, alias et groupes.
+
+cue-18
+00:01:42.290 --> 00:01:48.120
+Ensuite, suis cette logique de mise en œuvre :
+recueillir tous les acces necessaires,...
+
+cue-19
+00:01:48.120 --> 00:01:52.711
+Module 3. Migrer les emails, fichiers et services de base.
+
+cue-20
+00:01:52.711 --> 00:01:56.906
+Le client juge une migration a la continuite d'usage.
+
+cue-21
+00:01:56.906 --> 00:02:01.259
+Ton role est d'orchestrer la transition et de rassurer.
+
+cue-22
+00:02:01.259 --> 00:02:07.907
+Commence par ce qui est vital : messagerie, acces,
+partages, habitudes quotidiennes.
+
+cue-23
+00:02:07.907 --> 00:02:11.390
+Si tu es débutant, retiens surtout l’idée...
+
+cue-24
+00:02:11.390 --> 00:02:14.640
+Passons maintenant à l’application du module 3.
+
+cue-25
+00:02:14.640 --> 00:02:24.253
+Pour avancer proprement, prépare d’abord les éléments suivants : assistant de
+migration, checklist de bascule, tests de reception et envoi.
+
+cue-26
+00:02:24.253 --> 00:02:31.860
+Ensuite, suis cette logique de mise en œuvre : lancer la
+migration selon le plan, verifier boites, alias et...
+
+cue-27
+00:02:31.860 --> 00:02:36.195
+Module 4. Licences, devis et offre MSP Microsoft 365.
+
+cue-28
+00:02:36.195 --> 00:02:42.166
+Beaucoup de PME ne comprennent pas ce qu'elles paient dans Microsoft 365.
+
+cue-29
+00:02:42.166 --> 00:02:46.419
+Un prestataire clair cree de la valeur sur ce point.
+
+cue-30
+00:02:46.419 --> 00:02:55.170
+Ton role est de simplifier l'offre : quelles licences, pour
+quoi, avec quel accompagnement et quel support.
+
+cue-31
+00:02:55.170 --> 00:02:56.370
+Si tu es...
+
+cue-32
+00:02:56.070 --> 00:02:59.302
+Passons maintenant à l’application du module 4.
+
+cue-33
+00:02:59.302 --> 00:03:09.686
+Pour avancer proprement, prépare d’abord les éléments suivants : grille licences
+principales, devis type mission M365, offre support et administration.
+
+cue-34
+00:03:09.686 --> 00:03:16.700
+Ensuite, suis cette logique de mise en œuvre : choisir des
+niveaux de licences faciles a expliquer,...
+
+cue-35
+00:03:16.700 --> 00:03:17.900
+Module 5.
+
+cue-36
+00:03:17.900 --> 00:03:22.544
+Securiser Entra ID et deployer Teams puis SharePoint proprement.
+
+cue-37
+00:03:22.544 --> 00:03:32.629
+La valeur de M365 pour une PME se voit autant dans la securite des identites
+que dans la fluidite des usages Teams, SharePoint et OneDrive.
+
+cue-38
+00:03:32.629 --> 00:03:38.797
+Tu dois securiser ce qui est critique puis proposer
+une structure de collaboration...
+
+cue-39
+00:03:38.250 --> 00:03:41.512
+Passons maintenant à l’application du module 5.
+
+cue-40
+00:03:41.512 --> 00:03:51.921
+Pour avancer proprement, prépare d’abord les éléments suivants : MFA et politiques
+de base, roles admin limites, structure Teams et SharePoint simple.
+
+cue-41
+00:03:51.921 --> 00:03:58.860
+Ensuite, suis cette logique de mise en œuvre : activer ou
+renforcer MFA, reduire les droits admin...
+
+cue-42
+00:03:58.860 --> 00:04:03.171
+Module 6. Piloter le support, le runbook et la recurrence.
+
+cue-43
+00:04:03.171 --> 00:04:12.833
+Une bonne mission M365 debouche naturellement sur du support utilisateur,
+de la gouvernance simple et des ajustements de securite.
+
+cue-44
+00:04:12.833 --> 00:04:19.299
+La recurrence se vend mieux quand la passation est
+propre et que les roles sont clairs.
+
+cue-45
+00:04:19.299 --> 00:04:20.860
+Si tu es débutant,...
+
+cue-46
+00:04:20.860 --> 00:04:24.111
+Passons maintenant à l’application du module 6.
+
+cue-47
+00:04:24.111 --> 00:04:33.726
+Pour avancer proprement, prépare d’abord les éléments suivants : runbook de
+reprise, liste des actions recurrentes, modele de suivi tenant.
+
+cue-48
+00:04:33.726 --> 00:04:40.920
+Ensuite, suis cette logique de mise en œuvre : documenter le
+tenant et les acces, definir les actions...
+
+cue-49
+00:04:40.920 --> 00:04:42.120
+Module 7.
+
+cue-50
+00:04:42.120 --> 00:04:46.367
+Pack runbook migration, licences et scripts commerciaux.
+
+cue-51
+00:04:46.367 --> 00:04:54.785
+Ce pack permet d'enchainer plus proprement entre audit,
+migration, securisation, adoption et support recurrent.
+
+cue-52
+00:04:54.785 --> 00:05:00.018
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+cue-53
+00:05:00.018 --> 00:05:04.037
+Si tu es débutant, retiens surtout l’idée centrale...
+
+cue-54
+00:05:03.520 --> 00:05:07.004
+Passons maintenant à l’application du module 7.
+
+cue-55
+00:05:07.004 --> 00:05:18.050
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack de travail
+pour auditer, migrer,, securiser et vendre Microsoft 365 en PME..
+
+cue-56
+00:05:18.050 --> 00:05:25.760
+Ensuite, suis cette logique de mise en œuvre : Le pack de
+travail pour auditer, migrer,, securiser et...
+
+cue-57
+00:05:25.760 --> 00:05:32.624
+Tu as maintenant une vue d'ensemble tutorielle de déployer
+et administrer microsoft 365 pour une pme.
+
+cue-58
+00:05:32.624 --> 00:05:37.721
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+cue-59
+00:05:37.721 --> 00:05:46.080
+C’est de reprendre chaque module, de préparer les outils, de rédiger
+les documents utiles, puis de tester la méthode sur...

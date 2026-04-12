@@ -1,0 +1,277 @@
+1
+00:00:00,000 --> 00:00:06,628
+Bienvenue sur la vidéo tutorielle : devenir technicien
+informatique freelance sans diplôme en 30 jours.
+
+2
+00:00:06,628 --> 00:00:12,612
+Cette formation principale t'aide à structurer une
+activité freelance IT vendable rapidement.
+
+3
+00:00:12,612 --> 00:00:19,240
+Tu y trouves le positionnement, les prestations les plus
+faciles à vendre, la manière de parler à un...
+
+4
+00:00:19,240 --> 00:00:20,440
+Module 1.
+
+5
+00:00:20,440 --> 00:00:24,152
+Structurer une offre freelance IT qui tient debout.
+
+6
+00:00:24,152 --> 00:00:31,720
+Une activite freelance IT demarre quand tu sais transformer
+tes competences en offre claire et vendable.
+
+7
+00:00:31,720 --> 00:00:41,545
+Si tu debutes, vise une premiere offre simple : maintenance legere, audit
+poste, migration Microsoft 365 ou remise a niveau securite...
+
+8
+00:00:41,000 --> 00:00:44,369
+Passons maintenant à l’application du module 1.
+
+9
+00:00:44,369 --> 00:00:52,468
+Pour avancer proprement, prépare d’abord les éléments suivants :
+Notion ou Google Docs, Canva, tableur prospects.
+
+10
+00:00:52,468 --> 00:01:01,785
+Ensuite, suis cette logique de mise en œuvre : choisir une cible locale,
+definir une offre en une phrase, ecrire inclus et exclus.
+
+11
+00:01:01,785 --> 00:01:02,985
+Sur le...
+
+12
+00:01:02,430 --> 00:01:03,630
+Module 2.
+
+13
+00:01:03,630 --> 00:01:08,706
+Installer les outils et le cadre de travail du technicien freelance.
+
+14
+00:01:08,706 --> 00:01:14,603
+Une activite propre repose sur peu d'outils, mais de bons outils bien utilises.
+
+15
+00:01:14,603 --> 00:01:21,172
+Tu dois pouvoir diagnostiquer, documenter, facturer
+et ranger les acces sans improviser.
+
+16
+00:01:21,172 --> 00:01:25,128
+Si tu es débutant, retiens surtout l’idée centrale...
+
+17
+00:01:24,600 --> 00:01:27,856
+Passons maintenant à l’application du module 2.
+
+18
+00:01:27,856 --> 00:01:37,068
+Pour avancer proprement, prépare d’abord les éléments suivants : AnyDesk ou
+RustDesk, Bitwarden ou KeePassXC, Indy, Henrri ou Freebe.
+
+19
+00:01:37,068 --> 00:01:45,380
+Ensuite, suis cette logique de mise en œuvre : creer un environnement
+pro separe, tester la prise en main a distance,...
+
+20
+00:01:45,380 --> 00:01:49,408
+Module 3. Derouler un plan d'action realiste sur 30 jours.
+
+21
+00:01:49,408 --> 00:01:56,910
+Le plus important n'est pas d'avoir une marque parfaite, mais
+de faire les bonnes actions dans le bon ordre.
+
+22
+00:01:56,910 --> 00:02:04,341
+Quatre semaines suffisent pour poser l'offre, preparer les
+outils, prospecter et sortir les premiers devis.
+
+23
+00:02:04,341 --> 00:02:05,800
+Si tu es débutant,...
+
+24
+00:02:05,800 --> 00:02:09,088
+Passons maintenant à l’application du module 3.
+
+25
+00:02:09,088 --> 00:02:16,645
+Pour avancer proprement, prépare d’abord les éléments suivants
+: agenda, Trello ou Notion, tableur de suivi.
+
+26
+00:02:16,645 --> 00:02:26,720
+Ensuite, suis cette logique de mise en œuvre : semaine 1 : offre et cadre
+administratif, semaine 2 : support commercial et fichier prospects,...
+
+27
+00:02:26,720 --> 00:02:27,920
+Module 4.
+
+28
+00:02:27,920 --> 00:02:31,977
+Prospecter, qualifier et faire des devis sans theatre.
+
+29
+00:02:31,977 --> 00:02:35,434
+La vente freelance serieuse n'est pas un show.
+
+30
+00:02:35,434 --> 00:02:40,168
+C'est une bonne ecoute, de bonnes questions et un cadre propre.
+
+31
+00:02:40,168 --> 00:02:48,057
+Tu peux vendre sans etre extraverti si tu sais parler du
+probleme du client et proposer une etape claire.
+
+32
+00:02:48,057 --> 00:02:49,257
+Si tu es...
+
+33
+00:02:48,360 --> 00:02:51,557
+Passons maintenant à l’application du module 4.
+
+34
+00:02:51,557 --> 00:02:59,446
+Pour avancer proprement, prépare d’abord les éléments suivants :
+script email, script appel, trame de qualification.
+
+35
+00:02:59,446 --> 00:03:08,560
+Ensuite, suis cette logique de mise en œuvre : preparer une accroche liee a
+un probleme, poser des questions simples, reformuler le...
+
+36
+00:03:08,560 --> 00:03:09,760
+Module 5.
+
+37
+00:03:09,760 --> 00:03:14,186
+Livrer proprement, documenter et gerer les objections terrain.
+
+38
+00:03:14,186 --> 00:03:21,753
+Un freelance serieux se voit dans ses comptes-rendus, sa
+passation et sa facon de repondre aux objections.
+
+39
+00:03:21,753 --> 00:03:28,962
+Meme une petite intervention doit laisser un dossier
+propre, une trace ecrite et une prochaine etape.
+
+40
+00:03:28,962 --> 00:03:30,162
+Si tu es...
+
+41
+00:03:29,190 --> 00:03:32,343
+Passons maintenant à l’application du module 5.
+
+42
+00:03:32,343 --> 00:03:40,594
+Pour avancer proprement, prépare d’abord les éléments suivants :
+checklist d'intervention, compte-rendu, script objections.
+
+43
+00:03:40,594 --> 00:03:49,180
+Ensuite, suis cette logique de mise en œuvre : preparer la mission, noter
+ce que tu observes et fais, envoyer un compte-rendu...
+
+44
+00:03:49,180 --> 00:03:50,380
+Module 6.
+
+45
+00:03:50,380 --> 00:03:55,214
+Tenir dans la duree : routine, reputation et montee en gamme.
+
+46
+00:03:55,214 --> 00:04:03,298
+Une activite rentable depend d'une routine commerciale,
+d'une bonne reputation et d'un service fiable.
+
+47
+00:04:03,298 --> 00:04:12,095
+Le vrai sujet apres le premier client, c'est la repetition :
+relances, suivi, references et offres recurrentes.
+
+48
+00:04:12,095 --> 00:04:13,295
+Si tu es...
+
+49
+00:04:12,480 --> 00:04:15,676
+Passons maintenant à l’application du module 6.
+
+50
+00:04:15,676 --> 00:04:25,401
+Pour avancer proprement, prépare d’abord les éléments suivants : tableau clients
+et prospects, routine hebdo, demande d'avis ou recommandation.
+
+51
+00:04:25,401 --> 00:04:32,270
+Ensuite, suis cette logique de mise en œuvre : planifier
+une routine hebdomadaire, capitaliser les...
+
+52
+00:04:32,270 --> 00:04:33,470
+Module 7.
+
+53
+00:04:33,470 --> 00:04:37,742
+Pack offre, scripts, devis et checklists de demarrage.
+
+54
+00:04:37,742 --> 00:04:45,179
+Ce pack te sert de trousse de demarrage : vente,
+interventions, documentation, devis et suivi.
+
+55
+00:04:45,179 --> 00:04:50,637
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+56
+00:04:50,637 --> 00:04:55,938
+Si tu es débutant, retiens surtout l’idée centrale du module, le...
+
+57
+00:04:55,450 --> 00:04:58,649
+Passons maintenant à l’application du module 7.
+
+58
+00:04:58,649 --> 00:05:08,179
+Pour avancer proprement, prépare d’abord les éléments suivants : Le pack de
+base pour transformer la, formation en activite operationnelle..
+
+59
+00:05:08,179 --> 00:05:15,530
+Ensuite, suis cette logique de mise en œuvre : Le pack de base
+pour transformer la, formation en activite...
+
+60
+00:05:15,530 --> 00:05:22,967
+Tu as maintenant une vue d'ensemble tutorielle de devenir
+technicien informatique freelance sans diplôme en 30 jours.
+
+61
+00:05:22,967 --> 00:05:27,735
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+62
+00:05:27,735 --> 00:05:34,600
+C’est de reprendre chaque module, de préparer les outils, de
+rédiger les documents utiles, puis de tester...

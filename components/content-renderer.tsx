@@ -248,6 +248,9 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
             poster={visuals.posterUrl ?? undefined}
           >
             <source src={module.content_url} />
+            {visuals.slug ? (
+              <track kind="subtitles" src={`/videos/subtitles/${visuals.slug}-overview.vtt`} srcLang="fr" label="Français" default />
+            ) : null}
             Votre navigateur ne supporte pas la lecture vidéo intégrée.
           </video>
         </div>

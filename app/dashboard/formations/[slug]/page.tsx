@@ -147,6 +147,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
                 poster={`/videos/posters/${product.slug}-overview-poster.jpg`}
               >
                 <source src={heroVideo.content_url} type="video/mp4" />
+                <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" default />
                 Votre navigateur ne supporte pas la lecture vidéo.
               </video>
             </div>
