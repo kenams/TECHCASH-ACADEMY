@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { DevLogin } from "@/components/dev-login";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className="antialiased" suppressHydrationWarning>
         <PageTransition>{children}</PageTransition>
+        {process.env.NEXT_PUBLIC_DEV_LOGIN === "true" && <DevLogin />}
       </body>
     </html>
   );

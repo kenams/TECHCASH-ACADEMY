@@ -9,7 +9,18 @@ type ProductHeroProps = {
   detailHref?: string;
 };
 
+function getVideoUrl(slug: string): string {
+  return `/videos/formations/${slug}-overview.mp4`;
+}
+
+function getPosterUrl(slug: string): string {
+  return `/videos/posters/${slug}-overview-poster.jpg`;
+}
+
 export function ProductHero({ product, isOwned = false, detailHref }: ProductHeroProps) {
+  const videoUrl = getVideoUrl(product.slug);
+  const posterUrl = getPosterUrl(product.slug);
+
   return (
     <section className="product-hero">
       <div className="product-hero-copy">
@@ -31,7 +42,7 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
           </div>
           <div className="assurance-item">
             <span className="helper">Formats</span>
-            <strong>Texte, PDF, ressources, vidéo</strong>
+            <strong>Vidéo, PDF, ressources, texte</strong>
           </div>
         </div>
         <div className="cta-row">
@@ -42,22 +53,28 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
             isOwned={isOwned}
             dashboardHref={detailHref}
           />
-          {detailHref && isOwned ? (
-            <a href={detailHref} className="button-secondary">
-              Ouvrir l'espace membre
+          {!isOwned ? (
+            <a href={`/formations/${product.slug}`} className="button-secondary">
+              Voir le programme
             </a>
           ) : null}
         </div>
       </div>
 
       <aside className="product-hero-card">
-        <div className="product-hero-media-wrap">
-          {product.thumbnail_url ? (
-            <img src={product.thumbnail_url} alt={product.title} className="product-hero-media-img" />
-          ) : (
-            <div className="product-hero-media-empty" />
-          )}
-          <div className="product-hero-media-overlay" />
+        {/* Video preview replaces static image */}
+        <div className="product-video-preview">
+          <div className="product-video-preview-label">
+            Aperçu gratuit
+          </div>
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            poster={posterUrl}
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
         </div>
         <div className="product-hero-meta">
           <div className="price-block">
@@ -65,13 +82,13 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
             <strong>{formatPrice(product.price_cents, product.currency)}</strong>
           </div>
           <div className="luxury-note">
-            <strong>Positionnement premium et rassurant</strong>
-            <span>Un cadre propre pour vendre une compétence utile, sans promesses excessives ni tunnel brouillon.</span>
+            <strong>Vidéo tutorielle incluse</strong>
+            <span>Chaque formation inclut une vidéo guidée complète, des modules texte, des PDF et des ressources téléchargeables.</span>
           </div>
           <ul className="list product-hero-points">
-            <li>Accès immédiat à tous les modules publiés</li>
-            <li>Contenus textes, PDF, ressources et futurs ajouts</li>
-            <li>Structurée pour être utile, vendable et exploitable rapidement</li>
+            <li>Vidéo tutorielle guidée avec voix IA</li>
+            <li>Modules texte structurés, PDF et ressources</li>
+            <li>Accès immédiat après paiement</li>
           </ul>
         </div>
       </aside>

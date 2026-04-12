@@ -48,15 +48,23 @@ export function MemberProductCard({ product, isOwned = false, purchaseDate }: Me
           <strong>{isOwned ? "Espace prêt" : "Prise en main rapide"}</strong>
           <p>
             {isOwned
-              ? "Le bon contenu, les bons modules et le bon accès sont déjà en place dans ton espace membre."
-              : "La fiche formation, le checkout et l’espace membre restent alignés dans un parcours simple et propre."}
+              ? "Reprends directement là où tu t'étais arrêté — le contenu est accessible sans détour."
+              : "Chaque module est conçu pour être lu, appliqué et transformé en offre vendable rapidement."}
           </p>
         </div>
 
-        {purchaseDate ? <p className="helper">Achetée le {new Date(purchaseDate).toLocaleDateString("fr-FR")}</p> : null}
-
-        <div className="cta-row member-product-cta-row">
-          <PurchaseCTA productSlug={product.slug} priceCents={product.price_cents} currency={product.currency} isOwned={isOwned} />
+        <div className="cta-row">
+          <PurchaseCTA
+            productSlug={product.slug}
+            priceCents={product.price_cents}
+            currency={product.currency}
+            isOwned={isOwned}
+          />
+          {purchaseDate ? (
+            <span className="helper">
+              Acheté le {new Date(purchaseDate).toLocaleDateString("fr-FR")}
+            </span>
+          ) : null}
         </div>
       </div>
     </article>

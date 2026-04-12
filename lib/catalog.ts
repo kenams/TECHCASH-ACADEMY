@@ -13,7 +13,10 @@ const sampleVideos = {
   mobileApps: "/videos/formations/applications-mobiles-rentables-overview.mp4",
   glpiSupport: "/videos/formations/glpi-support-pme-overview.mp4",
   maintenancePme: "/videos/formations/maintenance-informatique-pme-overview.mp4",
-  appsMetier: "/videos/formations/apps-metier-supabase-overview.mp4"
+  appsMetier: "/videos/formations/apps-metier-supabase-overview.mp4",
+  microsoft365: "/videos/formations/microsoft-365-pme-overview.mp4",
+  cybersecurite: "/videos/formations/cybersecurite-pme-overview.mp4",
+  automatisationN8n: "/videos/formations/automatisation-n8n-overview.mp4"
 } as const;
 
 export const localProducts: ProductRecord[] = [
@@ -160,6 +163,60 @@ export const localProducts: ProductRecord[] = [
     is_featured: false,
     created_at: now,
     updated_at: now
+  },
+  {
+    id: "local-microsoft-365-pme",
+    slug: "microsoft-365-pme",
+    title: "Déployer Microsoft 365 en PME et en faire une offre facturable",
+    subtitle: "Migration, formation utilisateurs et revenu récurrent sur M365",
+    short_description:
+      "Apprendre à déployer Microsoft 365 en PME, structurer une offre de migration reproductible et facturer l'accompagnement utilisateurs.",
+    long_description:
+      "Cette formation structure une offre de déploiement M365 complète : audit de l'existant, migration des boîtes mail, configuration SharePoint et Teams, formation utilisateurs et contrat de support. L'objectif est de transformer chaque déploiement en mission récurrente défendable.",
+    price_cents: 5900,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/microsoft-365-pme-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
+  {
+    id: "local-cybersecurite-pme",
+    slug: "cybersecurite-pme",
+    title: "Sécuriser une PME et vendre une offre cybersécurité accessible",
+    subtitle: "Protéger les postes, les accès et les données sans devenir expert ANSSI",
+    short_description:
+      "Apprendre à auditer, sécuriser et vendre une offre cybersécurité claire à des PME sans jargon et sans sur-ingénierie.",
+    long_description:
+      "Cette formation structure une offre cybersécurité réaliste pour des PME : audit basique, sécurisation des postes et des accès, sauvegarde, sensibilisation des équipes et contrat de suivi. L'objectif est de vendre une protection crédible et défendable sans prétendre être un prestataire grand compte.",
+    price_cents: 6400,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/cybersecurite-pme-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
+  {
+    id: "local-automatisation-n8n",
+    slug: "automatisation-n8n",
+    title: "Automatiser les tâches répétitives avec n8n et en faire une offre",
+    subtitle: "Workflows, intégrations et revenus récurrents sans développement lourd",
+    short_description:
+      "Apprendre à créer des automatisations utiles avec n8n et à les vendre comme offre de service à des PME et des indépendants.",
+    long_description:
+      "Cette formation t'apprend à identifier les tâches automatisables, à créer des workflows n8n clairs et maintenables, et à packager l'automatisation comme une offre de service récurrente. Tu y trouveras des cas d'usage concrets, des connexions aux outils courants et une logique pour facturer l'automatisation de manière défendable.",
+    price_cents: 6100,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/automatisation-n8n-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
   }
 ];
 
@@ -279,14 +336,14 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "freelance-it-30-jours",
     "video-explicative-ia",
-    "VidÃ©o explicative IA : lancer une activitÃ© freelance IT rentable",
-    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "Vidéo tutorielle : lancer une activité freelance IT rentable",
+    "Une vidéo guidée avec voix IA pour comprendre les étapes clés et le résultat concret de cette formation.",
     "video",
-    8,
+    0,
     {
       content_url: sampleVideos.freelanceIt,
       content_body:
-        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+        "## Ce que tu vas apprendre\n\nCette vidéo tutorielle guidée couvre les étapes clés de la formation : méthode, cas concrets et résultat attendu.\n\n### Points clés\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le résultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nRegarde la vidéo en entier, puis enchaîne sur les modules texte et les ressources pour passer à l'application."
     }
   ),
 
@@ -332,7 +389,7 @@ export const localProductModules: ProductModuleRecord[] = [
     "Video explicative : vendre une landing page rentable",
     "Une capsule qui pose la promesse commerciale, la structure attendue et le cadre de livraison d'une landing page client.",
     "video",
-    4,
+    0,
     {
       content_url: sampleVideos.landingPages,
       content_body:
@@ -390,7 +447,7 @@ export const localProductModules: ProductModuleRecord[] = [
     "Video explicative : cadrer et vendre un site client",
     "Une capsule pour comprendre le type de projet, le niveau de sobriété attendu et la logique de livraison de la formation.",
     "video",
-    4,
+    0,
     {
       content_url: sampleVideos.sitesWeb,
       content_body:
@@ -448,7 +505,7 @@ export const localProductModules: ProductModuleRecord[] = [
     "Video explicative : transformer un irritant PME en outil",
     "Une capsule pour voir comment partir d'un besoin support ou GLPI et le traduire en mission concrète et facturable.",
     "video",
-    4,
+    0,
     {
       content_url: sampleVideos.outilsPme,
       content_body:
@@ -506,7 +563,7 @@ export const localProductModules: ProductModuleRecord[] = [
     "Video explicative : cadrer une application mobile rentable",
     "Une capsule pour comprendre le type de MVP visé, la monétisation et le niveau de simplicité recherchée.",
     "video",
-    4,
+    0,
     {
       content_url: sampleVideos.mobileApps,
       content_body:
@@ -582,14 +639,14 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "glpi-support-pme",
     "video-explicative-ia",
-    "VidÃ©o explicative IA : dÃ©ployer GLPI et structurer un support PME",
-    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "Vidéo explicative IA : déployer GLPI et structurer un support PME",
+    "Une vidéo avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le résultat concret de cette formation.",
     "video",
-    6,
+    0,
     {
       content_url: sampleVideos.glpiSupport,
       content_body:
-        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+        "## Comment utiliser cette vidéo\n\nCette vidéo explicative générée en IA te donne une vue rapide de la promesse, des modules et du résultat concret visé par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le résultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaîne sur les modules texte, PDF et ressources pour passer à l'application."
     }
   ),
 
@@ -653,14 +710,14 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "maintenance-informatique-pme",
     "video-explicative-ia",
-    "VidÃ©o explicative IA : vendre une maintenance informatique rÃ©currente",
-    "Une vidÃ©o avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le rÃ©sultat concret de cette formation.",
+    "Vidéo explicative IA : vendre une maintenance informatique récurrente",
+    "Une vidéo avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le résultat concret de cette formation.",
     "video",
-    6,
+    0,
     {
       content_url: sampleVideos.maintenancePme,
       content_body:
-        "## Comment utiliser cette vidÃ©o\n\nCette vidÃ©o explicative gÃ©nÃ©rÃ©e en IA te donne une vue rapide de la promesse, des modules et du rÃ©sultat concret visÃ© par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le rÃ©sultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaÃ®ne sur les modules texte, PDF et ressources pour passer Ã  l'application."
+        "## Comment utiliser cette vidéo\n\nCette vidéo explicative générée en IA te donne une vue rapide de la promesse, des modules et du résultat concret visé par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le résultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaîne sur les modules texte, PDF et ressources pour passer à l'application."
     }
   ),
 
@@ -723,15 +780,267 @@ export const localProductModules: ProductModuleRecord[] = [
   module(
     "apps-metier-supabase",
     "video-explicative-ia",
-    "Video explicative IA : creer une application metier simple avec Supabase",
-    "Une video avec voix IA et visuels explicatifs pour comprendre rapidement la logique, la promesse et le resultat concret de cette formation.",
+    "Vidéo tutorielle : créer une application métier simple avec Supabase",
+    "Une vidéo guidée avec voix IA pour comprendre la logique, les étapes et le résultat concret de cette formation.",
     "video",
-    6,
+    0,
     {
       content_url: sampleVideos.appsMetier,
       content_body:
-        "## Comment utiliser cette video\n\nCette video explicative generee en IA te donne une vue rapide de la promesse, des modules et du resultat concret vise par la formation.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le resultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaine sur les modules texte, PDF et ressources pour passer a l'application."
+        "## Comment utiliser cette vidéo\n\nCette vidéo tutorielle te donne une vue d'ensemble de la formation : la promesse, les modules et le résultat concret visé.\n\n### Ce qu'il faut retenir\n\n- la promesse commerciale de l'offre\n- les modules les plus structurants\n- le résultat concret que tu pourras vendre ou livrer ensuite\n\n### Conseil d'utilisation\n\nCommence par cette vue d'ensemble, puis enchaine sur les modules texte, PDF et ressources pour passer à l'application."
     }
+  ),
+
+  // ─── Microsoft 365 PME ────────────────────────────────────────────────────
+
+  module(
+    "microsoft-365-pme",
+    "video-tutorielle",
+    "Vidéo tutorielle : déployer Microsoft 365 en PME",
+    "Une vidéo guidée pour comprendre la méthode complète : audit, migration, configuration et contrat de support M365.",
+    "video",
+    0,
+    {
+      content_url: sampleVideos.microsoft365,
+      content_body:
+        "## Ce que tu vas apprendre\n\nCette vidéo tutorielle couvre les étapes clés du déploiement Microsoft 365 en PME : de l'audit initial jusqu'à la mise en service et au contrat de suivi.\n\n### Points clés\n\n- audit de l'environnement existant\n- migration des boîtes mail et données\n- configuration Teams, SharePoint et OneDrive\n- formation des utilisateurs et adoption\n- contrat de support et revenu récurrent\n\n### Après la vidéo\n\nParcours les modules texte et les ressources téléchargeables pour mettre en pratique chaque étape."
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "audit-migration",
+    "Audit de l'existant et plan de migration",
+    "Évaluer l'environnement actuel, préparer la migration et éviter les erreurs classiques dès le départ.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Préparer une migration M365 sans surprise\n\nUne migration réussie commence par un audit honnête de l'existant.\n\n### Ce qu'il faut évaluer avant de commencer\n\n- nombre de boîtes mail et leur taille\n- licences existantes et fournisseur actuel\n- données à migrer : mails, fichiers, calendriers, contacts\n- points bloquants : alias, domaines, MFA non configuré\n- personnes clés à impliquer : DG, comptable, assistante de direction\n\n### Plan de migration type\n\n- Semaine 1 : audit, achat licences, vérification DNS\n- Semaine 2 : migration par lot (5 à 10 boîtes par nuit)\n- Semaine 3 : vérification, Teams et SharePoint de base\n- Semaine 4 : formation utilisateurs et bascule complète\n\n### Ce que tu vends vraiment\n\nTu ne vends pas des licences. Tu vends la **tranquillité de la bascule** : pas de perte de données, pas d'interruption, pas de panique le lundi matin."
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "configuration-teams-sharepoint",
+    "Configuration Teams, SharePoint et OneDrive",
+    "Mettre en place les espaces de travail, les droits et les bonnes pratiques de partage pour une PME.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Configurer M365 pour une PME sans sur-ingénierie\n\nLa plupart des PME n'ont pas besoin de 40 canaux Teams ni d'une arborescence SharePoint à 5 niveaux.\n\n### Structure Teams recommandée pour une PME\n\n- 1 équipe principale par département (Général, Commercial, Compta, RH)\n- 3 canaux maximum par équipe au départ\n- Réunions récurrentes configurées dès le départ\n\n### SharePoint et OneDrive\n\n- 1 site SharePoint par département si nécessaire\n- OneDrive pour les documents personnels uniquement\n- Partage externe désactivé par défaut sauf exception validée\n\n### Bonnes pratiques à imposer dès le départ\n\n- pas de fichiers importants dans les messages Teams\n- nommage des fichiers normalisé\n- dossiers d'archivage annuels\n\n> La plupart des problèmes M365 viennent d'une structure mal posée au départ. Prends 2h au début pour éviter 2 ans de désordre."
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "formation-utilisateurs-adoption",
+    "Formation utilisateurs et adoption de l'outil",
+    "Faire adopter M365 sans résistance : session de formation, guide utilisateur et suivi post-migration.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Faire adopter M365 sans friction\n\nLa technique est souvent la partie la plus simple. L'adoption, c'est le vrai défi.\n\n### Session de formation type (2h)\n\n- 30 min : accès, mots de passe, MFA\n- 30 min : Outlook et calendrier partagé\n- 30 min : Teams et réunions\n- 30 min : OneDrive et partage de fichiers\n\n### Ce qui marche\n\n- format en petits groupes de 5 à 8 personnes\n- support visuel simple avec captures d'écran\n- guide utilisateur d'une page par outil\n- suivi à J+7 et J+30 pour répondre aux questions\n\n### Livrable attendu\n\n- guide utilisateur PDF personnalisé\n- fiche d'accès rapide Teams/Outlook/OneDrive\n- compte-rendu de la session\n- recommandations post-migration"
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "contrat-support-m365",
+    "Contrat de support et revenu récurrent M365",
+    "Transformer chaque déploiement en mission récurrente avec un contrat de support mensuel défendable.",
+    "text",
+    4,
+    {
+      content_body:
+        "## De la migration au contrat récurrent\n\nChaque migration réussie est une porte d'entrée vers un contrat mensuel.\n\n### Ce que tu peux facturer après la migration\n\n- gestion des licences et des nouvelles arrivées/départs\n- support utilisateurs sur Teams, Outlook, OneDrive\n- monitoring de base et sécurité (MFA, alertes)\n- point trimestriel et recommandations d'évolution\n\n### Forfait type\n\n- PME jusqu'à 15 postes : 150 à 300 €/mois\n- PME de 15 à 50 postes : 300 à 600 €/mois\n- inclure : 2h de support incluses, facturation heure sup au-delà\n\n### Argument commercial\n\n\"Vous avez investi dans les licences M365. Je m'assure que vos équipes les utilisent bien, que les accès sont sécurisés et que vous tirez vraiment parti de l'outil au fil du temps.\""
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "pack-migration-m365",
+    "Pack migration et guide utilisateur M365",
+    "Tous les modèles pour préparer, exécuter et documenter une migration M365 professionnelle.",
+    "resource",
+    5,
+    {
+      content_body:
+        "## Contenu du pack M365\n\n- checklist de pré-migration (DNS, licences, boîtes)\n- modèle de planning de migration\n- guide utilisateur PDF personnalisable (Outlook, Teams, OneDrive)\n- trame de contrat de support mensuel\n- modèle de rapport post-migration\n\nUtilise ces ressources pour standardiser chaque mission M365 et gagner en crédibilité dès le premier rendez-vous."
+    }
+  ),
+  module(
+    "microsoft-365-pme",
+    "intune-entra-a-venir",
+    "Intune, Entra ID et gestion avancée des appareils",
+    "Ce module couvrira la gestion des appareils, les politiques de conformité et l'administration avancée M365.",
+    "coming_soon",
+    6
+  ),
+
+  // ─── Cybersécurité PME ────────────────────────────────────────────────────
+
+  module(
+    "cybersecurite-pme",
+    "video-tutorielle",
+    "Vidéo tutorielle : sécuriser une PME et vendre une offre cyber",
+    "Une vidéo guidée pour comprendre la méthode d'audit, les protections essentielles et comment packager une offre cybersécurité accessible.",
+    "video",
+    0,
+    {
+      content_url: sampleVideos.cybersecurite,
+      content_body:
+        "## Ce que tu vas apprendre\n\nCette vidéo tutorielle couvre les étapes essentielles de la cybersécurité en PME : de l'audit initial jusqu'à la vente d'une offre de protection récurrente.\n\n### Points clés\n\n- audit cybersécurité accessible pour une PME\n- sécurisation des postes, accès et sauvegardes\n- sensibilisation des équipes aux risques courants\n- construction d'une offre de protection facturable\n- suivi et renouvellement du contrat\n\n### Après la vidéo\n\nParcours les modules texte pour appliquer chaque point avec tes clients."
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "audit-cyber-pme",
+    "Réaliser un audit cybersécurité simple pour une PME",
+    "Évaluer le niveau de protection existant, identifier les risques prioritaires et présenter les résultats au dirigeant.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Auditer une PME sans être expert certifié\n\nUn audit cybersécurité basique peut être réalisé par tout technicien rigoureux.\n\n### Les 6 points à évaluer\n\n- **Mises à jour** : Windows, logiciels critiques, antivirus à jour ?\n- **Mots de passe** : politique de mots de passe, comptes partagés, MFA ?\n- **Sauvegardes** : existe-t-il ? Testé récemment ? Hors site ?\n- **Accès distants** : VPN ou RDP exposé ? Accès avec quel contrôle ?\n- **Emails** : SPF, DKIM, DMARC configurés ?\n- **Sensibilisation** : les équipes savent-elles reconnaître un phishing ?\n\n### Format de présentation au dirigeant\n\n- feu tricolore par domaine (vert / orange / rouge)\n- 3 risques prioritaires avec impact business estimé\n- recommandations concrètes avec coût estimé\n- plan d'action sur 30 / 90 jours\n\n> Ne cherche pas à tout corriger le jour 1. Montre que tu comprends les risques et que tu peux les traiter progressivement."
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "securisation-postes-acces",
+    "Sécurisation des postes, des accès et des sauvegardes",
+    "Les actions concrètes pour protéger une PME sans budget illimité ni équipement entreprise.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Sécuriser une PME avec des moyens raisonnables\n\nLa plupart des incidents PME viennent de 3 causes : mots de passe faibles, sauvegardes absentes, mises à jour non faites.\n\n### Postes de travail\n\n- Windows Update activé et suivi\n- EDR ou antivirus professionnel (pas Windows Defender seul)\n- chiffrement disque (BitLocker)\n- compte utilisateur non administrateur en usage quotidien\n\n### Accès et identités\n\n- MFA sur les comptes Microsoft 365, Google Workspace, VPN\n- gestionnaire de mots de passe recommandé\n- suppression des comptes des anciens collaborateurs dès le départ\n- pas de mots de passe partagés entre plusieurs personnes\n\n### Sauvegardes\n\n- règle 3-2-1 expliquée simplement : 3 copies, 2 supports, 1 hors site\n- test de restauration au moins une fois par trimestre\n- sauvegarde des données critiques : comptabilité, clients, contrats\n\n> Une PME bien protégée sur ces 3 points résiste à 80% des incidents courants."
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "sensibilisation-equipes",
+    "Sensibilisation des équipes aux risques courants",
+    "Former les collaborateurs aux attaques les plus fréquentes sans les noyer dans un cours de sécurité.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Former les équipes sans ennuyer personne\n\nLa sensibilisation réussit quand elle part du concret et du quotidien.\n\n### Session type (1h30)\n\n- 20 min : phishing — comment reconnaître un mail frauduleux\n- 20 min : mots de passe — pourquoi et comment bien les gérer\n- 20 min : navigation et téléchargements — les pièges les plus courants\n- 30 min : simulation d'incident — que faire si ça arrive ?\n\n### Ce qui marche\n\n- exemples réels d'entreprises similaires touchées\n- test de phishing simulé avant et après la session\n- fiche récapitulative d'une page\n- canal de signalement clair pour les incidents suspects\n\n### Livrable\n\n- support de formation simplifié\n- fiche de bons réflexes\n- procédure d'alerte en cas d'incident"
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "offre-cyber-recurring",
+    "Packager et vendre une offre cyber récurrente",
+    "Construire une offre de protection mensuelle crédible et la défendre face à un dirigeant de PME.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Vendre la cybersécurité sans effrayer\n\nLe dirigeant PME a peur des mots techniques et du budget. Parle en risques et en tranquillité.\n\n### Offre de base défendable\n\n- audit initial (facturation unique : 300 à 600 €)\n- suivi mensuel : vérification des sauvegardes, mises à jour, alertes antivirus\n- sensibilisation annuelle des équipes\n- rapport trimestriel de sécurité\n- prix : 100 à 250 €/mois selon taille\n\n### Argument commercial\n\n\"Un incident ransomware coûte en moyenne 10 000 € à une PME entre la perte de données, le temps d'arrêt et la récupération. Mon offre à 150 €/mois, c'est l'assurance de ne pas en arriver là.\"\n\n### Renouvellement\n\n- chaque incident signalé et traité renforce le contrat\n- rapport annuel de synthèse pour justifier la valeur\n- proposition d'évolution basée sur les risques résiduels"
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "pack-audit-cyber",
+    "Pack audit cybersécurité et trame de contrat",
+    "Les ressources pour réaliser un audit professionnel et vendre un contrat de protection récurrent.",
+    "resource",
+    5,
+    {
+      content_body:
+        "## Contenu du pack cybersécurité\n\n- grille d'audit cybersécurité PME\n- modèle de rapport feu tricolore pour le dirigeant\n- trame de contrat de protection mensuelle\n- checklist de sécurisation poste par poste\n- guide de sensibilisation équipe (support de formation)\n\nUtilise ces ressources pour standardiser tes missions cyber et prouver ton sérieux dès le premier rendez-vous."
+    }
+  ),
+  module(
+    "cybersecurite-pme",
+    "pentest-conformite-a-venir",
+    "Pentest basique, conformité RGPD et gestion des incidents",
+    "Ce module couvrira les tests d'intrusion simples, les obligations RGPD et la procédure en cas d'incident.",
+    "coming_soon",
+    6
+  ),
+
+  // ─── Automatisation n8n ───────────────────────────────────────────────────
+
+  module(
+    "automatisation-n8n",
+    "video-tutorielle",
+    "Vidéo tutorielle : automatiser et vendre des workflows n8n",
+    "Une vidéo guidée pour comprendre n8n, identifier les automatisations rentables et les packager en offre de service.",
+    "video",
+    0,
+    {
+      content_url: sampleVideos.automatisationN8n,
+      content_body:
+        "## Ce que tu vas apprendre\n\nCette vidéo tutorielle couvre les bases de n8n et la logique pour en faire une offre de service : de l'identification des tâches automatisables jusqu'à la facturation du workflow.\n\n### Points clés\n\n- comprendre n8n sans être développeur\n- identifier les automatisations les plus rentables\n- créer un workflow de démonstration convaincant\n- packager l'automatisation comme offre récurrente\n- vendre et maintenir des workflows pour des PME\n\n### Après la vidéo\n\nParcours les modules texte pour appliquer chaque étape avec tes premiers clients."
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "comprendre-n8n",
+    "Comprendre n8n et identifier les tâches automatisables",
+    "Découvrir n8n, ses concepts clés et les cas d'usage les plus rentables à proposer à des PME.",
+    "text",
+    1,
+    {
+      content_body:
+        "## n8n en 10 minutes\n\nn8n est un outil d'automatisation open-source que tu peux héberger toi-même ou utiliser en cloud.\n\n### Concepts essentiels\n\n- **Workflow** : une suite d'étapes automatisées déclenchées par un événement\n- **Noeud** : chaque action (envoyer un mail, créer une ligne, appeler une API)\n- **Trigger** : l'événement qui démarre le workflow (webhook, planification, formulaire...)\n- **Credentials** : les connexions aux services externes\n\n### Les automatisations les plus rentables pour une PME\n\n- création automatique de facture ou devis depuis un formulaire\n- notification Slack/Teams quand un ticket GLPI est ouvert\n- synchronisation CRM vers tableur ou base Supabase\n- rapport hebdomadaire envoyé automatiquement par mail\n- onboarding collaborateur automatisé\n\n### Ce qu'il faut éviter\n\n- promettre des automatisations trop complexes dès le début\n- utiliser n8n pour tout ce qui a déjà un outil natif simple\n- créer des workflows sans documentation de maintenance"
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "creer-workflow-utile",
+    "Créer un workflow utile et le tester",
+    "Construire un premier workflow concret, le tester, le déboguer et le livrer à un client.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Créer ton premier workflow vendable\n\nCommence toujours par un workflow simple avec un résultat visible.\n\n### Exemple : alerte email quand un formulaire est rempli\n\n- Trigger : Webhook ou formulaire Typeform / Tally\n- Action 1 : envoyer un email de confirmation au client\n- Action 2 : créer une ligne dans Google Sheets ou Airtable\n- Action 3 : envoyer une notification interne sur Slack ou Teams\n\n### Méthode de construction\n\n- commence par le résultat attendu, pas par les outils\n- construis noeud par noeud en testant chaque étape\n- utilise les données d'exemple de n8n pour tester sans vrai trafic\n- nomme chaque noeud clairement pour la maintenance\n\n### Avant de livrer\n\n- tester le workflow complet avec de vraies données\n- documenter chaque connexion et credential nécessaire\n- prévoir ce qui se passe en cas d'erreur (notifications, reprise)\n- former le client à surveiller les exécutions"
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "hebergement-securite",
+    "Hébergement n8n, sécurité et maintenance",
+    "Installer n8n sur un VPS, sécuriser l'accès et proposer un contrat de maintenance des workflows.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Héberger n8n correctement\n\nSelf-hosted n8n = tu contrôles tout mais tu en es responsable.\n\n### Installation recommandée\n\n- VPS 2 vCPU / 4 Go RAM minimum (Hetzner, OVH, Infomaniak)\n- Docker + Traefik ou Nginx pour le reverse proxy\n- HTTPS obligatoire avec Let's Encrypt\n- Accès protégé par mot de passe fort et si possible IP whitelist\n\n### Sécurité des credentials\n\n- ne jamais stocker les credentials clients dans les noeuds en clair\n- utiliser les variables d'environnement pour les secrets\n- séparer les environnements client si possible\n\n### Contrat de maintenance\n\n- vérification mensuelle des workflows actifs\n- alertes en cas d'échec d'exécution\n- mise à jour n8n trimestrielle\n- rapport mensuel des automatisations actives et leur statut\n- prix type : 80 à 200 €/mois selon volume de workflows"
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "packager-offre-automatisation",
+    "Packager et vendre une offre d'automatisation",
+    "Transformer un workflow en offre de service claire, avec tarification, contrat et arguments de vente.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Vendre l'automatisation sans la sur-vendre\n\nL'automatisation se vend sur le gain de temps et la réduction des erreurs, pas sur la technique.\n\n### Les offres qui se signent\n\n- **Offre audit** (ponctuelle) : cartographie des tâches automatisables — 150 à 300 €\n- **Offre workflow** (projet) : création d'un workflow livré et documenté — 300 à 800 €\n- **Offre récurrente** : hébergement + maintenance + évolutions — 80 à 200 €/mois\n\n### Argument commercial\n\n\"Vous perdez X heures par semaine sur cette tâche répétitive. En automatisant ça avec n8n, vous récupérez du temps et supprimez les erreurs de saisie. Le ROI est visible dès le premier mois.\"\n\n### Ce qu'il faut documenter pour chaque client\n\n- liste des workflows actifs\n- services connectés et credentials\n- fréquence d'exécution\n- point de contact en cas de problème\n- conditions de modification ou extension"
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "templates-workflows",
+    "Templates de workflows et guide de démarrage",
+    "Des workflows prêts à utiliser et un guide pour démarrer rapidement avec n8n sur les cas les plus courants.",
+    "resource",
+    5,
+    {
+      content_body:
+        "## Contenu du pack n8n\n\n- 5 templates de workflows courants (notification, rapport, formulaire, sync CRM, onboarding)\n- guide d'installation n8n sur VPS (Docker + HTTPS)\n- trame de contrat de maintenance workflows\n- checklist de livraison workflow client\n- modèle de documentation workflow\n\nUtilise ces templates comme base pour tes premières missions et adapte-les au contexte de chaque client."
+    }
+  ),
+  module(
+    "automatisation-n8n",
+    "make-zapier-comparaison-a-venir",
+    "Make, Zapier et intégrations avancées",
+    "Ce module couvrira la comparaison n8n / Make / Zapier et les intégrations plus complexes avec des APIs externes.",
+    "coming_soon",
+    6
   )
 ];
 
@@ -819,110 +1128,128 @@ const productSupplements: Record<string, ProductSupplement> = {
     bestFor: [
       "profils support ou sysadmin qui veulent professionnaliser une offre GLPI",
       "freelances IT qui vendent du support à des PME",
-      "personnes qui veulent transformer un besoin de tickets en mission claire"
+      "personnes qui veulent transformer un besoin de support en offre IT structurée"
     ],
     outcomes: [
-      "un cadrage GLPI vendable",
-      "un plan de déploiement simple et crédible",
-      "une logique de reporting et d'adoption côté client"
+      "un déploiement GLPI propre et maintenable",
+      "un process de tickets et SLA lisible",
+      "une offre support vendable à des PME"
     ],
     pitch:
-      "La formation pour transformer GLPI en vraie offre de support interne, utile au client et simple à faire adopter."
+      "La formation pour déployer GLPI sérieusement et en faire une offre facturable, pas juste un outil interne."
   },
   "maintenance-informatique-pme": {
     salesPriority: 2,
     bestFor: [
-      "techniciens IT qui veulent créer un revenu récurrent",
-      "freelances support qui veulent sortir du dépannage ponctuel",
-      "profils terrain qui veulent mieux cadrer leurs forfaits"
+      "techniciens freelance qui veulent un revenu récurrent stable",
+      "profils support qui veulent vendre du suivi PME",
+      "indépendants IT qui veulent sortir du modèle 100% à la demande"
     ],
     outcomes: [
-      "une offre de maintenance plus lisible",
-      "un onboarding client plus propre",
-      "des routines de reporting et de renouvellement"
+      "une offre de maintenance mensuelle claire",
+      "un process d'onboarding et de renouvellement",
+      "des outils pour livrer et reporter proprement"
     ],
     pitch:
-      "Le cadre pour vendre et livrer une maintenance PME rentable, sans promesse floue ni support mal borné."
+      "La formation pour construire une offre de maintenance récurrente sérieuse, défendable et rentable face à des PME."
   },
   "apps-metier-supabase": {
     bestFor: [
-      "profils produit ou dev qui veulent livrer des apps métier simples",
-      "freelances qui travaillent avec Supabase et veulent standardiser leur delivery",
-      "créateurs qui veulent vendre autre chose qu'un site vitrine"
+      "freelances qui veulent livrer des apps métier crédibles",
+      "profils tech qui veulent structurer des bases de données et des rôles proprement",
+      "personnes qui veulent facturer du développement d'outil interne"
     ],
     outcomes: [
-      "un cadrage MVP plus propre",
-      "une base Supabase bien structurée",
-      "une logique de livraison et de maintenance plus vendable"
+      "une architecture Supabase propre et maintenable",
+      "un process de cadrage et livraison d'app métier",
+      "des ressources pour vendre et maintenir des apps simples"
     ],
     pitch:
-      "Une formation orientée delivery pour produire des applications métier utiles avec Supabase, sans architecture trop lourde."
+      "La formation pour livrer des applications métier crédibles avec Supabase, sans surarchitecture ni délais excessifs."
+  },
+  "microsoft-365-pme": {
+    bestFor: [
+      "techniciens IT qui veulent vendre du déploiement Microsoft 365",
+      "freelances qui accompagnent des PME dans leur migration cloud",
+      "profils support qui veulent structurer une offre M365 reproductible"
+    ],
+    outcomes: [
+      "un process de déploiement M365 propre",
+      "une offre de migration et formation utilisateurs",
+      "des ressources pour vendre et maintenir des environnements M365 en PME"
+    ],
+    pitch:
+      "La formation pour déployer Microsoft 365 en PME de manière structurée et en faire une offre facturable répétable."
+  },
+  "cybersecurite-pme": {
+    bestFor: [
+      "techniciens IT qui veulent ajouter une offre cybersécurité à leur catalogue",
+      "freelances qui veulent vendre une protection PME crédible sans être expert certifié",
+      "profils support qui veulent transformer un audit en mission récurrente"
+    ],
+    outcomes: [
+      "une méthode d'audit cybersécurité accessible pour les PME",
+      "un pack de sécurisation postes, accès et sauvegardes",
+      "une offre de protection mensuelle défendable et facturable"
+    ],
+    pitch:
+      "La formation pour sécuriser une PME de manière réaliste et en faire une offre récurrente crédible sans sur-ingénierie."
+  },
+  "automatisation-n8n": {
+    bestFor: [
+      "freelances qui veulent ajouter l'automatisation à leur catalogue de services",
+      "profils IT qui veulent vendre des workflows sans développement lourd",
+      "indépendants qui cherchent à créer un revenu récurrent sur la maintenance de workflows"
+    ],
+    outcomes: [
+      "une maîtrise de n8n pour créer des workflows vendables",
+      "une offre d'automatisation packagée et facturable",
+      "des templates réutilisables pour démarrer vite avec des clients"
+    ],
+    pitch:
+      "La formation pour créer des automatisations utiles avec n8n et les transformer en offre de service récurrente pour des PME."
   }
-} as const;
+};
 
-export function getLocalActiveProducts() {
-  return localProducts
-    .filter((product) => product.is_active)
-    .sort((a, b) => Number(b.is_featured) - Number(a.is_featured));
-}
+// ─── Exported catalog helpers ─────────────────────────────────────────────────
 
-export function getLocalFeaturedProduct() {
-  return getLocalActiveProducts().find((product) => product.is_featured) || getLocalActiveProducts()[0] || null;
-}
-
-export function getLocalProductBySlug(slug: string) {
+export function getLocalProductBySlug(slug: string): ProductRecord | null {
   return localProducts.find((product) => product.slug === slug) || null;
 }
 
-export function getLocalProductById(productId: string) {
-  return localProducts.find((product) => product.id === productId) || null;
+export function getLocalProductById(id: string): ProductRecord | null {
+  return localProducts.find((product) => product.id === id) || null;
 }
 
-export function getLocalModulesByProductId(productId: string) {
-  return localProductModules
-    .filter((module) => module.product_id === productId)
-    .sort((a, b) => a.sort_order - b.sort_order);
+export function getLocalActiveProducts(): ProductRecord[] {
+  return localProducts.filter((product) => product.is_active);
 }
 
-export function getLocalProductWithModulesBySlug(slug: string): ProductWithModules | null {
-  const product = getLocalProductBySlug(slug);
-  if (!product) {
-    return null;
-  }
-
-  return {
-    ...product,
-    modules: getLocalModulesByProductId(product.id)
-  };
+export function getLocalModulesByProductId(productId: string): ProductModuleRecord[] {
+  return localProductModules.filter((module) => module.product_id === productId);
 }
 
-export function findLocalProductByPurchaseName(productName: string) {
-  return (
-    localProducts.find((product) => product.title === productName) ||
-    localProducts.find((product) => product.slug === productName) ||
-    null
-  );
+export function getProductSupplement(slug: string): ProductSupplement | null {
+  return productSupplements[slug] || null;
 }
 
-export function getProductSupplement(slug: string) {
-  return productSupplements[slug as keyof typeof productSupplements] || null;
+export function getRelatedLocalProducts(currentSlug: string, limit = 2): ProductRecord[] {
+  return localProducts.filter((product) => product.slug !== currentSlug && product.is_active).slice(0, limit);
 }
 
-export function getPriorityOfferSlugs() {
+export function getPriorityOfferSlugs(): string[] {
   return Object.entries(productSupplements)
-    .filter(([, supplement]) => typeof supplement.salesPriority === "number")
-    .sort((a, b) => (a[1].salesPriority || 99) - (b[1].salesPriority || 99))
+    .filter(([, supplement]) => supplement.salesPriority !== undefined)
+    .sort(([, a], [, b]) => (a.salesPriority ?? 99) - (b.salesPriority ?? 99))
     .map(([slug]) => slug);
 }
 
-export function getRelatedLocalProducts(slug: string, limit = 2) {
-  const featured = getLocalFeaturedProduct();
-  const ordered = getLocalActiveProducts().filter((product) => product.slug !== slug);
-
-  if (featured && featured.slug !== slug) {
-    const withoutFeatured = ordered.filter((product) => product.slug !== featured.slug);
-    return [featured, ...withoutFeatured].slice(0, limit);
-  }
-
-  return ordered.slice(0, limit);
+export function findLocalProductByPurchaseName(productName: string): ProductRecord | null {
+  if (!productName) return null;
+  const normalized = productName.trim().toLowerCase();
+  return (
+    localProducts.find((product) => product.title.trim().toLowerCase() === normalized) ||
+    localProducts.find((product) => normalized.includes(product.slug.replace(/-/g, " "))) ||
+    null
+  );
 }
