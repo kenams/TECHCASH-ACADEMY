@@ -153,7 +153,25 @@ def generate_subtitles_for(slug: str, slides: list[dict]) -> None:
     vtt_path = PUBLIC_SUBTITLES_DIR / f"{slug}-overview.vtt"
     vtt_path.write_text("\n".join(vtt_lines), encoding="utf-8")
 
-    print(f"  {slug}: {len(all_cues)} cues -> {srt_path.name} + {vtt_path.name}")
+    # --- Chapter VTT ---
+    # One chapter per slide (label from slide plan)
+    chap_lines: list[str] = ["WEBVTT", ""]
+    cumulative_chap = 0.0
+    for i, slide in enumerate(slides, start=1):
+        audio_path = workdir / f"audio-{i}.mp3"
+        dur = get_audio_duration(audio_path)
+        chap_start = cumulative_chap
+        chap_end = cumulative_chap + dur
+        label = slide.get("label") or slide.get("title") or f"Partie {i}"
+        chap_lines.append(f"{fmt_vtt(chap_start)} --> {fmt_vtt(chap_end)}")
+        chap_lines.append(label)
+        chap_lines.append("")
+        cumulative_chap = chap_end
+
+    chapters_path = PUBLIC_SUBTITLES_DIR / f"{slug}-chapters.vtt"
+    chapters_path.write_text("\n".join(chap_lines), encoding="utf-8")
+
+    print(f"  {slug}: {len(all_cues)} cues -> {srt_path.name} + {vtt_path.name} + {chapters_path.name}")
 
 
 def main() -> None:

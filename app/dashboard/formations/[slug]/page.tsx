@@ -148,6 +148,7 @@ export default async function MemberProductPage({ params }: MemberProductPagePro
               >
                 <source src={heroVideo.content_url} type="video/mp4" />
                 <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" default />
+                <track kind="chapters" src={`/videos/subtitles/${product.slug}-chapters.vtt`} srcLang="fr" />
                 Votre navigateur ne supporte pas la lecture vidéo.
               </video>
             </div>
