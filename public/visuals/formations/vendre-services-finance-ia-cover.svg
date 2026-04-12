@@ -1,0 +1,28 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="36" fill="#07101F"/>
+  <rect x="38" y="38" width="1124" height="644" rx="28" fill="url(#bg4)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="110" y="130" width="420" height="260" rx="28" fill="#0F182C" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="150" y="172" width="130" height="18" rx="9" fill="#37C894"/>
+  <rect x="150" y="216" width="306" height="16" rx="8" fill="#22344A"/>
+  <rect x="150" y="250" width="278" height="16" rx="8" fill="#22344A"/>
+  <rect x="150" y="308" width="126" height="54" rx="18" fill="rgba(55,200,148,0.16)" stroke="rgba(55,200,148,0.32)"/>
+  <text x="182" y="342" fill="#8CE7BE" font-family="Arial, sans-serif" font-size="20" font-weight="700">RAPPORT IA</text>
+  <path d="M664 520L756 430L842 458L924 356L1032 296" stroke="#37C894" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1028" cy="294" r="10" fill="#37C894"/>
+  <circle cx="924" cy="356" r="10" fill="#37C894"/>
+  <circle cx="842" cy="458" r="10" fill="#37C894"/>
+  <circle cx="756" cy="430" r="10" fill="#37C894"/>
+  <text x="642" y="108" fill="#7FE0B8" font-family="Arial, sans-serif" font-size="22" letter-spacing="8">FINANCE &amp; IA</text>
+  <text x="642" y="184" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">VENDRE UN</text>
+  <text x="642" y="244" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">SERVICE DE</text>
+  <text x="642" y="304" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">CONSEIL IA</text>
+  <text x="642" y="380" fill="#AAB6CD" font-family="Arial, sans-serif" font-size="24">Offre, prospection, reporting et revenu récurrent</text>
+  <rect x="642" y="454" width="246" height="44" rx="22" fill="rgba(55,200,148,0.15)" stroke="rgba(55,200,148,0.35)"/>
+  <text x="682" y="483" fill="#A0EACB" font-family="Arial, sans-serif" font-size="20" font-weight="700">POSITIONNEMENT PREMIUM</text>
+  <defs>
+    <linearGradient id="bg4" x1="72" y1="64" x2="1102" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1A2A"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+  </defs>
+</svg>

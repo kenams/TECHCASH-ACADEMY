@@ -1,0 +1,29 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="36" fill="#07101F"/>
+  <rect x="38" y="38" width="1124" height="644" rx="28" fill="url(#bg1)" stroke="rgba(255,255,255,0.08)"/>
+  <path d="M96 554L240 478L360 512L502 360L620 398L748 250L882 312L1028 166" stroke="#DAB15F" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g opacity="0.5">
+    <rect x="128" y="180" width="24" height="214" rx="12" fill="#244A7A"/>
+    <rect x="182" y="134" width="24" height="260" rx="12" fill="#2B5E9A"/>
+    <rect x="236" y="210" width="24" height="184" rx="12" fill="#244A7A"/>
+    <rect x="290" y="98" width="24" height="296" rx="12" fill="#3A75B8"/>
+  </g>
+  <circle cx="956" cy="174" r="82" fill="url(#glow1)" fill-opacity="0.6"/>
+  <text x="742" y="112" fill="#DAB15F" font-family="Arial, sans-serif" font-size="22" letter-spacing="8">TRADING &amp; IA</text>
+  <text x="742" y="188" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="54" font-weight="700">TRADER AVEC</text>
+  <text x="742" y="252" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="54" font-weight="700">L'IA SANS</text>
+  <text x="742" y="316" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="54" font-weight="700">SE RUINER</text>
+  <text x="742" y="386" fill="#AAB6CD" font-family="Arial, sans-serif" font-size="24">Routine, risque et lecture de marché assistée</text>
+  <rect x="742" y="454" width="164" height="44" rx="22" fill="rgba(218,177,95,0.18)" stroke="rgba(218,177,95,0.42)"/>
+  <text x="778" y="483" fill="#E6C57E" font-family="Arial, sans-serif" font-size="20" font-weight="700">DÉBUTANT</text>
+  <defs>
+    <linearGradient id="bg1" x1="64" y1="64" x2="1098" y2="656" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1A30"/>
+      <stop offset="1" stop-color="#091321"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(956 174) rotate(90) scale(82)">
+      <stop stop-color="#4F88E3"/>
+      <stop offset="1" stop-color="#4F88E3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

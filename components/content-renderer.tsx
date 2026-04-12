@@ -1,16 +1,35 @@
+"use client";
+
+import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
+import { ModuleProgressTracker } from "@/components/module-progress-tracker";
 import type { ProductModuleRecord } from "@/lib/types";
 
 type ContentRendererProps = {
   module: ProductModuleRecord;
+  productSlug: string;
+  isSeen: boolean;
+  onSeenToggle: (moduleSlug: string) => void;
+  previousModule?: {
+    slug: string;
+    title: string;
+  } | null;
+  nextModule?: {
+    slug: string;
+    title: string;
+  } | null;
+  readTimeMinutes?: number | null;
 };
 
 type VideoVisualSet = {
   slug: string | null;
   posterUrl: string | null;
-  coverUrl: string | null;
-  storyUrls: string[];
 };
+
+type InlineNode =
+  | { type: "text"; value: string }
+  | { type: "bold"; value: string }
+  | { type: "code"; value: string };
 
 function isDirectVideoFile(url: string) {
   return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
@@ -42,30 +61,20 @@ function getEmbedUrl(url: string): string | null {
 
 function getVideoVisuals(url: string | null): VideoVisualSet {
   if (!url) {
-    return { slug: null, posterUrl: null, coverUrl: null, storyUrls: [] };
+    return { slug: null, posterUrl: null };
   }
 
   const match = url.match(/\/videos\/formations\/(.+)-overview\.(mp4|webm|ogg)(\?.*)?$/i);
   if (!match) {
-    return { slug: null, posterUrl: null, coverUrl: null, storyUrls: [] };
+    return { slug: null, posterUrl: null };
   }
 
   const slug = match[1];
   return {
     slug,
-    posterUrl: `/videos/posters/${slug}-overview-poster.jpg`,
-    coverUrl: `/visuals/formations/${slug}-cover.svg`,
-    storyUrls: [
-      `/videos/stills/${slug}-overview-story-1.jpg`,
-      `/videos/stills/${slug}-overview-story-2.jpg`
-    ]
+    posterUrl: `/videos/posters/${slug}-overview-poster.jpg`
   };
 }
-
-type InlineNode =
-  | { type: "text"; value: string }
-  | { type: "bold"; value: string }
-  | { type: "code"; value: string };
 
 function parseInline(raw: string): InlineNode[] {
   const nodes: InlineNode[] = [];
@@ -194,7 +203,48 @@ function MarkdownBody({ body }: { body: string }) {
   );
 }
 
-function TextModule({ module }: { module: ProductModuleRecord }) {
+function ModuleFooter({
+  isSeen,
+  onSeenToggle,
+  module,
+  previousModule,
+  nextModule,
+  readTimeMinutes
+}: {
+  isSeen: boolean;
+  onSeenToggle: (moduleSlug: string) => void;
+  module: ProductModuleRecord;
+  previousModule?: { slug: string; title: string } | null;
+  nextModule?: { slug: string; title: string } | null;
+  readTimeMinutes?: number | null;
+}) {
+  return (
+    <div className="content-module-footer">
+      <div className="content-module-footer-meta">
+        {readTimeMinutes ? <span className="module-read-time">~{readTimeMinutes} min de lecture</span> : null}
+        {module.content_type !== "coming_soon" ? (
+          <ModuleProgressTracker seen={isSeen} onToggle={() => onSeenToggle(module.slug)} />
+        ) : null}
+      </div>
+      <div className="content-module-nav">
+        {previousModule ? (
+          <Link href={`#module-${previousModule.slug}`} className="content-module-nav-link">
+            ← {previousModule.title}
+          </Link>
+        ) : <span />}
+        {nextModule ? (
+          <Link href={`#module-${nextModule.slug}`} className="content-module-nav-link">
+            {nextModule.title} →
+          </Link>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function TextModule(props: ContentRendererProps) {
+  const { module } = props;
+
   return (
     <article className="content-card">
       <div className="content-card-head">
@@ -203,13 +253,15 @@ function TextModule({ module }: { module: ProductModuleRecord }) {
       </div>
       <p className="content-card-description">{module.description}</p>
       {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+      <ModuleFooter {...props} />
     </article>
   );
 }
 
-function VideoModule({ module }: { module: ProductModuleRecord }) {
+function VideoModule(props: ContentRendererProps) {
+  const { module, isSeen, onSeenToggle } = props;
   const visuals = getVideoVisuals(module.content_url);
-  const videoBadge = visuals.slug ? "Vidéo IA" : "Vidéo";
+  const videoBadge = visuals.slug ? "Vidéo tutorielle" : "Vidéo";
 
   if (!module.content_url) {
     return (
@@ -223,6 +275,7 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
         <div className="video-placeholder">
           <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
         </div>
+        <ModuleFooter {...props} />
       </article>
     );
   }
@@ -246,6 +299,11 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
             preload="metadata"
             playsInline
             poster={visuals.posterUrl ?? undefined}
+            onEnded={() => {
+              if (!isSeen) {
+                onSeenToggle(module.slug);
+              }
+            }}
           >
             <source src={module.content_url} />
             {visuals.slug ? (
@@ -258,6 +316,7 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           </video>
         </div>
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+        <ModuleFooter {...props} />
       </article>
     );
   }
@@ -287,6 +346,7 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           </div>
         </div>
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+        <ModuleFooter {...props} />
       </article>
     );
   }
@@ -305,17 +365,20 @@ function VideoModule({ module }: { module: ProductModuleRecord }) {
           Voir la vidéo
         </a>
       </div>
+      <ModuleFooter {...props} />
     </article>
   );
 }
 
-export function ContentRenderer({ module }: ContentRendererProps) {
+export function ContentRenderer(props: ContentRendererProps) {
+  const { module } = props;
+
   switch (module.content_type) {
     case "text":
-      return <TextModule module={module} />;
+      return <TextModule {...props} />;
 
     case "video":
-      return <VideoModule module={module} />;
+      return <VideoModule {...props} />;
 
     case "pdf":
       return (
@@ -336,6 +399,7 @@ export function ContentRenderer({ module }: ContentRendererProps) {
               </a>
             </div>
           ) : null}
+          <ModuleFooter {...props} />
         </article>
       );
 
@@ -358,6 +422,7 @@ export function ContentRenderer({ module }: ContentRendererProps) {
               </a>
             </div>
           ) : null}
+          <ModuleFooter {...props} />
         </article>
       );
 
@@ -372,6 +437,7 @@ export function ContentRenderer({ module }: ContentRendererProps) {
           <p className="helper">
             Ce module est planifié. Le contenu sera ajouté automatiquement sans action de ta part.
           </p>
+          <ModuleFooter {...props} />
         </article>
       );
 

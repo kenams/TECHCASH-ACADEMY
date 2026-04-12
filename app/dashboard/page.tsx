@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { buttonClasses } from "@/components/ui/Button";
 import { MemberProductCard } from "@/components/member-product-card";
-import { getActiveProducts, getOwnedProducts } from "@/lib/products";
+import { getUserModuleProgressByProducts } from "@/lib/progress";
+import { getActiveProducts, getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
@@ -74,6 +75,26 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   const spotlightProduct = accessibleProducts[0] ?? discoverProducts[0] ?? null;
   const focusLine = getFocusLine(accessibleProducts.length, discoverProducts.length);
 
+  const accessibleWithModules = await Promise.all(
+    accessibleProducts.map((product) => getProductWithModulesBySlug(product.slug))
+  );
+  const progressBySlug = await getUserModuleProgressByProducts(
+    user.id,
+    accessibleWithModules.filter(Boolean) as NonNullable<(typeof accessibleWithModules)[number]>[]
+  );
+  const continueProduct =
+    accessibleProducts
+      .map((product) => ({
+        product,
+        progress: progressBySlug[product.slug]
+      }))
+      .filter((entry) => entry.progress && entry.progress.totalModules > 0)
+      .sort((a, b) => {
+        const aTime = a.progress?.lastCompletedAt ? new Date(a.progress.lastCompletedAt).getTime() : 0;
+        const bTime = b.progress?.lastCompletedAt ? new Date(b.progress.lastCompletedAt).getTime() : 0;
+        return bTime - aTime;
+      })[0] ?? null;
+
   return (
     <div className="grid gap-8">
       <AnimatedSection className="grid gap-6">
@@ -90,7 +111,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 {getGreeting(profile?.email || user.email || "")}
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Un tableau de bord plus net pour reprendre tes formations, voir ce qui est déjà débloqué et choisir la suite la plus rentable sans friction.
+                Un tableau de bord plus net pour reprendre tes formations, suivre ta progression et voir la suite la plus rentable sans friction.
               </p>
             </div>
             <div className="dashboard-hero-metrics">
@@ -116,15 +137,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             <div className="offer-highlight-grid">
               <div className="offer-highlight-card">
                 <h3>Lecture immédiate</h3>
-                <p>Tu vois en un coup d’œil ce que tu possèdes, ce qui est prioritaire et ce qui reste à ouvrir ensuite.</p>
+                <p>Tu vois en un coup d’œil ce que tu possèdes et la prochaine formation à ouvrir.</p>
               </div>
               <div className="offer-highlight-card">
-                <h3>Parcours cohérent</h3>
-                <p>Les accès, les boutons et la hiérarchie restent alignés entre le membre, le catalogue et le checkout.</p>
+                <h3>Progression suivie</h3>
+                <p>Chaque formation affiche désormais un repère clair entre modules vus et modules restants.</p>
               </div>
               <div className="offer-highlight-card">
                 <h3>Cadre premium</h3>
-                <p>Le rendu membre est plus dense, plus rassurant et plus crédible pour une vraie academy vendable.</p>
+                <p>Le rendu membre reste dense, rassurant et cohérent avec une academy vendable.</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -137,35 +158,73 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             </div>
           </div>
         </GlowCard>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <GlowCard glowColor="indigo">
-            <p className="text-sm text-[var(--muted)]">Formations accessibles</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{accessibleProducts.length}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{hasGlobalAccess ? "Accès global actif sur tout le catalogue visible." : "Débloquées proprement via tes achats confirmés."}</p>
-          </GlowCard>
-          <GlowCard glowColor="indigo">
-            <p className="text-sm text-[var(--muted)]">Catalogue actif</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{activeProducts.length}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Des offres visibles, vendables et déjà prêtes à être consommées côté membre.</p>
-          </GlowCard>
-          <GlowCard glowColor="emerald">
-            <p className="text-sm text-[var(--muted)]">Statut du compte</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{hasGlobalAccess ? "Global" : "Par produit"}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">La logique d'accès reste stricte, lisible et cohérente avec ce que tu as réellement acheté.</p>
-          </GlowCard>
-          <GlowCard glowColor="indigo">
-            <p className="text-sm text-[var(--muted)]">Valeur débloquée</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
-              {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(totalValue / 100)}
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue actuellement accessible dans ton espace membre.</p>
-          </GlowCard>
-        </div>
       </AnimatedSection>
 
+      {continueProduct ? (
+        <AnimatedSection delay={40}>
+          <GlowCard className="dashboard-spotlight p-8" glowColor="indigo">
+            <div className="dashboard-spotlight-copy">
+              <Badge variant="success" className="w-fit">
+                Continuer l&apos;apprentissage
+              </Badge>
+              <div className="grid gap-3">
+                <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                  Reprends là où ta progression est la plus avancée
+                </h2>
+                <p className="text-base leading-8 text-[var(--muted)]">
+                  {continueProduct.product.title} est la meilleure reprise actuelle pour continuer dans un cadre déjà engagé.
+                </p>
+              </div>
+              <div className="course-progress-bar-shell">
+                <div className="course-progress-bar-track">
+                  <div className="course-progress-bar-fill" style={{ width: `${continueProduct.progress.percent}%` }} />
+                </div>
+                <span className="course-progress-label">
+                  {continueProduct.progress.completedModules}/{continueProduct.progress.totalModules} modules vus
+                </span>
+              </div>
+              <div className="confidence-list">
+                <div className="confidence-item">
+                  <span className="confidence-dot" />
+                  <div>
+                    <strong>Prochaine étape</strong>
+                    <p>{continueProduct.progress.nextModuleTitle ?? "Parcours terminé sur cette formation."}</p>
+                  </div>
+                </div>
+                <div className="confidence-item">
+                  <span className="confidence-dot" />
+                  <div>
+                    <strong>Action directe</strong>
+                    <p>Un clic te renvoie vers la page membre puis vers le module suivant sans détour.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={
+                    continueProduct.progress.nextModuleSlug
+                      ? `/dashboard/formations/${continueProduct.product.slug}#module-${continueProduct.progress.nextModuleSlug}`
+                      : `/dashboard/formations/${continueProduct.product.slug}`
+                  }
+                  className={buttonClasses("primary", "md")}
+                >
+                  Reprendre maintenant
+                </Link>
+              </div>
+            </div>
+            <div className="dashboard-spotlight-card">
+              <MemberProductCard
+                product={continueProduct.product}
+                isOwned
+                progress={continueProduct.progress}
+              />
+            </div>
+          </GlowCard>
+        </AnimatedSection>
+      ) : null}
+
       {spotlightProduct ? (
-        <AnimatedSection delay={50}>
+        <AnimatedSection delay={60}>
           <GlowCard className="dashboard-spotlight p-8" glowColor="indigo">
             <div className="dashboard-spotlight-copy">
               <Badge variant={accessibleProducts.length ? "success" : "muted"} className="w-fit">
@@ -179,25 +238,13 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                   {spotlightProduct.title} reste une excellente porte d’entrée pour garder un parcours simple, sérieux et orienté résultat.
                 </p>
               </div>
-              <div className="confidence-list">
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Vision claire</strong>
-                    <p>Le dashboard montre immédiatement ce que tu possèdes et la formation qui mérite d’être ouverte ensuite.</p>
-                  </div>
-                </div>
-                <div className="confidence-item">
-                  <span className="confidence-dot" />
-                  <div>
-                    <strong>Suite logique</strong>
-                    <p>Le catalogue suggère des prolongements cohérents au lieu de te noyer dans une sélection sans hiérarchie.</p>
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="dashboard-spotlight-card">
-              <MemberProductCard product={spotlightProduct} isOwned={ownedSlugs.has(spotlightProduct.slug)} />
+              <MemberProductCard
+                product={spotlightProduct}
+                isOwned={ownedSlugs.has(spotlightProduct.slug)}
+                progress={progressBySlug[spotlightProduct.slug]}
+              />
             </div>
           </GlowCard>
         </AnimatedSection>
@@ -208,7 +255,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           <div className="grid gap-2">
             <Badge variant="success">Mes formations achetées</Badge>
             <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Continue là où tu t'étais arrêté</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Continue là où tu t&apos;étais arrêté</h2>
               <p className="mt-2 max-w-3xl text-base leading-8 text-[var(--muted)]">
                 Accède à tes contenus, reprends un module ou ouvre directement ton espace membre dédié sans repasser par le catalogue.
               </p>
@@ -229,6 +276,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 product={product}
                 isOwned
                 purchaseDate={"purchase" in product ? product.purchase?.created_at || null : null}
+                progress={progressBySlug[product.slug]}
               />
             ))}
           </div>
@@ -239,7 +287,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             </div>
             <div className="grid gap-2">
               <h3 className="text-2xl font-semibold text-[var(--foreground)]">Aucune formation achetée</h3>
-              <p className="text-base leading-8 text-[var(--muted)]">Ton compte est prêt. Choisis une première formation pour débloquer un espace membre complet et commencer dans un cadre propre.</p>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                Ton compte est prêt. Choisis une première formation pour débloquer un espace membre complet et commencer dans un cadre propre.
+              </p>
             </div>
             <div className="flex justify-center">
               <Link href={`/checkout?product=${siteConfig.primaryProductSlug}`} className={buttonClasses("primary", "md")}>
@@ -256,7 +306,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             <Badge variant="muted">Découvrir d'autres formations</Badge>
             <div>
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Étends ton catalogue de compétences</h2>
-              <p className="mt-2 max-w-3xl text-base leading-8 text-[var(--muted)]">Une sélection courte des offres non encore achetées, pour accélérer la suite sans te disperser.</p>
+              <p className="mt-2 max-w-3xl text-base leading-8 text-[var(--muted)]">
+                Une sélection courte des offres non encore achetées, pour accélérer la suite sans te disperser.
+              </p>
             </div>
           </div>
           <Link href="/formations" className={buttonClasses("secondary", "sm")}>

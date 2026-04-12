@@ -16,6 +16,19 @@ import type {
   PurchaseRecord
 } from "@/lib/types";
 
+function enrichProductRecord<T extends { slug: string }>(product: T): T {
+  const localProduct = getLocalProductBySlug(product.slug);
+
+  if (!localProduct) {
+    return product;
+  }
+
+  return {
+    ...product,
+    category: localProduct.category
+  };
+}
+
 export function formatPrice(cents: number, currency: string) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
@@ -39,6 +52,7 @@ export async function getActiveProducts(): Promise<ProductCardData[]> {
     return getLocalActiveProducts().map((product) => ({
       id: product.id,
       slug: product.slug,
+      category: product.category,
       title: product.title,
       subtitle: product.subtitle,
       short_description: product.short_description,
@@ -50,7 +64,25 @@ export async function getActiveProducts(): Promise<ProductCardData[]> {
     }));
   }
 
-  return (data || []) as ProductCardData[];
+  const databaseProducts = ((data || []) as ProductCardData[]).map((product) => enrichProductRecord(product));
+  const databaseSlugs = new Set(databaseProducts.map((product) => product.slug));
+  const missingLocalProducts = getLocalActiveProducts()
+    .filter((product) => !databaseSlugs.has(product.slug))
+    .map((product) => ({
+      id: product.id,
+      slug: product.slug,
+      category: product.category,
+      title: product.title,
+      subtitle: product.subtitle,
+      short_description: product.short_description,
+      price_cents: product.price_cents,
+      currency: product.currency,
+      thumbnail_url: product.thumbnail_url,
+      is_featured: product.is_featured,
+      is_active: product.is_active
+    }));
+
+  return [...databaseProducts, ...missingLocalProducts];
 }
 
 export async function getFeaturedProduct(): Promise<ProductCardData | null> {
@@ -74,7 +106,11 @@ export async function getProductBySlug(slug: string): Promise<ProductRecord | nu
     return getLocalProductBySlug(slug);
   }
 
-  return (data as ProductRecord | null) || null;
+  if (data) {
+    return enrichProductRecord(data as ProductRecord);
+  }
+
+  return getLocalProductBySlug(slug);
 }
 
 export async function getProductById(productId: string): Promise<ProductRecord | null> {
@@ -93,7 +129,11 @@ export async function getProductById(productId: string): Promise<ProductRecord |
     return getLocalProductById(productId);
   }
 
-  return (data as ProductRecord | null) || null;
+  if (data) {
+    return enrichProductRecord(data as ProductRecord);
+  }
+
+  return getLocalProductById(productId);
 }
 
 export async function getProductModules(
@@ -122,7 +162,13 @@ export async function getProductModules(
     );
   }
 
-  return (data || []) as ProductModuleRecord[];
+  if (!data || data.length === 0) {
+    return getLocalModulesByProductId(productId).filter((module) =>
+      onlyPublished ? module.is_published : true
+    );
+  }
+
+  return data as ProductModuleRecord[];
 }
 
 export async function getProductWithModulesBySlug(slug: string): Promise<ProductWithModules | null> {
@@ -182,6 +228,7 @@ export async function getOwnedProducts(userId: string): Promise<OwnedProductSumm
     .map((purchase) => ({
       id: purchase.product.id,
       slug: purchase.product.slug,
+      category: purchase.product.category,
       title: purchase.product.title,
       subtitle: purchase.product.subtitle,
       short_description: purchase.product.short_description,

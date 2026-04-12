@@ -90,6 +90,7 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
     () => [
       { href: "/", label: "Accueil" },
       { href: "/formations", label: "Formations" },
+      { href: "/formations/trading", label: "Trading & Finance" },
       ...(authState.loggedIn ? [{ href: "/dashboard", label: "Mon espace" }] : [])
     ],
     [authState.loggedIn]

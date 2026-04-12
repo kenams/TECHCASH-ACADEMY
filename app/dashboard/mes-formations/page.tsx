@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { buttonClasses } from "@/components/ui/Button";
 import { MemberProductCard } from "@/components/member-product-card";
-import { getActiveProducts, getOwnedProducts } from "@/lib/products";
+import { getUserModuleProgressByProducts } from "@/lib/progress";
+import { getActiveProducts, getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
 
@@ -35,6 +36,11 @@ export default async function MemberProductsPage() {
   const products = hasGlobalAccess
     ? activeProducts.map((product) => ({ ...product, purchase: null, has_access: true }))
     : ownedProducts;
+  const fullProducts = await Promise.all(products.map((product) => getProductWithModulesBySlug(product.slug)));
+  const progressBySlug = await getUserModuleProgressByProducts(
+    user.id,
+    fullProducts.filter(Boolean) as NonNullable<(typeof fullProducts)[number]>[]
+  );
   const unlockedValue = products.reduce((sum, product) => sum + product.price_cents, 0);
   const remainingProducts = Math.max(activeProducts.length - products.length, 0);
   const featuredOwned = products[0] ?? null;
@@ -55,7 +61,8 @@ export default async function MemberProductsPage() {
                 Tout ce que tu as débloqué
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Une vue complète de tes accès actifs, pensée pour reprendre vite un contenu, garder une lecture claire et éviter toute friction dans l’espace membre.
+                Une vue complète de tes accès actifs, pensée pour reprendre vite un contenu, suivre
+                ta progression et garder une lecture claire dans l&apos;espace membre.
               </p>
             </div>
             <div className="dashboard-hero-metrics">
@@ -72,26 +79,20 @@ export default async function MemberProductsPage() {
                 <span>valeur membre déjà débloquée</span>
               </div>
             </div>
-            <div className="luxury-note">
-              <strong>Rituel recommandé</strong>
-              <span>
-                Reprends d’abord un contenu déjà acheté, termine-le proprement, puis ouvre seulement la prochaine offre qui renforce ton positionnement.
-              </span>
-            </div>
           </div>
           <div className="dashboard-luxury-hero-side">
             <div className="offer-highlight-grid">
               <div className="offer-highlight-card">
-                <h3>Accès direct</h3>
-                <p>Chaque carte mène au bon contenu sans détour et garde la logique membre intacte.</p>
+                <h3>Reprendre vite</h3>
+                <p>Chaque carte affiche la progression et mène directement au bon espace membre.</p>
               </div>
               <div className="offer-highlight-card">
-                <h3>Lecture propre</h3>
-                <p>Les formations actives et les options restantes sont clairement séparées pour éviter toute confusion.</p>
+                <h3>Lecture claire</h3>
+                <p>Les formations actives et les options restantes sont séparées sans confusion.</p>
               </div>
               <div className="offer-highlight-card">
-                <h3>Suite maîtrisée</h3>
-                <p>Le catalogue reste accessible sans casser l’impression premium du parcours déjà débloqué.</p>
+                <h3>Suite logique</h3>
+                <p>Le catalogue reste accessible sans casser l&apos;impression premium du parcours membre.</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -104,31 +105,6 @@ export default async function MemberProductsPage() {
             </div>
           </div>
         </GlowCard>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <GlowCard>
-            <p className="text-sm text-[var(--muted)]">Formations débloquées</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{products.length}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Uniquement les accès disponibles sur ton compte aujourd'hui.</p>
-          </GlowCard>
-          <GlowCard>
-            <p className="text-sm text-[var(--muted)]">Catalogue à explorer</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{remainingProducts}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Des offres complémentaires restent disponibles si tu veux élargir ton positionnement.</p>
-          </GlowCard>
-          <GlowCard glowColor="emerald">
-            <p className="text-sm text-[var(--muted)]">Statut d'accès</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">{hasGlobalAccess ? "Global" : "Par produit"}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{hasGlobalAccess ? "Toutes les formations actives sont ouvertes." : "Chaque achat débloque son espace membre dédié."}</p>
-          </GlowCard>
-          <GlowCard>
-            <p className="text-sm text-[var(--muted)]">Valeur débloquée</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
-              {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(unlockedValue / 100)}
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">Montant catalogue total déjà disponible dans ton espace membre.</p>
-          </GlowCard>
-        </div>
       </AnimatedSection>
 
       {featuredOwned ? (
@@ -140,31 +116,35 @@ export default async function MemberProductsPage() {
               </Badge>
               <div className="grid gap-3">
                 <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                  Continue là où tu t'étais arrêté
+                  Continue là où tu t&apos;étais arrêté
                 </h2>
                 <p className="text-base leading-8 text-[var(--muted)]">
-                  {featuredOwned.title} est la formation la plus récemment débloquée dans ton espace.
+                  {featuredOwned.title} est la formation la plus récente dans ton espace membre.
                 </p>
               </div>
               <div className="confidence-list">
                 <div className="confidence-item">
                   <span className="confidence-dot" />
                   <div>
-                    <strong>Accès direct</strong>
-                    <p>Tu arrives immédiatement sur les modules disponibles, sans passer par le catalogue.</p>
+                    <strong>Progression suivie</strong>
+                    <p>Tu gardes un repère clair sur ce qui est vu, à reprendre ou à terminer.</p>
                   </div>
                 </div>
                 <div className="confidence-item">
                   <span className="confidence-dot" />
                   <div>
-                    <strong>Contenu actif</strong>
-                    <p>Les modules publiés sont disponibles dès maintenant, sans délai supplémentaire.</p>
+                    <strong>Accès direct</strong>
+                    <p>Tu arrives immédiatement sur les modules disponibles, sans repasser par le catalogue.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="dashboard-spotlight-card">
-              <MemberProductCard product={featuredOwned} isOwned={true} />
+              <MemberProductCard
+                product={featuredOwned}
+                isOwned={true}
+                progress={progressBySlug[featuredOwned.slug]}
+              />
             </div>
           </GlowCard>
         </AnimatedSection>
@@ -179,7 +159,7 @@ export default async function MemberProductsPage() {
             </h2>
             <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
               {products.length
-                ? "Chaque carte mène directement à l'espace membre dédié de la formation, sans passer par le catalogue."
+                ? "Chaque carte mène directement à l'espace membre dédié, avec la progression visible au premier regard."
                 : "Explore le catalogue et achète une première formation pour accéder à ton espace membre dédié."}
             </p>
           </div>
@@ -198,6 +178,7 @@ export default async function MemberProductsPage() {
                 product={product}
                 isOwned={true}
                 purchaseDate={"purchase" in product && product.purchase ? product.purchase.created_at : null}
+                progress={progressBySlug[product.slug]}
               />
             ))}
           </div>
@@ -222,27 +203,6 @@ export default async function MemberProductsPage() {
           </GlowCard>
         )}
       </AnimatedSection>
-
-      {remainingProducts > 0 ? (
-        <AnimatedSection delay={140}>
-          <GlowCard className="p-8" glowColor="indigo">
-            <div className="grid gap-4 sm:flex sm:items-center sm:justify-between">
-              <div className="grid gap-2">
-                <Badge variant="muted">Aller plus loin</Badge>
-                <h2 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                  {remainingProducts} formation{remainingProducts > 1 ? "s" : ""} encore disponible{remainingProducts > 1 ? "s" : ""} au catalogue
-                </h2>
-                <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">
-                  Tu peux compléter ton catalogue de compétences et élargir ton positionnement en ajoutant une nouvelle formation.
-                </p>
-              </div>
-              <Link href="/formations" className={buttonClasses("secondary", "md")}>
-                Voir le catalogue
-              </Link>
-            </div>
-          </GlowCard>
-        </AnimatedSection>
-      ) : null}
     </div>
   );
 }

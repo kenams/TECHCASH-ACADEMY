@@ -2,18 +2,27 @@ import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
 import { PurchaseCTA } from "@/components/purchase-cta";
 import { formatPrice } from "@/lib/products";
-import type { OwnedProductSummary, ProductCardData } from "@/lib/types";
+import type { OwnedProductSummary, ProductCardData, ProductProgressSummary } from "@/lib/types";
 
 type MemberProductCardProps = {
   product: ProductCardData | OwnedProductSummary;
   isOwned?: boolean;
   purchaseDate?: string | null;
+  progress?: ProductProgressSummary;
 };
 
-export function MemberProductCard({ product, isOwned = false, purchaseDate }: MemberProductCardProps) {
+export function MemberProductCard({
+  product,
+  isOwned = false,
+  purchaseDate,
+  progress
+}: MemberProductCardProps) {
   return (
     <article className="member-product-card">
-      <Link href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`} className="member-product-media-wrap">
+      <Link
+        href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`}
+        className="member-product-media-wrap"
+      >
         {product.thumbnail_url ? (
           <img src={product.thumbnail_url} alt={product.title} className="member-product-media-img" loading="lazy" />
         ) : (
@@ -22,7 +31,10 @@ export function MemberProductCard({ product, isOwned = false, purchaseDate }: Me
         <div className="member-product-media-overlay" />
         <div className="member-product-media-badges">
           {product.is_featured ? <AccessBadge label="Offre principale" tone="featured" /> : null}
-          <AccessBadge label={isOwned ? "Formation débloquée" : "Disponible"} tone={isOwned ? "success" : "default"} />
+          <AccessBadge
+            label={isOwned ? "Formation débloquée" : "Disponible"}
+            tone={isOwned ? "success" : "default"}
+          />
         </div>
       </Link>
       <div className="member-product-body">
@@ -44,11 +56,33 @@ export function MemberProductCard({ product, isOwned = false, purchaseDate }: Me
           <span className="meta-chip">Espace membre dédié</span>
         </div>
 
+        {progress ? (
+          <div className="member-card-progress">
+            <div className="course-progress-bar-shell">
+              <div className="course-progress-bar-track">
+                <div className="course-progress-bar-fill" style={{ width: `${progress.percent}%` }} />
+              </div>
+              <span className="course-progress-label">
+                {progress.completedModules}/{progress.totalModules} modules vus
+              </span>
+            </div>
+            {progress.nextModuleTitle ? (
+              <p className="member-card-progress-note">
+                Prochaine étape : <strong>{progress.nextModuleTitle}</strong>
+              </p>
+            ) : (
+              <p className="member-card-progress-note">
+                Parcours terminé : tous les modules suivis sont marqués comme vus.
+              </p>
+            )}
+          </div>
+        ) : null}
+
         <div className="member-product-note">
           <strong>{isOwned ? "Espace prêt" : "Prise en main rapide"}</strong>
           <p>
             {isOwned
-              ? "Reprends directement là où tu t'étais arrêté — le contenu est accessible sans détour."
+              ? "Reprends directement là où tu t'étais arrêté : le contenu est accessible sans détour."
               : "Chaque module est conçu pour être lu, appliqué et transformé en offre vendable rapidement."}
           </p>
         </div>

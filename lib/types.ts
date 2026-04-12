@@ -1,4 +1,5 @@
 export type ProductContentType = "pdf" | "video" | "text" | "resource" | "coming_soon";
+export type ProductCategory = "it" | "trading";
 
 export type UserProfile = {
   id: string;
@@ -12,6 +13,7 @@ export type UserProfile = {
 export type ProductRecord = {
   id: string;
   slug: string;
+  category?: ProductCategory;
   title: string;
   subtitle: string;
   short_description: string;
@@ -70,6 +72,7 @@ export type ProductCardData = Pick<
   ProductRecord,
   | "id"
   | "slug"
+  | "category"
   | "title"
   | "subtitle"
   | "short_description"
@@ -87,4 +90,19 @@ export type ProductWithModules = ProductRecord & {
 export type OwnedProductSummary = ProductCardData & {
   purchase: PurchaseRecord;
   has_access: boolean;
+};
+
+export type ProductProgressSummary = {
+  productSlug: string;
+  completedModuleSlugs: string[];
+  completedModules: number;
+  totalModules: number;
+  percent: number;
+  nextModuleSlug: string | null;
+  nextModuleTitle: string | null;
+  lastCompletedAt: string | null;
+};
+
+export type OwnedProductWithProgress = OwnedProductSummary & {
+  progress?: ProductProgressSummary;
 };

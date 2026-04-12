@@ -76,6 +76,103 @@ THEMES = {
         "visual": "Microsoft 365 consultant for SME migration and security, exchange teams sharepoint, premium realism",
         "accent": "Microsoft 365, mail migration, security, collaboration",
     },
+    "trading-ia-debutant": {
+        "visual": "algorithmic trading dashboard, candlestick charts, AI analysis overlay, dark premium studio, cinematic realism",
+        "accent": "trading strategy, risk management, AI signals, portfolio",
+    },
+    "automatisation-portefeuille-ia": {
+        "visual": "automated portfolio management dashboard, financial APIs, n8n workflow nodes, premium cinematic realism",
+        "accent": "portfolio automation, price alerts, financial reporting, passive income",
+    },
+    "crypto-analyse-fondamentale-ia": {
+        "visual": "cryptocurrency fundamental analysis, blockchain metrics dashboard, on-chain data visualization, premium realism",
+        "accent": "crypto analysis, tokenomics, investment thesis, on-chain metrics",
+    },
+    "vendre-services-finance-ia": {
+        "visual": "financial consultant presenting AI-powered investment report to client, premium office, cinematic realism",
+        "accent": "financial consulting, AI reports, client acquisition, recurring revenue",
+    },
+}
+
+LOCAL_COURSE_OVERRIDES = {
+    "trading-ia-debutant": {
+        "product": {
+            "id": "local-trading-ia-debutant",
+            "slug": "trading-ia-debutant",
+            "title": "Comprendre et utiliser l'IA pour trader sans se ruiner",
+            "subtitle": "Routine, risque et lecture de marché assistée",
+            "short_description": "Une initiation structurée au trading assisté par IA, avec outils gratuits, risque et méthode.",
+            "long_description": "Une formation pour poser une vraie méthode de trading assisté par IA sans confusion ni promesse creuse.",
+            "price_cents": 5900,
+            "thumbnail_url": "/visuals/formations/trading-ia-debutant-cover.svg",
+        },
+        "modules": [
+            {"title": "Les bases du trading IA", "slug": "bases-trading-ia", "description": "Poser le rôle réel de l'IA dans ta routine.", "content_body": "## Ce que tu vas apprendre\n- cadrer l'usage de l'IA\n- bâtir une routine simple"},
+            {"title": "Analyse technique assistée", "slug": "analyse-technique-ia", "description": "Lire le marché avec structure et scénarios.", "content_body": "## Ce que tu vas apprendre\n- décrire un contexte\n- structurer un plan de lecture"},
+            {"title": "Backtesting sans code", "slug": "backtesting-no-code", "description": "Tester une idée avant de l'exécuter.", "content_body": "## Ce que tu vas apprendre\n- transformer une intuition en protocole\n- archiver les résultats"},
+            {"title": "Capital et risque", "slug": "capital-risque", "description": "Rester en jeu plus longtemps que l'émotion.", "content_body": "## Ce que tu vas apprendre\n- sizing\n- limites de perte"},
+            {"title": "Première stratégie", "slug": "strategie-personnelle", "description": "Assembler une méthode claire.", "content_body": "## Ce que tu vas apprendre\n- choisir un setup\n- documenter la stratégie"},
+            {"title": "Ressources et alertes", "slug": "ressources-alertes", "description": "Créer une stack légère de travail.", "content_body": "## Ce que tu vas apprendre\n- outils gratuits\n- alertes utiles"},
+        ],
+    },
+    "automatisation-portefeuille-ia": {
+        "product": {
+            "id": "local-automatisation-portefeuille-ia",
+            "slug": "automatisation-portefeuille-ia",
+            "title": "Automatiser la gestion de son portefeuille avec l'IA",
+            "subtitle": "Alerts, reporting et pilotage propre",
+            "short_description": "APIs financières, n8n, alertes et rapports pour un portefeuille mieux suivi.",
+            "long_description": "Une formation pour automatiser le suivi portefeuille et en faire un système défendable ou un service vendable.",
+            "price_cents": 6800,
+            "thumbnail_url": "/visuals/formations/automatisation-portefeuille-ia-cover.svg",
+        },
+        "modules": [
+            {"title": "Comprendre les APIs financières", "slug": "apis-financieres", "description": "Choisir des sources fiables.", "content_body": "## Ce que tu vas apprendre\n- sélectionner les bonnes données\n- créer un schéma stable"},
+            {"title": "Scraping légal complémentaire", "slug": "scraping-legal", "description": "Compléter sans salir la qualité du système.", "content_body": "## Ce que tu vas apprendre\n- collecter proprement\n- documenter les sources"},
+            {"title": "Dashboard portefeuille", "slug": "dashboard-portefeuille", "description": "Construire un cockpit utile.", "content_body": "## Ce que tu vas apprendre\n- choisir les métriques\n- guider la décision"},
+            {"title": "Alertes de prix automatiques", "slug": "alertes-prix", "description": "Être alerté sans vivre dans le bruit.", "content_body": "## Ce que tu vas apprendre\n- déclencheurs utiles\n- messages lisibles"},
+            {"title": "Reporting hebdomadaire", "slug": "reporting-hebdo", "description": "Créer un livrable que quelqu'un lit vraiment.", "content_body": "## Ce que tu vas apprendre\n- assembler les données\n- produire un rapport propre"},
+            {"title": "Offre de service portefeuille IA", "slug": "offre-service", "description": "Transformer la stack en service vendable.", "content_body": "## Ce que tu vas apprendre\n- cadrer l'offre\n- présenter un livrable crédible"},
+        ],
+    },
+    "crypto-analyse-fondamentale-ia": {
+        "product": {
+            "id": "local-crypto-analyse-fondamentale-ia",
+            "slug": "crypto-analyse-fondamentale-ia",
+            "title": "Analyser les cryptos avec l'IA et construire une thèse d'investissement",
+            "subtitle": "Tokenomics, on-chain et conviction structurée",
+            "short_description": "Une méthode pour lire des projets crypto avec plus de rigueur et moins de bruit.",
+            "long_description": "Une formation qui combine lecture de whitepapers, métriques on-chain et thèse structurée avec aide IA.",
+            "price_cents": 5400,
+            "thumbnail_url": "/visuals/formations/crypto-analyse-fondamentale-ia-cover.svg",
+        },
+        "modules": [
+            {"title": "Bases de l'analyse fondamentale", "slug": "bases-analyse-fondamentale", "description": "Poser une grille simple et robuste.", "content_body": "## Ce que tu vas apprendre\n- lire un projet\n- structurer une première thèse"},
+            {"title": "Lire les whitepapers avec l'IA", "slug": "whitepapers-ia", "description": "Synthétiser plus vite sans perdre le sens.", "content_body": "## Ce que tu vas apprendre\n- découper un document\n- faire ressortir les angles morts"},
+            {"title": "Métriques on-chain", "slug": "metriques-onchain", "description": "Sélectionner quelques indicateurs utiles.", "content_body": "## Ce que tu vas apprendre\n- choisir de bonnes métriques\n- relier les signaux à une question"},
+            {"title": "Construire une thèse d'investissement", "slug": "these-investissement", "description": "Assembler projet, signaux et risques.", "content_body": "## Ce que tu vas apprendre\n- écrire une thèse\n- nommer les invalidations"},
+            {"title": "Présenter une recommandation", "slug": "presentation-recommandation", "description": "Restituer de manière claire et responsable.", "content_body": "## Ce que tu vas apprendre\n- structurer une présentation\n- garder un ton défendable"},
+        ],
+    },
+    "vendre-services-finance-ia": {
+        "product": {
+            "id": "local-vendre-services-finance-ia",
+            "slug": "vendre-services-finance-ia",
+            "title": "Vendre des services de conseil financier IA à des PME et particuliers",
+            "subtitle": "Offre, prospection, reporting et récurrence",
+            "short_description": "Un programme business pour transformer finance + IA en offre de service.",
+            "long_description": "Une formation pour cadrer une offre de veille et rapport financier augmentée par IA, sans posture floue.",
+            "price_cents": 7200,
+            "thumbnail_url": "/visuals/formations/vendre-services-finance-ia-cover.svg",
+        },
+        "modules": [
+            {"title": "Cadre légal minimal", "slug": "cadre-legal", "description": "Poser les limites et le bon vocabulaire.", "content_body": "## Ce que tu vas apprendre\n- cadrer le périmètre\n- éviter les ambiguïtés"},
+            {"title": "Construire l'offre", "slug": "offre-veille-rapport", "description": "Créer un service lisible et récurrent.", "content_body": "## Ce que tu vas apprendre\n- choisir un angle de service\n- fixer le format du livrable"},
+            {"title": "Prospection et acquisition", "slug": "prospection-acquisition", "description": "Trouver les bons clients avec un discours clair.", "content_body": "## Ce que tu vas apprendre\n- ouvrir une conversation\n- qualifier un besoin"},
+            {"title": "Livrer un rapport pro", "slug": "livrer-rapport-pro", "description": "Créer un document qui donne confiance.", "content_body": "## Ce que tu vas apprendre\n- structurer le rapport\n- renforcer la perception de valeur"},
+            {"title": "Tarification et positionnement", "slug": "tarification-positionnement", "description": "Fixer un prix et un niveau de service crédibles.", "content_body": "## Ce que tu vas apprendre\n- relier prix et livrable\n- garder une rentabilité saine"},
+        ],
+    },
 }
 
 
@@ -289,6 +386,21 @@ def fetch_courses(selected: set[str]) -> list[dict]:
         if not modules:
             continue
         courses.append({"product": product, "modules": modules})
+    for slug in sorted(selected):
+        if any(course["product"]["slug"] == slug for course in courses):
+            continue
+        local_course = LOCAL_COURSE_OVERRIDES.get(slug)
+        if local_course:
+            modules = []
+            for index, module in enumerate(local_course["modules"], start=1):
+                modules.append(
+                    {
+                        "content_type": module.get("content_type", "text"),
+                        "sort_order": module.get("sort_order", index),
+                        **module,
+                    }
+                )
+            courses.append({"product": local_course["product"], "modules": modules})
     return courses
 
 

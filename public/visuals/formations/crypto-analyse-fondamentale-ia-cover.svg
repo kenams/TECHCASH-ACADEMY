@@ -1,0 +1,23 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="36" fill="#07101F"/>
+  <rect x="38" y="38" width="1124" height="644" rx="28" fill="url(#bg3)" stroke="rgba(255,255,255,0.08)"/>
+  <circle cx="250" cy="242" r="102" fill="rgba(255,165,82,0.12)" stroke="rgba(255,165,82,0.35)" stroke-width="2"/>
+  <text x="220" y="265" fill="#FFB86A" font-family="Arial, sans-serif" font-size="72" font-weight="700">₿</text>
+  <circle cx="402" cy="340" r="84" fill="rgba(255,190,92,0.08)" stroke="rgba(255,190,92,0.28)" stroke-width="2"/>
+  <text x="374" y="362" fill="#FFC36B" font-family="Arial, sans-serif" font-size="62" font-weight="700">Ξ</text>
+  <path d="M118 510C180 470 234 468 304 500C374 532 442 528 516 448" stroke="#FFB86A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M118 556C176 530 232 530 294 548C356 566 430 560 516 486" stroke="#FF8B3D" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <text x="648" y="110" fill="#FFB86A" font-family="Arial, sans-serif" font-size="22" letter-spacing="8">CRYPTO &amp; IA</text>
+  <text x="648" y="186" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">ANALYSER LES</text>
+  <text x="648" y="246" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">CRYPTOS AVEC</text>
+  <text x="648" y="306" fill="#F4EFE4" font-family="Arial, sans-serif" font-size="50" font-weight="700">UNE VRAIE THÈSE</text>
+  <text x="648" y="382" fill="#AAB6CD" font-family="Arial, sans-serif" font-size="24">Tokenomics, on-chain et conviction structurée</text>
+  <rect x="648" y="454" width="228" height="44" rx="22" fill="rgba(255,184,106,0.15)" stroke="rgba(255,184,106,0.38)"/>
+  <text x="686" y="483" fill="#FFD08E" font-family="Arial, sans-serif" font-size="20" font-weight="700">ANALYSE FONDAMENTALE</text>
+  <defs>
+    <linearGradient id="bg3" x1="72" y1="64" x2="1102" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121621"/>
+      <stop offset="1" stop-color="#0A1221"/>
+    </linearGradient>
+  </defs>
+</svg>

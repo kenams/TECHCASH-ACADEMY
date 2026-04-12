@@ -1,4 +1,9 @@
 import type { ProductModuleRecord, ProductRecord, ProductWithModules } from "@/lib/types";
+import {
+  tradingProductModules,
+  tradingProducts,
+  tradingProductSupplements
+} from "@/lib/catalog-trading";
 
 function isoDate() {
   return new Date("2026-04-08T10:00:00.000Z").toISOString();
@@ -217,8 +222,13 @@ export const localProducts: ProductRecord[] = [
     is_featured: false,
     created_at: now,
     updated_at: now
-  }
+  },
+  ...tradingProducts
 ];
+
+localProducts.forEach((product) => {
+  product.category ??= "it";
+});
 
 function module(
   productSlug: string,
@@ -1041,7 +1051,8 @@ export const localProductModules: ProductModuleRecord[] = [
     "Ce module couvrira la comparaison n8n / Make / Zapier et les intégrations plus complexes avec des APIs externes.",
     "coming_soon",
     6
-  )
+  ),
+  ...tradingProductModules
 ];
 
 type ProductSupplement = {
@@ -1208,7 +1219,8 @@ const productSupplements: Record<string, ProductSupplement> = {
     ],
     pitch:
       "La formation pour créer des automatisations utiles avec n8n et les transformer en offre de service récurrente pour des PME."
-  }
+  },
+  ...tradingProductSupplements
 };
 
 // ─── Exported catalog helpers ─────────────────────────────────────────────────
