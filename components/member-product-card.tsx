@@ -17,12 +17,15 @@ export function MemberProductCard({
   purchaseDate,
   progress
 }: MemberProductCardProps) {
+  const memberHref = isOwned
+    ? progress?.nextModuleSlug
+      ? `/dashboard/formations/${product.slug}#module-${progress.nextModuleSlug}`
+      : `/dashboard/formations/${product.slug}`
+    : `/formations/${product.slug}`;
+
   return (
     <article className="member-product-card">
-      <Link
-        href={isOwned ? `/dashboard/formations/${product.slug}` : `/formations/${product.slug}`}
-        className="member-product-media-wrap"
-      >
+      <Link href={memberHref} className="member-product-media-wrap">
         {product.thumbnail_url ? (
           <img src={product.thumbnail_url} alt={product.title} className="member-product-media-img" loading="lazy" />
         ) : (
@@ -68,7 +71,7 @@ export function MemberProductCard({
             </div>
             {progress.nextModuleTitle ? (
               <p className="member-card-progress-note">
-                Prochaine étape : <strong>{progress.nextModuleTitle}</strong>
+                Reprendre sur : <strong>{progress.nextModuleTitle}</strong>
               </p>
             ) : (
               <p className="member-card-progress-note">
@@ -82,7 +85,7 @@ export function MemberProductCard({
           <strong>{isOwned ? "Espace prêt" : "Prise en main rapide"}</strong>
           <p>
             {isOwned
-              ? "Reprends directement là où tu t'étais arrêté : le contenu est accessible sans détour."
+              ? "Reprends directement sur la prochaine étape utile. La reprise vidéo et la progression séquentielle restent synchronisées."
               : "Chaque module est conçu pour être lu, appliqué et transformé en offre vendable rapidement."}
           </p>
         </div>
@@ -93,6 +96,7 @@ export function MemberProductCard({
             priceCents={product.price_cents}
             currency={product.currency}
             isOwned={isOwned}
+            dashboardHref={memberHref}
           />
           {purchaseDate ? (
             <span className="helper">

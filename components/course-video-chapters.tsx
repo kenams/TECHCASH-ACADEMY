@@ -12,6 +12,8 @@ type CourseVideoChaptersProps = {
   subtitleSlug?: string | null;
   className?: string;
   chapters: VideoChapter[];
+  storageKey?: string;
+  completeAtPercent?: number;
   onCompleted?: () => void;
 };
 
@@ -28,11 +30,16 @@ export function CourseVideoChapters({
   subtitleSlug,
   className,
   chapters,
+  storageKey,
+  completeAtPercent = 0.9,
   onCompleted
 }: CourseVideoChaptersProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const completionRef = useRef(false);
+  const lastSavedSecondRef = useRef(-1);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [resumeAt, setResumeAt] = useState(0);
 
   const chapterMarkers = useMemo(() => {
     if (chapters.length === 0 || duration <= 0) {
@@ -61,8 +68,49 @@ export function CourseVideoChapters({
   }, [chapterMarkers, currentTime]);
 
   useEffect(() => {
+    completionRef.current = false;
+    lastSavedSecondRef.current = -1;
     setCurrentTime(0);
-  }, [src]);
+    setResumeAt(0);
+
+    if (!storageKey || typeof window === "undefined") {
+      return;
+    }
+
+    const saved = Number(window.localStorage.getItem(storageKey) || "0");
+    if (Number.isFinite(saved) && saved > 0) {
+      setResumeAt(saved);
+    }
+  }, [src, storageKey]);
+
+  function persistPosition(seconds: number) {
+    if (!storageKey || typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(storageKey, String(seconds));
+  }
+
+  function clearPosition() {
+    if (!storageKey || typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.removeItem(storageKey);
+  }
+
+  function completeIfNeeded(video: HTMLVideoElement) {
+    if (completionRef.current || !video.duration) {
+      return;
+    }
+
+    const ratio = video.currentTime / video.duration;
+    if (ratio >= completeAtPercent) {
+      completionRef.current = true;
+      clearPosition();
+      onCompleted?.();
+    }
+  }
 
   function seekTo(seconds: number) {
     const video = videoRef.current;
@@ -85,7 +133,11 @@ export function CourseVideoChapters({
     video.pause();
     video.currentTime = 0;
     setCurrentTime(0);
+    setResumeAt(0);
+    clearPosition();
   }
+
+  const resumeVisible = resumeAt > 5 && resumeAt < Math.max(duration - 5, 0);
 
   return (
     <div className="course-video-chapters-shell">
@@ -97,17 +149,36 @@ export function CourseVideoChapters({
         playsInline
         poster={poster}
         onLoadedMetadata={(event) => {
-          event.currentTarget.muted = false;
-          if (event.currentTarget.volume === 0) {
-            event.currentTarget.volume = 1;
+          const video = event.currentTarget;
+          video.muted = false;
+          if (video.volume === 0) {
+            video.volume = 1;
           }
-          setDuration(event.currentTarget.duration || 0);
+
+          const nextDuration = video.duration || 0;
+          setDuration(nextDuration);
+
+          if (resumeAt > 5 && resumeAt < Math.max(nextDuration - 5, 0)) {
+            video.currentTime = resumeAt;
+            setCurrentTime(resumeAt);
+          }
         }}
         onTimeUpdate={(event) => {
-          setCurrentTime(event.currentTarget.currentTime || 0);
+          const video = event.currentTarget;
+          setCurrentTime(video.currentTime || 0);
+
+          const rounded = Math.floor(video.currentTime);
+          if (rounded !== lastSavedSecondRef.current && rounded % 5 === 0) {
+            lastSavedSecondRef.current = rounded;
+            if (video.duration && video.currentTime < video.duration - 2) {
+              persistPosition(video.currentTime);
+            }
+          }
+
+          completeIfNeeded(video);
         }}
-        onEnded={() => {
-          onCompleted?.();
+        onEnded={(event) => {
+          completeIfNeeded(event.currentTarget);
           resetToStart();
         }}
       >
@@ -127,6 +198,11 @@ export function CourseVideoChapters({
             <strong>Chapitrage vidéo</strong>
             <span>{formatTimestamp(duration || 0)} au total</span>
           </div>
+          {resumeVisible ? (
+            <button type="button" className="course-video-resume-btn" onClick={() => seekTo(resumeAt)}>
+              Reprendre à {formatTimestamp(resumeAt)}
+            </button>
+          ) : null}
           <div className="course-video-chapters-list">
             {chapterMarkers.map((chapter, index) => (
               <button

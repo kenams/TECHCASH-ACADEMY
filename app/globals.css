@@ -2674,6 +2674,25 @@ footer,
   gap: 0.65rem;
 }
 
+.course-video-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 40px;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 199, 147, 0.26);
+  background: rgba(56, 199, 147, 0.1);
+  color: #d9f6ec;
+  transition: all 0.2s ease;
+}
+
+.course-video-resume-btn:hover {
+  background: rgba(56, 199, 147, 0.16);
+  border-color: rgba(56, 199, 147, 0.42);
+}
+
 .course-video-chapter-btn {
   display: grid;
   grid-template-columns: 58px minmax(0, 1fr);

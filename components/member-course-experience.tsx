@@ -250,6 +250,8 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
               src={heroVideo.content_url}
               poster={`/videos/posters/${product.slug}-overview-poster.jpg`}
               subtitleSlug={product.slug}
+              storageKey={`techcash:video:${product.slug}:overview`}
+              completeAtPercent={0.9}
               chapters={introChapters}
               onCompleted={() => {
                 if (!completedSet.has(heroVideo.slug)) {

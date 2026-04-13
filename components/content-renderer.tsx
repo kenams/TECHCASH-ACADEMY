@@ -343,15 +343,17 @@ function VideoModule(props: ContentRendererProps) {
               <span>Lecture intégrée</span>
               <strong>Vidéo explicative disponible immédiatement</strong>
             </div>
-            <CourseVideoPlayer
-              className="video-embed"
-              src={module.content_url}
-              poster={visuals.posterUrl ?? undefined}
-              subtitleSlug={visuals.slug}
-              onCompleted={() => {
-                if (!isSeen) {
-                  onSeenToggle(module.slug);
-                }
+          <CourseVideoPlayer
+            className="video-embed"
+            src={module.content_url}
+            poster={visuals.posterUrl ?? undefined}
+            subtitleSlug={visuals.slug}
+            storageKey={`techcash:video:${props.productSlug}:${module.slug}`}
+            completeAtPercent={0.9}
+            onCompleted={() => {
+              if (!isSeen) {
+                onSeenToggle(module.slug);
+              }
               }}
             />
           </div>
