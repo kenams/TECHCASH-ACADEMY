@@ -64,8 +64,20 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
 
       <aside className="product-hero-card">
         <div className="product-video-preview">
-          <div className="product-video-preview-label">Aperçu gratuit</div>
-          <CourseVideoPlayer src={videoUrl} poster={posterUrl} subtitleSlug={product.slug} />
+          <div className="product-video-preview-head">
+            <div className="product-video-preview-label">Aperçu gratuit</div>
+            <div className="product-video-preview-chip">Vidéo tutorielle</div>
+          </div>
+          <CourseVideoPlayer
+            className="product-video-preview-player"
+            src={videoUrl}
+            poster={posterUrl}
+            subtitleSlug={product.slug}
+          />
+          <div className="product-video-preview-copy">
+            <strong>Un aperçu lisible et réinitialisé</strong>
+            <span>La vidéo revient au début à la fin de lecture et reste mise en valeur sur chaque fiche formation.</span>
+          </div>
         </div>
         <div className="product-hero-meta">
           <div className="price-block">

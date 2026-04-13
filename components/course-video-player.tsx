@@ -25,11 +25,13 @@ export function CourseVideoPlayer({
   const completionRef = useRef(false);
   const lastSavedSecondRef = useRef(-1);
   const [resumeAt, setResumeAt] = useState(0);
+  const [hasEnded, setHasEnded] = useState(false);
 
   useEffect(() => {
     completionRef.current = false;
     lastSavedSecondRef.current = -1;
     setResumeAt(0);
+    setHasEnded(false);
 
     if (!storageKey || typeof window === "undefined") {
       return;
@@ -78,55 +80,84 @@ export function CourseVideoPlayer({
 
     video.pause();
     video.currentTime = 0;
+    video.load();
     setResumeAt(0);
+    setHasEnded(true);
     clearPosition();
   }
 
+  async function restartPlayback() {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    setHasEnded(false);
+    video.currentTime = 0;
+    clearPosition();
+
+    try {
+      await video.play();
+    } catch {
+      video.pause();
+    }
+  }
+
   return (
-    <video
-      ref={videoRef}
-      className={className}
-      controls
-      preload="metadata"
-      playsInline
-      poster={poster}
-      onLoadedMetadata={(event) => {
-        const video = event.currentTarget;
-        video.muted = false;
-        if (video.volume === 0) {
-          video.volume = 1;
-        }
-
-        if (resumeAt > 5 && resumeAt < Math.max((video.duration || 0) - 5, 0)) {
-          video.currentTime = resumeAt;
-        }
-      }}
-      onTimeUpdate={(event) => {
-        const video = event.currentTarget;
-        const rounded = Math.floor(video.currentTime);
-
-        if (rounded !== lastSavedSecondRef.current && rounded % 5 === 0) {
-          lastSavedSecondRef.current = rounded;
-          if (video.duration && video.currentTime < video.duration - 2) {
-            persistPosition(video.currentTime);
+    <div className="course-video-player-shell">
+      <video
+        ref={videoRef}
+        className={className}
+        controls
+        controlsList="nodownload"
+        preload="metadata"
+        playsInline
+        poster={poster}
+        onPlay={() => setHasEnded(false)}
+        onLoadedMetadata={(event) => {
+          const video = event.currentTarget;
+          video.muted = false;
+          if (video.volume === 0) {
+            video.volume = 1;
           }
-        }
 
-        completeIfNeeded(video);
-      }}
-      onEnded={(event) => {
-        completeIfNeeded(event.currentTarget);
-        resetToStart();
-      }}
-    >
-      <source src={src} type="video/mp4" />
-      {subtitleSlug ? (
-        <>
-          <track kind="subtitles" src={`/videos/subtitles/${subtitleSlug}-overview.vtt`} srcLang="fr" label="Français" />
-          <track kind="chapters" src={`/videos/subtitles/${subtitleSlug}-chapters.vtt`} srcLang="fr" />
-        </>
+          if (resumeAt > 5 && resumeAt < Math.max((video.duration || 0) - 5, 0)) {
+            video.currentTime = resumeAt;
+          }
+        }}
+        onTimeUpdate={(event) => {
+          const video = event.currentTarget;
+          const rounded = Math.floor(video.currentTime);
+
+          if (rounded !== lastSavedSecondRef.current && rounded % 5 === 0) {
+            lastSavedSecondRef.current = rounded;
+            if (video.duration && video.currentTime < video.duration - 2) {
+              persistPosition(video.currentTime);
+            }
+          }
+
+          completeIfNeeded(video);
+        }}
+        onEnded={(event) => {
+          completeIfNeeded(event.currentTarget);
+          resetToStart();
+        }}
+      >
+        <source src={src} type="video/mp4" />
+        {subtitleSlug ? (
+          <>
+            <track kind="subtitles" src={`/videos/subtitles/${subtitleSlug}-overview.vtt`} srcLang="fr" label="Français" />
+            <track kind="chapters" src={`/videos/subtitles/${subtitleSlug}-chapters.vtt`} srcLang="fr" />
+          </>
+        ) : null}
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+
+      {hasEnded ? (
+        <button type="button" className="course-video-replay" onClick={restartPlayback}>
+          Revoir l'aperçu
+        </button>
       ) : null}
-      Votre navigateur ne supporte pas la lecture vidéo.
-    </video>
+    </div>
   );
 }
