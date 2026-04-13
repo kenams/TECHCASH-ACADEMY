@@ -10,11 +10,16 @@ export function ModuleProgressTracker({ seen, onToggle }: ModuleProgressTrackerP
     <button
       type="button"
       className={`module-seen-btn ${seen ? "seen" : ""}`}
-      onClick={onToggle}
+      onClick={() => {
+        if (!seen) {
+          onToggle();
+        }
+      }}
       aria-pressed={seen}
+      disabled={seen}
     >
       <span aria-hidden="true">{seen ? "✓" : "○"}</span>
-      <span>{seen ? "Module vu" : "Marquer comme vu"}</span>
+      <span>{seen ? "Module validé" : "Valider ce module"}</span>
     </button>
   );
 }

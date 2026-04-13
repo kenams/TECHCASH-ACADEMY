@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ContentRenderer } from "@/components/content-renderer";
 import { CourseVideoPlayer } from "@/components/course-video-player";
@@ -12,6 +12,11 @@ import type { ProductModuleRecord, ProductProgressSummary, ProductWithModules } 
 type MemberCourseExperienceProps = {
   product: ProductWithModules;
   initialProgress: ProductProgressSummary;
+};
+
+type ModuleLinkMeta = {
+  slug: string;
+  title: string;
 };
 
 function getHeroVideoModule(modules: ProductModuleRecord[]) {
@@ -32,12 +37,40 @@ function estimateReadTime(content: string | null) {
   return Math.max(1, Math.ceil(plainText.split(" ").length / 200));
 }
 
+function isTrackableModule(module: ProductModuleRecord) {
+  return module.is_published && module.content_type !== "coming_soon";
+}
+
 export function MemberCourseExperience({ product, initialProgress }: MemberCourseExperienceProps) {
   const [completedSlugs, setCompletedSlugs] = useState(initialProgress.completedModuleSlugs);
   const [lastCompletedAt, setLastCompletedAt] = useState(initialProgress.lastCompletedAt);
+  const [activeModuleSlug, setActiveModuleSlug] = useState<string>("overview-video");
 
   const heroVideo = getHeroVideoModule(product.modules);
   const visibleModules = product.modules.filter((module) => module.id !== heroVideo?.id);
+  const trackableModules = product.modules.filter(isTrackableModule);
+  const completedSet = useMemo(() => new Set(completedSlugs), [completedSlugs]);
+  const firstIncompleteTrackable = trackableModules.find((module) => !completedSet.has(module.slug)) ?? null;
+
+  const unlockedTrackableSlugs = useMemo(() => {
+    const allowed = new Set<string>();
+    let lockedEncountered = false;
+
+    for (const module of trackableModules) {
+      if (completedSet.has(module.slug)) {
+        allowed.add(module.slug);
+        continue;
+      }
+
+      if (!lockedEncountered) {
+        allowed.add(module.slug);
+        lockedEncountered = true;
+      }
+    }
+
+    return allowed;
+  }, [completedSet, trackableModules]);
+
   const summary = buildProductProgressSummary(
     product.slug,
     product.modules,
@@ -47,7 +80,6 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
       completed_at: lastCompletedAt ?? new Date().toISOString()
     }))
   );
-  const completedSet = new Set(completedSlugs);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,12 +112,54 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
     };
   }, [product.slug]);
 
-  async function persistProgress(nextSeen: boolean, moduleSlug: string) {
-    const method = nextSeen ? "POST" : "DELETE";
+  useEffect(() => {
+    const sectionIds = [
+      heroVideo ? "module-overview-video" : null,
+      ...visibleModules.map((module) => `module-${module.slug}`)
+    ].filter(Boolean) as string[];
 
+    if (sectionIds.length === 0) {
+      return;
+    }
+
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (elements.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visibleEntry?.target?.id) {
+          return;
+        }
+
+        const nextActive = visibleEntry.target.id === "module-overview-video"
+          ? "overview-video"
+          : visibleEntry.target.id.replace("module-", "");
+
+        setActiveModuleSlug(nextActive);
+      },
+      {
+        rootMargin: "-18% 0px -55% 0px",
+        threshold: [0.15, 0.4, 0.7]
+      }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [heroVideo, visibleModules]);
+
+  async function persistProgress(moduleSlug: string) {
     try {
       await fetch("/api/progress", {
-        method,
+        method: "POST",
         headers: {
           "content-type": "application/json"
         },
@@ -100,14 +174,31 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
   }
 
   function handleSeenToggle(moduleSlug: string) {
-    const alreadySeen = completedSet.has(moduleSlug);
-    const nextSeen = !alreadySeen;
+    if (completedSet.has(moduleSlug)) {
+      return;
+    }
 
-    setCompletedSlugs((current) =>
-      nextSeen ? Array.from(new Set([...current, moduleSlug])) : current.filter((item) => item !== moduleSlug)
-    );
-    setLastCompletedAt(nextSeen ? new Date().toISOString() : lastCompletedAt);
-    void persistProgress(nextSeen, moduleSlug);
+    setCompletedSlugs((current) => Array.from(new Set([...current, moduleSlug])));
+    setLastCompletedAt(new Date().toISOString());
+    void persistProgress(moduleSlug);
+  }
+
+  function isModuleUnlocked(module: ProductModuleRecord) {
+    if (!isTrackableModule(module)) {
+      return true;
+    }
+
+    return unlockedTrackableSlugs.has(module.slug);
+  }
+
+  function getRequiredModule(module: ProductModuleRecord): ModuleLinkMeta | null {
+    const trackableIndex = trackableModules.findIndex((candidate) => candidate.slug === module.slug);
+    if (trackableIndex <= 0) {
+      return heroVideo ? { slug: "overview-video", title: heroVideo.title } : null;
+    }
+
+    const previous = trackableModules[trackableIndex - 1];
+    return previous ? { slug: previous.slug, title: previous.title } : null;
   }
 
   return (
@@ -118,7 +209,7 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Badge variant="success">
-                  Formation débloquée · {summary.completedModules}/{summary.totalModules} modules vus
+                  Formation débloquée · {summary.completedModules}/{summary.totalModules} modules validés
                 </Badge>
                 <Badge variant="primary">Vidéo tutorielle</Badge>
               </div>
@@ -142,7 +233,7 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
                 <div className="course-progress-bar-fill" style={{ width: `${summary.percent}%` }} />
               </div>
               <span className="course-progress-label">
-                {summary.completedModules}/{summary.totalModules} modules vus
+                {summary.completedModules}/{summary.totalModules} modules validés
               </span>
             </div>
           </div>
@@ -190,32 +281,38 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
               Tout le contenu disponible
             </h2>
             <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-              Parcours les modules dans l&apos;ordre pour une progression optimale, ou accède directement aux ressources dont tu as besoin.
+              La progression est séquentielle : valide chaque étape pour débloquer proprement la suivante et garder un vrai rythme d’apprentissage.
             </p>
           </div>
-          {visibleModules.map((module, index) => (
-            <div key={module.id} id={`module-${module.slug}`}>
-              <ContentRenderer
-                module={module}
-                productSlug={product.slug}
-                isSeen={completedSet.has(module.slug)}
-                onSeenToggle={handleSeenToggle}
-                readTimeMinutes={module.content_type === "text" ? estimateReadTime(module.content_body) : null}
-                previousModule={
-                  index > 0
-                    ? { slug: visibleModules[index - 1].slug, title: visibleModules[index - 1].title }
-                    : heroVideo
-                      ? { slug: "overview-video", title: heroVideo.title }
-                      : null
-                }
-                nextModule={
-                  index < visibleModules.length - 1
-                    ? { slug: visibleModules[index + 1].slug, title: visibleModules[index + 1].title }
-                    : null
-                }
-              />
-            </div>
-          ))}
+          {visibleModules.map((module, index) => {
+            const unlocked = isModuleUnlocked(module);
+            const nextModule = index < visibleModules.length - 1
+              ? { slug: visibleModules[index + 1].slug, title: visibleModules[index + 1].title }
+              : null;
+
+            return (
+              <div key={module.id} id={`module-${module.slug}`}>
+                <ContentRenderer
+                  module={module}
+                  productSlug={product.slug}
+                  isSeen={completedSet.has(module.slug)}
+                  isLocked={!unlocked}
+                  requiredModule={!unlocked ? getRequiredModule(module) : null}
+                  onSeenToggle={handleSeenToggle}
+                  readTimeMinutes={module.content_type === "text" ? estimateReadTime(module.content_body) : null}
+                  previousModule={
+                    index > 0
+                      ? { slug: visibleModules[index - 1].slug, title: visibleModules[index - 1].title }
+                      : heroVideo
+                        ? { slug: "overview-video", title: heroVideo.title }
+                        : null
+                  }
+                  nextModule={nextModule}
+                  canGoNext={completedSet.has(module.slug)}
+                />
+              </div>
+            );
+          })}
         </div>
 
         <aside className="course-toc-sidebar">
@@ -227,26 +324,46 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
             <div className="course-progress-bar-track">
               <div className="course-progress-bar-fill" style={{ width: `${summary.percent}%` }} />
             </div>
+            {firstIncompleteTrackable ? (
+              <p className="course-toc-note">
+                Valide <strong>{firstIncompleteTrackable.title}</strong> pour ouvrir la suite.
+              </p>
+            ) : (
+              <p className="course-toc-note">Toutes les étapes disponibles sont validées.</p>
+            )}
             <nav className="course-toc-list" aria-label="Navigation des modules">
               {heroVideo ? (
                 <a
                   href="#module-overview-video"
-                  className={`course-toc-link ${completedSet.has(heroVideo.slug) ? "seen" : ""}`}
+                  className={`course-toc-link ${completedSet.has(heroVideo.slug) ? "seen" : ""} ${activeModuleSlug === "overview-video" ? "active" : ""}`}
+                  aria-current={activeModuleSlug === "overview-video" ? "true" : undefined}
                 >
-                  <span>{completedSet.has(heroVideo.slug) ? "✓" : "○"}</span>
+                  <span className="course-toc-link-state">{completedSet.has(heroVideo.slug) ? "✓" : "○"}</span>
                   <span>{heroVideo.title}</span>
                 </a>
               ) : null}
-              {visibleModules.map((module) => (
-                <a
-                  key={module.id}
-                  href={`#module-${module.slug}`}
-                  className={`course-toc-link ${completedSet.has(module.slug) ? "seen" : ""}`}
-                >
-                  <span>{completedSet.has(module.slug) ? "✓" : "○"}</span>
-                  <span>{module.title}</span>
-                </a>
-              ))}
+              {visibleModules.map((module) => {
+                const unlocked = isModuleUnlocked(module);
+                const seen = completedSet.has(module.slug);
+
+                return (
+                  <a
+                    key={module.id}
+                    href={unlocked ? `#module-${module.slug}` : "#"}
+                    className={`course-toc-link ${seen ? "seen" : ""} ${activeModuleSlug === module.slug ? "active" : ""} ${!unlocked ? "locked" : ""}`}
+                    aria-current={activeModuleSlug === module.slug ? "true" : undefined}
+                    aria-disabled={!unlocked}
+                    onClick={(event) => {
+                      if (!unlocked) {
+                        event.preventDefault();
+                      }
+                    }}
+                  >
+                    <span className="course-toc-link-state">{seen ? "✓" : unlocked ? "○" : "🔒"}</span>
+                    <span>{module.title}</span>
+                  </a>
+                );
+              })}
             </nav>
           </div>
         </aside>

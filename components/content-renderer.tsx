@@ -6,20 +6,22 @@ import { CourseVideoPlayer } from "@/components/course-video-player";
 import { ModuleProgressTracker } from "@/components/module-progress-tracker";
 import type { ProductModuleRecord } from "@/lib/types";
 
+type ModuleLinkMeta = {
+  slug: string;
+  title: string;
+};
+
 type ContentRendererProps = {
   module: ProductModuleRecord;
   productSlug: string;
   isSeen: boolean;
+  isLocked?: boolean;
+  requiredModule?: ModuleLinkMeta | null;
   onSeenToggle: (moduleSlug: string) => void;
-  previousModule?: {
-    slug: string;
-    title: string;
-  } | null;
-  nextModule?: {
-    slug: string;
-    title: string;
-  } | null;
+  previousModule?: ModuleLinkMeta | null;
+  nextModule?: ModuleLinkMeta | null;
   readTimeMinutes?: number | null;
+  canGoNext?: boolean;
 };
 
 type VideoVisualSet = {
@@ -208,39 +210,77 @@ function MarkdownBody({ body }: { body: string }) {
   );
 }
 
+function LockedModuleNotice({ requiredModule }: { requiredModule?: ModuleLinkMeta | null }) {
+  return (
+    <div className="content-lock-notice">
+      <strong>Validation requise avant de continuer</strong>
+      <p>
+        {requiredModule
+          ? (
+            <>
+              Termine d&apos;abord <a href={`#module-${requiredModule.slug}`}>{requiredModule.title}</a> pour débloquer ce module.
+            </>
+            )
+          : "Valide le module précédent pour débloquer cette étape."}
+      </p>
+    </div>
+  );
+}
+
 function ModuleFooter({
   isSeen,
+  isLocked,
   onSeenToggle,
   module,
   previousModule,
   nextModule,
-  readTimeMinutes
+  readTimeMinutes,
+  canGoNext
 }: {
   isSeen: boolean;
+  isLocked?: boolean;
   onSeenToggle: (moduleSlug: string) => void;
   module: ProductModuleRecord;
-  previousModule?: { slug: string; title: string } | null;
-  nextModule?: { slug: string; title: string } | null;
+  previousModule?: ModuleLinkMeta | null;
+  nextModule?: ModuleLinkMeta | null;
   readTimeMinutes?: number | null;
+  canGoNext?: boolean;
 }) {
+  const nextHref = nextModule
+    ? nextModule.slug === "overview-video"
+      ? "#module-overview-video"
+      : `#module-${nextModule.slug}`
+    : null;
+  const previousHref = previousModule
+    ? previousModule.slug === "overview-video"
+      ? "#module-overview-video"
+      : `#module-${previousModule.slug}`
+    : null;
+
   return (
     <div className="content-module-footer">
       <div className="content-module-footer-meta">
         {readTimeMinutes ? <span className="module-read-time">~{readTimeMinutes} min de lecture</span> : null}
-        {module.content_type !== "coming_soon" ? (
+        {module.content_type !== "coming_soon" && !isLocked ? (
           <ModuleProgressTracker seen={isSeen} onToggle={() => onSeenToggle(module.slug)} />
         ) : null}
       </div>
       <div className="content-module-nav">
-        {previousModule ? (
-          <Link href={`#module-${previousModule.slug}`} className="content-module-nav-link">
+        {previousModule && previousHref ? (
+          <Link href={previousHref} className="content-module-nav-link">
             ← {previousModule.title}
           </Link>
         ) : <span />}
-        {nextModule ? (
-          <Link href={`#module-${nextModule.slug}`} className="content-module-nav-link">
-            {nextModule.title} →
-          </Link>
+        {nextModule && nextHref ? (
+          canGoNext ? (
+            <Link href={nextHref} className="content-module-nav-link">
+              {nextModule.title} →
+            </Link>
+          ) : (
+            <span className="content-module-nav-link disabled">
+              Valide ce module pour continuer →
+            </span>
+          )
         ) : null}
       </div>
     </div>
@@ -248,38 +288,40 @@ function ModuleFooter({
 }
 
 function TextModule(props: ContentRendererProps) {
-  const { module } = props;
+  const { module, isLocked, requiredModule } = props;
 
   return (
-    <article className="content-card">
+    <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
       <div className="content-card-head">
         <h3>{module.title}</h3>
         <AccessBadge label="Texte" tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
-      {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+      {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       <ModuleFooter {...props} />
     </article>
   );
 }
 
 function VideoModule(props: ContentRendererProps) {
-  const { module, isSeen, onSeenToggle } = props;
+  const { module, isSeen, isLocked, requiredModule, onSeenToggle } = props;
   const visuals = getVideoVisuals(module.content_url);
   const videoBadge = visuals.slug ? "Vidéo tutorielle" : "Vidéo";
 
   if (!module.content_url) {
     return (
-      <article className="content-card">
+      <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
         <div className="content-card-head">
           <h3>{module.title}</h3>
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
-        <div className="video-placeholder">
-          <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
-        </div>
+        {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : null}
+        {!isLocked ? (
+          <div className="video-placeholder">
+            <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
+          </div>
+        ) : null}
         <ModuleFooter {...props} />
       </article>
     );
@@ -287,30 +329,34 @@ function VideoModule(props: ContentRendererProps) {
 
   if (isDirectVideoFile(module.content_url)) {
     return (
-      <article className="content-card">
+      <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
         <div className="content-card-head">
           <h3>{module.title}</h3>
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <div className="video-player-shell">
-          <div className="video-player-meta">
-            <span>Lecture intégrée</span>
-            <strong>Vidéo explicative disponible immédiatement</strong>
+        {isLocked ? (
+          <LockedModuleNotice requiredModule={requiredModule} />
+        ) : (
+          <div className="video-player-shell">
+            <div className="video-player-meta">
+              <span>Lecture intégrée</span>
+              <strong>Vidéo explicative disponible immédiatement</strong>
+            </div>
+            <CourseVideoPlayer
+              className="video-embed"
+              src={module.content_url}
+              poster={visuals.posterUrl ?? undefined}
+              subtitleSlug={visuals.slug}
+              onCompleted={() => {
+                if (!isSeen) {
+                  onSeenToggle(module.slug);
+                }
+              }}
+            />
           </div>
-          <CourseVideoPlayer
-            className="video-embed"
-            src={module.content_url}
-            poster={visuals.posterUrl ?? undefined}
-            subtitleSlug={visuals.slug}
-            onCompleted={() => {
-              if (!isSeen) {
-                onSeenToggle(module.slug);
-              }
-            }}
-          />
-        </div>
-        {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+        )}
+        {!isLocked && module.content_body ? <MarkdownBody body={module.content_body} /> : null}
         <ModuleFooter {...props} />
       </article>
     );
@@ -320,53 +366,63 @@ function VideoModule(props: ContentRendererProps) {
 
   if (embedUrl) {
     return (
-      <article className="content-card">
+      <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
         <div className="content-card-head">
           <h3>{module.title}</h3>
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        <div className="video-player-shell">
-          <div className="video-player-meta">
-            <span>Lecture embarquée</span>
-            <strong>Le player reste intégré dans la formation</strong>
+        {isLocked ? (
+          <LockedModuleNotice requiredModule={requiredModule} />
+        ) : (
+          <div className="video-player-shell">
+            <div className="video-player-meta">
+              <span>Lecture embarquée</span>
+              <strong>Le player reste intégré dans la formation</strong>
+            </div>
+            <div className="video-frame">
+              <iframe
+                src={embedUrl}
+                title={module.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+              />
+            </div>
           </div>
-          <div className="video-frame">
-            <iframe
-              src={embedUrl}
-              title={module.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
-            />
-          </div>
-        </div>
-        {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+        )}
+        {!isLocked && module.content_body ? <MarkdownBody body={module.content_body} /> : null}
         <ModuleFooter {...props} />
       </article>
     );
   }
 
   return (
-    <article className="content-card">
+    <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
       <div className="content-card-head">
         <h3>{module.title}</h3>
         <AccessBadge label={videoBadge} tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
-      {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
-      <div className="video-placeholder">
-        <p>La vidéo est disponible via le lien ci-dessous.</p>
-        <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
-          Voir la vidéo
-        </a>
-      </div>
+      {isLocked ? (
+        <LockedModuleNotice requiredModule={requiredModule} />
+      ) : (
+        <>
+          {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+          <div className="video-placeholder">
+            <p>La vidéo est disponible via le lien ci-dessous.</p>
+            <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
+              Voir la vidéo
+            </a>
+          </div>
+        </>
+      )}
       <ModuleFooter {...props} />
     </article>
   );
 }
 
 export function ContentRenderer(props: ContentRendererProps) {
-  const { module } = props;
+  const { module, isLocked, requiredModule } = props;
 
   switch (module.content_type) {
     case "text":
@@ -377,46 +433,58 @@ export function ContentRenderer(props: ContentRendererProps) {
 
     case "pdf":
       return (
-        <article className="content-card">
+        <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
           <div className="content-card-head">
             <h3>{module.title}</h3>
             <AccessBadge label="PDF" tone="success" />
           </div>
           <p className="content-card-description">{module.description}</p>
-          {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
-          {module.content_url ? (
-            <div className="cta-row">
-              <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zM4 20h16v2H4v-2z" fill="currentColor" />
-                </svg>
-                Télécharger le PDF
-              </a>
-            </div>
-          ) : null}
+          {isLocked ? (
+            <LockedModuleNotice requiredModule={requiredModule} />
+          ) : (
+            <>
+              {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+              {module.content_url ? (
+                <div className="cta-row">
+                  <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zM4 20h16v2H4v-2z" fill="currentColor" />
+                    </svg>
+                    Télécharger le PDF
+                  </a>
+                </div>
+              ) : null}
+            </>
+          )}
           <ModuleFooter {...props} />
         </article>
       );
 
     case "resource":
       return (
-        <article className="content-card">
+        <article className={`content-card ${isLocked ? "content-card-locked" : ""}`}>
           <div className="content-card-head">
             <h3>{module.title}</h3>
             <AccessBadge label="Ressource" tone="success" />
           </div>
           <p className="content-card-description">{module.description}</p>
-          {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
-          {module.content_url ? (
-            <div className="cta-row">
-              <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zM4 20h16v2H4v-2z" fill="currentColor" />
-                </svg>
-                Accéder à la ressource
-              </a>
-            </div>
-          ) : null}
+          {isLocked ? (
+            <LockedModuleNotice requiredModule={requiredModule} />
+          ) : (
+            <>
+              {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+              {module.content_url ? (
+                <div className="cta-row">
+                  <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zM4 20h16v2H4v-2z" fill="currentColor" />
+                    </svg>
+                    Accéder à la ressource
+                  </a>
+                </div>
+              ) : null}
+            </>
+          )}
           <ModuleFooter {...props} />
         </article>
       );
