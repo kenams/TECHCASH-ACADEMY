@@ -61,8 +61,7 @@ export default async function MemberProductsPage() {
                 Tout ce que tu as débloqué
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
-                Une vue complète de tes accès actifs, pensée pour reprendre vite un contenu, suivre
-                ta progression et garder une lecture claire dans l&apos;espace membre.
+                Une vue complète de tes accès actifs, pensée pour reprendre vite un contenu, suivre ta progression et garder une lecture claire dans l&apos;espace membre.
               </p>
             </div>
             <div className="dashboard-hero-metrics">
@@ -134,7 +133,7 @@ export default async function MemberProductsPage() {
                   <span className="confidence-dot" />
                   <div>
                     <strong>Accès direct</strong>
-                    <p>Tu arrives immédiatement sur les modules disponibles, sans repasser par le catalogue.</p>
+                    <p>Tu arrives immédiatement sur le bon module, sans repasser par le catalogue.</p>
                   </div>
                 </div>
               </div>

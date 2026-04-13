@@ -23,12 +23,25 @@ type DashboardPageProps = {
   }>;
 };
 
+const RECOMMENDED_PATH = [
+  "freelance-it-30-jours",
+  "maintenance-informatique-pme",
+  "glpi-support-pme",
+  "microsoft-365-pme",
+  "cybersecurite-pme",
+  "automatisation-n8n"
+] as const;
+
 function getGreeting(email: string) {
   const hour = new Date().getHours();
   const name = email.split("@")[0] || email;
 
-  if (hour < 12) return `Bonjour ${name} 👋`;
-  if (hour < 18) return `Bon après-midi ${name} 👋`;
+  if (hour < 12) {
+    return `Bonjour ${name} 👋`;
+  }
+  if (hour < 18) {
+    return `Bon après-midi ${name} 👋`;
+  }
   return `Bonsoir ${name} 👋`;
 }
 
@@ -40,6 +53,12 @@ function getFocusLine(accessibleCount: number, discoverCount: number) {
     return "Tout le catalogue visible est déjà aligné avec ton compte. Le cadre membre est complet et cohérent.";
   }
   return "Tu peux reprendre tes contenus actifs et ouvrir ensuite la prochaine formation la plus logique, sans dispersion.";
+}
+
+function getResumeHref(productSlug: string, nextModuleSlug: string | null) {
+  return nextModuleSlug
+    ? `/dashboard/formations/${productSlug}#module-${nextModuleSlug}`
+    : `/dashboard/formations/${productSlug}`;
 }
 
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
@@ -82,6 +101,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     user.id,
     accessibleWithModules.filter(Boolean) as NonNullable<(typeof accessibleWithModules)[number]>[]
   );
+
   const continueProduct =
     accessibleProducts
       .map((product) => ({
@@ -94,6 +114,29 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         const bTime = b.progress?.lastCompletedAt ? new Date(b.progress.lastCompletedAt).getTime() : 0;
         return bTime - aTime;
       })[0] ?? null;
+
+  const recommendedPath = RECOMMENDED_PATH
+    .map((slug, index) => {
+      const activeProduct = activeProducts.find((product) => product.slug === slug);
+      if (!activeProduct) {
+        return null;
+      }
+
+      return {
+        order: index + 1,
+        product: activeProduct,
+        owned: ownedSlugs.has(slug),
+        progress: progressBySlug[slug]
+      };
+    })
+    .filter(Boolean) as Array<{
+    order: number;
+    product: (typeof activeProducts)[number];
+    owned: boolean;
+    progress: (typeof progressBySlug)[string] | undefined;
+  }>;
+
+  const recommendedNextStep = recommendedPath.find((entry) => !entry.owned) ?? recommendedPath[0] ?? null;
 
   return (
     <div className="grid gap-8">
@@ -195,17 +238,13 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                   <span className="confidence-dot" />
                   <div>
                     <strong>Action directe</strong>
-                    <p>Un clic te renvoie vers la page membre puis vers le module suivant sans détour.</p>
+                    <p>Un clic te renvoie vers la page membre puis vers le bon module sans détour.</p>
                   </div>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={
-                    continueProduct.progress.nextModuleSlug
-                      ? `/dashboard/formations/${continueProduct.product.slug}#module-${continueProduct.progress.nextModuleSlug}`
-                      : `/dashboard/formations/${continueProduct.product.slug}`
-                  }
+                  href={getResumeHref(continueProduct.product.slug, continueProduct.progress.nextModuleSlug)}
                   className={buttonClasses("primary", "md")}
                 >
                   Reprendre maintenant
@@ -220,6 +259,62 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               />
             </div>
           </GlowCard>
+        </AnimatedSection>
+      ) : null}
+
+      {recommendedPath.length ? (
+        <AnimatedSection delay={55} className="grid gap-5">
+          <div className="grid gap-2">
+            <Badge variant="primary">Parcours recommandé</Badge>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Ordre conseillé pour construire une vraie offre</h2>
+            <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+              Une lecture simple du meilleur chemin commercial : commencer par une offre large, stabiliser la récurrence, puis monter en spécialisation.
+            </p>
+          </div>
+          <div className="grid gap-4 xl:grid-cols-3">
+            {recommendedPath.slice(0, 3).map((entry) => (
+              <GlowCard key={entry.product.slug} className="grid gap-4 p-5" glowColor={entry.owned ? "emerald" : "indigo"}>
+                <div className="flex items-center justify-between gap-3">
+                  <Badge variant={entry.owned ? "success" : "muted"}>{entry.owned ? "Déjà ouverte" : `Étape ${entry.order}`}</Badge>
+                  <span className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Parcours</span>
+                </div>
+                <div className="grid gap-2">
+                  <h3 className="text-xl font-semibold text-[var(--foreground)]">{entry.product.title}</h3>
+                  <p className="text-sm leading-7 text-[var(--muted)]">{entry.product.short_description}</p>
+                </div>
+                {entry.progress ? (
+                  <div className="course-progress-bar-shell">
+                    <div className="course-progress-bar-track">
+                      <div className="course-progress-bar-fill" style={{ width: `${entry.progress.percent}%` }} />
+                    </div>
+                    <span className="course-progress-label">{entry.progress.percent}%</span>
+                  </div>
+                ) : null}
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={
+                      entry.owned
+                        ? getResumeHref(entry.product.slug, entry.progress?.nextModuleSlug ?? null)
+                        : `/checkout?product=${entry.product.slug}`
+                    }
+                    className={buttonClasses(entry.owned ? "secondary" : "primary", "sm")}
+                  >
+                    {entry.owned ? "Reprendre" : "Ouvrir cette étape"}
+                  </Link>
+                </div>
+              </GlowCard>
+            ))}
+          </div>
+          {recommendedNextStep ? (
+            <div className="luxury-note">
+              <strong>Prochaine étape conseillée</strong>
+              <span>
+                {recommendedNextStep.owned
+                  ? `Continue ${recommendedNextStep.product.title} pour rester dans le bon ordre de progression.`
+                  : `La prochaine formation la plus logique à ouvrir est ${recommendedNextStep.product.title}.`}
+              </span>
+            </div>
+          ) : null}
         </AnimatedSection>
       ) : null}
 
@@ -303,7 +398,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
       <AnimatedSection delay={160} className="grid gap-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="grid gap-2">
-            <Badge variant="muted">Découvrir d'autres formations</Badge>
+            <Badge variant="muted">Découvrir d&apos;autres formations</Badge>
             <div>
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">Étends ton catalogue de compétences</h2>
               <p className="mt-2 max-w-3xl text-base leading-8 text-[var(--muted)]">
