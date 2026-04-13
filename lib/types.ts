@@ -1,5 +1,5 @@
 export type ProductContentType = "pdf" | "video" | "text" | "resource" | "coming_soon";
-export type ProductCategory = "it" | "trading";
+export type ProductCategory = "it" | "trading" | "flagship" | "bundle" | "ia" | "business";
 
 export type UserProfile = {
   id: string;

@@ -4,6 +4,7 @@ import {
   tradingProducts,
   tradingProductSupplements
 } from "@/lib/catalog-trading";
+import { newProducts, newProductModules } from "@/lib/catalog-new";
 
 function isoDate() {
   return new Date("2026-04-08T10:00:00.000Z").toISOString();
@@ -223,7 +224,8 @@ export const localProducts: ProductRecord[] = [
     created_at: now,
     updated_at: now
   },
-  ...tradingProducts
+  ...tradingProducts,
+  ...newProducts
 ];
 
 localProducts.forEach((product) => {
@@ -366,7 +368,7 @@ export const localProductModules: ProductModuleRecord[] = [
     1,
     {
       content_body:
-        "Une landing page vend surtout par clarté.\n\nTu dois faire comprendre en quelques secondes le problème traité, la promesse, les preuves et l'action attendue.\n\nDans ce module, tu apprends à construire un squelette vendable avant même d'ouvrir ton outil de design."
+        "## Structure d'une landing page qui convertit\n\nUne landing page vend par clarté, pas par quantité. Le visiteur décide en 5 secondes s'il reste ou s'il part. Ta seule mission : lui donner une raison de rester.\n\n### Les 6 blocs dans le bon ordre\n\n**1. Hero (au-dessus de la ligne de flottaison)**\n- Titre : la promesse principale en une phrase\n- Sous-titre : pour qui et quel résultat concret\n- CTA primaire : un seul bouton, une seule action\n- Preuve rapide : 1 chiffre ou 1 logo client\n\n**2. Problème (ce que le visiteur ressent)**\n- Nommer le problème exactement comme le client le vit\n- Pas de jargon — les mots du client, pas les tiens\n- 3 à 5 lignes maximum\n\n**3. Solution (ce que tu proposes)**\n- Comment tu résous ce problème, en 2–3 étapes\n- Résultat attendu clairement formulé\n- Pas de liste de fonctionnalités — des bénéfices\n\n**4. Preuves**\n- Témoignages clients avec photo et nom réel\n- Chiffres concrets (\"87 clients servis\", \"4,9/5\")\n- Logos, captures, avant/après\n\n**5. Offre détaillée**\n- Ce qui est inclus, ligne par ligne\n- Ce qui n'est pas inclus (évite les surprises)\n- Prix ou range de prix si applicable\n\n**6. CTA final + FAQ**\n- Reformuler la promesse principale\n- CTA répété\n- 3 à 5 questions qui lèvent les dernières objections\n\n---\n\n### Les 3 erreurs qui plombent la conversion\n\n**Erreur 1 — Le titre vague**\n- ❌ \"Solutions digitales innovantes pour votre entreprise\"\n- ✓ \"Votre site vitrine livré en 7 jours, clé en main\"\n\n**Erreur 2 — Trop de CTA**\n- Une page = une action. Pas de liens vers d'autres pages, pas de menu.\n\n**Erreur 3 — Aucune preuve**\n- Sans preuve sociale, le visiteur ne te connaît pas. Une page sans preuve convertit 3 à 5 fois moins.\n\n---\n\n### Ce que tu dois faire maintenant\n\n1. Prendre une landing page existante (la tienne ou celle d'un client)\n2. Vérifier que les 6 blocs sont présents dans le bon ordre\n3. Supprimer tout ce qui ne sert pas directement l'action principale\n4. Tester le titre en le lisant à voix haute — si tu hésites, retravailler"
     }
   ),
   module(
@@ -424,7 +426,7 @@ export const localProductModules: ProductModuleRecord[] = [
     1,
     {
       content_body:
-        "Un site client devient vite improductif si le cadrage est flou.\n\nLe but est d'obtenir vite les bons éléments : pages nécessaires, objectifs, ton, CTA et contraintes techniques.\n\nTu apprendras à garder le projet simple et rentable."
+        "## Cadrer un site client sans perdre du temps\n\nUn projet de site mal cadré dure 3 fois plus longtemps que prévu et génère autant d'allers-retours que de pages livrées. La solution : poser les bonnes questions avant de produire la moindre ligne.\n\n### Les 5 questions indispensables en réunion de cadrage\n\n**1. Quel est l'objectif principal du site ?**\n- Générer des appels / demandes de devis ?\n- Vendre directement (e-commerce) ?\n- Présenter l'activité et rassurer (vitrine) ?\n- Recruter ?\n\n→ Un site = un objectif principal. Tout le reste est secondaire.\n\n**2. Qui est le visiteur cible ?**\n- Particulier ou professionnel ?\n- Tranche d'âge, secteur, niveau tech ?\n- Ce qu'il cherche quand il arrive sur le site ?\n\n**3. Quelles pages sont indispensables ?**\n- Liste avec le client, pas pour lui\n- La plupart des PME n'ont besoin que de 4 à 6 pages\n- Chaque page = un objectif clairement défini\n\n**4. Quels assets tu as ?**\n- Logo en vecteur (SVG ou PDF) ?\n- Photos professionnelles ou stock ?\n- Textes existants ou à rédiger ?\n- Informations légales (SIRET, mentions) ?\n\n**5. Quel est le budget et le délai réels ?**\n- Ne jamais démarrer sans budget décidé\n- Délai côté client : date impérative ? Souplesse ?\n- Combien d'allers-retours sont inclus ?\n\n---\n\n### Les limites à poser dès le cadrage\n\n```\nCe qui est inclus :\n- X pages (liste)\n- 2 allers-retours de corrections\n- Responsive mobile\n- Formulaire de contact\n- Installation sur l'hébergement du client\n\nCe qui n'est pas inclus :\n- Rédaction des textes\n- Photos ou illustrations\n- Référencement SEO avancé\n- Maintenance après livraison\n- Modifications de structure après validation\n```\n\n> Mettre les limites dans le devis = pas de mauvaise surprise. Ni pour toi, ni pour le client.\n\n---\n\n### Les signaux d'alarme à identifier en amont\n\n- Client qui ne sait pas ce qu'il veut mais \"veut quelque chose de moderne\"\n- Pas de logo, pas de textes, pas de photos → prévoir 2× plus de temps\n- \"On verra les détails plus tard\" → non, on les voit maintenant\n- Demande de refaire \"comme le site de ce concurrent\" → risque de plagiat, cadrer différemment"
     }
   ),
   module(
@@ -482,7 +484,7 @@ export const localProductModules: ProductModuleRecord[] = [
     1,
     {
       content_body:
-        "Les bons outils internes résolvent un irritant clair : tickets, suivi, demandes, workflow ou reporting.\n\nCe module t'aide à traduire un problème flou en solution simple et finie, donc en proposition commerciale crédible."
+        "## Transformer un irritant PME en outil facturable\n\nLes meilleures missions d'outils internes ne viennent pas d'une demande technique. Elles viennent d'une phrase comme : **\"On perd du temps à chercher qui fait quoi\"** ou **\"On a eu un incident parce que personne ne savait que ce poste n'était plus à jour.\"**\n\n### Les 5 irritants les plus fréquents en PME\n\n**1. Le support par WhatsApp ou téléphone**\n- Demandes perdues, pas de traçabilité, pas de priorité\n- Solution : portail de tickets simple (GLPI, Freshdesk, ou outil custom)\n- Facturable : 500–1 500 € de mise en place + maintenance mensuelle\n\n**2. Les tableaux Excel de suivi**\n- Versions multiples, conflits, données périmées\n- Solution : base de données simple avec interface web\n- Facturable : 800–2 500 € selon la complexité\n\n**3. L'onboarding / offboarding manuel**\n- Oubli de créer ou supprimer des accès\n- Solution : checklist numérique avec validation par étape\n- Facturable : 400–800 € de mise en place\n\n**4. Les rapports recopiés à la main**\n- Données collectées manuellement chaque semaine ou mois\n- Solution : automatisation n8n + dashboard Metabase ou Notion\n- Facturable : 600–1 200 € + 80–150 €/mois de maintenance\n\n**5. La gestion du parc matériel dans la tête du technicien**\n- Aucun inventaire, aucune garantie suivie\n- Solution : module inventaire GLPI ou Snipe-IT\n- Facturable : 400–900 € de déploiement\n\n---\n\n### Comment identifier l'irritant à traiter en priorité\n\nPose ces 3 questions au dirigeant :\n\n1. **\"Quelle tâche répétitive prend le plus de temps à vos équipes chaque semaine ?\"**\n2. **\"Quel sujet génère le plus de malentendus ou d'erreurs ?\"**\n3. **\"Si vous pouviez automatiser une chose demain, ce serait laquelle ?\"**\n\nLa réponse la plus émotionnelle = l'irritant à traiter en premier.\n\n---\n\n### La règle des 3 semaines\n\nUn bon outil métier PME doit pouvoir être :\n- **cadré** en 2 jours\n- **livré** en 1 à 2 semaines\n- **adopté** dans les 3 premières semaines\n\nSi ce n'est pas faisable dans ces délais, le périmètre est trop large. Réduis."
     }
   ),
   module(
@@ -524,11 +526,35 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "outils-pme-glpi",
+    "construire-mini-outil-no-code",
+    "Construire un mini-outil PME sans coder",
+    "Créer un outil de suivi ou de ticketing simple avec Notion, Airtable ou un formulaire connecté.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Construire un mini-outil sans coder\n\nAvant d'installer GLPI ou de développer une app sur mesure, il existe des outils no-code qui répondent à 80 % des besoins PME.\n\n### Option 1 — Notion (pour les PME qui aiment les docs)\n\n**Cas d'usage** : base de connaissances interne, suivi de projets, wiki équipe\n\n**Setup en 1h :**\n- Créer un espace de travail partagé\n- 1 base de données \"Demandes\" avec statuts (En attente / En cours / Résolu)\n- 1 base de données \"Matériel\" avec colonnes (Nom, Type, Utilisateur, Garantie)\n- Formulaire public Tally connecté pour les demandes\n\n**Coût pour le client** : 0 à 16 €/mois\n**À facturer** : mise en place 300–500 € + formation 150 €\n\n---\n\n### Option 2 — Airtable (pour les PME avec data)\n\n**Cas d'usage** : suivi des interventions, inventaire matériel, CRM simple\n\n**Setup en 2h :**\n- Table principale + vues filtrées par technicien ou statut\n- Formulaire d'entrée pour les demandes utilisateurs\n- Automatisation : email au responsable quand priorité = Urgente\n- Vue calendrier pour les maintenances préventives\n\n**Coût pour le client** : 0 à 20 €/mois\n**À facturer** : mise en place 400–700 €\n\n---\n\n### Option 3 — Tally + Google Sheets (le plus simple)\n\n**Cas d'usage** : formulaire de demande IT → suivi dans un tableau\n\n**Setup en 30 min :**\n- Formulaire Tally public (gratuit) pour les demandes\n- Connexion automatique à Google Sheets via webhook\n- Colonne \"Statut\" mise à jour manuellement\n- Email de confirmation automatique via n8n\n\n**Coût pour le client** : 0 €\n**À facturer** : mise en place 150–250 €\n\n---\n\n### Quand passer à GLPI ?\n\n- Plus de 5 personnes qui ouvrent des demandes régulièrement\n- Besoin de SLA et de reporting structuré\n- Besoin d'inventaire matériel intégré\n- Direction qui veut des métriques de suivi\n\n> Commence avec le no-code. Upgrades vers GLPI quand le client a prouvé qu'il utilise vraiment l'outil."
+    }
+  ),
+  module(
+    "outils-pme-glpi",
+    "vendre-outil-interne",
+    "Vendre un outil interne à un dirigeant PME",
+    "Les arguments qui convainquent, le bon format de devis et comment éviter le projet qui s'étire.",
+    "text",
+    5,
+    {
+      content_body:
+        "## Vendre un outil interne sans effrayer le budget\n\nUn dirigeant PME ne veut pas acheter un \"outil\". Il veut résoudre un problème. Vends le résultat, pas la technologie.\n\n### Le pitch en 3 phrases\n\n> \"Aujourd'hui, vos équipes gèrent les demandes IT par email et WhatsApp. Certaines tombent entre les mailles. Je vous propose un portail simple, opérationnel en une semaine, qui centralise tout et donne de la visibilité à vos managers.\"\n\n---\n\n### Les 3 formats de tarification\n\n**Forfait projet (one-shot)**\n- Cadrage + build + formation + documentation\n- 400 € à 2 000 € selon complexité\n- Adapté aux dirigeants qui \"n'aiment pas les abonnements\"\n\n**Projet + maintenance mensuelle**\n- 600 € de mise en place + 80–150 €/mois\n- Meilleur pour toi : tu gardes la main sur l'outil\n- Meilleur pour le client : il a un interlocuteur si ça plante\n\n**Audit + recommandation seulement**\n- 150–350 € pour un livrable écrit\n- Porte d'entrée idéale pour les prospects hésitants\n- Souvent suivi d'une mission de build\n\n---\n\n### Le devis qui rassure\n\n```\nPhase 1 — Cadrage (2h) : inclus\nPhase 2 — Build et configuration : [X] €\nPhase 3 — Formation équipe (1h) : inclus\nPhase 4 — Semaine de support post-lancement : inclus\nDocumentation remise : inclus\n\nDélai de livraison : [X] jours ouvrés\nNombre d'allers-retours inclus : 2\n```\n\n---\n\n### Ce qui fait dérailler le projet\n\n- Ajouter des fonctionnalités en cours de route sans avenant\n- Ne pas définir qui valide les livraisons côté client\n- Livrer sans formation → l'outil n'est pas utilisé → contrat non renouvelé\n- Promettre plus que ce que l'outil no-code peut faire\n\n> Mets toujours un interlocuteur unique côté client. Un projet avec 3 décideurs dure 3 fois plus longtemps."
+    }
+  ),
+  module(
+    "outils-pme-glpi",
     "etudes-de-cas-a-venir",
     "Études de cas et mini-démos",
     "Des mini-cas réels de demandes PME et support seront ajoutés.",
     "coming_soon",
-    5
+    6
   ),
 
   module(
@@ -540,7 +566,7 @@ export const localProductModules: ProductModuleRecord[] = [
     1,
     {
       content_body:
-        "Une bonne application rentable ne commence pas par une liste infinie de features.\n\nElle commence par un problème clair, une cible précise, un premier flux utile et un mode de monétisation réaliste.\n\nTu vas cadrer cela avant d'écrire du code."
+        "## Cadrer une application mobile rentable\n\nUne app qui essaie de tout faire ne fait rien bien. Le MVP rentable est une app qui fait **une chose mieux que les alternatives existantes**.\n\n### Les 4 questions de cadrage obligatoires\n\n**1. Quel problème précis cette app résout-elle ?**\n- Pas \"simplifier la vie des gens\"\n- Oui : \"Les artisans perdent 45 min par chantier à remplir leurs bons de livraison sur papier\"\n\n**2. Qui est l'utilisateur cible ?**\n- Âge, contexte, niveau tech\n- Quand et où utilise-t-il l'app ? (en déplacement, au bureau, en urgence)\n- Qu'est-ce qu'il fait aujourd'hui à la place ?\n\n**3. Quel est le flux minimal viable ?**\n- Le parcours utilisateur en 3 à 5 étapes maximum\n- Exemple : Créer bon → Ajouter ligne → Signer → Envoyer PDF\n- Tout le reste est version 2\n\n**4. Comment l'app génère-t-elle de l'argent ?**\n- Abonnement mensuel (SaaS B2B : 20–100 €/mois)\n- Achat unique (B2C : 1,99–9,99 €)\n- Freemium avec limite sur le volume\n- Licence entreprise (facturation annuelle)\n\n---\n\n### La matrice de validation rapide\n\nAvant de coder quoi que ce soit, valide ces 3 points :\n\n| Question | Réponse attendue |\n|----------|------------------|\n| J'ai parlé à 5 utilisateurs cibles | OUI |\n| Au moins 2 seraient prêts à payer | OUI |\n| Le flux principal tient en 5 écrans | OUI |\n\nSi une réponse est NON → retravaille le cadrage avant de démarrer.\n\n---\n\n### Stack recommandée pour un MVP mobile en 2026\n\n- **Expo React Native** : iOS + Android depuis une seule base de code\n- **Supabase** : base de données, auth, stockage\n- **Stripe** : paiements in-app\n- **EAS Build** : compilation cloud, pas besoin de Mac pour iOS\n\n> Avec cette stack, un développeur solo peut livrer un MVP fonctionnel en 3 à 6 semaines."
     }
   ),
   module(
@@ -1052,7 +1078,8 @@ export const localProductModules: ProductModuleRecord[] = [
     "coming_soon",
     6
   ),
-  ...tradingProductModules
+  ...tradingProductModules,
+  ...newProductModules
 ];
 
 type ProductSupplement = {
@@ -1220,7 +1247,22 @@ const productSupplements: Record<string, ProductSupplement> = {
     pitch:
       "La formation pour créer des automatisations utiles avec n8n et les transformer en offre de service récurrente pour des PME."
   },
-  ...tradingProductSupplements
+  ...tradingProductSupplements,
+  "ia-revenus-actifs": {
+    salesPriority: 0,
+    bestFor: [
+      "toute personne qui veut transformer une compétence en activité indépendante",
+      "profils IT, IA ou Finance qui veulent une méthode complète de lancement",
+      "freelances qui démarrent sans réseau et sans budget marketing"
+    ],
+    outcomes: [
+      "une offre de service claire et tarifiée",
+      "un premier client dans les 30 jours",
+      "un système de livraison automatisé et des revenus récurrents"
+    ],
+    pitch:
+      "Le programme flagship pour passer d'une compétence floue à une activité indépendante rentable — IT, IA ou Finance."
+  }
 };
 
 // ─── Exported catalog helpers ─────────────────────────────────────────────────
