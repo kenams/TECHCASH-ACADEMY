@@ -1,4 +1,5 @@
 import { AccessBadge } from "@/components/access-badge";
+import { CourseVideoPlayer } from "@/components/course-video-player";
 import { PurchaseCTA } from "@/components/purchase-cta";
 import { formatPrice } from "@/lib/products";
 import type { ProductRecord } from "@/lib/types";
@@ -62,21 +63,9 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
       </div>
 
       <aside className="product-hero-card">
-        {/* Video preview replaces static image */}
         <div className="product-video-preview">
-          <div className="product-video-preview-label">
-            Aperçu gratuit
-          </div>
-          <video
-            controls
-            preload="metadata"
-            playsInline
-            poster={posterUrl}
-          >
-            <source src={videoUrl} type="video/mp4" />
-            <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" />
-            <track kind="chapters" src={`/videos/subtitles/${product.slug}-chapters.vtt`} srcLang="fr" />
-          </video>
+          <div className="product-video-preview-label">Aperçu gratuit</div>
+          <CourseVideoPlayer src={videoUrl} poster={posterUrl} subtitleSlug={product.slug} />
         </div>
         <div className="product-hero-meta">
           <div className="price-block">
@@ -85,7 +74,9 @@ export function ProductHero({ product, isOwned = false, detailHref }: ProductHer
           </div>
           <div className="luxury-note">
             <strong>Vidéo tutorielle incluse</strong>
-            <span>Chaque formation inclut une vidéo guidée complète, des modules texte, des PDF et des ressources téléchargeables.</span>
+            <span>
+              Chaque formation inclut une vidéo guidée complète, des modules texte, des PDF et des ressources téléchargeables.
+            </span>
           </div>
           <ul className="list product-hero-points">
             <li>Vidéo tutorielle guidée avec voix IA</li>

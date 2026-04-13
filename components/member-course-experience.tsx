@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ContentRenderer } from "@/components/content-renderer";
+import { CourseVideoPlayer } from "@/components/course-video-player";
 import { Badge } from "@/components/ui/Badge";
 import { buttonClasses } from "@/components/ui/Button";
-import { ContentRenderer } from "@/components/content-renderer";
 import { buildProductProgressSummary } from "@/lib/progress";
 import type { ProductModuleRecord, ProductProgressSummary, ProductWithModules } from "@/lib/types";
 
@@ -146,19 +147,17 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
             </div>
           </div>
           <div className="course-hero-video-player" id="module-overview-video">
-            <video
+            <CourseVideoPlayer
               className="course-main-video"
-              controls
-              preload="metadata"
-              playsInline
+              src={heroVideo.content_url}
               poster={`/videos/posters/${product.slug}-overview-poster.jpg`}
-              onEnded={() => handleSeenToggle(heroVideo.slug)}
-            >
-              <source src={heroVideo.content_url} type="video/mp4" />
-              <track kind="subtitles" src={`/videos/subtitles/${product.slug}-overview.vtt`} srcLang="fr" label="Français" />
-              <track kind="chapters" src={`/videos/subtitles/${product.slug}-chapters.vtt`} srcLang="fr" />
-              Votre navigateur ne supporte pas la lecture vidéo.
-            </video>
+              subtitleSlug={product.slug}
+              onCompleted={() => {
+                if (!completedSet.has(heroVideo.slug)) {
+                  handleSeenToggle(heroVideo.slug);
+                }
+              }}
+            />
           </div>
           <div className="course-hero-video-stats">
             <div className="course-stat">
@@ -166,7 +165,9 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
               <span>modules suivis</span>
             </div>
             <div className="course-stat">
-              <strong>{product.modules.filter((module) => module.content_type === "resource" || module.content_type === "pdf").length}</strong>
+              <strong>
+                {product.modules.filter((module) => module.content_type === "resource" || module.content_type === "pdf").length}
+              </strong>
               <span>ressources directes</span>
             </div>
             <div className="course-stat">

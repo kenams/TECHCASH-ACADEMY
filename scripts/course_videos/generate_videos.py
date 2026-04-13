@@ -3,14 +3,16 @@ import asyncio
 import io
 import math
 import re
+import subprocess
 import textwrap
 import time
 from pathlib import Path
 
 import edge_tts
+import imageio_ffmpeg
 import requests
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
-from moviepy import AudioFileClip, ImageClip, concatenate_videoclips
+from moviepy import AudioFileClip
 
 ROOT = Path(__file__).resolve().parents[2]
 PUBLIC_VIDEOS_DIR = ROOT / "public" / "videos" / "formations"
@@ -25,6 +27,7 @@ FPS = 18
 TITLE_FONT = "C:/Windows/Fonts/georgiab.ttf"
 BODY_FONT = "C:/Windows/Fonts/segoeui.ttf"
 VOICE = "fr-FR-DeniseNeural"
+FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
 FG = (245, 239, 226)
 MUTED = (196, 206, 224)
@@ -628,14 +631,101 @@ def valid_audio(path: Path) -> bool:
         return False
 
 
-def clip_for(image_path: Path, audio_path: Path) -> ImageClip:
-    audio = AudioFileClip(str(audio_path))
-    duration = max(audio.duration + 0.45, 6.0)
-    return (
-        ImageClip(str(image_path))
-        .with_duration(duration)
-        .resized(lambda t: 1.0 + 0.018 * (t / duration))
-        .with_audio(audio)
+def audio_duration(path: Path) -> float:
+    clip = AudioFileClip(str(path))
+    duration = max(clip.duration + 0.45, 6.0)
+    clip.close()
+    return duration
+
+
+def write_concat_manifest(paths: list[Path], output_path: Path) -> None:
+    output_path.write_text(
+        "".join(f"file '{path.resolve().as_posix()}'\n" for path in paths),
+        encoding="utf-8",
+    )
+
+
+def write_slide_manifest(slide_paths: list[Path], audio_paths: list[Path], output_path: Path) -> None:
+    lines: list[str] = []
+    for slide_path, audio_path in zip(slide_paths, audio_paths):
+        lines.append(f"file '{slide_path.resolve().as_posix()}'\n")
+        lines.append(f"duration {audio_duration(audio_path):.3f}\n")
+    if slide_paths:
+        lines.append(f"file '{slide_paths[-1].resolve().as_posix()}'\n")
+    output_path.write_text("".join(lines), encoding="utf-8")
+
+
+def run_ffmpeg(command: list[str]) -> None:
+    result = subprocess.run(command, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr or result.stdout or "ffmpeg failed")
+
+
+def render_video_with_ffmpeg(slide_paths: list[Path], audio_paths: list[Path], output_path: Path, workdir: Path) -> None:
+    slide_manifest = workdir / "slides.txt"
+    audio_manifest = workdir / "audio_concat.txt"
+    joined_audio = workdir / "joined-audio.mp3"
+    silent_video = workdir / "silent-video.mp4"
+
+    write_slide_manifest(slide_paths, audio_paths, slide_manifest)
+    write_concat_manifest(audio_paths, audio_manifest)
+
+    run_ffmpeg(
+        [
+            FFMPEG,
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(audio_manifest),
+            "-af",
+            "loudnorm=I=-16:TP=-1.5:LRA=11",
+            "-c:a",
+            "mp3",
+            str(joined_audio),
+        ]
+    )
+
+    run_ffmpeg(
+        [
+            FFMPEG,
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(slide_manifest),
+            "-vf",
+            f"fps={FPS},format=yuv420p",
+            "-c:v",
+            "libx264",
+            "-movflags",
+            "+faststart",
+            "-an",
+            str(silent_video),
+        ]
+    )
+
+    run_ffmpeg(
+        [
+            FFMPEG,
+            "-y",
+            "-i",
+            str(silent_video),
+            "-i",
+            str(joined_audio),
+            "-c:v",
+            "copy",
+            "-c:a",
+            "aac",
+            "-movflags",
+            "+faststart",
+            "-shortest",
+            str(output_path),
+        ]
     )
 
 
@@ -677,23 +767,8 @@ def build_course(course: dict, force: bool, assets_only: bool = False) -> Path:
     for slide, audio_path in zip(slides, audio_paths):
         ensure_audio(clip_audio_excerpt(slide["narration"]), audio_path, force=force)
 
-    clips = [clip_for(slide_path, audio_path) for slide_path, audio_path in zip(rendered_slides, audio_paths)]
-    video = concatenate_videoclips(clips, method="compose")
     output_path = PUBLIC_VIDEOS_DIR / f"{slug}-overview.mp4"
-    video.write_videofile(
-        str(output_path),
-        fps=FPS,
-        codec="libx264",
-        audio_codec="aac",
-        bitrate="1400k",
-        ffmpeg_params=["-pix_fmt", "yuv420p", "-movflags", "+faststart"],
-        logger=None,
-    )
-    video.close()
-    for clip in clips:
-        if clip.audio:
-            clip.audio.close()
-        clip.close()
+    render_video_with_ffmpeg(rendered_slides, audio_paths, output_path, workdir)
     return output_path
 
 

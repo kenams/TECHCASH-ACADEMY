@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
+import { CourseVideoPlayer } from "@/components/course-video-player";
 import { ModuleProgressTracker } from "@/components/module-progress-tracker";
 import type { ProductModuleRecord } from "@/lib/types";
 
@@ -30,6 +31,14 @@ type InlineNode =
   | { type: "text"; value: string }
   | { type: "bold"; value: string }
   | { type: "code"; value: string };
+
+type MarkdownBlock =
+  | { type: "h2"; content: string }
+  | { type: "h3"; content: string }
+  | { type: "callout"; content: string }
+  | { type: "divider" }
+  | { type: "list"; items: string[] }
+  | { type: "paragraph"; content: string };
 
 function isDirectVideoFile(url: string) {
   return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
@@ -104,19 +113,15 @@ function parseInline(raw: string): InlineNode[] {
 function renderInline(raw: string, keyPrefix: string) {
   return parseInline(raw).map((node, index) => {
     const key = `${keyPrefix}-${index}`;
-    if (node.type === "bold") return <strong key={key}>{node.value}</strong>;
-    if (node.type === "code") return <code key={key} className="content-inline-code">{node.value}</code>;
+    if (node.type === "bold") {
+      return <strong key={key}>{node.value}</strong>;
+    }
+    if (node.type === "code") {
+      return <code key={key} className="content-inline-code">{node.value}</code>;
+    }
     return <span key={key}>{node.value}</span>;
   });
 }
-
-type MarkdownBlock =
-  | { type: "h2"; content: string }
-  | { type: "h3"; content: string }
-  | { type: "callout"; content: string }
-  | { type: "divider" }
-  | { type: "list"; items: string[] }
-  | { type: "paragraph"; content: string };
 
 function parseMarkdown(text: string): MarkdownBlock[] {
   const lines = text.split("\n");
@@ -293,27 +298,17 @@ function VideoModule(props: ContentRendererProps) {
             <span>Lecture intégrée</span>
             <strong>Vidéo explicative disponible immédiatement</strong>
           </div>
-          <video
+          <CourseVideoPlayer
             className="video-embed"
-            controls
-            preload="metadata"
-            playsInline
+            src={module.content_url}
             poster={visuals.posterUrl ?? undefined}
-            onEnded={() => {
+            subtitleSlug={visuals.slug}
+            onCompleted={() => {
               if (!isSeen) {
                 onSeenToggle(module.slug);
               }
             }}
-          >
-            <source src={module.content_url} />
-            {visuals.slug ? (
-              <>
-                <track kind="subtitles" src={`/videos/subtitles/${visuals.slug}-overview.vtt`} srcLang="fr" label="Français" />
-                <track kind="chapters" src={`/videos/subtitles/${visuals.slug}-chapters.vtt`} srcLang="fr" />
-              </>
-            ) : null}
-            Votre navigateur ne supporte pas la lecture vidéo intégrée.
-          </video>
+          />
         </div>
         {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
         <ModuleFooter {...props} />
