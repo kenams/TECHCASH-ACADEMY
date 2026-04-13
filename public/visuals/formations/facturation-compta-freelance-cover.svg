@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="42" fill="#08111D"/>
+  <rect x="106" y="124" width="620" height="652" rx="34" fill="#0E1727" stroke="#354967"/>
+  <rect x="170" y="190" width="492" height="92" rx="24" fill="#152237"/>
+  <rect x="190" y="344" width="452" height="354" rx="30" fill="#111B2C"/>
+  <rect x="226" y="392" width="380" height="22" rx="11" fill="#DAB15F" fill-opacity="0.55"/>
+  <rect x="226" y="438" width="294" height="20" rx="10" fill="#7EA0C8" fill-opacity="0.35"/>
+  <rect x="226" y="480" width="348" height="20" rx="10" fill="#7EA0C8" fill-opacity="0.3"/>
+  <rect x="226" y="536" width="154" height="94" rx="24" fill="#1C2A40"/>
+  <text x="258" y="596" fill="#E7C680" font-family="Segoe UI, Arial" font-size="54">€</text>
+  <text x="810" y="166" fill="#E7C680" font-family="Segoe UI, Arial" font-size="28" letter-spacing="8">BUSINESS</text>
+  <text x="810" y="284" fill="#F6F1E8" font-family="Georgia, serif" font-size="78" font-weight="700">FACTURATION</text>
+  <text x="810" y="372" fill="#F6F1E8" font-family="Georgia, serif" font-size="78" font-weight="700">&amp; COMPTA</text>
+  <text x="810" y="446" fill="#B7C6DA" font-family="Segoe UI, Arial" font-size="34">Devis, TVA, charges, routine de gestion</text>
+  <rect x="810" y="526" width="220" height="58" rx="29" fill="#2D2415" stroke="#DAB15F"/>
+  <text x="868" y="564" fill="#F4E3B7" font-family="Segoe UI, Arial" font-size="26">59 €</text>
+</svg>

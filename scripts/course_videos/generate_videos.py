@@ -95,6 +95,34 @@ THEMES = {
         "visual": "financial consultant presenting AI-powered investment report to client, premium office, cinematic realism",
         "accent": "financial consulting, AI reports, client acquisition, recurring revenue",
     },
+    "ia-revenus-actifs": {
+        "visual": "premium independent consultant building a service business with AI dashboards, proposals and recurring revenue charts, cinematic realism",
+        "accent": "offer creation, first clients, automation, recurring income",
+    },
+    "chatbot-client-make-gpt": {
+        "visual": "customer support chatbot dashboard with make automation flow and GPT response panels, premium realism",
+        "accent": "chatbot deployment, FAQ automation, human escalation",
+    },
+    "agent-ia-business": {
+        "visual": "AI business agent workflow, dashboards, lead scoring, reporting cockpit, premium office realism",
+        "accent": "agent AI, lead qualification, reporting, automation",
+    },
+    "facturation-compta-freelance": {
+        "visual": "freelance admin dashboard with invoices, accounting routine, premium desk, cinematic realism",
+        "accent": "invoicing, bookkeeping, tax routine, freelance admin",
+    },
+    "offre-mensuelle-recurrente": {
+        "visual": "recurring service business consultant presenting monthly retainer offer to SME client, premium realism",
+        "accent": "monthly retainer, client reporting, recurring revenue",
+    },
+    "pack-it-freelance": {
+        "visual": "IT freelance service bundle showcase with support, maintenance and ticketing visuals, premium realism",
+        "accent": "freelance IT, maintenance, GLPI support",
+    },
+    "pack-finance-ia": {
+        "visual": "premium finance and AI bundle with portfolio dashboard, crypto analysis and consulting reports, cinematic realism",
+        "accent": "finance AI, trading, portfolio automation, consulting",
+    },
 }
 
 LOCAL_COURSE_OVERRIDES = {
@@ -174,6 +202,134 @@ LOCAL_COURSE_OVERRIDES = {
             {"title": "Prospection et acquisition", "slug": "prospection-acquisition", "description": "Trouver les bons clients avec un discours clair.", "content_body": "## Ce que tu vas apprendre\n- ouvrir une conversation\n- qualifier un besoin"},
             {"title": "Livrer un rapport pro", "slug": "livrer-rapport-pro", "description": "Créer un document qui donne confiance.", "content_body": "## Ce que tu vas apprendre\n- structurer le rapport\n- renforcer la perception de valeur"},
             {"title": "Tarification et positionnement", "slug": "tarification-positionnement", "description": "Fixer un prix et un niveau de service crédibles.", "content_body": "## Ce que tu vas apprendre\n- relier prix et livrable\n- garder une rentabilité saine"},
+        ],
+    },
+    "ia-revenus-actifs": {
+        "product": {
+            "id": "local-ia-revenus-actifs",
+            "slug": "ia-revenus-actifs",
+            "title": "IA & Revenus Actifs - Le programme complet",
+            "subtitle": "De la compétence brute à une offre de service vendable en 30 jours",
+            "short_description": "Le programme flagship pour structurer une offre, trouver ses premiers clients et mettre en place une activité rentable.",
+            "long_description": "Une formation complète pour transformer une compétence existante en activité indépendante claire, vendable et livrable avec méthode.",
+            "price_cents": 9700,
+            "thumbnail_url": "/visuals/formations/ia-revenus-actifs-cover.svg",
+        },
+        "modules": [
+            {"title": "Positionnement rentable", "slug": "positionnement-rentable", "description": "Choisir une offre lisible et défendable.", "content_body": "## Ce que tu vas apprendre\n- choisir une offre claire\n- nommer un résultat concret\n- éviter les positionnements vagues"},
+            {"title": "Construire une offre", "slug": "construire-offre", "description": "Passer du service flou à un package vendable.", "content_body": "## Ce que tu vas apprendre\n- cadrer le périmètre\n- fixer le livrable\n- annoncer une promesse crédible"},
+            {"title": "Prospection simple", "slug": "prospection-simple", "description": "Ouvrir des conversations et obtenir des rendez-vous.", "content_body": "## Ce que tu vas apprendre\n- cibler les bons prospects\n- écrire un message court\n- relancer sans bruit"},
+            {"title": "Livrer proprement", "slug": "livrer-proprement", "description": "Organiser sa livraison et rassurer le client.", "content_body": "## Ce que tu vas apprendre\n- structurer la livraison\n- poser les limites\n- renforcer la perception de valeur"},
+            {"title": "Automatiser la base", "slug": "automatiser-base", "description": "Gagner du temps sans usine à gaz.", "content_body": "## Ce que tu vas apprendre\n- choisir quelques automatisations utiles\n- documenter ton système\n- gagner en régularité"},
+            {"title": "Installer la récurrence", "slug": "installer-recurrence", "description": "Transformer un premier client en revenu récurrent.", "content_body": "## Ce que tu vas apprendre\n- proposer un suivi mensuel\n- formuler un forfait simple\n- créer un revenu plus stable"},
+        ],
+    },
+    "chatbot-client-make-gpt": {
+        "product": {
+            "id": "local-chatbot-client-make-gpt",
+            "slug": "chatbot-client-make-gpt",
+            "title": "Créer un chatbot client avec Make et GPT",
+            "subtitle": "Un assistant automatisé opérationnel en moins d'une journée",
+            "short_description": "Une formation no-code pour concevoir, déployer et vendre un chatbot client utile à une PME.",
+            "long_description": "Un programme pratique pour bâtir un chatbot Make + GPT, le connecter à une base de connaissances et le vendre comme offre de service.",
+            "price_cents": 6800,
+            "thumbnail_url": "/visuals/formations/chatbot-client-make-gpt-cover.svg",
+        },
+        "modules": [
+            {"title": "Comprendre le chatbot client", "slug": "comprendre-chatbot", "description": "Définir le bon périmètre d'un assistant no-code.", "content_body": "## Ce que tu vas apprendre\n- choisir un vrai cas d'usage\n- éviter les attentes irréalistes\n- formuler la bonne promesse"},
+            {"title": "Architecture Make + GPT", "slug": "architecture-make-gpt", "description": "Assembler le schéma qui fonctionne.", "content_body": "## Ce que tu vas apprendre\n- brancher l'entrée utilisateur\n- injecter du contexte\n- orchestrer la réponse"},
+            {"title": "Déployer sur un canal réel", "slug": "deployer-chatbot", "description": "Mettre le chatbot sur un site, WhatsApp ou email.", "content_body": "## Ce que tu vas apprendre\n- choisir le bon canal\n- tester 10 cas réels\n- sécuriser l'escalade humaine"},
+            {"title": "Packager et vendre", "slug": "packager-vendre", "description": "Transformer le chatbot en prestation claire.", "content_body": "## Ce que tu vas apprendre\n- fixer un forfait\n- présenter le gain de temps\n- vendre maintenance et supervision"},
+            {"title": "Extensions avancées", "slug": "extensions-avancees", "description": "Ajouter qualification, rendez-vous et CRM.", "content_body": "## Ce que tu vas apprendre\n- enrichir le chatbot\n- connecter un CRM\n- augmenter la valeur du projet"},
+        ],
+    },
+    "agent-ia-business": {
+        "product": {
+            "id": "local-agent-ia-business",
+            "slug": "agent-ia-business",
+            "title": "Créer un agent IA pour son business",
+            "subtitle": "Automatiser ses tâches les plus chronophages avec un agent autonome",
+            "short_description": "Une formation pour concevoir un agent IA utile à son activité ou à celle d'un client.",
+            "long_description": "Un programme pour comprendre, concevoir et vendre un agent IA qui automatise veille, prospection, rédaction et reporting.",
+            "price_cents": 7900,
+            "thumbnail_url": "/visuals/formations/agent-ia-business-cover.svg",
+        },
+        "modules": [
+            {"title": "Comprendre l'agent IA", "slug": "comprendre-agent-ia", "description": "Distinguer chatbot, workflow et agent.", "content_body": "## Ce que tu vas apprendre\n- cadrer l'autonomie\n- nommer le bon objectif\n- limiter le périmètre"},
+            {"title": "Construire l'agent avec n8n", "slug": "construire-agent-n8n", "description": "Assembler un agent utile et stable.", "content_body": "## Ce que tu vas apprendre\n- créer un workflow\n- appeler GPT proprement\n- gérer les erreurs"},
+            {"title": "Prospection automatisée", "slug": "prospection-automatisee", "description": "Qualifier des leads et produire un message pertinent.", "content_body": "## Ce que tu vas apprendre\n- scorer un prospect\n- générer un message propre\n- valider avant envoi"},
+            {"title": "Reporting et veille", "slug": "reporting-veille", "description": "Faire travailler l'agent sur des livrables réels.", "content_body": "## Ce que tu vas apprendre\n- surveiller des sources\n- générer une synthèse\n- envoyer un reporting lisible"},
+            {"title": "Vendre un agent à un client", "slug": "vendre-agent-client", "description": "Tarifer, cadrer et livrer la prestation.", "content_body": "## Ce que tu vas apprendre\n- vendre un gain de temps\n- cadrer la maintenance\n- proposer un accompagnement récurrent"},
+        ],
+    },
+    "facturation-compta-freelance": {
+        "product": {
+            "id": "local-facturation-compta-freelance",
+            "slug": "facturation-compta-freelance",
+            "title": "Facturer et gérer sa compta freelance sans comptable",
+            "subtitle": "Les bases légales, fiscales et pratiques pour encaisser proprement",
+            "short_description": "Une formation pratique pour rester dans les clous sur la micro, la TVA et la routine administrative.",
+            "long_description": "Un programme clair pour créer sa structure, facturer proprement, suivre ses charges et garder une comptabilité légère mais solide.",
+            "price_cents": 5900,
+            "thumbnail_url": "/visuals/formations/facturation-compta-freelance-cover.svg",
+        },
+        "modules": [
+            {"title": "Créer sa micro-entreprise", "slug": "creer-micro-entreprise", "description": "Poser la structure la plus simple pour démarrer.", "content_body": "## Ce que tu vas apprendre\n- choisir le bon statut\n- ouvrir les bons outils\n- préparer les documents utiles"},
+            {"title": "Facturation et TVA", "slug": "facturation-tva", "description": "Émettre des factures conformes et comprendre la TVA.", "content_body": "## Ce que tu vas apprendre\n- faire une facture complète\n- gérer la franchise TVA\n- provisionner ses charges"},
+            {"title": "Outils et routine mensuelle", "slug": "outils-routine", "description": "Garder une compta simple mais propre.", "content_body": "## Ce que tu vas apprendre\n- choisir un outil léger\n- faire une routine mensuelle\n- archiver correctement"},
+            {"title": "Protection sociale", "slug": "protection-sociale", "description": "Comprendre ce qui te couvre et ce qui manque.", "content_body": "## Ce que tu vas apprendre\n- lire ta couverture actuelle\n- compléter avec mutuelle et prévoyance\n- préparer la suite"},
+            {"title": "Optimisation légale", "slug": "optimisation-legale", "description": "Réduire le chaos administratif et fiscal.", "content_body": "## Ce que tu vas apprendre\n- éviter les erreurs coûteuses\n- choisir un bon rythme de déclaration\n- gagner en sérénité"},
+        ],
+    },
+    "offre-mensuelle-recurrente": {
+        "product": {
+            "id": "local-offre-mensuelle-recurrente",
+            "slug": "offre-mensuelle-recurrente",
+            "title": "Créer une offre mensuelle récurrente pour PME",
+            "subtitle": "Transformer des missions ponctuelles en contrats stables",
+            "short_description": "Un programme pour bâtir un forfait mensuel simple à vendre et à livrer.",
+            "long_description": "Une formation orientée terrain pour sortir des missions one-shot et bâtir une activité récurrente avec des PME.",
+            "price_cents": 6900,
+            "thumbnail_url": "/visuals/formations/offre-mensuelle-recurrente-cover.svg",
+        },
+        "modules": [
+            {"title": "Pourquoi la récurrence change tout", "slug": "pourquoi-recurrence", "description": "Comprendre le levier de stabilité qu'apporte le mensuel.", "content_body": "## Ce que tu vas apprendre\n- comparer ponctuel et récurrent\n- poser un objectif de stabilité\n- voir la valeur long terme"},
+            {"title": "Formats de forfaits", "slug": "formats-forfaits", "description": "Choisir un service continu facile à packager.", "content_body": "## Ce que tu vas apprendre\n- sélectionner un besoin continu\n- nommer le forfait\n- poser les inclusions et exclusions"},
+            {"title": "Pitcher et signer", "slug": "pitcher-signer", "description": "Présenter le contrat et obtenir l'accord du client.", "content_body": "## Ce que tu vas apprendre\n- choisir le bon moment\n- formuler le pitch\n- structurer le contrat"},
+            {"title": "Livrer et renouveler", "slug": "livrer-renouveler", "description": "Donner de la valeur visible chaque mois.", "content_body": "## Ce que tu vas apprendre\n- faire un rapport simple\n- éviter les résiliations\n- préparer la révision de prix"},
+            {"title": "Passer à l'échelle", "slug": "passer-echelle", "description": "Gérer plusieurs forfaits sans se noyer.", "content_body": "## Ce que tu vas apprendre\n- standardiser la livraison\n- prioriser les clients\n- garder une marge saine"},
+        ],
+    },
+    "pack-it-freelance": {
+        "product": {
+            "id": "local-pack-it-freelance",
+            "slug": "pack-it-freelance",
+            "title": "Pack IT Freelance - 3 formations essentielles",
+            "subtitle": "Tout pour lancer, vendre et maintenir une activité IT indépendante",
+            "short_description": "Le bundle IT qui combine offre, maintenance et support structuré.",
+            "long_description": "Un pack conçu pour accélérer le lancement d'une activité freelance IT avec une logique d'offre, de récurrence et de support propre.",
+            "price_cents": 14900,
+            "thumbnail_url": "/visuals/formations/pack-it-freelance-cover.svg",
+        },
+        "modules": [
+            {"title": "Ce que contient le pack", "slug": "contenu-pack", "description": "Comprendre la logique d'ensemble du bundle.", "content_body": "## Ce que tu vas apprendre\n- articuler les trois formations\n- choisir un ordre de travail\n- viser un premier revenu rapidement"},
+            {"title": "Parcours recommandé", "slug": "parcours-recommande", "description": "Suivre un ordre logique pour avancer sans dispersion.", "content_body": "## Ce que tu vas apprendre\n- démarrer par l'offre\n- installer la maintenance\n- structurer le support ensuite"},
+        ],
+    },
+    "pack-finance-ia": {
+        "product": {
+            "id": "local-pack-finance-ia",
+            "slug": "pack-finance-ia",
+            "title": "Pack Finance IA - 4 formations complètes",
+            "subtitle": "De la lecture de marché à la vente de services financiers augmentés",
+            "short_description": "Le bundle finance pour comprendre, automatiser et monétiser l'IA appliquée aux marchés.",
+            "long_description": "Un pack qui regroupe les quatre formations finance IA pour passer de la compréhension du marché à la création de services vendables.",
+            "price_cents": 19700,
+            "thumbnail_url": "/visuals/formations/pack-finance-ia-cover.svg",
+        },
+        "modules": [
+            {"title": "Ce que contient le pack", "slug": "contenu-pack", "description": "Comprendre les quatre briques du bundle.", "content_body": "## Ce que tu vas apprendre\n- relier trading, portefeuille, crypto et conseil\n- choisir un angle prioritaire\n- bâtir un plan de montée en compétence"},
+            {"title": "Parcours recommandé", "slug": "parcours-recommande", "description": "Avancer avec une logique plus simple qu'un empilement de contenus.", "content_body": "## Ce que tu vas apprendre\n- démarrer par la lecture du marché\n- automatiser ensuite\n- monétiser à la fin"},
         ],
     },
 }

@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="42" fill="#08111D"/>
+  <rect x="96" y="126" width="660" height="648" rx="36" fill="#0B1627" stroke="#30425E"/>
+  <rect x="150" y="194" width="166" height="170" rx="28" fill="#132137" stroke="#4A5D7A"/>
+  <rect x="342" y="194" width="166" height="170" rx="28" fill="#132137" stroke="#38C793"/>
+  <rect x="534" y="194" width="166" height="170" rx="28" fill="#132137" stroke="#DAB15F"/>
+  <rect x="150" y="404" width="550" height="304" rx="30" fill="#101A2D"/>
+  <rect x="190" y="458" width="474" height="22" rx="11" fill="#8FA9D0" fill-opacity="0.28"/>
+  <rect x="190" y="504" width="426" height="22" rx="11" fill="#8FA9D0" fill-opacity="0.22"/>
+  <rect x="190" y="550" width="390" height="22" rx="11" fill="#8FA9D0" fill-opacity="0.2"/>
+  <text x="808" y="168" fill="#E7C680" font-family="Segoe UI, Arial" font-size="28" letter-spacing="8">BUNDLE</text>
+  <text x="808" y="286" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">PACK IT</text>
+  <text x="808" y="378" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">FREELANCE</text>
+  <text x="808" y="452" fill="#B8C6DC" font-family="Segoe UI, Arial" font-size="34">Freelance IT, maintenance PME et support GLPI</text>
+  <rect x="808" y="532" width="220" height="58" rx="29" fill="#2D2415" stroke="#DAB15F"/>
+  <text x="858" y="570" fill="#F4E3B7" font-family="Segoe UI, Arial" font-size="26">149 €</text>
+</svg>

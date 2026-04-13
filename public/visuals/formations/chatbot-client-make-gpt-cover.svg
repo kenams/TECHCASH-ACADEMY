@@ -1,0 +1,22 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900"><stop stop-color="#08131D"/><stop offset="1" stop-color="#132233"/></linearGradient></defs>
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="108" y="128" width="612" height="640" rx="34" fill="#0B1526" stroke="#24405F"/>
+  <rect x="164" y="186" width="492" height="90" rx="24" fill="#112038"/>
+  <rect x="176" y="338" width="460" height="330" rx="30" fill="#0F1B31"/>
+  <rect x="210" y="392" width="126" height="72" rx="24" fill="#1B3557"/>
+  <rect x="360" y="392" width="200" height="24" rx="12" fill="#3CA7FF" fill-opacity="0.42"/>
+  <rect x="360" y="432" width="164" height="24" rx="12" fill="#DAB15F" fill-opacity="0.34"/>
+  <rect x="360" y="472" width="214" height="24" rx="12" fill="#3CA7FF" fill-opacity="0.3"/>
+  <path d="M246 428H302" stroke="#8DDBFF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M246 502H302" stroke="#8DDBFF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M246 576H302" stroke="#8DDBFF" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="1280" cy="170" r="164" fill="#163D61" fill-opacity="0.35"/>
+  <text x="810" y="164" fill="#8DDBFF" font-family="Segoe UI, Arial" font-size="28" letter-spacing="8">IA &amp; NO-CODE</text>
+  <text x="810" y="280" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">CHATBOT CLIENT</text>
+  <text x="810" y="372" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">MAKE + GPT</text>
+  <text x="810" y="446" fill="#B6C7DB" font-family="Segoe UI, Arial" font-size="34">FAQ, escalade humaine, déploiement et vente</text>
+  <rect x="810" y="524" width="228" height="58" rx="29" fill="#17324A" stroke="#5ABAF7"/>
+  <text x="868" y="562" fill="#C8EEFF" font-family="Segoe UI, Arial" font-size="26">68 €</text>
+  <text x="810" y="676" fill="#E7C680" font-family="Segoe UI, Arial" font-size="28">UN ASSISTANT UTILE, PAS UN GADGET</text>
+</svg>

@@ -1262,6 +1262,90 @@ const productSupplements: Record<string, ProductSupplement> = {
     ],
     pitch:
       "Le programme flagship pour passer d'une compétence floue à une activité indépendante rentable — IT, IA ou Finance."
+  },
+  "chatbot-client-make-gpt": {
+    bestFor: [
+      "freelances no-code ou automation qui veulent une offre simple à vendre",
+      "profils support ou relation client qui veulent automatiser les demandes répétitives",
+      "personnes qui veulent livrer un premier chatbot utile sans développement lourd"
+    ],
+    outcomes: [
+      "une architecture Make + GPT claire et vendable",
+      "un chatbot client déployable sur un canal concret",
+      "une offre installation + maintenance facile à pitcher"
+    ],
+    pitch:
+      "La formation pour construire un chatbot client propre, le déployer vite et le transformer en prestation de service crédible."
+  },
+  "agent-ia-business": {
+    bestFor: [
+      "freelances qui veulent vendre des automatisations plus avancées que de simples workflows",
+      "profils business ou opérations qui veulent déléguer une partie du travail répétitif à un agent",
+      "personnes qui veulent monétiser n8n et GPT sous forme de service"
+    ],
+    outcomes: [
+      "une compréhension claire de ce qu'est un agent IA utile",
+      "un premier agent métier construit avec n8n et GPT",
+      "une offre de service orientée gain de temps et reporting"
+    ],
+    pitch:
+      "La formation pour passer du discours sur les agents IA à un vrai système utile, livrable et facturable à un client."
+  },
+  "facturation-compta-freelance": {
+    bestFor: [
+      "freelances qui démarrent et veulent éviter les erreurs administratives coûteuses",
+      "indépendants qui veulent facturer proprement sans dépendre d'un comptable au quotidien",
+      "profils tech ou créatifs qui négligent la partie gestion"
+    ],
+    outcomes: [
+      "une base légale et comptable propre pour travailler sereinement",
+      "un process de devis, facture et déclaration compréhensible",
+      "une routine de gestion mensuelle simple et tenable"
+    ],
+    pitch:
+      "La formation pour encaisser proprement, comprendre ses charges et tenir sa gestion freelance sans panique administrative."
+  },
+  "offre-mensuelle-recurrente": {
+    bestFor: [
+      "freelances qui veulent sortir du modèle mission par mission",
+      "profils IT, automation ou conseil qui peuvent livrer de la valeur chaque mois",
+      "indépendants qui veulent un revenu plus stable et plus défendable"
+    ],
+    outcomes: [
+      "un forfait mensuel clair avec inclusions et exclusions",
+      "un pitch et un contrat de récurrence simples",
+      "une routine de livraison mensuelle qui réduit les résiliations"
+    ],
+    pitch:
+      "La formation pour transformer un savoir-faire ponctuel en offre récurrente stable, lisible et plus rentable face à des PME."
+  },
+  "pack-it-freelance": {
+    bestFor: [
+      "techniciens qui veulent lancer une activité IT indépendante avec une logique complète",
+      "freelances qui veulent combiner acquisition, maintenance et support structuré",
+      "personnes qui veulent un parcours cohérent plutôt qu'une seule brique"
+    ],
+    outcomes: [
+      "une vision claire du parcours IT freelance de bout en bout",
+      "un angle de vente plus lisible pour les PME",
+      "des briques complémentaires pour créer une activité durable"
+    ],
+    pitch:
+      "Le pack le plus cohérent pour passer d'une capacité technique IT à une activité indépendante structurée et plus récurrente."
+  },
+  "pack-finance-ia": {
+    bestFor: [
+      "profils curieux de la finance augmentée par IA qui veulent un parcours complet",
+      "personnes qui veulent relier lecture de marché, automatisation et offre de service",
+      "indépendants qui veulent construire une logique Finance IA crédible"
+    ],
+    outcomes: [
+      "une vue d'ensemble du catalogue Finance IA",
+      "des briques complémentaires entre usage personnel et service vendable",
+      "un parcours plus cohérent pour monter en niveau"
+    ],
+    pitch:
+      "Le pack pour relier trading assisté, portefeuille automatisé, analyse crypto et offre de service Finance IA dans une seule logique."
   }
 };
 

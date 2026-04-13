@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="42" fill="#06101B"/>
+  <rect x="96" y="126" width="660" height="648" rx="36" fill="#0B1627" stroke="#2D4260"/>
+  <path d="M150 614L264 548L372 578L488 458L606 500L700 380" stroke="#DAB15F" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="232" cy="614" r="22" fill="#4E87E8"/>
+  <circle cx="374" cy="578" r="20" fill="#F59E0B"/>
+  <circle cx="610" cy="500" r="18" fill="#38C793"/>
+  <text x="186" y="246" fill="#8FB6FF" font-family="Segoe UI, Arial" font-size="44">₿</text>
+  <text x="286" y="246" fill="#F4B55D" font-family="Segoe UI, Arial" font-size="44">Ξ</text>
+  <text x="386" y="246" fill="#B0F0D6" font-family="Segoe UI, Arial" font-size="44">$</text>
+  <text x="808" y="168" fill="#E7C680" font-family="Segoe UI, Arial" font-size="28" letter-spacing="8">BUNDLE</text>
+  <text x="808" y="286" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">PACK</text>
+  <text x="808" y="378" fill="#F6F1E8" font-family="Georgia, serif" font-size="82" font-weight="700">FINANCE IA</text>
+  <text x="808" y="452" fill="#B8C6DC" font-family="Segoe UI, Arial" font-size="34">Trading, portefeuille, crypto et services vendables</text>
+  <rect x="808" y="532" width="220" height="58" rx="29" fill="#2D2415" stroke="#DAB15F"/>
+  <text x="858" y="570" fill="#F4E3B7" font-family="Segoe UI, Arial" font-size="26">197 €</text>
+</svg>

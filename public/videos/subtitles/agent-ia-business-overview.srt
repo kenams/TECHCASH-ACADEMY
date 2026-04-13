@@ -1,0 +1,187 @@
+1
+00:00:00,000 --> 00:00:04,959
+Bienvenue sur la vidéo tutorielle : créer un agent ia pour son business.
+
+2
+00:00:04,959 --> 00:00:13,293
+Un programme pour comprendre, concevoir et vendre un agent IA qui
+automatise veille, prospection, rédaction et reporting.
+
+3
+00:00:13,293 --> 00:00:20,250
+Dans cette vidéo, je vais te montrer la logique complète de
+la formation, ce que tu dois préparer,...
+
+4
+00:00:20,250 --> 00:00:22,538
+Module 1. Comprendre l'agent IA.
+
+5
+00:00:22,538 --> 00:00:32,407
+- cadrer l'autonomie - nommer le bon objectif - limiter le périmètre Ce module
+sert à comprendre la logique avant de passer à l’exécution.
+
+6
+00:00:32,407 --> 00:00:41,560
+Si tu es débutant, retiens surtout l’idée centrale du module, le résultat
+attendu, et le vocabulaire minimum à maîtriser pour...
+
+7
+00:00:41,560 --> 00:00:44,892
+Passons maintenant à l’application du module 1.
+
+8
+00:00:44,892 --> 00:00:52,265
+Pour avancer proprement, prépare d’abord les éléments
+suivants : Distinguer chatbot, workflow et agent..
+
+9
+00:00:52,265 --> 00:00:58,362
+Ensuite, suis cette logique de mise en œuvre :
+Distinguer chatbot, workflow et agent..
+
+10
+00:00:58,362 --> 00:01:02,120
+Sur le terrain, adopte aussi une posture simple et...
+
+11
+00:01:02,120 --> 00:01:04,850
+Module 2. Construire l'agent avec n8n.
+
+12
+00:01:04,850 --> 00:01:14,475
+- créer un workflow - appeler GPT proprement - gérer les erreurs Ce module
+sert à comprendre la logique avant de passer à l’exécution.
+
+13
+00:01:14,475 --> 00:01:23,670
+Si tu es débutant, retiens surtout l’idée centrale du module, le résultat
+attendu, et le vocabulaire minimum à maîtriser pour...
+
+14
+00:01:23,670 --> 00:01:26,879
+Passons maintenant à l’application du module 2.
+
+15
+00:01:26,879 --> 00:01:33,775
+Pour avancer proprement, prépare d’abord les éléments
+suivants : Assembler un agent utile et stable..
+
+16
+00:01:33,775 --> 00:01:39,441
+Ensuite, suis cette logique de mise en œuvre :
+Assembler un agent utile et stable..
+
+17
+00:01:39,441 --> 00:01:43,060
+Sur le terrain, adopte aussi une posture simple et...
+
+18
+00:01:43,060 --> 00:01:45,496
+Module 3. Prospection automatisée.
+
+19
+00:01:45,496 --> 00:01:55,527
+- scorer un prospect - générer un message propre - valider avant envoi Ce
+module sert à comprendre la logique avant de passer à l’exécution.
+
+20
+00:01:55,527 --> 00:02:04,340
+Si tu es débutant, retiens surtout l’idée centrale du module, le
+résultat attendu, et le vocabulaire minimum à maîtriser...
+
+21
+00:02:04,340 --> 00:02:07,542
+Passons maintenant à l’application du module 3.
+
+22
+00:02:07,542 --> 00:02:15,718
+Pour avancer proprement, prépare d’abord les éléments suivants :
+Qualifier des leads et produire un message, pertinent..
+
+23
+00:02:15,718 --> 00:02:22,667
+Ensuite, suis cette logique de mise en œuvre : Qualifier des
+leads et produire un message, pertinent..
+
+24
+00:02:22,667 --> 00:02:24,370
+Sur le terrain, adopte...
+
+25
+00:02:24,370 --> 00:02:26,537
+Module 4. Reporting et veille.
+
+26
+00:02:26,537 --> 00:02:37,228
+- surveiller des sources - générer une synthèse - envoyer un reporting lisible Ce
+module sert à comprendre la logique avant de passer à l’exécution.
+
+27
+00:02:37,228 --> 00:02:45,390
+Si tu es débutant, retiens surtout l’idée centrale du module, le
+résultat attendu, et le vocabulaire minimum à...
+
+28
+00:02:45,390 --> 00:02:48,651
+Passons maintenant à l’application du module 4.
+
+29
+00:02:48,651 --> 00:02:56,701
+Pour avancer proprement, prépare d’abord les éléments suivants :
+Faire travailler l'agent sur des livrables, réels..
+
+30
+00:02:56,701 --> 00:03:03,501
+Ensuite, suis cette logique de mise en œuvre : Faire
+travailler l'agent sur des livrables, réels..
+
+31
+00:03:03,501 --> 00:03:05,930
+Sur le terrain, adopte aussi une...
+
+32
+00:03:05,930 --> 00:03:08,601
+Module 5. Vendre un agent à un client.
+
+33
+00:03:08,601 --> 00:03:19,709
+- vendre un gain de temps - cadrer la maintenance - proposer un accompagnement récurrent
+Ce module sert à comprendre la logique avant de passer à l’exécution.
+
+34
+00:03:19,709 --> 00:03:26,950
+Si tu es débutant, retiens surtout l’idée centrale du
+module, le résultat attendu, et le vocabulaire...
+
+35
+00:03:26,950 --> 00:03:30,275
+Passons maintenant à l’application du module 5.
+
+36
+00:03:30,275 --> 00:03:37,774
+Pour avancer proprement, prépare d’abord les éléments suivants
+: Tarifer, cadrer et livrer la prestation..
+
+37
+00:03:37,774 --> 00:03:44,000
+Ensuite, suis cette logique de mise en œuvre :
+Tarifer, cadrer et livrer la prestation..
+
+38
+00:03:44,000 --> 00:03:47,750
+Sur le terrain, adopte aussi une posture simple et...
+
+39
+00:03:47,750 --> 00:03:53,182
+Tu as maintenant une vue d'ensemble tutorielle de
+créer un agent ia pour son business.
+
+40
+00:03:53,182 --> 00:03:57,920
+Le bon usage de cette formation, ce n’est pas de tout regarder passivement.
+
+41
+00:03:57,920 --> 00:04:06,510
+C’est de reprendre chaque module, de préparer les outils, de rédiger les
+documents utiles, puis de tester la méthode sur un cas réel,...
