@@ -2636,6 +2636,11 @@ footer,
   width: 100%;
 }
 
+.course-video-chapters-shell {
+  display: grid;
+  gap: 1rem;
+}
+
 .course-main-video {
   display: block;
   width: 100%;
@@ -2643,6 +2648,81 @@ footer,
   aspect-ratio: 16 / 9;
   background: #000;
   outline: none;
+}
+
+.course-video-chapters-panel {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0 1.35rem 1.35rem;
+}
+
+.course-video-chapters-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  color: var(--foreground);
+  font-size: 0.82rem;
+}
+
+.course-video-chapters-head span {
+  color: var(--muted);
+}
+
+.course-video-chapters-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.course-video-chapter-btn {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.course-video-chapter-btn:hover,
+.course-video-chapter-btn.active {
+  color: var(--foreground);
+  border-color: rgba(99, 102, 241, 0.22);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.course-video-chapter-time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  color: var(--foreground);
+}
+
+.course-video-chapter-title {
+  line-height: 1.55;
+}
+
+.course-hero-video-guidance {
+  padding: 0 1.5rem 1.25rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.course-hero-video-guidance p {
+  margin: 0;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
 }
 
 .course-hero-video-stats {

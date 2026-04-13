@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ContentRenderer } from "@/components/content-renderer";
-import { CourseVideoPlayer } from "@/components/course-video-player";
+import { CourseVideoChapters } from "@/components/course-video-chapters";
 import { Badge } from "@/components/ui/Badge";
 import { buttonClasses } from "@/components/ui/Button";
 import { buildProductProgressSummary } from "@/lib/progress";
@@ -51,6 +51,13 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
   const trackableModules = product.modules.filter(isTrackableModule);
   const completedSet = useMemo(() => new Set(completedSlugs), [completedSlugs]);
   const firstIncompleteTrackable = trackableModules.find((module) => !completedSet.has(module.slug)) ?? null;
+  const introChapters = useMemo(
+    () => [
+      { title: "Introduction et vue d'ensemble" },
+      ...visibleModules.map((module) => ({ title: module.title }))
+    ],
+    [visibleModules]
+  );
 
   const unlockedTrackableSlugs = useMemo(() => {
     const allowed = new Set<string>();
@@ -238,17 +245,25 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
             </div>
           </div>
           <div className="course-hero-video-player" id="module-overview-video">
-            <CourseVideoPlayer
+            <CourseVideoChapters
               className="course-main-video"
               src={heroVideo.content_url}
               poster={`/videos/posters/${product.slug}-overview-poster.jpg`}
               subtitleSlug={product.slug}
+              chapters={introChapters}
               onCompleted={() => {
                 if (!completedSet.has(heroVideo.slug)) {
                   handleSeenToggle(heroVideo.slug);
                 }
               }}
             />
+          </div>
+          <div className="course-hero-video-guidance">
+            {completedSet.has(heroVideo.slug) ? (
+              <p>L’introduction est validée. Le premier module de travail est maintenant débloqué.</p>
+            ) : (
+              <p>Regarde et valide la vidéo d’introduction pour débloquer automatiquement le premier module.</p>
+            )}
           </div>
           <div className="course-hero-video-stats">
             <div className="course-stat">
