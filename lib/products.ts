@@ -1,3 +1,4 @@
+import { cache } from "react";
 import {
   findLocalProductByPurchaseName,
   getLocalActiveProducts,
@@ -40,7 +41,7 @@ export function formatPrice(cents: number, currency: string) {
   }).format(cents / 100);
 }
 
-export async function getActiveProducts(): Promise<ProductCardData[]> {
+export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {
   const supabaseAdmin = getSupabaseAdminClient();
   const { data, error } = await supabaseAdmin
     .from("products")
@@ -87,7 +88,7 @@ export async function getActiveProducts(): Promise<ProductCardData[]> {
     }));
 
   return [...databaseProducts, ...missingLocalProducts];
-}
+});
 
 export async function getFeaturedProduct(): Promise<ProductCardData | null> {
   const products = await getActiveProducts();

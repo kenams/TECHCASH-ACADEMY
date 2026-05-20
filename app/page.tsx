@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
 import { PublicFooter } from "@/components/public-footer";
 import { getPriorityOfferSlugs } from "@/lib/catalog";
-import { getActiveProducts, getFeaturedProduct, getOwnedProducts, getProductBySlug } from "@/lib/products";
+import { getActiveProducts, getOwnedProducts, getProductBySlug } from "@/lib/products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 import { getUserProfile } from "@/lib/users";
@@ -55,16 +55,14 @@ export default async function LandingPage() {
     data: { user }
   } = await supabase.auth.getUser();
 
-  const [profile, products, featuredCard, ownedProducts] = await Promise.all([
+  const [profile, products, ownedProducts] = await Promise.all([
     user ? getUserProfile(user.id, supabase) : Promise.resolve(null),
     getActiveProducts(),
-    getFeaturedProduct(),
     user ? getOwnedProducts(user.id) : Promise.resolve([])
   ]);
 
-  const featured =
-    (featuredCard && (await getProductBySlug(featuredCard.slug))) ||
-    (products[0] ? await getProductBySlug(products[0].slug) : null);
+  const featuredCard = products.find((p) => p.is_featured) ?? products[0] ?? null;
+  const featured = featuredCard ? await getProductBySlug(featuredCard.slug) : null;
 
   const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
   const hasGlobalAccess = Boolean(profile?.is_premium);
