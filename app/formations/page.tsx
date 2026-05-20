@@ -3,10 +3,10 @@ import Script from "next/script";
 import { Navbar } from "@/components/navbar";
 import { PublicFooter } from "@/components/public-footer";
 import { FormationsCatalog } from "@/components/formations-catalog";
-import { getActiveProducts, getOwnedProducts } from "@/lib/products";
+import { getPublicActiveProducts } from "@/lib/public-products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
-import { getUserProfile } from "@/lib/users";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Catalogue des formations | TechCash Academy",
@@ -23,20 +23,10 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function FormationsPage() {
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  const [profile, products, owned] = await Promise.all([
-    user ? getUserProfile(user.id, supabase) : Promise.resolve(null),
-    getActiveProducts(),
-    user ? getOwnedProducts(user.id) : Promise.resolve([])
-  ]);
-
-  const ownedSlugs = owned.map((product) => product.slug);
-  const hasGlobalAccess = Boolean(profile?.is_premium);
+export default function FormationsPage() {
+  const products = getPublicActiveProducts();
+  const ownedSlugs: string[] = [];
+  const hasGlobalAccess = false;
 
   const catalogSchema = {
     "@context": "https://schema.org",
@@ -60,7 +50,7 @@ export default async function FormationsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
         />
 
-        <Navbar brand={siteConfig.brand} links={[{ href: "/", label: "Accueil" }]} isLoggedIn={Boolean(user)} />
+        <Navbar brand={siteConfig.brand} links={[{ href: "/", label: "Accueil" }]} isLoggedIn={false} />
 
         <FormationsCatalog
           products={products}

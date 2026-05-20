@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
 import { PurchaseCTA } from "@/components/purchase-cta";
 import { getCatalogModuleCount, getEstimatedVideoMinutes, getOfferPositioning } from "@/lib/catalog-ui";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/format";
 import type { ProductCardData } from "@/lib/types";
 
 type ProductCardProps = {

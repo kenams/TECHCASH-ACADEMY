@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
+import { usePathname } from "next/navigation";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { Button, buttonClasses } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
@@ -11,6 +10,7 @@ import { cn } from "@/lib/cn";
 type NavbarProps = {
   brand: string;
   isLoggedIn: boolean;
+  userEmail?: string;
   primaryProductSlug?: string;
   links?: Array<{ href: string; label: string }>;
   showStartCTA?: boolean;
@@ -27,44 +27,12 @@ function initialsFromEmail(email: string) {
     .slice(0, 2);
 }
 
-export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-30-jours" }: NavbarProps) {
-  const supabase = getSupabaseBrowserClient();
+export function Navbar({ brand, isLoggedIn, userEmail = "", primaryProductSlug = "freelance-it-30-jours" }: NavbarProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [authState, setAuthState] = useState<{ loggedIn: boolean; email: string }>({
-    loggedIn: isLoggedIn,
-    email: ""
-  });
-
-  useEffect(() => {
-    async function syncSession() {
-      const {
-        data: { session }
-      } = await supabase.auth.getSession();
-
-      setAuthState({
-        loggedIn: Boolean(session?.user),
-        email: session?.user.email || ""
-      });
-    }
-
-    void syncSession();
-
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setAuthState({
-        loggedIn: Boolean(session?.user),
-        email: session?.user.email || ""
-      });
-    });
-
-    return () => subscription.unsubscribe();
-  }, [supabase]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -91,20 +59,12 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
       { href: "/", label: "Accueil" },
       { href: "/formations", label: "Formations" },
       { href: "/formations/trading", label: "Trading & Finance" },
-      ...(authState.loggedIn ? [{ href: "/dashboard", label: "Mon espace" }] : [])
+      ...(isLoggedIn ? [{ href: "/dashboard", label: "Mon espace" }] : [])
     ],
-    [authState.loggedIn]
+    [isLoggedIn]
   );
 
-  async function handleSignOut() {
-    await supabase.auth.signOut();
-    setDropdownOpen(false);
-    setMenuOpen(false);
-    router.push("/");
-    router.refresh();
-  }
-
-  const email = authState.email;
+  const email = userEmail;
   const initials = email ? initialsFromEmail(email) : "TC";
 
   return (
@@ -139,7 +99,7 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
         </nav>
 
         <div className="ml-auto hidden items-center gap-3 md:flex">
-          {authState.loggedIn ? (
+          {isLoggedIn ? (
             <div className="relative z-[70]" ref={dropdownRef}>
               <button
                 type="button"
@@ -170,13 +130,14 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
                     Sécurité 2FA
                   </Link>
                   <div className="my-1 h-px bg-[rgba(148,163,184,0.12)]" />
-                  <button
-                    type="button"
-                    onClick={handleSignOut}
-                    className="rounded-2xl px-4 py-3 text-left text-sm text-[var(--danger)] transition-colors duration-200 hover:bg-white/5"
-                  >
-                    Déconnexion
-                  </button>
+                  <form action="/auth/sign-out" method="post">
+                    <button
+                      type="submit"
+                      className="w-full rounded-2xl px-4 py-3 text-left text-sm text-[var(--danger)] transition-colors duration-200 hover:bg-white/5"
+                    >
+                      Déconnexion
+                    </button>
+                  </form>
                 </div>
               ) : null}
             </div>
@@ -249,7 +210,7 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
                   {link.label}
                 </Link>
               ))}
-              {authState.loggedIn ? (
+              {isLoggedIn ? (
                 <Link
                   href="/dashboard/securite"
                   onClick={() => setMenuOpen(false)}
@@ -262,24 +223,20 @@ export function Navbar({ brand, isLoggedIn, primaryProductSlug = "freelance-it-3
             </div>
 
             <div className="mt-auto grid gap-3 pb-8 pt-8">
-              {authState.loggedIn ? (
+              {isLoggedIn ? (
                 <>
                   <div className="rounded-[24px] border border-[var(--border)] bg-white/5 px-5 py-4">
                     <p className="mb-1 text-sm text-[var(--muted)]">Connecté avec</p>
                     <p className="truncate text-base text-[var(--foreground)]">{email}</p>
                   </div>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      setMenuOpen(false);
-                      router.push("/dashboard/mes-formations");
-                    }}
-                  >
+                  <Link href="/dashboard/mes-formations" onClick={() => setMenuOpen(false)} className={buttonClasses("secondary", "md")}>
                     Mes formations
-                  </Button>
-                  <Button variant="ghost" onClick={handleSignOut}>
-                    Déconnexion
-                  </Button>
+                  </Link>
+                  <form action="/auth/sign-out" method="post">
+                    <Button type="submit" variant="ghost" className="w-full">
+                      Déconnexion
+                    </Button>
+                  </form>
                 </>
               ) : (
                 <>

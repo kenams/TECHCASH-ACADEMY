@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/format";
 
 type PurchaseCTAProps = {
   productSlug: string;

@@ -7,10 +7,10 @@ import { ProductHero } from "@/components/product-hero";
 import { ProductModulesList } from "@/components/product-modules-list";
 import { PublicFooter } from "@/components/public-footer";
 import { getProductSupplement, getRelatedLocalProducts } from "@/lib/catalog";
-import { getOwnedProducts, getProductWithModulesBySlug } from "@/lib/products";
+import { getPublicActiveProducts, getPublicProductWithModulesBySlug } from "@/lib/public-products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
-import { getUserProfile } from "@/lib/users";
+
+export const dynamic = "force-static";
 
 type ProductPageProps = {
   params: Promise<{
@@ -20,7 +20,7 @@ type ProductPageProps = {
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProductWithModulesBySlug(slug);
+  const product = getPublicProductWithModulesBySlug(slug);
 
   if (!product) {
     return {
@@ -42,24 +42,21 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
+export function generateStaticParams() {
+  return getPublicActiveProducts().map((product) => ({
+    slug: product.slug
+  }));
+}
+
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = await getProductWithModulesBySlug(slug);
+  const product = getPublicProductWithModulesBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  const [profile, ownedProducts] = user
-    ? await Promise.all([getUserProfile(user.id, supabase), getOwnedProducts(user.id)])
-    : [null, []];
-
-  const isOwned = Boolean(profile?.is_premium) || ownedProducts.some((entry) => entry.slug === product.slug);
+  const isOwned = false;
   const supplement = getProductSupplement(product.slug);
   const relatedProducts = getRelatedLocalProducts(product.slug, 2);
   const publishedModules = product.modules.filter((module) => module.is_published).length;
@@ -93,7 +90,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
         />
 
-        <Navbar brand={siteConfig.brand} links={[{ href: "/formations", label: "Retour catalogue" }]} isLoggedIn={Boolean(user)} />
+        <Navbar brand={siteConfig.brand} links={[{ href: "/formations", label: "Retour catalogue" }]} isLoggedIn={false} />
 
         <ProductHero product={product} isOwned={isOwned} detailHref={`/dashboard/formations/${product.slug}`} />
 
@@ -204,7 +201,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 <ProductCard
                   key={relatedProduct.id}
                   product={relatedProduct}
-                  isOwned={Boolean(profile?.is_premium) || ownedProducts.some((entry) => entry.slug === relatedProduct.slug)}
+                  isOwned={false}
                 />
               ))}
             </div>

@@ -6,10 +6,10 @@ import { ProductCard } from "@/components/product-card";
 import { ProductHero } from "@/components/product-hero";
 import { PublicFooter } from "@/components/public-footer";
 import { getPriorityOfferSlugs } from "@/lib/catalog";
-import { getActiveProducts, getOwnedProducts, getProductBySlug } from "@/lib/products";
+import { getPublicActiveProducts, getPublicProductBySlug } from "@/lib/public-products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
-import { getUserProfile } from "@/lib/users";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "TechCash Academy | Formations digitales rentables",
@@ -49,23 +49,13 @@ const audienceCards = [
   }
 ];
 
-export default async function LandingPage() {
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  const [profile, products, ownedProducts] = await Promise.all([
-    user ? getUserProfile(user.id, supabase) : Promise.resolve(null),
-    getActiveProducts(),
-    user ? getOwnedProducts(user.id) : Promise.resolve([])
-  ]);
-
+export default function LandingPage() {
+  const products = getPublicActiveProducts();
   const featuredCard = products.find((p) => p.is_featured) ?? products[0] ?? null;
-  const featured = featuredCard ? await getProductBySlug(featuredCard.slug) : null;
+  const featured = featuredCard ? getPublicProductBySlug(featuredCard.slug) : null;
 
-  const ownedProductSlugs = new Set(ownedProducts.map((product) => product.slug));
-  const hasGlobalAccess = Boolean(profile?.is_premium);
+  const ownedProductSlugs = new Set<string>();
+  const hasGlobalAccess = false;
   const priorityOfferSlugs = new Set(getPriorityOfferSlugs());
   const priorityProducts = products.filter((product) => priorityOfferSlugs.has(product.slug));
 
@@ -119,9 +109,9 @@ export default async function LandingPage() {
         <Navbar
           brand={siteConfig.brand}
           links={[{ href: "/formations", label: "Formations" }]}
-          isLoggedIn={Boolean(user)}
+          isLoggedIn={false}
           primaryProductSlug={siteConfig.primaryProductSlug}
-          showStartCTA={!user}
+          showStartCTA
         />
 
         <section className="hero hero-catalog">
@@ -136,8 +126,8 @@ export default async function LandingPage() {
               <Link href="/formations" className="button">
                 Voir le catalogue
               </Link>
-              <Link href={user ? "/dashboard" : "/register"} className="button-secondary">
-                {user ? "Accéder à mon espace" : "Créer un compte"}
+              <Link href="/register" className="button-secondary">
+                Créer un compte
               </Link>
             </div>
 
@@ -398,8 +388,8 @@ export default async function LandingPage() {
               <Link href="/formations" className="button">
                 Explorer les formations
               </Link>
-              <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button-secondary">
-                {user ? "Voir mes formations" : "Créer mon accès"}
+              <Link href="/register" className="button-secondary">
+                Créer mon accès
               </Link>
             </div>
           </div>

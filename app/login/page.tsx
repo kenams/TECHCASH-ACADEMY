@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import { AuthShell } from "@/components/auth-shell";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -27,7 +27,7 @@ type MfaState = {
   challengeId: string;
 };
 
-export default function LoginPage() {
+function LoginForm() {
   const supabase = getSupabaseBrowserClient();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -320,5 +320,13 @@ export default function LoginPage() {
         </form>
       )}
     </AuthShell>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }

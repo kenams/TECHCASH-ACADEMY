@@ -1,7 +1,7 @@
 import { AccessBadge } from "@/components/access-badge";
 import { CourseVideoPlayer } from "@/components/course-video-player";
 import { PurchaseCTA } from "@/components/purchase-cta";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/format";
 import type { ProductRecord } from "@/lib/types";
 
 type ProductHeroProps = {

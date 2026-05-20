@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { getActiveProducts } from "@/lib/products";
+import { getPublicActiveProducts } from "@/lib/public-products";
 import { getAbsoluteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await getActiveProducts();
+  const products = getPublicActiveProducts();
   const staticRoutes = [
     "/",
     "/formations",

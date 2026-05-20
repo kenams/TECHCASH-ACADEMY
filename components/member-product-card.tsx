@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
 import { PurchaseCTA } from "@/components/purchase-cta";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/format";
 import type { OwnedProductSummary, ProductCardData, ProductProgressSummary } from "@/lib/types";
 
 type MemberProductCardProps = {

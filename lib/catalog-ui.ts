@@ -1,4 +1,3 @@
-import { getLocalProductBySlug, getLocalModulesByProductId } from "@/lib/catalog";
 import type { ProductCardData } from "@/lib/types";
 
 export type CatalogTheme =
@@ -58,20 +57,37 @@ const estimatedVideoMinutesBySlug: Record<string, number> = {
   "pack-finance-ia": 22
 };
 
+const publishedModuleCountBySlug: Record<string, number> = {
+  "agent-ia-business": 4,
+  "applications-mobiles-rentables": 4,
+  "apps-metier-supabase": 5,
+  "automatisation-n8n": 6,
+  "automatisation-portefeuille-ia": 7,
+  "chatbot-client-make-gpt": 4,
+  "crypto-analyse-fondamentale-ia": 6,
+  "cybersecurite-pme": 6,
+  "facturation-compta-freelance": 4,
+  "freelance-it-30-jours": 7,
+  "glpi-support-pme": 5,
+  "ia-revenus-actifs": 7,
+  "landing-pages-rentables": 4,
+  "maintenance-informatique-pme": 5,
+  "microsoft-365-pme": 6,
+  "offre-mensuelle-recurrente": 4,
+  "outils-pme-glpi": 6,
+  "pack-finance-ia": 1,
+  "pack-it-freelance": 1,
+  "sites-web-clients": 4,
+  "trading-ia-debutant": 7,
+  "vendre-services-finance-ia": 6
+};
+
 export function getCatalogThemeForProduct(product: Pick<ProductCardData, "slug">): Exclude<CatalogTheme, "all"> {
   return themeBySlug[product.slug] ?? "it-freelance";
 }
 
 export function getCatalogModuleCount(product: Pick<ProductCardData, "slug">) {
-  const localProduct = getLocalProductBySlug(product.slug);
-
-  if (!localProduct) {
-    return 0;
-  }
-
-  return getLocalModulesByProductId(localProduct.id).filter(
-    (module) => module.is_published && module.content_type !== "coming_soon"
-  ).length;
+  return publishedModuleCountBySlug[product.slug] ?? 0;
 }
 
 export function getEstimatedVideoMinutes(product: Pick<ProductCardData, "slug">) {

@@ -16,6 +16,7 @@ import type {
   ProductWithModules,
   PurchaseRecord
 } from "@/lib/types";
+export { formatPrice } from "@/lib/format";
 
 function isUuidLike(value: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
@@ -32,13 +33,6 @@ function enrichProductRecord<T extends { slug: string }>(product: T): T {
     ...product,
     category: localProduct.category
   };
-}
-
-export function formatPrice(cents: number, currency: string) {
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: currency.toUpperCase()
-  }).format(cents / 100);
 }
 
 export const getActiveProducts = cache(async (): Promise<ProductCardData[]> => {

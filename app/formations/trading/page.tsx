@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { ProductCard } from "@/components/product-card";
 import { PublicFooter } from "@/components/public-footer";
-import { getActiveProducts, getOwnedProducts } from "@/lib/products";
+import { getPublicActiveProducts } from "@/lib/public-products";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
-import { getUserProfile } from "@/lib/users";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Trading & Finance IA | TechCash Academy",
@@ -23,26 +23,16 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function TradingFormationsPage() {
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  const [profile, products, owned] = await Promise.all([
-    user ? getUserProfile(user.id, supabase) : Promise.resolve(null),
-    getActiveProducts(),
-    user ? getOwnedProducts(user.id) : Promise.resolve([])
-  ]);
-
-  const hasGlobalAccess = Boolean(profile?.is_premium);
-  const ownedSlugs = new Set(owned.map((product) => product.slug));
+export default function TradingFormationsPage() {
+  const products = getPublicActiveProducts();
+  const hasGlobalAccess = false;
+  const ownedSlugs = new Set<string>();
   const tradingProducts = products.filter((product) => product.category === "trading");
 
   return (
     <main>
       <div className="shell">
-        <Navbar brand={siteConfig.brand} isLoggedIn={Boolean(user)} />
+        <Navbar brand={siteConfig.brand} isLoggedIn={false} />
 
         <section className="section section-first">
           <div className="section-title">
@@ -124,8 +114,8 @@ export default async function TradingFormationsPage() {
               <Link href="/formations" className="button-secondary">
                 Voir tout le catalogue
               </Link>
-              <Link href={user ? "/dashboard/mes-formations" : "/register"} className="button">
-                {user ? "Voir mes formations" : "Créer mon accès"}
+              <Link href="/register" className="button">
+                Créer mon accès
               </Link>
             </div>
           </div>

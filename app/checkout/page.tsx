@@ -46,7 +46,7 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
   return (
     <main>
       <div className="shell">
-        <Navbar brand={siteConfig.brand} isLoggedIn={Boolean(user)} />
+        <Navbar brand={siteConfig.brand} isLoggedIn={Boolean(user)} userEmail={user?.email || ""} />
         <CheckoutPanel
           email={user?.email || ""}
           isAuthenticated={Boolean(user)}
