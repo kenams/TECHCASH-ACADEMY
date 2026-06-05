@@ -227,6 +227,16 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
                 <Link href={`/formations/${product.slug}`} className={buttonClasses("ghost", "sm")}>
                   Page publique
                 </Link>
+                {summary.percent === 100 && (
+                  <a
+                    href={`/api/certificate/${product.slug}`}
+                    download={`Certificat-${product.slug}.png`}
+                    className={buttonClasses("primary", "sm")}
+                    style={{ background: "linear-gradient(135deg, #d4af37, #f0d060)", color: "#0a0a0f" }}
+                  >
+                    🏆 Télécharger mon certificat
+                  </a>
+                )}
               </div>
             </div>
             <div className="mt-4 grid gap-2">
@@ -243,6 +253,21 @@ export function MemberCourseExperience({ product, initialProgress }: MemberCours
                 {summary.completedModules}/{summary.totalModules} modules validés
               </span>
             </div>
+            {summary.percent === 100 && (
+              <div style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.06))", border: "1px solid rgba(212,175,55,0.3)", borderRadius: "12px", padding: "16px 20px", marginTop: "12px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px", flexWrap: "wrap" }}>
+                <div>
+                  <p style={{ fontWeight: "700", color: "#d4af37", margin: "0 0 4px" }}>🏆 Formation complétée !</p>
+                  <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", margin: 0 }}>Votre certificat TechCash Academy est disponible en téléchargement.</p>
+                </div>
+                <a
+                  href={`/api/certificate/${product.slug}`}
+                  download={`Certificat-${product.slug}.png`}
+                  style={{ background: "linear-gradient(135deg, #d4af37, #f0d060)", color: "#0a0a0f", padding: "10px 20px", borderRadius: "8px", fontSize: "13px", fontWeight: "700", textDecoration: "none", whiteSpace: "nowrap" }}
+                >
+                  Télécharger mon certificat →
+                </a>
+              </div>
+            )}
           </div>
           <div className="course-hero-video-player" id="module-overview-video">
             <CourseVideoChapters
