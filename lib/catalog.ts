@@ -57,7 +57,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: "price_1TJrEOGSZgm5QCNLeTwUULYt",
     thumbnail_url: "/visuals/formations/landing-pages-rentables-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -75,7 +75,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: "price_1TJrEPGSZgm5QCNLEAP6iWha",
     thumbnail_url: "/visuals/formations/sites-web-clients-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -93,7 +93,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: "price_1TJrEQGSZgm5QCNLSgVsDabX",
     thumbnail_url: "/visuals/formations/outils-pme-glpi-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -111,7 +111,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: "price_1TJrERGSZgm5QCNLa5B2Z3BH",
     thumbnail_url: "/visuals/formations/applications-mobiles-rentables-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -129,7 +129,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/glpi-support-pme-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -147,7 +147,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/maintenance-informatique-pme-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -165,7 +165,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/apps-metier-supabase-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -183,7 +183,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/microsoft-365-pme-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -201,7 +201,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/cybersecurite-pme-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -219,7 +219,7 @@ export const localProducts: ProductRecord[] = [
     currency: "eur",
     stripe_price_id: null,
     thumbnail_url: "/visuals/formations/automatisation-n8n-cover.svg",
-    is_active: true,
+    is_active: false,
     is_featured: false,
     created_at: now,
     updated_at: now
@@ -338,11 +338,41 @@ export const localProductModules: ProductModuleRecord[] = [
   ),
   module(
     "freelance-it-30-jours",
-    "cas-clients-a-venir",
+    "cas-clients-terrain",
     "Cas clients terrain et gestion des objections avancées",
-    "Études de cas réels, scénarios de mission complexe, gestion des clients difficiles et stratégies pour fidéliser sur le long terme. Module en cours de production.",
-    "coming_soon",
-    7
+    "3 scénarios réels : PME en panique, client qui ne paye pas, mission qui dérape. Comment gérer, facturer et en sortir proprement.",
+    "text",
+    7,
+    {
+      content_body:
+        "## Cas clients terrain : 3 scénarios réels\n\nCes situations arrivent. Mieux vaut les avoir lues avant de les vivre.\n\n---\n\n### Cas 1 — La PME en panique\n\n**Situation** : Le gérant t'appelle à 8h30. \"Personne ne peut ouvrir ses fichiers. On a une réunion client à 10h.\"\n\n**Ce que tu fais** :\n1. Calmer immédiatement : \"Je comprends, on va gérer ça. Je suis disponible maintenant.\"\n2. Diagnostiquer à distance en premier (5 minutes) avant de te déplacer\n3. Identifier la cause : ransomware, serveur HS, problème réseau, disque mort\n4. Si déplacement nécessaire : annoncer un tarif d'urgence **majoré de 30–50 %** avant d'arriver\n\n**Ce qu'il ne faut pas faire** :\n- Promettre de régler en 30 minutes si tu ne sais pas encore ce que c'est\n- Aller sur place sans annoncer les frais supplémentaires\n- Paniquer à la place du client\n\n**Facturation** : Intervention d'urgence = tarif majoré. Tu peux facturer 250–400 € pour une demi-journée d'urgence, même si le problème est résolu en 1h. La valeur, c'est la disponibilité immédiate.\n\n---\n\n### Cas 2 — Le client qui ne paye pas\n\n**Situation** : Tu as livré une installation M365 sur 12 postes il y a 45 jours. Devis signé à 1 480 €. Aucun paiement, aucune réponse aux relances email.\n\n**Protocole de relance** :\n\n**Jour 30** : Email de rappel simple\n> \"Objet : Facture [N°] en attente de règlement\"\n> \"Je me permets de vous relancer pour la facture [N°] du [date]. N'hésitez pas si vous avez un problème ou une question. Règlement par virement ou chèque selon vos préférences.\"\n\n**Jour 45** : Appel téléphonique direct\n- \"Vous avez bien reçu ma relance par email ? Y a-t-il un problème ?\"\n- Écouter avant de relancer\n\n**Jour 60** : Mise en demeure par lettre recommandée\n- Modèle disponible sur service-public.fr (gratuit)\n- Mentionne les intérêts de retard légaux (2,5x taux légal en vigueur)\n\n**Jour 75** : Injonction de payer via le tribunal de proximité\n- Gratuit si < 5 000 €\n- Formulaire CERFA 12948*06\n- 90 % des impayés se règlent avant cette étape\n\n**Prévention** : 30 % d'acompte à la commande sur toute mission > 300 €. Si refus de l'acompte = signal d'alarme.\n\n---\n\n### Cas 3 — La mission qui dérape\n\n**Situation** : Tu installes un nouveau serveur. Pendant la migration, tu perds des données d'un dossier partagé. Le client réalise 3 jours après.\n\n**Réaction immédiate** :\n1. Ne pas minimiser ni te défausser\n2. \"Je prends ça très au sérieux. Je reviens demain matin pour analyser ce qui peut être récupéré.\"\n3. Tenter la récupération avec Recuva ou Veeam (selon la situation)\n\n**Si les données sont irrécupérables** :\n- Assumer sa responsabilité sur la partie qui te revient\n- Proposer un geste commercial proportionnel (remise sur la prochaine facture, non-facturation des heures de récupération)\n- Ne jamais promettre ce que tu ne peux pas tenir\n\n**La leçon à retenir** : Avant toute migration, créer une sauvegarde complète et la vérifier. Documenter la sauvegarde avec une capture d'écran dans ton rapport. Cette étape doit figurer dans tous tes devis de migration.\n\n---\n\n### Gérer un client difficile chronique\n\nCertains clients appellent pour tout, exigent des délais impossibles, contestent chaque facture et envoient des messages à 22h.\n\n**Les 3 règles** :\n- **Cadrer dès le départ** : \"Je réponds aux urgences le jour même. Pour les demandes non urgentes, je réponds sous 24h ouvrées.\"\n- **Facturer les dépassements** : Si un client dépasse le forfait habituel, envoyer une ligne supplémentaire sur la facture. Une fois, deux fois — il comprend ou il part.\n- **Savoir mettre fin à une relation** : \"Je ne suis plus en mesure de vous accompagner dans les meilleures conditions. Je vous recommande [nom d'un confrère].\" Un client toxique coûte plus qu'il ne rapporte."
+    }
+  ),
+
+  module(
+    "freelance-it-30-jours",
+    "fidelisation-recurrent",
+    "Fidélisation et revenus récurrents",
+    "Comment transformer un client de dépannage en client mensuel : forfaits, rapports d'activité, rituels de suivi et techniques pour augmenter naturellement la valeur par client.",
+    "text",
+    8,
+    {
+      content_body:
+        "## Fidélisation et revenus récurrents\n\nUn client récurrent vaut 5x un client ponctuel. Le coût d'acquisition est nul, la confiance est déjà là, et la prévisibilité de ton revenu change tout.\n\n---\n\n### La bascule : de l'urgence au forfait\n\nLa plupart des techniciens attendent que le client propose un forfait. C'est une erreur. C'est **toi** qui proposes.\n\n**Le bon moment pour proposer** :\n- Après une intervention réussie (le client est soulagé, il dit \"merci\")\n- Quand tu interviens pour la 2e ou 3e fois chez le même client\n- Quand tu identifies des interventions récurrentes prévisibles\n\n**La phrase qui fonctionne** :\n> \"Je remarque que vous avez souvent des petites demandes. Je propose une formule maintenance à [X €/mois] qui couvre tout ça — vous avez un contact direct et je passe une fois par trimestre faire un état des lieux. Ça vous évite d'appeler à chaque fois.\"\n\n---\n\n### 3 formats de forfait qui se vendent bien\n\n**Forfait Starter (90–150 €/mois)**\n- Support à distance illimité (temps raisonnable)\n- 1 visite préventive semestrielle\n- Rapport de suivi trimestriel\n- Cible : artisan, commerçant, 1–3 postes\n\n**Forfait Standard (200–350 €/mois)**\n- Support à distance + déplacements inclus jusqu'à 2h/mois\n- 1 visite préventive trimestrielle\n- Rapport mensuel + alerte proactive\n- Cible : petite agence, cabinet libéral, 4–10 postes\n\n**Forfait Premium (400–700 €/mois)**\n- Support prioritaire (réponse < 2h)\n- Visites mensuelles\n- Supervision des sauvegardes\n- Plan de continuité en cas de panne majeure\n- Cible : PME avec dépendance forte à l'informatique\n\n---\n\n### Le rapport d'activité mensuel : ton meilleur outil de rétention\n\nUn rapport mensuel d'une page transforme ton travail invisible en preuve de valeur.\n\n**Structure du rapport (15 minutes à rédiger)** :\n- **Interventions du mois** : liste des actions réalisées\n- **État de santé du parc** : 3 indicateurs (postes, sauvegardes, sécurité)\n- **Recommandations** : 1 à 2 actions prioritaires pour le mois suivant\n- **Prochaine visite** : date confirmée\n\nEnvoie-le le **1er du mois**. Automatiquement, le client pense à toi, voit que tu travailles, et se souvient de renouveler.\n\n---\n\n### Augmenter la valeur par client sans augmenter les prix\n\n**L'upsell naturel** :\nTu installes un NAS → tu proposes la supervision des sauvegardes (+30 €/mois)\nTu gères les postes → tu proposes la gestion des licences antivirus (+20 €/mois)\nTu dépannes le réseau → tu proposes un audit sécurité annuel (forfait 350 €)\n\n**La règle des 3 touchpoints** :\nContact mensuel (rapport ou appel rapide) → Contact trimestriel (visite) → Contact annuel (bilan et renouvellement). Un client qui n'a pas de nouvelles pendant 2 mois part.\n\n---\n\n### Renouveler sans friction\n\n2 semaines avant l'échéance annuelle d'un forfait :\n1. Envoyer un bilan de l'année (1 page)\n2. Proposer la reconduction avec éventuellement un ajustement tarifaire justifié\n3. Ne pas attendre que le client relance — il ne le fera pas\n\n**Tarif recommandé pour la revalorisation** : +5 à +8 % par an maximum. Au-delà, justifier précisément (nouveau matériel à superviser, volume de tickets en hausse).\n\n> **Objectif à 6 mois** : 4 clients en forfait mensuel à 200 €/mois = 800 € récurrents. Ajoutés aux interventions ponctuelles, c'est une base solide qui rend ton activité prévisible."
+    }
+  ),
+
+  module(
+    "freelance-it-30-jours",
+    "premier-contrat-modele",
+    "Modèle de contrat de prestation et CGV",
+    "Les clauses indispensables pour un contrat simple et solide, les CGV à mettre en place dès le départ et les erreurs juridiques à éviter absolument.",
+    "text",
+    9,
+    {
+      content_body:
+        "## Contrat de prestation et CGV : les bases légales\n\nPas besoin d'un avocat pour démarrer. Mais il te faut un minimum de cadre légal — sans ça, tu n'as aucun recours si un client conteste ou ne paye pas.\n\n---\n\n### Le devis signé = le contrat\n\nEn droit français, un devis signé par le client vaut contrat. C'est suffisant pour la majorité des interventions.\n\n**Ce qui doit figurer sur le devis pour qu'il soit juridiquement solide** :\n- Ton nom / dénomination commerciale + SIRET\n- Coordonnées complètes du client\n- Description précise de la prestation\n- Prix HT et mention TVA\n- Délai d'exécution\n- Conditions de paiement\n- Date et signature des deux parties\n\n> Une signature par email (\"Je confirme ma commande\" ou \"OK pour ce devis\") a valeur légale en France depuis la loi du 13 mars 2000.\n\n---\n\n### Clauses indispensables pour une prestation IT\n\n**Clause de périmètre**\n> \"La prestation couvre exclusivement les éléments listés ci-dessus. Toute demande supplémentaire fera l'objet d'un nouveau devis.\"\n\nSans cette clause, le client peut considérer que tout ce qu'il demande pendant la mission est inclus.\n\n**Clause de responsabilité limitée**\n> \"Le prestataire ne peut être tenu responsable des pertes de données survenant lors de l'intervention si aucune sauvegarde récente n'a été effectuée par le client avant le début de la mission.\"\n\n**Clause de propriété intellectuelle (si tu crées du code)**\n> \"Les livrables développés spécifiquement pour le client lui sont cédés à réception du paiement intégral. Les composants réutilisables restent la propriété du prestataire.\"\n\n**Clause de confidentialité simple**\n> \"Le prestataire s'engage à ne pas divulguer les informations techniques et commerciales auxquelles il aura accès dans le cadre de la mission.\"\n\n---\n\n### CGV : ce que tu dois afficher\n\nEn tant qu'auto-entrepreneur B2B, tu dois avoir des CGV (Conditions Générales de Vente) disponibles sur demande ou en annexe de tes devis.\n\n**Les points minimaux à couvrir** :\n- Tarifs et modalités de paiement\n- Délais d'exécution et conditions de retard\n- Clause de résiliation (préavis requis pour mettre fin à un forfait)\n- Droit applicable (droit français, tribunal compétent)\n- Politique de garantie (durée pendant laquelle tu couvres une intervention)\n\n**Ressource gratuite** : Le site `service-public.fr` propose des modèles de CGV pour les auto-entrepreneurs. Adapte, ne pars pas de zéro.\n\n---\n\n### Les 3 erreurs juridiques à éviter absolument\n\n**Erreur 1 — Intervenir sans devis signé**\nMême pour une \"petite\" intervention à 80 €. Le client peut toujours contester après coup. Un email de confirmation suffit si le client refuse de signer un PDF.\n\n**Erreur 2 — Oublier la clause de périmètre**\nSans elle, \"installer les postes\" peut vouloir dire \"configurer les imprimantes, migrer les données, former les utilisateurs et créer les comptes email\". Ça peut doubler la durée d'une mission.\n\n**Erreur 3 — Ne pas demander d'acompte sur les grosses missions**\nPour toute intervention > 400 €, demander 30 % à la commande. Si le client refuse sans explication valable, c'est un signal d'alerte sur sa solvabilité."
+    }
   ),
 
   module(

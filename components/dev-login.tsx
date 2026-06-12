@@ -183,17 +183,6 @@ export function DevLogin() {
             </p>
           )}
 
-          <p
-            style={{
-              margin: "0.2rem 0 0",
-              fontSize: "0.69rem",
-              color: "rgba(162,176,198,0.45)",
-              textAlign: "center",
-              letterSpacing: "0.02em"
-            }}
-          >
-            mdp : TechCash2026!
-          </p>
         </div>
       )}
 
