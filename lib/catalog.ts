@@ -242,6 +242,42 @@ export const localProducts: ProductRecord[] = [
     created_at: now,
     updated_at: now
   },
+  {
+    id: "local-prospection-automatisee",
+    slug: "prospection-automatisee",
+    title: "Prospecter 100 clients par jour en automatique",
+    subtitle: "L'outil, la méthode et les scripts pour une prospection B2B qui tourne sans toi",
+    short_description:
+      "Construire un système de prospection automatisée qui contacte 100 à 150 entreprises par jour, qualifie les réponses et remplit ton agenda — basé sur un outil réel en production.",
+    long_description:
+      "Cette formation te montre comment construire et déployer un vrai système de prospection automatisée : scraping de leads qualifiés, personnalisation des messages, envoi automatique, suivi des réponses et relances. Basé sur un outil réel qui tourne en production et génère des contacts qualifiés chaque jour sans intervention manuelle.",
+    price_cents: 7700,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/prospection-automatisee-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
+  {
+    id: "local-agence-digitale-ia",
+    slug: "agence-digitale-ia",
+    title: "Lancer une agence digitale avec des agents IA",
+    subtitle: "Positionner, vendre et livrer des prestations digitales avec l'IA comme levier principal",
+    short_description:
+      "Créer une agence digitale lean et rentable en utilisant les agents IA pour livrer plus vite, prospecter automatiquement et scaler sans recruter.",
+    long_description:
+      "Cette formation te montre comment structurer une agence digitale moderne où les agents IA font le travail lourd : prospection, production de contenu, développement, support client. Tu apprendras à positionner ton offre, trouver tes premiers clients, livrer avec des process IA et construire une structure qui scale sans dépendre d'une équipe.",
+    price_cents: 9700,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/agence-digitale-ia-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
   ...tradingProducts,
   ...newProducts
 ];
@@ -1232,6 +1268,166 @@ export const localProductModules: ProductModuleRecord[] = [
     }
   ),
 
+  // ── Prospection automatisée ────────────────────────────────────────────
+  module(
+    "prospection-automatisee",
+    "prospection-intro-video",
+    "Introduction : comment fonctionne une machine à prospects",
+    "La logique complète du système : scraping → personnalisation → envoi → suivi. Ce que fait l'outil en production et ce que tu vas construire.",
+    "video",
+    0,
+    {
+      content_url: null,
+      content_body:
+        "## Comment fonctionne une machine à prospects\n\nCette vidéo présente le système complet de prospection automatisée en production : comment il identifie les leads, personnalise les messages et gère les relances sans intervention humaine.\n\n### Ce que tu vas voir\n- L'architecture complète du système\n- Une démo en live de l'outil en action\n- Les résultats réels : volume, taux de réponse, conversions\n- Ce que tu vas construire dans cette formation"
+    }
+  ),
+
+  module(
+    "prospection-automatisee",
+    "trouver-leads-qualifies",
+    "Trouver 100 leads qualifiés par jour",
+    "Sources de données B2B, techniques de scraping légal, filtres de qualification et constitution d'une base de prospects propre et exploitable.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Trouver 100 leads qualifiés par jour\n\nLa prospection automatisée commence par une base de données propre. Un message parfait envoyé au mauvais prospect ne donne rien.\n\n---\n\n### Les 5 meilleures sources de leads B2B en France\n\n**1. Google Maps / Google Business**\nLa source la plus accessible et la plus fiable pour les PME locales.\n- Recherche : `[secteur] [ville]` → liste d'entreprises avec email, téléphone, site\n- Outil : `playwright` ou `puppeteer` pour scraper les résultats\n- Volume : 50 à 200 résultats par recherche\n- Qualité : très haute — ce sont des entreprises réelles avec une présence active\n\n```javascript\n// Exemple de scraping Google Maps avec Playwright\nconst results = await page.evaluate(() => {\n  return [...document.querySelectorAll('.hfpxzc')].map(el => ({\n    name: el.getAttribute('aria-label'),\n    href: el.href\n  }));\n});\n```\n\n**2. LinkedIn (Sales Navigator ou scraping)**\n- Filtres puissants : secteur, taille entreprise, poste décisionnaire\n- Outil recommandé : Phantombuster (Legal), ou scraping manuel avec Playwright\n- Volume : 25 à 100 leads/jour selon les filtres\n- Qualité : excellente pour le B2B décisionnaire\n\n**3. Pages Jaunes / Societe.com**\n- Base de données légale des entreprises françaises\n- SIRET, adresse, secteur d'activité, chiffre d'affaires\n- Gratuit avec scraping, API payante disponible\n- Idéal pour cibler par code NAF (secteur exact)\n\n**4. Annuaires sectoriels**\n- Chaque secteur a son annuaire : BTP, santé, restauration, immobilier\n- Google : `annuaire [secteur] site:fr` pour trouver les bons\n- Moins connus = moins de concurrence dans ta prospection\n\n**5. Scraping de sites d'offres d'emploi**\n- Une entreprise qui recrute un commercial ou un responsable IT a un budget\n- Indeed, Welcome to the Jungle, LinkedIn Jobs → leads chauds\n- Signal : ils ont un problème à résoudre maintenant\n\n---\n\n### Structurer ta base de données\n\nFormat minimal pour chaque lead :\n```json\n{\n  \"company\": \"Boulangerie Martin\",\n  \"sector\": \"restauration\",\n  \"city\": \"Lyon\",\n  \"email\": \"contact@boulangerie-martin.fr\",\n  \"phone\": \"04 78 XX XX XX\",\n  \"website\": \"boulangerie-martin.fr\",\n  \"source\": \"google_maps\",\n  \"scraped_at\": \"2026-06-12\",\n  \"status\": \"à contacter\"\n}\n```\n\nStockage recommandé : **Google Sheets** (simple, partageable, gratuit) ou **Supabase** (si tu veux automatiser les statuts).\n\n---\n\n### Les règles du scraping légal en France\n\n- Scraper des données **publiques** (Google Maps, annuaires) = légal\n- Scraper derrière une authentification = illégal\n- Respecter le `robots.txt` des sites\n- Ne pas surcharger les serveurs (délai entre requêtes : 2–5 secondes)\n- Les emails pro (contact@entreprise.fr) sont des données B2B — prospecter par email B2B est légal sous RGPD avec mention de désabonnement\n\n> **Règle pratique** : si l'information est visible sans être connecté sur le site, tu peux la collecter."
+    }
+  ),
+
+  module(
+    "prospection-automatisee",
+    "messages-personnalises",
+    "Écrire des messages qui obtiennent des réponses",
+    "Structure des emails à froid qui convertissent, personnalisation automatique avec les données du lead, A/B testing et optimisation du taux de réponse.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Écrire des messages qui obtiennent des réponses\n\nLe taux de réponse moyen d'un email à froid non personnalisé : 1–3 %. Personnalisé correctement : 8–18 %. La différence, c'est la méthode.\n\n---\n\n### La structure d'un email à froid qui convertit\n\n**Règle des 4 lignes** : un bon email à froid tient en 4 lignes.\n\n```\nLigne 1 : Personnalisation — montre que tu les connais\nLigne 2 : Problème — nomme ce qu'ils vivent probablement\nLigne 3 : Solution — ce que tu fais en une phrase\nLigne 4 : CTA — une seule question fermée\n```\n\n**Exemple concret :**\n> Objet : [Prénom], question rapide pour [Nom entreprise]\n>\n> J'ai vu que vous êtes [secteur] à [ville] — la plupart des [secteur] que je croise perdent du temps sur [problème typique].\n>\n> J'ai un outil qui règle ça automatiquement. Est-ce que ça vaut 15 minutes cette semaine ?\n>\n> [Prénom] — [lien calendrier]\n\n---\n\n### Personnalisation automatique avec les données du lead\n\nAvec une base de données structurée, tu peux générer des emails personnalisés en masse avec un LLM.\n\n```javascript\n// Génération de message personnalisé via API Claude\nasync function generateEmail(lead) {\n  const prompt = `\n    Écris un email à froid en français pour prospecter cette entreprise.\n    Entreprise : ${lead.company}\n    Secteur : ${lead.sector}\n    Ville : ${lead.city}\n    Mon service : support informatique de proximité\n    \n    Règles : 4 lignes max, ton naturel, une question en CTA.\n    Pas de \"J'espère que vous allez bien\".\n  `;\n  \n  const response = await anthropic.messages.create({\n    model: 'claude-haiku-4-5-20251001', // rapide et pas cher pour ce use case\n    max_tokens: 200,\n    messages: [{ role: 'user', content: prompt }]\n  });\n  \n  return response.content[0].text;\n}\n```\n\nCoût : ~0,001 € par email généré avec Claude Haiku. Pour 100 emails/jour = 0,10 €/jour.\n\n---\n\n### Les objets d'email qui fonctionnent en B2B français\n\n- `[Prénom], question rapide` → taux d'ouverture : 38–52 %\n- `[Nom entreprise] + [problème]` → 32–45 %\n- `Idée pour [Nom entreprise]` → 28–40 %\n- `Re: [sujet vague]` → éviter, trop utilisé, perçu comme spam\n\n**Ce qui tue le taux d'ouverture :**\n- Majuscules dans l'objet\n- Mots spam : \"gratuit\", \"offre\", \"promotion\", \"urgent\"\n- Objet > 50 caractères (tronqué sur mobile)\n\n---\n\n### Séquence de relance automatique\n\nUn seul email convertit rarement. Une séquence de 3 convertit 3x plus.\n\n```\nJour 1  : Email initial (personnalisé)\nJour 4  : Relance 1 — angle différent, 2 lignes\nJour 9  : Relance 2 — \"dernière tentative\", proposer une ressource\nJour 14 : Archiver si toujours pas de réponse\n```\n\nRelance 1 exemple :\n> \"Je me permets de relancer — je sais que les boîtes débordent. Est-ce que le sujet est pertinent ou pas du tout pour vous ?\"\n\nRelance 2 exemple :\n> \"Dernière tentative de ma part. Je laisse [lien article/ressource utile] si jamais ça peut vous aider de toute façon. Bonne continuation.\""
+    }
+  ),
+
+  module(
+    "prospection-automatisee",
+    "automatiser-envoi",
+    "Automatiser l'envoi et gérer les réponses",
+    "Stack technique complète : service d'envoi, rotation d'adresses, warming, gestion des bounces, détection des réponses positives et alertes en temps réel.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Automatiser l'envoi et gérer les réponses\n\n---\n\n### Choisir son service d'envoi\n\nNe jamais envoyer depuis Gmail ou Outlook directement — tu seras banni en quelques jours.\n\n**Resend** (recommandé pour démarrer)\n- 3 000 emails/mois gratuits, 1 $/1 000 emails ensuite\n- API simple, intégration Node.js en 5 minutes\n- Excellent delivrabilité si domaine bien configuré\n\n```javascript\nimport { Resend } from 'resend';\nconst resend = new Resend(process.env.RESEND_API_KEY);\n\nawait resend.emails.send({\n  from: 'prenom@tondomaine.fr',\n  to: lead.email,\n  subject: generateSubject(lead),\n  html: generateEmail(lead)\n});\n```\n\n**Brevo (ex-Sendinblue)**\n- 300 emails/jour gratuits\n- Interface visuelle pour les séquences\n- Idéal si tu veux gérer sans coder\n\n**Instantly.ai / Lemlist**\n- Outils SaaS dédiés à la prospection à froid\n- Warming automatique, rotation d'adresses, séquences visuelles\n- 30–100 $/mois — justifié si tu envoies > 500/jour\n\n---\n\n### Configurer ton domaine pour le delivrabilité\n\nSans ces 3 configs DNS, tes emails vont en spam :\n\n```\nSPF  : v=spf1 include:resend.com ~all\nDKIM : clé fournie par ton service d'envoi (à copier dans DNS)\nDMARC: v=DMARC1; p=none; rua=mailto:dmarc@tondomaine.fr\n```\n\nVérification : `mail-tester.com` — objectif score 9/10 minimum avant de lancer.\n\n---\n\n### Pipeline complet en Node.js\n\n```javascript\n// pipeline.js — tourne toutes les heures via cron\nasync function runProspectionPipeline() {\n  // 1. Récupérer les leads à contacter\n  const leads = await getLeadsToContact({ limit: 50, status: 'pending' });\n  \n  // 2. Pour chaque lead\n  for (const lead of leads) {\n    // Générer le message personnalisé\n    const email = await generateEmail(lead);\n    \n    // Envoyer\n    await sendEmail(lead.email, email);\n    \n    // Mettre à jour le statut\n    await updateLeadStatus(lead.id, 'contacted', new Date());\n    \n    // Délai pour éviter le spam (2–4 secondes)\n    await sleep(2000 + Math.random() * 2000);\n  }\n  \n  console.log(`Pipeline: ${leads.length} emails envoyés`);\n}\n\n// Cron : toutes les heures en semaine 8h-18h\n// GitHub Actions ou serveur cron\n```\n\n---\n\n### Détecter les réponses positives automatiquement\n\nAvec l'API Gmail + Claude, tu peux analyser les réponses et distinguer :\n- Intéressé → alerte Telegram immédiate\n- Pas intéressé → archiver\n- Désinscription → supprimer de la base\n- Absence du bureau → relancer dans 10 jours\n\n```javascript\nasync function classifyReply(emailContent) {\n  const response = await anthropic.messages.create({\n    model: 'claude-haiku-4-5-20251001',\n    max_tokens: 50,\n    messages: [{\n      role: 'user',\n      content: `Classe cette réponse email en: INTERESTED / NOT_INTERESTED / UNSUBSCRIBE / OUT_OF_OFFICE\\n\\n${emailContent}`\n    }]\n  });\n  return response.content[0].text.trim();\n}\n```\n\n---\n\n### Résultats attendus avec ce système\n\n| Volume/jour | Taux réponse | Réponses positives | RDV/mois |\n|-------------|-------------|-------------------|----------|\n| 50 emails   | 8–12 %      | 4–6               | 8–15     |\n| 100 emails  | 8–12 %      | 8–12              | 15–30    |\n| 200 emails  | 6–10 %      | 12–20             | 25–50    |\n\n> Avec 100 emails/jour et 20 RDV/mois, si tu signes 20 % = 4 clients. À 200 €/mois chacun = 800 €/mois récurrents ajoutés."
+    }
+  ),
+
+  module(
+    "prospection-automatisee",
+    "deployer-systeme-prod",
+    "Déployer le système en production avec GitHub Actions",
+    "Héberger le pipeline sur GitHub Actions (gratuit), planifier les envois, monitorer les résultats et maintenir le système sans serveur à gérer.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Déployer le système en production avec GitHub Actions\n\nGitHub Actions permet de faire tourner ton pipeline de prospection gratuitement, sans serveur à gérer, jusqu'à 2 000 minutes/mois.\n\n---\n\n### Structure du projet\n\n```\nprospection-tool/\n├── .github/\n│   └── workflows/\n│       ├── prospection.yml     # Pipeline principal\n│       └── relances.yml        # Gestion des relances\n├── src/\n│   ├── scraper.js              # Collecte des leads\n│   ├── generator.js            # Génération des messages IA\n│   ├── sender.js               # Envoi des emails\n│   └── classifier.js          # Classification des réponses\n├── data/\n│   └── leads.json              # Base locale (ou Supabase)\n└── package.json\n```\n\n---\n\n### Workflow GitHub Actions\n\n```yaml\n# .github/workflows/prospection.yml\nname: Pipeline Prospection\n\non:\n  schedule:\n    - cron: '0 8,10,12,14,16 * * 1-5'  # Lun-Ven, toutes les 2h de 8h à 16h\n  workflow_dispatch:  # Déclenchement manuel possible\n\njobs:\n  prospect:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      \n      - uses: actions/setup-node@v4\n        with:\n          node-version: '20'\n      \n      - run: npm ci\n      \n      - name: Run prospection pipeline\n        env:\n          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}\n          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}\n        run: node src/pipeline.js\n```\n\n---\n\n### Configurer les secrets GitHub\n\n1. Repo → Settings → Secrets and variables → Actions\n2. Ajouter : `RESEND_API_KEY`, `ANTHROPIC_API_KEY`, `SUPABASE_URL`, `SUPABASE_KEY`\n3. Ces secrets sont chiffrés et jamais visibles dans les logs\n\n---\n\n### Dashboard de suivi dans Supabase\n\nTable `leads` :\n```sql\nCREATE TABLE leads (\n  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),\n  company text,\n  email text UNIQUE,\n  sector text,\n  city text,\n  status text DEFAULT 'pending', -- pending/contacted/replied/interested/signed\n  contacted_at timestamptz,\n  replied_at timestamptz,\n  reply_type text, -- INTERESTED/NOT_INTERESTED/UNSUBSCRIBE\n  created_at timestamptz DEFAULT now()\n);\n```\n\n---\n\n### Alertes Telegram en temps réel\n\nQuand un lead répond positivement, tu reçois une alerte immédiate :\n\n```javascript\nasync function sendTelegramAlert(lead, replyContent) {\n  const message = `🔥 Réponse positive !\\n\\n` +\n    `Entreprise : ${lead.company}\\n` +\n    `Email : ${lead.email}\\n` +\n    `Ville : ${lead.city}\\n\\n` +\n    `Message : ${replyContent.slice(0, 200)}`;\n    \n  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ chat_id: CHAT_ID, text: message })\n  });\n}\n```\n\n> **Résultat** : le pipeline tourne 5 fois par jour en semaine, envoie 20 emails par run, soit 100 emails/jour — complètement automatique, zéro intervention manuelle."
+    }
+  ),
+
+  module(
+    "prospection-automatisee",
+    "vendre-systeme-clients",
+    "Vendre ce système à des clients",
+    "Comment packager l'outil comme offre de service : setup, maintenance, résultats garantis et tarification. De ton propre outil à une prestation récurrente pour des PME.",
+    "text",
+    5,
+    {
+      content_body:
+        "## Vendre ce système à des clients\n\nUne fois ton système en production et testé sur ta propre activité, tu as la meilleure preuve de concept possible : des résultats réels.\n\n---\n\n### Le positionnement qui vend\n\n**Ne vends pas \"un outil de prospection\"** — tout le monde dit ça.\n\n**Vends \"des rendez-vous qualifiés\"** :\n> \"Je mets en place un système qui vous apporte 10 à 20 rendez-vous qualifiés par mois dans votre secteur, de manière automatique. Vous fermez les deals, je m'occupe du reste.\"\n\nC'est la même chose techniquement — mais l'angle résultat convertit 5x mieux.\n\n---\n\n### Les offres à proposer\n\n**Offre 1 — Setup clé en main (one-shot)**\n- Tu construis et déploies le système pour le client\n- Tu formes sur l'utilisation et le suivi\n- Prix : **1 500 – 3 000 €** selon le volume et la complexité\n- Délai : 5–7 jours\n\n**Offre 2 — Prospection en tant que service (récurrent)**\n- Tu gères tout : leads, messages, relances, reporting\n- Le client reçoit un rapport hebdomadaire + alertes Telegram\n- Prix : **500 – 1 200 €/mois** selon le volume\n- Résiliation possible chaque mois\n\n**Offre 3 — Formation + accompagnement**\n- Tu formes le client à utiliser son propre système (cette formation)\n- 3 sessions de 1h sur 3 semaines\n- Prix : **400 – 800 €**\n\n---\n\n### Clients cibles prioritaires\n\n- **Agences** (web, comm, recrutement, immo) — dépendantes de l'acquisition\n- **Freelances** qui veulent remplir leur agenda sans prospecter manuellement\n- **Commerciaux indépendants** — cherchent des leads en continu\n- **Formateurs et consultants** — ont besoin de prospects qualifiés B2B\n\n---\n\n### Ton argument de vente ultime\n\nTu peux dire à n'importe quel prospect :\n> \"Ce système tourne sur ma propre activité depuis [X mois]. Je l'ai affiné jusqu'à obtenir [X réponses/semaine]. Je vous livre exactement la même chose, configurée pour votre secteur.\"\n\nAucun concurrent SaaS ne peut dire ça — ils vendent un outil générique. Toi tu vends une expertise prouvée."
+    }
+  ),
+
+  // ── Agence Digitale IA ─────────────────────────────────────────────────
+  module(
+    "agence-digitale-ia",
+    "agence-ia-intro-video",
+    "Introduction : l'agence digitale en 2026",
+    "Pourquoi les agences classiques perdent des marchés et comment les agences IA gagnent. Le modèle lean qui permet de livrer plus vite avec moins de personnes.",
+    "video",
+    0,
+    {
+      content_url: null,
+      content_body:
+        "## L'agence digitale en 2026\n\nCette vidéo d'introduction pose le contexte : pourquoi le modèle d'agence classique est en train d'être disrupté par les agences qui intègrent les agents IA dans leur production.\n\n### Ce que tu vas voir\n- Le modèle agence classique vs agence IA\n- Les types de clients qui cherchent ce nouveau modèle\n- Les services qui se vendent le mieux en 2026\n- La structure minimale pour démarrer seul"
+    }
+  ),
+
+  module(
+    "agence-digitale-ia",
+    "modele-agence-lean",
+    "Le modèle agence lean : seul ou à 2, jusqu'à 20k€/mois",
+    "Comment structurer une agence digitale rentable sans équipe : les bons services, la bonne tarification, le bon positionnement pour facturer haut sans embaucher.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Le modèle agence lean : seul ou à 2, jusqu'à 20k€/mois\n\nUne agence classique a besoin d'une équipe pour scaler. Une agence IA peut doubler son volume de production sans embaucher — les agents font le travail lourd.\n\n---\n\n### Pourquoi les agences classiques perdent\n\n- Coûts salariaux élevés → marges faibles (15–30 %)\n- Délais de production lents → clients impatients\n- Dépendance aux freelances → qualité inconsistante\n- Pas de scalabilité sans recrutement\n\n### Pourquoi les agences IA gagnent\n\n- Un agent produit du contenu/code en minutes\n- Les marges sont élevées (50–70 %)\n- La production scale sans coût variable proportionnel\n- Tu peux prendre plus de clients sans perdre en qualité\n\n---\n\n### Les 4 services à vendre en 2026\n\n**1. Sites web + landing pages (1 500 – 5 000 € / projet)**\nAvec Next.js + Cursor/Claude : un site vitrine livrable en 3–5 jours au lieu de 3 semaines. Marge : 70–80 %.\n\n**2. Prospection automatisée (500 – 1 200 €/mois)**\nSystème de prospection clé en main. Une fois configuré, ça tourne seul. Tu as 5 clients = 5 pipelines = revenu passif.\n\n**3. Contenu et SEO IA-assisté (800 – 2 500 €/mois)**\nArticles, posts LinkedIn, newsletters — produits avec des agents IA et validés par toi. Coût de production : 30 minutes/client/semaine.\n\n**4. Agent IA sur mesure (2 000 – 8 000 € setup + récurrent)**\nL'offre premium. Un agent configuré pour le métier du client. Support client, qualification leads, veille — chaque client a son agent.\n\n---\n\n### Modèle économique réaliste\n\n**Solo, 6 mois après lancement :**\n- 3 sites/mois × 2 500 € = 7 500 €\n- 4 clients prospection × 700 €/mois = 2 800 €\n- 3 clients contenu × 1 000 €/mois = 3 000 €\n- **Total : ~13 300 €/mois — marge ~65 % = 8 600 € net**\n\nC'est atteignable seul, avec des agents IA qui font la production.\n\n---\n\n### Ce qui change avec les agents IA\n\nAvant les agents IA, un site vitrine prenait 3 semaines et impliquait 3 personnes. Aujourd'hui :\n- Maquette : 2h avec Figma + Claude\n- Développement : 1–2 jours avec Claude Code\n- Contenu : 1h avec un agent de rédaction\n- Total : 3–4 jours solo\n\nTu peux livrer 3x plus vite avec 3x moins d'effort. C'est ça le levier."
+    }
+  ),
+
+  module(
+    "agence-digitale-ia",
+    "positionner-son-agence",
+    "Positionner son agence : niche, offre et message",
+    "Choisir sa niche, construire une offre claire, rédiger un message qui attire les bons clients et éviter le piège du généralisme qui noie tout le monde.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Positionner son agence : niche, offre et message\n\nLa principale erreur des nouvelles agences : vouloir tout faire pour tout le monde. Résultat — personne ne les comprend, personne ne les contacte.\n\n---\n\n### Choisir sa niche\n\nUne niche n'est pas une limitation — c'est un accélérateur. Une agence \"spécialiste sites web pour cabinets médicaux\" signe plus facilement qu'une agence \"sites web pour tous\".\n\n**Les 4 critères d'une bonne niche :**\n1. Tu connais déjà le secteur (ou tu l'apprends vite)\n2. Le secteur a les moyens de payer (éviter les associations, artistes...)\n3. Les acteurs du secteur se parlent (effet bouche-à-oreille)\n4. Le problème est récurrent (pas un projet one-shot)\n\n**Niches rentables en 2026 :**\n- Professions libérales (médecins, notaires, avocats, experts-comptables)\n- Immobilier (agences, mandataires, promoteurs)\n- Restauration et hôtellerie\n- TPE et artisans locaux\n- Formateurs et consultants indépendants\n- E-commerce de niche\n\n---\n\n### Construire ton offre de lancement\n\nN'essaie pas de vendre 4 services dès le départ. Commence avec **1 service principal, bien packagé**.\n\n**Format recommandé — le pack de lancement :**\n```\nNom : [Nom du pack]\nPromesse : [résultat en une phrase]\nInclus :\n  - [livrable 1]\n  - [livrable 2]\n  - [livrable 3]\nDélai : [X jours]\nPrix : [montant fixe]\nGarantie : [satisfaction / retouches incluses]\n```\n\nExemple concret :\n```\nNom : Pack Présence Digitale\nPromesse : Votre site vitrine professionnel livré en 7 jours\nInclus :\n  - Site 5 pages (Next.js, mobile-first, rapide)\n  - Formulaire de contact + Google Analytics\n  - Référencement local configuré (Google Business)\nDélai : 7 jours ouvrés\nPrix : 1 800 €\nGarantie : 2 tours de retouches inclus\n```\n\n---\n\n### Le message qui attire les bons clients\n\n**Formule** : `[Qui tu aides] + [résultat concret] + [différenciateur]`\n\nExemples :\n- \"J'aide les cabinets médicaux à avoir un site professionnel conforme RGPD livré en 7 jours.\"\n- \"Je mets en place des systèmes de prospection automatique pour les agences immobilières — 20 RDV qualifiés par mois.\"\n- \"J'équipe les indépendants d'un agent IA qui gère leur support client 24h/24.\"\n\n---\n\n### Où mettre ce message\n\n1. **LinkedIn** : titre de profil + banner\n2. **Site** : hero de ta page d'accueil\n3. **Signature email** : en dessous de ton prénom\n4. **Carte de visite** : si tu en as encore\n\nRègle : quelqu'un qui te croise pour la première fois doit comprendre en 5 secondes ce que tu fais et pour qui."
+    }
+  ),
+
+  module(
+    "agence-digitale-ia",
+    "agents-ia-production",
+    "Utiliser les agents IA pour la production",
+    "Comment intégrer Claude Code, les agents de rédaction et les outils IA dans ta chaîne de production pour livrer en 3x moins de temps sans sacrifier la qualité.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Utiliser les agents IA pour la production\n\nC'est le cœur du modèle agence IA : les agents font le travail de production répétitif, toi tu fais la stratégie, la relation client et le contrôle qualité.\n\n---\n\n### Agent 1 — Développement (Claude Code)\n\n**Ce qu'il fait pour toi :**\n- Génère la structure complète d'un site Next.js depuis un brief\n- Crée les composants, les pages, les APIs\n- Corrige les bugs et optimise le code\n- Rédige la documentation\n\n**Temps gagné :** 60–70 % sur le développement standard\n\n**Workflow :**\n```\nBrief client (30 min) \n→ Prompt Claude Code détaillé (15 min)\n→ Agent génère la base (2–4h)\n→ Tu reviews et ajustes (2–3h)\n→ Livraison (jour 2–3 au lieu de jour 10)\n```\n\n---\n\n### Agent 2 — Rédaction et contenu\n\n**Ce qu'il fait pour toi :**\n- Articles SEO optimisés en 10 minutes\n- Posts LinkedIn adaptés au ton du client\n- Newsletters mensuelles\n- Textes de pages web (accueil, à propos, services)\n\n**Workflow pour 1 client contenu :**\n```\n1. Définir 4 sujets du mois (15 min)\n2. Prompt pour chaque article (5 min × 4)\n3. Génération + relecture (20 min × 4)\n4. Planification et envoi (15 min)\nTotal : ~2h/mois par client contenu\n```\n\nAvec 5 clients contenu à 800 €/mois = 4 000 €/mois pour ~10h de travail.\n\n---\n\n### Agent 3 — Support client et réponses emails\n\n**Ce qu'il fait pour toi :**\n- Répond aux questions fréquentes des clients\n- Classe les demandes par urgence\n- Rédige les premières réponses pour les demandes complexes\n- Relance automatiquement les devis non signés\n\n**Configuration :**\nAgent connecté à Gmail via MCP, avec accès à la base de connaissances du client.\n\n---\n\n### Agent 4 — Prospection (voir formation dédiée)\n\n100 emails/jour personnalisés, gestion des relances, classification des réponses. Ton pipeline commercial tourne sans toi.\n\n---\n\n### L'organisation d'une journée type agence IA\n\n```\n9h00  — Review des alertes Telegram (réponses positives)\n9h30  — Appels/RDV clients du jour\n11h00 — Brief des tâches pour les agents (Claude Code, rédaction)\n12h00 — Déjeuner\n13h00 — Review et validation des productions IA\n15h00 — Retouches et livraisons clients\n16h30 — Prospection (1 séquence de nouveaux leads)\n17h00 — Fin\n```\n\nNote : 4–5 heures de travail réel par jour pour une agence à 10k€+/mois. Le reste, c'est les agents.\n\n---\n\n### Les outils de l'agence IA en 2026\n\n| Tâche | Outil | Coût mensuel |\n|-------|-------|-------------|\n| Développement | Claude Code | 20 $/mois |\n| Rédaction | Claude API | 5–20 $/mois |\n| Design | Figma + IA | 15 $/mois |\n| Prospection | Resend + Claude | 5–15 $/mois |\n| Gestion projet | Notion | Gratuit |\n| Facturation | Indy | 10 €/mois |\n| **Total** | | **~70–80 €/mois** |"
+    }
+  ),
+
+  module(
+    "agence-digitale-ia",
+    "premiers-clients-agence",
+    "Trouver et signer ses premiers clients",
+    "Les 5 canaux d'acquisition qui fonctionnent pour une nouvelle agence, les scripts de vente adaptés, et comment transformer un premier client en machine à recommandations.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Trouver et signer ses premiers clients\n\nUne agence qui démarre n'a pas de réputation. Elle a une méthode et de l'énergie. C'est suffisant pour les 3 premiers clients.\n\n---\n\n### Canal 1 — Ton réseau immédiat (clients 1 et 2)\n\nTes 3 premiers clients viennent presque toujours de ton réseau. Pas besoin d'un site ou d'une marque — juste un message direct.\n\nMessage à envoyer à 20 personnes de ton réseau :\n> \"Je lance mon agence digitale spécialisée [niche]. Je cherche 2–3 premiers clients pour tester mon offre à tarif de lancement. Tu connais quelqu'un qui aurait besoin de [service] ?\"\n\n80 % ne répondront pas. Les 20 % qui répondent te donneront 1 à 2 leads chauds.\n\n---\n\n### Canal 2 — LinkedIn outbound (clients 3 à 10)\n\nPostes + messages directs combinés :\n- 1 post/semaine sur ton sujet d'expertise\n- 10 messages directs/jour à des prospects de ta niche\n- Demandes de connexion personnalisées\n\nLe post qui génère le plus d'inbound :\n> \"J'ai livré un site pour [type de client] en 4 jours. Voici comment [résultat concret]. Fil de discussion si ça t'intéresse.\"\n\n---\n\n### Canal 3 — Prospection automatisée (voir formation dédiée)\n\nAvec 100 emails/jour ciblés sur ta niche, tu génères 15–30 réponses/mois. 20 % = intéressés = 3–6 RDV. Sur 6 RDV, tu signes 2.\n\n---\n\n### Canal 4 — Plateformes freelance (Malt, Upwork, Codeur)\n\nPour les 3 premiers mois, les plateformes donnent de la visibilité sans réputation.\n- Malt : meilleur pour le B2B français\n- Profil complet avec cas clients fictifs bien construits\n- Première mission acceptée à prix légèrement bas → témoignage → montée en tarif\n\n---\n\n### Canal 5 — Partenariats comptables/avocats\n\nLes comptables et avocats voient passer des PME qui ont besoin de sites, d'outils et de systèmes. Un partenariat de prescription (10–15 % de commission) te donne accès à des leads chauds sans prospection.\n\n---\n\n### Le script de vente en 3 étapes\n\n**Étape 1 — Le brief (20 min)**\nComprendre le problème, pas vendre.\n> \"Avant de vous parler de mes tarifs, dites-moi : quel est votre principal problème aujourd'hui ?\"\n\n**Étape 2 — La solution sur mesure (10 min)**\nPrésenter 1 option, pas 3.\n> \"Ce que je vous recommande dans votre cas précis, c'est [offre]. Voici ce que ça inclut et le résultat que vous pouvez attendre.\"\n\n**Étape 3 — Le closing (5 min)**\n> \"On peut commencer la semaine prochaine. Est-ce que vous préférez régler par virement ou carte ?\"\n\n---\n\n### Transformer un client en machine à recommandations\n\n1. Livrer avant la deadline promise\n2. Envoyer un rapport de clôture avec les résultats\n3. Demander un témoignage dans la foulée\n4. Proposer un système de parrainage : \"Si vous me recommandez un client, je vous offre 1 mois de maintenance gratuit\"\n\n> 1 client satisfait dans une niche parle à 3–5 autres acteurs de la même niche. Tes 3 premiers clients bien servis = ton équipe commerciale naturelle."
+    }
+  ),
+
+  module(
+    "agence-digitale-ia",
+    "scaler-sans-recruter",
+    "Scaler à 20k€/mois sans recruter",
+    "Comment augmenter le volume de clients sans augmenter le temps de travail : productisation des services, automatisation des livrables et organisation pour gérer 15+ clients seul.",
+    "text",
+    5,
+    {
+      content_body:
+        "## Scaler à 20k€/mois sans recruter\n\nLa plupart des agences stagnent à 5–8k€/mois parce qu'elles vendent du temps. Pour scaler, tu dois vendre des résultats produits en partie par des agents IA.\n\n---\n\n### La règle de la productisation\n\nUn service n'est scalable que s'il est **standardisé**. Si chaque client demande quelque chose de différent, tu ne peux pas accélérer.\n\n**Avant productisation :**\n- Chaque site est unique, codé from scratch\n- 15–20 jours par client\n- 3–4 clients maximum en parallèle\n\n**Après productisation :**\n- Template de base, personnalisé par agents IA\n- 4–7 jours par client\n- 8–12 clients en parallèle\n\n---\n\n### Les systèmes à mettre en place\n\n**Système 1 — Templates réutilisables**\nPour chaque type de service, un template de départ :\n- Template site vitrine (Next.js, 5 pages, design configurable)\n- Template landing page (1 page, A/B testable)\n- Template email de prospection (personnalisable par IA)\n\n**Système 2 — Briefs standardisés**\nUn formulaire Notion ou Typeform qui collecte tout ce dont tu as besoin avant de commencer. Zéro aller-retour pour récupérer des infos.\n\n**Système 3 — Pipeline de production IA**\n```\nBrief reçu → Agent génère la base → Tu review (2h) → Ajustements → Livraison\n```\nCe pipeline doit être documenté et répétable pour chaque type de service.\n\n**Système 4 — Tableau de bord client**\nUn Notion ou Google Sheet visible par le client : statut du projet, prochaines étapes, date de livraison. Réduit les emails \"où en est-on ?\" à zéro.\n\n---\n\n### Objectif 20k€/mois : le mix de services\n\n```\n3 sites/mois × 2 500 €       =  7 500 €\n5 clients prospection × 700 € =  3 500 €\n5 clients contenu × 900 €    =  4 500 €\n2 agents IA × 2 500 €        =  5 000 €\n                               ─────────\nTotal                         = 20 500 €\nMarge (65%)                   = 13 325 €\n```\n\nTemps de travail réel : 35–40h/semaine. Le reste est géré par les agents.\n\n---\n\n### Quand recruter (et pourquoi pas avant)\n\nRecruter avant 15k€/mois stable = prendre un risque inutile.\n\nLe bon moment pour recruter :\n- Tu refuserais des clients faute de temps depuis 2 mois consécutifs\n- Tu as un CA stable à 15k€+ depuis 3 mois\n- Tu as identifié 1 type de tâche précis que tu peux déléguer sans risque\n\nLe premier recrutement recommandé : un VA (assistant virtuel) à 500–800 €/mois pour les tâches administratives — pas un développeur, pas un commercial."
+    }
+  ),
+
   ...tradingProductModules,
   ...newProductModules
 ];
@@ -1244,6 +1440,36 @@ type ProductSupplement = {
 };
 
 const productSupplements: Record<string, ProductSupplement> = {
+  "prospection-automatisee": {
+    salesPriority: 1,
+    bestFor: [
+      "freelances et agences qui veulent remplir leur agenda sans prospecter manuellement",
+      "commerciaux indépendants qui cherchent des leads qualifiés en continu",
+      "entrepreneurs qui veulent une acquisition client automatique"
+    ],
+    outcomes: [
+      "un système de prospection qui tourne 24h/24 sans intervention",
+      "100 à 150 contacts qualifiés par jour en automatique",
+      "une offre de service packagée à revendre à des clients"
+    ],
+    pitch:
+      "La formation basée sur un outil réel en production : comment construire et déployer un système qui prospecte automatiquement pendant que tu travailles sur autre chose."
+  },
+  "agence-digitale-ia": {
+    salesPriority: 2,
+    bestFor: [
+      "freelances qui veulent structurer une activité agence sans recruter",
+      "développeurs et créatifs qui veulent scaler leur CA avec les agents IA",
+      "personnes qui veulent lancer une activité digitale sérieuse et rentable"
+    ],
+    outcomes: [
+      "un positionnement agence clair et une offre packagée",
+      "un système de production IA qui réduit le temps de livraison de 60 %",
+      "un modèle pour atteindre 10 à 20k€/mois seul ou à 2"
+    ],
+    pitch:
+      "Comment lancer et scaler une agence digitale lean en 2026 — avec les agents IA comme levier principal de production, pas comme gadget."
+  },
   "agent-ia-autonome": {
     salesPriority: 0,
     bestFor: [
