@@ -224,6 +224,24 @@ export const localProducts: ProductRecord[] = [
     created_at: now,
     updated_at: now
   },
+  {
+    id: "local-agent-ia-autonome",
+    slug: "agent-ia-autonome",
+    title: "Créer son Agent IA autonome et le monétiser",
+    subtitle: "De zéro à un agent opérationnel avec mémoire, outils et autonomie réelle",
+    short_description:
+      "Apprendre à construire un agent IA autonome avec mémoire persistante, outils connectés et capacité d'action réelle — puis le vendre ou l'utiliser comme levier business.",
+    long_description:
+      "Cette formation te montre comment construire un vrai agent IA — pas un chatbot, un agent qui agit, mémorise, décide et s'améliore. Tu apprendras à choisir ton LLM, configurer la mémoire persistante, connecter des outils (MCP, API, base de données), automatiser des tâches complexes et packager tout ça comme offre de service ou outil interne. Basé sur un cas réel opérationnel.",
+    price_cents: 9700,
+    currency: "eur",
+    stripe_price_id: null,
+    thumbnail_url: "/visuals/formations/agent-ia-autonome-cover.svg",
+    is_active: true,
+    is_featured: false,
+    created_at: now,
+    updated_at: now
+  },
   ...tradingProducts,
   ...newProducts
 ];
@@ -1108,6 +1126,112 @@ export const localProductModules: ProductModuleRecord[] = [
     "coming_soon",
     6
   ),
+  // ── Agent IA autonome ──────────────────────────────────────────────────
+  module(
+    "agent-ia-autonome",
+    "agent-ia-intro-video",
+    "Introduction : qu'est-ce qu'un vrai agent IA ?",
+    "La différence entre un chatbot, un assistant et un agent autonome. Ce que fait un agent en coulisses et pourquoi ça change tout.",
+    "video",
+    0,
+    {
+      content_url: null,
+      content_body:
+        "## Qu'est-ce qu'un vrai agent IA ?\n\nCette vidéo d'introduction pose les bases : ce qui distingue un agent autonome d'un simple chatbot, et pourquoi cette distinction est fondamentale avant de construire quoi que ce soit.\n\n### Ce que tu vas comprendre\n\n- La différence chatbot / assistant / agent\n- Ce qu'un agent peut faire que ChatGPT ne peut pas\n- Comment fonctionne la boucle perception → décision → action\n- Le cas réel présenté dans cette formation\n\n### Conseil\n\nRegarde cette vidéo en entier avant de passer aux modules techniques — elle donne le cadre mental nécessaire pour tout ce qui suit."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "agent-vs-chatbot",
+    "Agent vs chatbot vs assistant : les vraies différences",
+    "Comprendre l'architecture d'un agent autonome : perception, mémoire, décision, action. Pourquoi ChatGPT seul ne suffit pas et ce qu'il faut ajouter pour en faire un agent.",
+    "text",
+    1,
+    {
+      content_body:
+        "## Agent vs chatbot vs assistant : les vraies différences\n\nAvant de construire quoi que ce soit, il faut comprendre ce que tu construis vraiment.\n\n---\n\n### Le chatbot classique\n\nUn chatbot répond à des questions. Il n'a pas de mémoire entre les sessions, pas d'accès à des outils externes, et il ne prend aucune initiative. Il attend qu'on lui parle.\n\nExemples : ChatGPT sans plugins, Intercom bot, FAQ automatisée.\n\n### L'assistant IA\n\nUn assistant peut utiliser des outils (chercher sur internet, lire un fichier, appeler une API). Mais il attend toujours une instruction humaine pour chaque action. Il ne décide pas seul.\n\nExemples : Claude avec accès aux outils, Copilot, Gemini Advanced.\n\n### L'agent autonome\n\nUn agent :\n- **Perçoit** son environnement (fichiers, APIs, état du système)\n- **Mémorise** ce qu'il a appris (mémoire persistante entre sessions)\n- **Décide** quelle action effectuer pour atteindre un objectif\n- **Agit** sans attendre une instruction pour chaque étape\n- **S'améliore** en enregistrant ce qui a fonctionné ou échoué\n\nC'est la différence entre un employé qui exécute des tâches et un collaborateur qui gère des projets.\n\n---\n\n### L'architecture d'un agent en 4 composants\n\n**1. Le LLM (cerveau)**\nLe modèle de langage qui prend les décisions. Claude, GPT-4o, Mistral — le choix du modèle détermine la qualité du raisonnement.\n\n**2. La mémoire**\nCe qui permet à l'agent de se souvenir entre les sessions. Sans mémoire, chaque conversation repart de zéro — l'agent ne connaît pas le projet, ne reconnaît pas les préférences, ne capitalise pas sur l'expérience.\n\nDeux types de mémoire :\n- **Mémoire contextuelle** : ce qui est dans la fenêtre de contexte actuelle (temporaire)\n- **Mémoire persistante** : fichiers, base de données, notes structurées (permanent)\n\n**3. Les outils**\nCe qui permet à l'agent d'agir sur le monde réel : lire/écrire des fichiers, appeler des APIs, accéder à une base de données, exécuter du code, envoyer des emails.\n\n**4. Les instructions système**\nLe cadre de comportement : identité, règles, limites, style de réponse. C'est la \"personnalité\" et les \"réflexes\" de l'agent.\n\n---\n\n### Pourquoi cette architecture change tout\n\nAvec un chatbot, tu répètes les mêmes informations à chaque session. Tu reformules le contexte. Tu corriges les mêmes erreurs.\n\nAvec un agent à mémoire persistante, il sait déjà :\n- Qui tu es et comment tu travailles\n- L'état de tes projets en cours\n- Ce qu'il a déjà essayé et ce qui a échoué\n- Tes préférences de communication\n\n> C'est exactement ce que tu vas construire dans cette formation : un agent qui te connaît, qui mémorise, et qui agit sans que tu répètes le contexte à chaque fois."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "choisir-son-llm",
+    "Choisir son LLM : Claude, GPT, Mistral — comparatif honnête",
+    "Forces, faiblesses, tarifs et cas d'usage réels de chaque modèle. Quel LLM choisir selon ce que tu veux faire construire.",
+    "text",
+    2,
+    {
+      content_body:
+        "## Choisir son LLM : comparatif honnête 2026\n\nLe choix du modèle de langage détermine les capacités, les coûts et les limites de ton agent. Voici un comparatif sans marketing.\n\n---\n\n### Claude (Anthropic) — Recommandé pour les agents\n\n**Points forts** :\n- Meilleur raisonnement multi-étapes du marché en 2026\n- Fenêtre de contexte 200K tokens (peut lire des projets entiers)\n- Suivit d'instructions complexes très fiable\n- Excellent pour les tâches de code, analyse et rédaction structurée\n- API stable avec support natif des outils (tool use)\n\n**Points faibles** :\n- Légèrement plus cher que GPT-4o sur les gros volumes\n- Pas d'image generation native\n\n**Tarifs API (Claude Sonnet 4.6)** : ~3$/M tokens input, ~15$/M tokens output\n\n**Idéal pour** : agents de développement, agents de recherche, agents de gestion de projets\n\n---\n\n### GPT-4o (OpenAI)\n\n**Points forts** :\n- Multimodal natif (texte, image, audio, vidéo)\n- Écosystème le plus large (plugins, assistants, GPTs)\n- Très bonne performance générale\n- ChatGPT interface si tu veux tester rapidement\n\n**Points faibles** :\n- Moins fiable que Claude sur les instructions complexes à respecter\n- Hallucinations légèrement plus fréquentes sur des tâches factuelles précises\n- Politique d'utilisation plus restrictive sur certains sujets\n\n**Tarifs API** : ~2,5$/M tokens input, ~10$/M tokens output\n\n**Idéal pour** : agents multimodaux, agents avec traitement d'images ou audio\n\n---\n\n### Mistral (français, open source)\n\n**Points forts** :\n- Open source — tu peux l'héberger toi-même (coût zéro en tokens)\n- Données hébergées en Europe (conformité RGPD)\n- Mistral Large rivalise avec GPT-4 sur le français\n- Idéal pour les projets avec contraintes de confidentialité\n\n**Points faibles** :\n- Infrastructure à gérer si auto-hébergé\n- Légèrement en retrait sur les tâches de raisonnement très complexes\n\n**Tarifs API** : Mistral Small à 0,2$/M tokens — très accessible\n\n**Idéal pour** : agents pour clients avec données sensibles, projets B2B français\n\n---\n\n### La règle de choix en 3 questions\n\n**1. Ton agent traite des données confidentielles ?**\n→ Oui : Mistral en auto-hébergement ou API EU\n→ Non : Claude ou GPT\n\n**2. Ton agent a besoin de traiter des images ou de l'audio ?**\n→ Oui : GPT-4o\n→ Non : Claude Sonnet\n\n**3. Ton agent est un développeur/analyste/chef de projet ?**\n→ Claude Sonnet ou Opus — meilleur raisonnement structuré\n\n---\n\n### Coût réel d'un agent en production\n\nUn agent qui tourne 8h/jour avec 50 interactions de 2 000 tokens chacune :\n- **Claude Sonnet** : ~2–4 $/mois\n- **GPT-4o** : ~1,5–3 $/mois\n- **Mistral Large** : ~0,5–1 $/mois\n\n> Pour un usage individuel ou une PME, le coût LLM est négligeable — moins de 10 $/mois dans la majorité des cas. Le vrai investissement, c'est le temps de configuration initiale."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "memoire-persistante",
+    "Construire la mémoire persistante de l'agent",
+    "Comment donner une vraie mémoire à ton agent : fichiers structurés, index MEMORY.md, types de mémoire (user/feedback/project/reference) et règles d'auto-apprentissage.",
+    "text",
+    3,
+    {
+      content_body:
+        "## Construire la mémoire persistante de l'agent\n\nC'est le composant le plus important et le plus sous-estimé. Un agent sans mémoire est un chatbot qui repart de zéro à chaque session. Un agent avec mémoire est un collaborateur qui s'améliore.\n\n---\n\n### Pourquoi les fichiers, pas une base de données\n\nL'instinct initial est d'utiliser une base de données (PostgreSQL, Supabase, Pinecone). C'est souvent une erreur pour commencer.\n\n**Les fichiers Markdown sont supérieurs pour la mémoire agent parce que** :\n- Le LLM les lit directement sans traduction\n- Pas d'infrastructure à maintenir\n- Versionnable avec Git\n- Modifiable manuellement en cas d'erreur\n- Chargés dans le contexte sans overhead\n\n---\n\n### Les 4 types de mémoire\n\n**1. Mémoire utilisateur** (`user_*.md`)\nTout ce qui concerne la personne avec qui l'agent travaille : rôle, préférences, style de communication, niveau technique, objectifs.\n\nExemple de contenu :\n```\nNom : Kenams | Entrepreneur digital, 12 ans d'expérience IT\nStyle : direct, MVP rapide, zéro blabla\nObjectif 2026 : indépendance financière via projets digitaux\nStacks favorites : Next.js, Expo, Supabase, Stripe\n```\n\n**2. Mémoire feedback** (`feedback_*.md`)\nLes corrections et validations de comportement. Quand l'agent fait une erreur et se fait corriger — ou quand une approche est validée.\n\nStructure recommandée :\n```\n# Règle : [intitulé court]\n**Why:** [raison donnée par l'utilisateur]\n**How to apply:** [dans quelles situations appliquer]\n```\n\n**3. Mémoire projet** (`project_*.md`)\nL'état de chaque projet actif : stack, credentials, URL, état d'avancement, décisions importantes.\n\n**4. Mémoire référence** (`reference_*.md`)\nLes pointeurs vers les ressources externes : tokens API, URLs de services, accès aux outils.\n\n---\n\n### L'index MEMORY.md\n\nL'index est le fichier chargé en premier à chaque session. Il liste tous les fichiers mémoire avec une ligne de résumé.\n\n```markdown\n# Memory Index\n\n## Profil\n- [Identité utilisateur](user_identity.md) — Prénom, rôle, objectifs\n- [Profil psychologique](user_profile_deep.md) — Style de travail, préférences\n\n## Règles comportement\n- [Autonomie maximale](feedback_autonomy.md) — Agir sans demander permission\n- [Git push fréquent](feedback_git_push.md) — Pusher après chaque tâche\n\n## Projets actifs\n- [Inventaire projets](project_inventory.md) — 20 projets avec stack et état\n```\n\nRègle : l'index doit tenir en moins de 200 lignes. Au-delà, il n'est pas chargé entièrement.\n\n---\n\n### Le système d'auto-apprentissage\n\nL'agent ne doit pas attendre qu'on lui demande de mémoriser. Il doit identifier seul ce qui mérite d'être retenu.\n\n**Triggers automatiques** :\n- Correction d'approche → `feedback_*.md`\n- Validation d'une décision non-évidente → `feedback_*.md`\n- Nouveau projet mentionné → `project_*.md`\n- Credential ou accès découvert → `reference_*.md`\n- Deadline ou milestone → roadmap\n\n**La règle du test à 3 mois** : une information mérite d'être mémorisée si elle sera encore utile dans 3 mois. Si c'est éphémère, on ne mémorise pas.\n\n---\n\n### Mise en place pratique (15 minutes)\n\n```bash\n# Structure de départ\nmkdir -p ~/.claude/projects/mon-projet/memory\ntouch ~/.claude/projects/mon-projet/memory/MEMORY.md\ntouch ~/.claude/projects/mon-projet/memory/user_identity.md\ntouch ~/.claude/projects/mon-projet/memory/user_profile.md\n```\n\nFichier `MEMORY.md` minimal :\n```markdown\n# Memory Index\n## Profil\n- [Identité](user_identity.md) — Qui je suis\n- [Profil](user_profile.md) — Comment je travaille\n```\n\nFichier `user_identity.md` :\n```markdown\n---\nname: user-identity\ndescription: Identité et rôle de l'utilisateur\nmetadata:\n  type: user\n---\nNom : [ton prénom]\nRôle : [ce que tu fais]\nObjectif principal : [en une phrase]\nStyle de travail : [direct/détaillé/etc.]\n```\n\n> Remplis ces 2 fichiers maintenant — ton agent s'en souviendra à chaque session."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "connecter-les-outils-mcp",
+    "Connecter des outils à l'agent : MCP, APIs et actions réelles",
+    "Ce que sont les Model Context Protocol servers, comment les configurer, et quels outils connecter en premier pour un agent réellement utile.",
+    "text",
+    4,
+    {
+      content_body:
+        "## Connecter des outils à l'agent : MCP, APIs et actions réelles\n\nUn agent sans outils ne peut que répondre. Un agent avec outils peut agir. C'est la différence entre un conseiller et un exécutant.\n\n---\n\n### Qu'est-ce que le MCP (Model Context Protocol) ?\n\nLe MCP est un protocole standardisé créé par Anthropic pour connecter des outils externes à un agent de manière sécurisée et structurée.\n\nConcrètement : au lieu de coder l'appel à chaque API manuellement, tu installes un serveur MCP qui expose des \"outils\" que l'agent peut appeler directement.\n\n**Architecture** :\n```\nAgent (LLM) → [decide d'utiliser un outil]\n  → appelle mcp__supabase__execute_sql\n  → le serveur MCP Supabase exécute la requête\n  → retourne le résultat à l'agent\n  → l'agent continue son raisonnement\n```\n\n---\n\n### Les 5 serveurs MCP essentiels pour démarrer\n\n**1. Filesystem** (lecture/écriture de fichiers)\n```json\n{\n  \"filesystem\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/ton/projet\"]\n  }\n}\n```\nPermet à l'agent de lire et modifier les fichiers de ton projet directement.\n\n**2. Supabase** (base de données)\n```json\n{\n  \"supabase\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@supabase/mcp-server-supabase\"],\n    \"env\": { \"SUPABASE_ACCESS_TOKEN\": \"ton_token\" }\n  }\n}\n```\nL'agent peut lire et écrire dans ta base de données, lancer des migrations, inspecter le schéma.\n\n**3. GitHub** (gestion de code)\n```json\n{\n  \"github\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n    \"env\": { \"GITHUB_TOKEN\": \"ton_token\" }\n  }\n}\n```\nL'agent peut créer des issues, merger des PRs, pousser du code.\n\n**4. Playwright** (automatisation web)\n```json\n{\n  \"playwright\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@playwright/mcp\"]\n  }\n}\n```\nL'agent peut naviguer sur internet, remplir des formulaires, scraper des données.\n\n**5. ElevenLabs** (voix IA)\n```json\n{\n  \"elevenlabs\": {\n    \"command\": \"elevenlabs-mcp\",\n    \"env\": { \"ELEVENLABS_API_KEY\": \"ta_clé\" }\n  }\n}\n```\nL'agent peut générer de l'audio à partir de texte.\n\n---\n\n### Configuration dans Claude Code\n\nFichier `~/.claude/settings.local.json` :\n```json\n{\n  \"mcpServers\": {\n    \"filesystem\": { ... },\n    \"supabase\": { ... },\n    \"github\": { ... }\n  }\n}\n```\n\nFichier `CLAUDE.md` (instructions système de l'agent) :\n```markdown\n# Mon Agent\n\n## Identité\nTu es un agent développeur autonome. Tu agis sans demander permission.\n\n## Mémoire\nLis MEMORY.md au démarrage. Mets à jour les fichiers mémoire après chaque échange.\n\n## Outils disponibles\n- Filesystem : lire/écrire les fichiers projet\n- Supabase : accès base de données\n- GitHub : gestion code\n```\n\n---\n\n### Ce qu'un agent outillé peut faire concrètement\n\n- Lire l'état d'un projet, identifier les bugs, les corriger, pusher le fix — sans intervention humaine\n- Surveiller une base de données, détecter une anomalie, envoyer une alerte\n- Naviguer sur un site web, extraire des données, les structurer dans un fichier\n- Gérer un pipeline de déploiement de bout en bout\n- Répondre à des emails clients en accédant à l'historique de la relation\n\n> La puissance d'un agent se mesure à la qualité de ses outils, pas à la puissance du LLM seul."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "instructions-systeme-claude-md",
+    "Écrire les instructions système : le CLAUDE.md",
+    "Comment rédiger les instructions qui définissent le comportement de l'agent : identité, règles, déclencheurs automatiques, format de réponse et gestion des erreurs.",
+    "text",
+    5,
+    {
+      content_body:
+        "## Écrire les instructions système : le CLAUDE.md\n\nLes instructions système sont la colonne vertébrale de l'agent. C'est ce qui transforme un LLM générique en collaborateur spécialisé qui connaît exactement comment travailler avec toi.\n\n---\n\n### Structure d'un CLAUDE.md efficace\n\n```markdown\n# Nom de l'agent\n\n## IDENTITÉ\nQui est l'agent, quel est son rôle, quel est son niveau d'autonomie.\n\n## DÉMARRAGE\nCe qu'il fait systématiquement au début de chaque session.\n\n## RÈGLES ABSOLUES\nLes comportements non-négociables.\n\n## DÉCISIONS AUTOMATIQUES\nComment gérer les situations courantes sans demander.\n\n## SEULS CAS OÙ DEMANDER\nLes rares situations où l'agent doit s'arrêter et consulter.\n\n## STYLE\nFormat de réponse, langue, niveau de détail.\n```\n\n---\n\n### L'IDENTITÉ : définir le niveau d'autonomie\n\nC'est la section la plus importante. Elle définit si l'agent est passif (attend des instructions) ou actif (prend des décisions).\n\n**Agent passif** (chatbot amélioré) :\n```markdown\nTu es un assistant qui répond aux questions et exécute les tâches demandées.\nTu demandes confirmation avant chaque action.\n```\n\n**Agent autonome** (collaborateur) :\n```markdown\nTu es un agent développeur senior. Tu travailles seul jusqu'au résultat.\nTu ne demandes jamais la permission sur ce qui est déductible.\nEn cas d'ambiguïté → prendre l'interprétation la plus utile et avancer.\nEn cas d'erreur → analyser, corriger, relancer (loop jusqu'à 5x).\n```\n\n---\n\n### Les RÈGLES ABSOLUES : ce qui ne change jamais\n\nExemples concrets :\n```markdown\n- Jamais de question si la réponse est déductible du contexte\n- Jamais de pseudo-code — toujours du code fonctionnel complet\n- En cas d'erreur → lire l'erreur complète, corriger la cause racine\n- Fichier manquant → le créer avec des valeurs par défaut sensibles\n- Package manquant → l'installer sans demander\n```\n\n---\n\n### Les DÉCISIONS AUTOMATIQUES : un tableau de cas\n\n```markdown\n| Situation | Action automatique |\n|-----------|-------------------|\n| Port occupé | Essayer port+1 |\n| Fichier à écraser | Écraser (pas de backup sauf DB prod) |\n| Import manquant | npm install sans demander |\n| Commande échoue | Lire l'erreur, corriger, relancer |\n| Commit à faire | Committer avec message descriptif |\n```\n\n---\n\n### Les cas où l'agent DOIT s'arrêter\n\nDéfinir ces cas précisément évite les accidents :\n```markdown\n## SEULS CAS OÙ DEMANDER\n- Suppression irréversible de données de production (DB live)\n- Force push sur main d'un repo partagé\n- Dépense financière réelle (API payante non encore utilisée)\n- Action visible par des tiers (email envoyé, post publié)\n```\n\n---\n\n### Le FORMAT : définir ce que l'agent répond\n\nSans format défini, l'agent répond de manière inconsistante. Avec format défini, chaque réponse suit la même structure :\n\n```markdown\n## FORMAT DE RÉPONSE\n[Ce qui a été fait — bullets courts]\nLancer : `commande exacte`\nReste : [liste courte ou \"rien\"]\n```\n\n---\n\n### Les déclencheurs d'auto-apprentissage\n\nL'agent doit savoir quand mémoriser sans qu'on le lui demande :\n\n```markdown\n## AUTO-APPRENTISSAGE\nAprès chaque échange, se demander : \"Ai-je appris quelque chose d'utile ?\"\n\nTriggers automatiques :\n- Correction → feedback_*.md\n- Validation d'approche non-évidente → feedback_*.md  \n- Nouveau projet → project_*.md\n- Credential découvert → reference_*.md\n```\n\n> **Règle de qualité** : un bon CLAUDE.md se lit en 2 minutes et couvre 95 % des situations. Si tu dois ajouter une règle à chaque session, c'est qu'elle manque dans le fichier."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "cas-usage-monetisables",
+    "Cas d'usage monétisables : vendre un agent à une PME",
+    "5 types d'agents qui se vendent aujourd'hui, comment les packager, les tarifer et les maintenir. Du projet client concret à la facturation récurrente.",
+    "text",
+    6,
+    {
+      content_body:
+        "## Cas d'usage monétisables : vendre un agent IA à une PME\n\nUn agent IA bien configuré peut se vendre entre 500 € et 5 000 € en setup + 200 à 800 €/mois en maintenance. Voici les 5 types qui se signent le plus facilement en 2026.\n\n---\n\n### Agent 1 — Support client automatisé\n\n**Ce qu'il fait** : répond aux questions des clients par email ou chat, escalade vers un humain si besoin, apprend des nouvelles FAQ au fil du temps.\n\n**Stack** : Claude + MCP Gmail + base de connaissances Markdown + Supabase pour les tickets\n\n**Vendu comment** :\n- Setup : 800–1 500 €\n- Maintenance mensuelle : 200–350 €/mois\n- Argument : \"Vos 80 % de questions répétitives traitées automatiquement, 24h/24\"\n\n**Clients cibles** : e-commerce, agences, SaaS, cabinets avec volume de demandes répétitives\n\n---\n\n### Agent 2 — Assistant commercial (qualification de leads)\n\n**Ce qu'il fait** : analyse les leads entrants, pose les questions de qualification, priorise la liste de rappel, rédige des emails de suivi personnalisés.\n\n**Stack** : Claude + MCP CRM (HubSpot, Notion) + Gmail + mémoire des profils clients\n\n**Vendu comment** :\n- Setup : 1 200–2 500 €\n- Maintenance : 300–500 €/mois\n- Argument : \"Votre commercial ne perd plus de temps sur les leads froids\"\n\n**Clients cibles** : agences immobilières, agences de recrutement, commerciaux indépendants\n\n---\n\n### Agent 3 — Agent de veille et rapport\n\n**Ce qu'il fait** : surveille des sources définies (concurrents, presse sectorielle, LinkedIn), synthétise en rapport hebdomadaire, alerte sur les événements importants.\n\n**Stack** : Claude + Playwright (scraping) + Gmail + mémoire des sujets à surveiller\n\n**Vendu comment** :\n- Setup : 600–1 200 €\n- Maintenance : 150–300 €/mois\n- Argument : \"Votre rapport de veille concurrentielle, sans y passer 4h par semaine\"\n\n**Clients cibles** : directions marketing, cabinets de conseil, gérants de PME\n\n---\n\n### Agent 4 — Agent développeur interne\n\n**Ce qu'il fait** : gère les tâches de développement répétitives (corrections de bugs, mises à jour, tests), documente le code, génère des rapports d'état.\n\n**Stack** : Claude Code + MCP GitHub + MCP Filesystem + mémoire du projet\n\n**Vendu comment** :\n- Setup : 1 500–3 000 € (configuration + onboarding équipe)\n- Maintenance : 400–700 €/mois\n- Argument : \"Un développeur junior autonome qui ne dort pas\"\n\n**Clients cibles** : startups avec petites équipes tech, agences web, DSI PME\n\n---\n\n### Agent 5 — Agent de prospection automatisée\n\n**Ce qu'il fait** : identifie des prospects selon des critères définis, rédige des emails personnalisés, suit les relances, rapporte les résultats.\n\n**Stack** : Claude + Playwright + Gmail + mémoire des prospects et statuts\n\n**Vendu comment** :\n- Setup : 1 000–2 000 €\n- Maintenance : 250–500 €/mois\n- Argument : \"50 à 150 contacts qualifiés par jour sans y toucher\"\n\n**Clients cibles** : freelances, agences, commerciaux B2B\n\n---\n\n### Comment packager et vendre\n\n**Étape 1 — L'audit (gratuit ou 150 €)**\nAnalyse les tâches répétitives du client. Identifie les 2–3 qui se prêtent le mieux à l'automatisation. Présente un ROI estimé.\n\n**Étape 2 — Le POC (Proof of Concept, 500–800 €)**\nLivre un agent fonctionnel sur UN cas d'usage en 5–7 jours. Le client teste en conditions réelles pendant 2 semaines.\n\n**Étape 3 — Le déploiement complet (1 500–3 000 €)**\nIntègre l'agent dans les workflows existants, forme l'équipe, documente.\n\n**Étape 4 — La maintenance récurrente (200–700 €/mois)**\nMise à jour du LLM, ajustement des instructions, nouvelles intégrations, rapport mensuel.\n\n---\n\n### Ce que tu dois avoir avant de prospecter\n\n- Un agent démo fonctionnel (même simple) que tu peux montrer en 5 minutes\n- 1–2 cas clients réels ou fictifs documentés avec résultats\n- Un devis type pour chaque format (audit / POC / complet / maintenance)\n\n> En 2026, la majorité des PME n'ont encore jamais vu un agent IA en action. La démonstration live vend à elle seule."
+    }
+  ),
+
+  module(
+    "agent-ia-autonome",
+    "deployer-son-agent",
+    "Déployer et maintenir son agent en production",
+    "Hébergement, sécurité des credentials, monitoring, mises à jour du modèle et gestion des erreurs. Ce qu'il faut mettre en place pour qu'un agent tourne de manière fiable.",
+    "text",
+    7,
+    {
+      content_body:
+        "## Déployer et maintenir son agent en production\n\nUn agent qui fonctionne en local est un prototype. Un agent en production doit être fiable, sécurisé et maintenable sans intervention constante.\n\n---\n\n### Options d'hébergement\n\n**Option 1 — Claude Code en local (gratuit pour démarrer)**\n- L'agent tourne sur ta machine\n- Accès direct au filesystem local\n- Idéal pour un usage personnel ou un agent de développement\n- Limite : disponible seulement quand ta machine est allumée\n\n**Option 2 — Serveur VPS (DigitalOcean, Hetzner, Render)**\n- Agent disponible 24h/24\n- Coût : 5–20 €/mois selon les ressources\n- Idéal pour les agents de support client ou de veille\n- Configuration : Ubuntu + Node.js/Python + cron jobs\n\n**Option 3 — Vercel Functions ou AWS Lambda (serverless)**\n- Parfait pour les agents déclenchés par événement (email reçu, formulaire soumis)\n- Coût : quasi nul pour des volumes modérés\n- Limite : pas de mémoire contextuelle entre appels (utiliser une DB externe)\n\n---\n\n### Sécuriser les credentials\n\nJamais de clés API en dur dans le code. Toujours dans des variables d'environnement.\n\n**En local** :\n```bash\n# ~/.claude/settings.local.json — jamais versionné\n{\n  \"mcpServers\": {\n    \"supabase\": {\n      \"env\": { \"SUPABASE_TOKEN\": \"sk_...\" }\n    }\n  }\n}\n```\n\n**En production (Vercel/Render)** :\n```bash\n# Ajouter via CLI, jamais dans le code\nvercel env add ANTHROPIC_API_KEY production\n```\n\n**Règle absolue** : le fichier `.env` et `settings.local.json` doivent être dans `.gitignore`. Vérifier avant chaque push.\n\n---\n\n### Monitoring : savoir quand l'agent échoue\n\nSans monitoring, un agent peut échouer silencieusement pendant des heures.\n\n**Solution minimale** : logger chaque action dans un fichier\n```javascript\nfs.appendFileSync('agent.log', \n  `${new Date().toISOString()} | ${action} | ${status}\\n`\n);\n```\n\n**Solution intermédiaire** : alertes Telegram ou email sur erreur critique\n```javascript\nif (error.critical) {\n  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {\n    body: JSON.stringify({ chat_id: CHAT_ID, text: `⚠️ Agent error: ${error.message}` })\n  });\n}\n```\n\n---\n\n### Mises à jour du modèle\n\nLes LLM évoluent vite. Un modèle meilleur sort tous les 3–4 mois. Stratégie recommandée :\n\n1. Garder la version actuelle en production (stable)\n2. Tester la nouvelle version sur des cas de régression avant de migrer\n3. Mettre à jour les instructions système si le comportement change\n\nLes identifiants de modèle Claude à utiliser en 2026 :\n- `claude-sonnet-4-6` — meilleur rapport qualité/prix pour la plupart des agents\n- `claude-opus-4-8` — pour les tâches de raisonnement très complexes\n- `claude-haiku-4-5` — pour les tâches simples à fort volume (10x moins cher)\n\n---\n\n### Checklist avant mise en production\n\n- [ ] Credentials dans variables d'environnement (jamais en dur)\n- [ ] `.env` et `settings.local.json` dans `.gitignore`\n- [ ] Logging des actions principales\n- [ ] Alerte sur erreur critique (Telegram ou email)\n- [ ] Test sur 10 scénarios représentatifs\n- [ ] Documentation des instructions système\n- [ ] Plan de rollback si le modèle est mis à jour\n- [ ] Limite de dépense API configurée (dashboard Anthropic/OpenAI)\n\n> Un agent en production mal monitoré peut dépenser des centaines d'euros en tokens en quelques heures si une boucle infinie se produit. Configure toujours une limite de dépense journalière."
+    }
+  ),
+
   ...tradingProductModules,
   ...newProductModules
 ];
@@ -1120,6 +1244,21 @@ type ProductSupplement = {
 };
 
 const productSupplements: Record<string, ProductSupplement> = {
+  "agent-ia-autonome": {
+    salesPriority: 0,
+    bestFor: [
+      "développeurs et freelances qui veulent se différencier avec l'IA",
+      "entrepreneurs digitaux qui veulent automatiser leur activité",
+      "consultants IT qui veulent proposer des agents à leurs clients PME"
+    ],
+    outcomes: [
+      "un agent IA opérationnel avec mémoire persistante",
+      "une offre packagée vendable à des PME",
+      "une compétence rare et très demandée en 2026"
+    ],
+    pitch:
+      "La seule formation qui te montre comment construire un vrai agent IA autonome à partir d'un cas réel opérationnel — et comment le vendre."
+  },
   "freelance-it-30-jours": {
     salesPriority: 1,
     bestFor: [
