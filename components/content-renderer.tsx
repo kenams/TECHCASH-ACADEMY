@@ -41,6 +41,9 @@ type MarkdownBlock =
   | { type: "callout"; content: string }
   | { type: "divider" }
   | { type: "list"; items: string[] }
+  | { type: "steps"; items: string[] }
+  | { type: "concept"; emoji: string; content: string }
+  | { type: "stat"; value: string; label: string }
   | { type: "paragraph"; content: string };
 
 function isDirectVideoFile(url: string) {
@@ -72,20 +75,11 @@ function getEmbedUrl(url: string): string | null {
 }
 
 function getVideoVisuals(url: string | null): VideoVisualSet {
-  if (!url) {
-    return { slug: null, posterUrl: null };
-  }
-
+  if (!url) return { slug: null, posterUrl: null };
   const match = url.match(/\/videos\/formations\/(.+)-overview\.(mp4|webm|ogg)(\?.*)?$/i);
-  if (!match) {
-    return { slug: null, posterUrl: null };
-  }
-
+  if (!match) return { slug: null, posterUrl: null };
   const slug = match[1];
-  return {
-    slug,
-    posterUrl: `/videos/posters/${slug}-overview-poster.jpg`
-  };
+  return { slug, posterUrl: `/videos/posters/${slug}-overview-poster.jpg` };
 }
 
 function parseInline(raw: string): InlineNode[] {
@@ -93,43 +87,32 @@ function parseInline(raw: string): InlineNode[] {
   const regex = /(\*\*([^*]+)\*\*|`([^`]+)`)/g;
   let cursor = 0;
   let match: RegExpExecArray | null;
-
   while ((match = regex.exec(raw)) !== null) {
-    if (match.index > cursor) {
-      nodes.push({ type: "text", value: raw.slice(cursor, match.index) });
-    }
-    if (match[0].startsWith("**")) {
-      nodes.push({ type: "bold", value: match[2] });
-    } else {
-      nodes.push({ type: "code", value: match[3] });
-    }
+    if (match.index > cursor) nodes.push({ type: "text", value: raw.slice(cursor, match.index) });
+    if (match[0].startsWith("**")) nodes.push({ type: "bold", value: match[2] });
+    else nodes.push({ type: "code", value: match[3] });
     cursor = match.index + match[0].length;
   }
-
-  if (cursor < raw.length) {
-    nodes.push({ type: "text", value: raw.slice(cursor) });
-  }
-
+  if (cursor < raw.length) nodes.push({ type: "text", value: raw.slice(cursor) });
   return nodes;
 }
 
 function renderInline(raw: string, keyPrefix: string) {
   return parseInline(raw).map((node, index) => {
     const key = `${keyPrefix}-${index}`;
-    if (node.type === "bold") {
-      return <strong key={key}>{node.value}</strong>;
-    }
-    if (node.type === "code") {
-      return <code key={key} className="content-inline-code">{node.value}</code>;
-    }
+    if (node.type === "bold") return <strong key={key}>{node.value}</strong>;
+    if (node.type === "code") return <code key={key} className="content-inline-code">{node.value}</code>;
     return <span key={key}>{node.value}</span>;
   });
 }
+
+const CONCEPT_EMOJIS = ["💡", "🎯", "⚡", "🔥", "💰", "📊", "🚀", "✅", "🛠", "🧠", "💼", "🌐", "🔑", "📈", "⭐"];
 
 function parseMarkdown(text: string): MarkdownBlock[] {
   const lines = text.split("\n");
   const blocks: MarkdownBlock[] = [];
   let listBuffer: string[] = [];
+  let stepsBuffer: string[] = [];
 
   const flushList = () => {
     if (listBuffer.length > 0) {
@@ -137,34 +120,92 @@ function parseMarkdown(text: string): MarkdownBlock[] {
       listBuffer = [];
     }
   };
+  const flushSteps = () => {
+    if (stepsBuffer.length > 0) {
+      blocks.push({ type: "steps", items: [...stepsBuffer] });
+      stepsBuffer = [];
+    }
+  };
 
   for (const raw of lines) {
     const line = raw.trimEnd();
 
     if (line.startsWith("## ")) {
-      flushList();
+      flushList(); flushSteps();
       blocks.push({ type: "h2", content: line.slice(3) });
     } else if (line.startsWith("### ")) {
-      flushList();
+      flushList(); flushSteps();
       blocks.push({ type: "h3", content: line.slice(4) });
     } else if (line.startsWith("> ")) {
-      flushList();
+      flushList(); flushSteps();
       blocks.push({ type: "callout", content: line.slice(2) });
     } else if (line === "---") {
-      flushList();
+      flushList(); flushSteps();
       blocks.push({ type: "divider" });
+    } else if (/^\d+\.\s/.test(line)) {
+      flushList();
+      stepsBuffer.push(line.replace(/^\d+\.\s/, ""));
     } else if (line.startsWith("- ")) {
+      flushSteps();
       listBuffer.push(line.slice(2));
+    } else if (line.startsWith("STAT:")) {
+      flushList(); flushSteps();
+      const rest = line.slice(5).trim();
+      const pipeIdx = rest.indexOf("|");
+      if (pipeIdx > -1) {
+        blocks.push({ type: "stat", value: rest.slice(0, pipeIdx).trim(), label: rest.slice(pipeIdx + 1).trim() });
+      } else {
+        blocks.push({ type: "paragraph", content: rest });
+      }
     } else if (line.trim() === "") {
-      flushList();
+      flushList(); flushSteps();
     } else {
-      flushList();
-      blocks.push({ type: "paragraph", content: line });
+      const firstChar = line.trim()[0];
+      if (firstChar && CONCEPT_EMOJIS.includes(firstChar)) {
+        flushList(); flushSteps();
+        blocks.push({ type: "concept", emoji: firstChar, content: line.trim().slice(1).trim() });
+      } else {
+        flushList(); flushSteps();
+        blocks.push({ type: "paragraph", content: line });
+      }
     }
   }
 
   flushList();
+  flushSteps();
   return blocks;
+}
+
+function extractKeyPoints(body: string): string[] {
+  const lines = body.split("\n");
+  const points: string[] = [];
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (points.length >= 3) break;
+    if (line.startsWith("- ")) points.push(line.slice(2));
+    else if (/^\d+\.\s/.test(line)) points.push(line.replace(/^\d+\.\s/, ""));
+  }
+  return points;
+}
+
+const KEY_ICONS = ["⚡", "🎯", "✅"];
+
+function ModuleKeyPoints({ body }: { body: string }) {
+  const points = extractKeyPoints(body);
+  if (points.length < 2) return null;
+  return (
+    <div className="module-key-points">
+      <div className="module-key-points-label">Ce que tu vas apprendre</div>
+      <div className="module-key-points-grid">
+        {points.map((pt, i) => (
+          <div key={i} className="module-key-point-card">
+            <span className="mkp-icon">{KEY_ICONS[i] ?? "→"}</span>
+            <span className="mkp-text">{pt}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function MarkdownBody({ body }: { body: string }) {
@@ -186,7 +227,8 @@ function MarkdownBody({ body }: { body: string }) {
         if (block.type === "callout") {
           return (
             <div key={key} className="content-callout">
-              {renderInline(block.content, key)}
+              <span className="callout-icon">💡</span>
+              <span>{renderInline(block.content, key)}</span>
             </div>
           );
         }
@@ -195,13 +237,47 @@ function MarkdownBody({ body }: { body: string }) {
           return <hr key={key} className="content-divider" />;
         }
 
+        if (block.type === "steps") {
+          return (
+            <ol key={key} className="content-steps">
+              {block.items.map((item, i) => (
+                <li key={`${key}-${i}`} className="content-step-item">
+                  <span className="step-number">{i + 1}</span>
+                  <span className="step-text">{renderInline(item, `${key}-s-${i}`)}</span>
+                </li>
+              ))}
+            </ol>
+          );
+        }
+
         if (block.type === "list") {
           return (
-            <ul key={key} className="content-list">
+            <ul key={key} className="content-checklist">
               {block.items.map((item, itemIndex) => (
-                <li key={`${key}-${itemIndex}`}>{renderInline(item, `${key}-li-${itemIndex}`)}</li>
+                <li key={`${key}-${itemIndex}`} className="content-checklist-item">
+                  <span className="checklist-icon">✓</span>
+                  <span>{renderInline(item, `${key}-li-${itemIndex}`)}</span>
+                </li>
               ))}
             </ul>
+          );
+        }
+
+        if (block.type === "concept") {
+          return (
+            <div key={key} className="content-concept-card">
+              <span className="concept-emoji">{block.emoji}</span>
+              <span className="concept-text">{renderInline(block.content, key)}</span>
+            </div>
+          );
+        }
+
+        if (block.type === "stat") {
+          return (
+            <div key={key} className="content-stat-card">
+              <span className="stat-value">{block.value}</span>
+              <span className="stat-label">{block.label}</span>
+            </div>
           );
         }
 
@@ -217,11 +293,7 @@ function LockedModuleNotice({ requiredModule }: { requiredModule?: ModuleLinkMet
       <strong>Validation requise avant de continuer</strong>
       <p>
         {requiredModule
-          ? (
-            <>
-              Termine d&apos;abord <a href={`#module-${requiredModule.slug}`}>{requiredModule.title}</a> pour débloquer ce module.
-            </>
-            )
+          ? (<>Termine d&apos;abord <a href={`#module-${requiredModule.slug}`}>{requiredModule.title}</a> pour débloquer ce module.</>)
           : "Valide le module précédent pour débloquer cette étape."}
       </p>
     </div>
@@ -229,58 +301,36 @@ function LockedModuleNotice({ requiredModule }: { requiredModule?: ModuleLinkMet
 }
 
 function ModuleFooter({
-  isSeen,
-  isLocked,
-  onSeenToggle,
-  module,
-  previousModule,
-  nextModule,
-  readTimeMinutes,
-  canGoNext
+  isSeen, isLocked, onSeenToggle, module, previousModule, nextModule, readTimeMinutes, canGoNext
 }: {
-  isSeen: boolean;
-  isLocked?: boolean;
-  onSeenToggle: (moduleSlug: string) => void;
-  module: ProductModuleRecord;
-  previousModule?: ModuleLinkMeta | null;
-  nextModule?: ModuleLinkMeta | null;
-  readTimeMinutes?: number | null;
-  canGoNext?: boolean;
+  isSeen: boolean; isLocked?: boolean; onSeenToggle: (moduleSlug: string) => void;
+  module: ProductModuleRecord; previousModule?: ModuleLinkMeta | null;
+  nextModule?: ModuleLinkMeta | null; readTimeMinutes?: number | null; canGoNext?: boolean;
 }) {
   const nextHref = nextModule
-    ? nextModule.slug === "overview-video"
-      ? "#module-overview-video"
-      : `#module-${nextModule.slug}`
+    ? nextModule.slug === "overview-video" ? "#module-overview-video" : `#module-${nextModule.slug}`
     : null;
   const previousHref = previousModule
-    ? previousModule.slug === "overview-video"
-      ? "#module-overview-video"
-      : `#module-${previousModule.slug}`
+    ? previousModule.slug === "overview-video" ? "#module-overview-video" : `#module-${previousModule.slug}`
     : null;
 
   return (
     <div className="content-module-footer">
       <div className="content-module-footer-meta">
-        {readTimeMinutes ? <span className="module-read-time">~{readTimeMinutes} min de lecture</span> : null}
+        {readTimeMinutes ? <span className="module-read-time">~{readTimeMinutes} min</span> : null}
         {module.content_type !== "coming_soon" && !isLocked ? (
           <ModuleProgressTracker seen={isSeen} onToggle={() => onSeenToggle(module.slug)} />
         ) : null}
       </div>
       <div className="content-module-nav">
         {previousModule && previousHref ? (
-          <Link href={previousHref} className="content-module-nav-link">
-            ← {previousModule.title}
-          </Link>
+          <Link href={previousHref} className="content-module-nav-link">← {previousModule.title}</Link>
         ) : <span />}
         {nextModule && nextHref ? (
           canGoNext ? (
-            <Link href={nextHref} className="content-module-nav-link">
-              {nextModule.title} →
-            </Link>
+            <Link href={nextHref} className="content-module-nav-link">{nextModule.title} →</Link>
           ) : (
-            <span className="content-module-nav-link disabled">
-              Valide ce module pour continuer →
-            </span>
+            <span className="content-module-nav-link disabled">Valide ce module pour continuer →</span>
           )
         ) : null}
       </div>
@@ -298,10 +348,15 @@ function TextModule(props: ContentRendererProps) {
         <AccessBadge label="Texte" tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
-      {!isLocked && module.content_body ? (
-        <NarrationPlayer text={module.content_body} />
-      ) : null}
-      {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+      {isLocked ? (
+        <LockedModuleNotice requiredModule={requiredModule} />
+      ) : (
+        <>
+          {module.content_body ? <ModuleKeyPoints body={module.content_body} /> : null}
+          {module.content_body ? <NarrationPlayer text={module.content_body} /> : null}
+          {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
+        </>
+      )}
       <ModuleFooter {...props} />
     </article>
   );
@@ -309,7 +364,7 @@ function TextModule(props: ContentRendererProps) {
 
 function VideoModule(props: ContentRendererProps) {
   const { module, isSeen, isLocked, requiredModule, onSeenToggle } = props;
-  const visuals = getVideoVisuals(module.content_url);
+  const visuals = getVideoVisuals(module.content_url ?? "");
   const videoBadge = visuals.slug ? "Vidéo tutorielle" : "Vidéo";
 
   if (!module.content_url) {
@@ -320,12 +375,9 @@ function VideoModule(props: ContentRendererProps) {
           <AccessBadge label={videoBadge} tone="success" />
         </div>
         <p className="content-card-description">{module.description}</p>
-        {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : null}
-        {!isLocked ? (
-          <div className="video-placeholder">
-            <p>La vidéo sera intégrée ici dès que la production finale sera prête.</p>
-          </div>
-        ) : null}
+        {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : (
+          <div className="video-placeholder"><p>La vidéo sera intégrée ici dès que la production finale sera prête.</p></div>
+        )}
         <ModuleFooter {...props} />
       </article>
     );
@@ -347,18 +399,14 @@ function VideoModule(props: ContentRendererProps) {
               <span>Lecture intégrée</span>
               <strong>Vidéo explicative disponible immédiatement</strong>
             </div>
-          <CourseVideoPlayer
-            className="video-embed"
-            src={module.content_url}
-            poster={visuals.posterUrl ?? undefined}
-            subtitleSlug={visuals.slug}
-            storageKey={`techcash:video:${props.productSlug}:${module.slug}`}
-            completeAtPercent={0.9}
-            onCompleted={() => {
-              if (!isSeen) {
-                onSeenToggle(module.slug);
-              }
-              }}
+            <CourseVideoPlayer
+              className="video-embed"
+              src={module.content_url}
+              poster={visuals.posterUrl ?? undefined}
+              subtitleSlug={visuals.slug}
+              storageKey={`techcash:video:${props.productSlug}:${module.slug}`}
+              completeAtPercent={0.9}
+              onCompleted={() => { if (!isSeen) onSeenToggle(module.slug); }}
             />
           </div>
         )}
@@ -416,9 +464,7 @@ function VideoModule(props: ContentRendererProps) {
           {module.content_body ? <MarkdownBody body={module.content_body} /> : null}
           <div className="video-placeholder">
             <p>La vidéo est disponible via le lien ci-dessous.</p>
-            <a className="button" href={module.content_url} target="_blank" rel="noreferrer">
-              Voir la vidéo
-            </a>
+            <a className="button" href={module.content_url} target="_blank" rel="noreferrer">Voir la vidéo</a>
           </div>
         </>
       )}
@@ -503,9 +549,7 @@ export function ContentRenderer(props: ContentRendererProps) {
             <AccessBadge label="Bientôt disponible" tone="warning" />
           </div>
           <p className="content-card-description">{module.description}</p>
-          <p className="helper">
-            Ce module est planifié. Le contenu sera ajouté automatiquement sans action de ta part.
-          </p>
+          <p className="helper">Ce module est planifié. Le contenu sera ajouté automatiquement sans action de ta part.</p>
           <ModuleFooter {...props} />
         </article>
       );
