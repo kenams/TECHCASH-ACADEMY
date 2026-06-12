@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AccessBadge } from "@/components/access-badge";
 import { CourseVideoPlayer } from "@/components/course-video-player";
 import { ModuleProgressTracker } from "@/components/module-progress-tracker";
+import { NarrationPlayer } from "@/components/ui/NarrationPlayer";
 import type { ProductModuleRecord } from "@/lib/types";
 
 type ModuleLinkMeta = {
@@ -297,6 +298,9 @@ function TextModule(props: ContentRendererProps) {
         <AccessBadge label="Texte" tone="success" />
       </div>
       <p className="content-card-description">{module.description}</p>
+      {!isLocked && module.content_body ? (
+        <NarrationPlayer text={module.content_body} />
+      ) : null}
       {isLocked ? <LockedModuleNotice requiredModule={requiredModule} /> : module.content_body ? <MarkdownBody body={module.content_body} /> : null}
       <ModuleFooter {...props} />
     </article>

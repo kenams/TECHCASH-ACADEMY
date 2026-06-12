@@ -116,59 +116,74 @@ export default function LandingPage() {
 
         <section className="hero hero-catalog">
           <div className="stack">
-            <div className="eyebrow">Formations digitales concrètes et vendables</div>
-            <h1>{siteConfig.headline}</h1>
+            <div className="hero-badge-row">
+              <span className="hero-ai-badge">
+                <span className="hero-ai-dot" />
+                Narration IA · ElevenLabs intégré
+              </span>
+              <span className="hero-live-badge">
+                <span className="hero-live-dot" />
+                {products.length} formations live
+              </span>
+            </div>
+
+            <h1 className="hero-title-xl">{siteConfig.headline}</h1>
+
             <p className="lead">
-              Apprends à vendre des prestations digitales utiles, structurer une activité propre et livrer avec des process simples. Pas de promesse miracle, seulement des offres compréhensibles, vendables et exploitables.
+              Apprends à vendre des prestations digitales utiles, structurer une activité propre et livrer avec des process simples. Chaque module se lit <em>et s'écoute</em> — narration IA incluse.
             </p>
 
             <div className="cta-row">
-              <Link href="/formations" className="button">
-                Voir le catalogue
+              <Link href="/formations" className="button hero-cta-primary">
+                Voir le catalogue →
               </Link>
               <Link href="/register" className="button-secondary">
-                Créer un compte
+                Créer un compte gratuit
               </Link>
             </div>
 
             <div className="hero-proof-strip">
               <div className="metric-pill">
                 <strong>{products.length}</strong>
-                <span>formations pensées comme de vraies offres</span>
+                <span>formations actives</span>
               </div>
               <div className="metric-pill">
-                <strong>Checkout</strong>
-                <span>un tunnel plus propre qu'une simple page de vente brute</span>
+                <strong>IA</strong>
+                <span>narration audio par module</span>
               </div>
               <div className="metric-pill">
-                <strong>Espace membre</strong>
-                <span>accès clair, produit par produit, sans ambiguïté</span>
+                <strong>Stripe</strong>
+                <span>paiement sécurisé</span>
+              </div>
+              <div className="metric-pill">
+                <strong>Certificat</strong>
+                <span>à chaque formation complétée</span>
               </div>
             </div>
 
-            <div className="hero-stat-grid">
-              <article className="hero-stat-card">
-                <span className="helper">Catalogue actuel</span>
-                <strong>{products.length} offres publiées</strong>
-                <p>Des sujets utiles pour vendre vite : support IT, maintenance, landing pages, outils métier et services digitaux concrets.</p>
-              </article>
-              <article className="hero-stat-card">
-                <span className="helper">Positionnement</span>
-                <strong>Un cadre premium et lisible</strong>
-                <p>Chaque page cherche à rassurer, clarifier et donner envie d'acheter sans surpromesse ni friction inutile.</p>
-              </article>
-              <article className="hero-stat-card">
-                <span className="helper">Formats inclus</span>
-                <strong>Texte, PDF, ressources, vidéos</strong>
-                <p>Le contenu peut monter en puissance progressivement sans casser l'expérience ni dégrader la valeur perçue.</p>
-              </article>
+            <div className="hero-feature-row">
+              <div className="hero-feature-item">
+                <span className="hero-feature-icon">🎧</span>
+                <div>
+                  <strong>Écoute chaque module</strong>
+                  <span>Narration IA générée à la demande — parfait en déplacement</span>
+                </div>
+              </div>
+              <div className="hero-feature-item">
+                <span className="hero-feature-icon">🎯</span>
+                <div>
+                  <strong>100% orienté business</strong>
+                  <span>Vendre, livrer, facturer — pas de théorie sans débouché</span>
+                </div>
+              </div>
+              <div className="hero-feature-item">
+                <span className="hero-feature-icon">🏆</span>
+                <div>
+                  <strong>Certificat téléchargeable</strong>
+                  <span>Preuve de complétion à chaque formation terminée</span>
+                </div>
+              </div>
             </div>
-
-            <ul className="bullet-list">
-              {siteConfig.benefits.map((benefit) => (
-                <li key={benefit}>{benefit}</li>
-              ))}
-            </ul>
 
             <div className="trust-row">
               {siteConfig.trustPoints.map((point) => (
