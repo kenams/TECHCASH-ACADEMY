@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { DevLogin } from "@/components/dev-login";
@@ -31,12 +32,35 @@ export const metadata: Metadata = {
     url: getAbsoluteUrl("/"),
     title: siteConfig.brand,
     description: siteConfig.description,
-    siteName: siteConfig.brand
+    siteName: siteConfig.brand,
+    images: [
+      {
+        url: getAbsoluteUrl("/og-image.png"),
+        width: 1200,
+        height: 630,
+        alt: "TechCash Academy — Formations digitales"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.brand,
-    description: siteConfig.description
+    description: siteConfig.description,
+    images: [getAbsoluteUrl("/og-image.png")]
+  }
+};
+
+const educationalOrgSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "TechCash Academy",
+  url: siteConfig.siteUrl,
+  description:
+    "École en ligne — formations web, mobile, IA, entrepreneuriat digital",
+  creator: {
+    "@type": "Organization",
+    name: "KAH Digital",
+    url: "https://kah-digital.ch"
   }
 };
 
@@ -48,6 +72,11 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased" suppressHydrationWarning>
+        <Script
+          id="educational-org-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(educationalOrgSchema) }}
+        />
         <PageTransition>{children}</PageTransition>
         {process.env.NEXT_PUBLIC_DEV_LOGIN === "true" && <DevLogin />}
       </body>
