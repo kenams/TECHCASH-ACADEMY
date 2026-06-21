@@ -1,0 +1,42 @@
+name: TechCash Prospection
+
+on:
+  schedule:
+    - cron: "0 11 * * 1-5"   # Lun-Ven 11h UTC (13h Paris)
+  workflow_dispatch:
+
+jobs:
+  prospect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install playwright && playwright install chromium
+
+      - name: Restore leads cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            prospection/techcash_leads.csv
+            prospection/techcash_sent.csv
+          key: techcash-leads-${{ github.run_id }}
+          restore-keys: techcash-leads-
+
+      - name: Run prospection
+        working-directory: prospection
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: python prospect_techcash.py
+
+      - name: Save leads cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            prospection/techcash_leads.csv
+            prospection/techcash_sent.csv
+          key: techcash-leads-${{ github.run_id }}
