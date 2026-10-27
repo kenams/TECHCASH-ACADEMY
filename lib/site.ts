@@ -36,9 +36,9 @@ export function getAbsoluteUrl(path = "/") {
 
 export const siteConfig = {
   brand: "TechCash Academy",
-  shortBrand: "KAH-Digital",
+  shortBrand: "KAH Digital Studio",
   primaryProductSlug: "freelance-it-30-jours",
-  legalEntity: "KAH-Digital",
+  legalEntity: "KAH Digital Studio",
   supportEmail: trimmed(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "kahdigital42@gmail.com",
   siteUrl: getSiteUrl(),
   headline: "Des formations digitales concrètes pour lancer une activité rentable",

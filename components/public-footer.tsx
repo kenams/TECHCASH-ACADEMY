@@ -78,7 +78,7 @@ export function PublicFooter() {
       </div>
 
       <div className="flex flex-col gap-3 border-t border-[rgba(148,163,184,0.12)] py-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between">
-        <p>© {new Date().getFullYear()} TechCash Academy - KAH-Digital</p>
+        <p>© {new Date().getFullYear()} TechCash Academy - KAH Digital Studio</p>
         <p>{siteConfig.legalEntity}</p>
       </div>
     </footer>

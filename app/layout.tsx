@@ -59,7 +59,7 @@ const educationalOrgSchema = {
     "École en ligne — formations web, mobile, IA, entrepreneuriat digital",
   creator: {
     "@type": "Organization",
-    name: "KAH Digital",
+    name: "KAH Digital Studio",
     url: "https://kah-digital.ch"
   }
 };
